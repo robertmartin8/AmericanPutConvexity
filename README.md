@@ -133,6 +133,33 @@ in the final proof. These must be resolved mathematically, not copied into Lean.
 
 ## Verification and its limits
 
+### MathFin's epistemic status: provisional, not fully verified
+
+**Our confidence in MathFin is not 100%.** We have not independently verified its
+full mathematical development. We treat it as a useful but provisionally trusted
+dependency, not as an unquestioned foundation for our results.
+
+**Every core MathFin result that our proofs rely on must be independently reviewed
+and verified at the pinned revision**, including the underlying definitions,
+assumptions, and relevant transitive proof dependencies. That review must:
+
+- Check that the formal statement represents the intended mathematical/financial
+  claim, rather than a weaker surrogate or a theorem about a different model.
+- Check hypotheses for missing conditions, circularity, or vacuity, and establish
+  that they actually hold in our application.
+- Inspect the supporting arguments and dependency chain, reproduce the Lean build,
+  and check for additional axioms or unfinished proofs.
+- Record what was reviewed, the evidence, and any unresolved gaps in our audit notes;
+  revisit affected results when dependency revisions change.
+
+A successful Lean build and clean axiom audit validate the formal proof under its
+stated assumptions. They do **not** establish that the definitions, assumptions,
+or interpretation faithfully capture the finance problem. Our existing integration
+examples and selected axiom checks are not a completed independent audit of MathFin.
+Until that review is complete, claims resting on its core results remain provisional.
+
+### Current mechanical checks
+
 **Latest local verification: `lake build` succeeds.**
 
 - The implemented project proofs contain no `sorry` or new project axioms.
