@@ -1,0 +1,22 @@
+name = "AmericanConvexity"
+version = "0.1.0"
+defaultTargets = ["AmericanConvexity"]
+
+[leanOptions]
+autoImplicit = false
+warningAsError = true
+
+# Keep Lean and Mathlib aligned with this exact MathFin revision.
+[[require]]
+name = "MathFin"
+git = "https://github.com/formal-applied-math/formal-mathfin.git"
+rev = "784a8311f75a1519a23717856df9982bd6a9a370"
+
+# Explicit and last so all dependencies share MathFin's Mathlib pin.
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "81a5d257c8e410db227a6665ed08f64fea08e997"
+
+[[lean_lib]]
+name = "AmericanConvexity"

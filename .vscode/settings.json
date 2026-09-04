@@ -1,0 +1,11 @@
+{
+  "lean4.infoview.autoOpen": true,
+  "[lean4]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.wordWrap": "on",
+    "editor.rulers": [100]
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true
+}
