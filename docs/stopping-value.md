@@ -2536,3 +2536,45 @@ This is preparation for the higher-regularity bootstrap. The recent-source
 contribution, source forcing regularity, and the assembly into a Holder
 bound for the actual flux remain to be proved. No C2 boundary claim follows
 from this stage alone.
+
+## Full actual-graph history: one-half Holder time bound
+
+`HeatHistorySourceTime.lean` closes the integrability and splitting
+obligations identified above. The source-time kernel against a continuous
+bounded density is genuinely integrable on each relevant source interval.
+Reflection between source and elapsed time preserves integrability and
+the integral. Splitting at the earlier observation time is justified via
+adjacent interval integrals, before subtracting the common-past terms.
+The recent-source integral has bound
+
+`6*L*C/sqrt(2*pi)*sqrt(t2-t1)`.
+
+`HeatHistoryHolder.lean` defines the history from a fixed positive start,
+
+`heatHistoryFrom(b,f,a,t)=integral_{a<s<t} K_b(t,s)*f(s)`.
+
+It identifies this exactly with `heatHistory b (t-a) f t`. The common-past
+difference contributes 28 and the recent-source term contributes 6, giving
+
+`|heatHistoryFrom(b,f,a,t2)-heatHistoryFrom(b,f,a,t1)|`
+` <= 34*L*C/sqrt(2*pi)*sqrt(t2-t1)`.
+
+Here `a<t1<t2`, the graph derivative and displacement quotients have bound
+L on the window, and f is continuous with `|f|<=C`. No derivative or Holder
+modulus of f is assumed. Unlike the preceding norm estimate alone, the
+assembly explicitly proves integrability of all terms that are split or
+subtracted; it does not rely on a default value for a divergent integral.
+
+`ActualHistoryHolder.lean` applies this to the actual heat-coordinate
+boundary. Its already-proved C1 regularity supplies uniform compact-window
+bounds. Clamping the graph before a positive start produces a globally
+continuous representative, and exact integral equalities remove that clamp
+on the source window. Thus the full actual-graph history is one-half Holder
+in observation time for any continuous bounded density. Explicit
+zero-dividend and Liu-range results and twelve transitive axiom guards are
+included.
+
+The actual density satisfies `f=forcing+history`. This stage proves the
+history part's regularity, not the forcing part's. Establishing regularity
+of the localized source forcing is the next step before asserting a Holder
+bound for the actual density/flux and then improving C1 boundary regularity.

@@ -23,11 +23,12 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > differentiability of the graph. Higher boundary regularity, including C2,
 > remains unfinished. The development history below includes earlier
 > intermediate limitations that this checkpoint supersedes.
-> Toward higher regularity, observation-time estimates for the boundary
-> history kernel and an integrated square-root bound for its common-past
-> difference are now proved and specialized to the actual C1 heat graph.
-> These do not yet establish a Holder bound for the actual flux: the recent
-> source interval and regularity of the forcing still need to be assembled.
+> Toward higher regularity, the full actual-graph boundary history now has
+> a one-half Holder time bound for every continuous bounded density. Genuine
+> integrability, source-time reflection, the common-past difference and the
+> recent-source contribution are all checked. This does not yet establish
+> a Holder bound for the actual flux: regularity of its forcing term remains
+> to be proved and combined with the history estimate.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
@@ -194,6 +195,15 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > The actual heat graph supplies these hypotheses on every compact positive
 > time window. This is a history estimate, not yet a regularity theorem
 > for the actual flux or a second derivative of the boundary.
+> The full history estimate is now assembled with genuine integrability.
+> Source-time reflection and interval splitting are checked before subtraction.
+> The recent-source integral contributes `6*L*C/sqrt(2*pi)*sqrt(delta)`;
+> combined with the common-past term, this gives
+> `34*L*C/sqrt(2*pi)*sqrt(delta)` for the history difference. The actual
+> heat graph satisfies the hypotheses, with explicit zero-dividend and Liu
+> checkpoints. This establishes one-half Holder regularity of the history
+> term for continuous bounded densities, not yet of the complete actual
+> flux. The forcing term and subsequent higher bootstrap remain unfinished.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

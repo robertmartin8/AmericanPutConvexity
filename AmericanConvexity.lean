@@ -154,6 +154,9 @@ import AmericanConvexity.Stopping.ActualStefanVelocity
 import AmericanConvexity.Stopping.HeatHistoryTimeKernel
 import AmericanConvexity.Stopping.HeatHistoryTimeMajorant
 import AmericanConvexity.Stopping.ActualHistoryTimeBounds
+import AmericanConvexity.Stopping.HeatHistorySourceTime
+import AmericanConvexity.Stopping.HeatHistoryHolder
+import AmericanConvexity.Stopping.ActualHistoryHolder
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation

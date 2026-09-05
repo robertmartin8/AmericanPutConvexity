@@ -100,6 +100,7 @@ import AmericanConvexity.Stopping.ActualThetaFlux
 import AmericanConvexity.Stopping.ActualThetaGradientTrace
 import AmericanConvexity.Stopping.ActualStefanVelocity
 import AmericanConvexity.Stopping.ActualHistoryTimeBounds
+import AmericanConvexity.Stopping.ActualHistoryHolder
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -4201,3 +4202,63 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.exists_canonicalHeatHistory_overlap_bound
+
+/-- info: 'AmericanConvexity.Stopping.setIntegral_Ioo_reflect' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.setIntegral_Ioo_reflect
+
+/-- info: 'AmericanConvexity.Stopping.integrableOn_Ioo_reflect_iff' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integrableOn_Ioo_reflect_iff
+
+/-- info: 'AmericanConvexity.Stopping.setIntegral_Ioo_split' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.setIntegral_Ioo_split
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_elapsed_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_elapsed_bound
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_elapsed_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_elapsed_integrable
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_source_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_source_integrable
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_recent_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_recent_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryFrom_eq_elapsed' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryFrom_eq_elapsed
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryFrom_time_sub_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryFrom_time_sub_bound
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatHistory_holder_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatHistory_holder_bound
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatHistory_holder_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatHistory_holder_bound
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_exists_canonicalHeatHistory_holder_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_exists_canonicalHeatHistory_holder_bound
