@@ -31,6 +31,8 @@ import AmericanConvexity.Boundary.ExerciseGeometry
 import AmericanConvexity.Boundary.OneSidedContact
 import AmericanConvexity.Boundary.BoundaryTest
 import AmericanConvexity.Boundary.ObstacleComparison
+import AmericanConvexity.Boundary.ExpiryBarrier
+import AmericanConvexity.Boundary.NearExpiry
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration

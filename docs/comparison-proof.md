@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; full implication from three analytic inputs checked using the old CCJZ contract; those inputs remain unproved |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; expiry ratio limit checked on the old CCJZ contract; curvature follows from two still-unproved inputs: negative speed and the interval invariant |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; physical condition checked; the full conditional assembly applies, but its three analytic inputs remain unproved |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; full implication from three analytic inputs, including strict stock-curvature consequence, checked; those inputs remain unproved |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; physical condition and expiry limit checked; the full conditional assembly applies with two remaining inputs |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; expiry ratio limit proved and discharged from the log and strict stock-curvature assembly; negative speed and interval invariant remain unproved |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -86,14 +86,36 @@ uses the proved boundary test. Compactness is proved by a unit-interval
 parameterization, including zero-width slices. There is a named zero-dividend
 specialization on the original normalized pricing contract.
 
-This supplies a possible direct route to Step 1 without a European-price
-formula. **The following barrier application is not yet formalized:** on
-`|x|<=sqrt(t)`, consider `U(x,t)=(sqrt(t)-x)^2/(16*sqrt(t))` for `t>0`.
-The intended next checks are its pricing subsolution inequality at sufficiently
-small times, payoff bounds on both lateral edges, continuity at the collapsing
-initial slice, and comparison at `x=-M*t`. The target is a square-root lower
-bound large enough to exceed intrinsic value there and hence prove the still
-open ratio limit. The obstacle comparison alone does not establish that limit.
+### Step 1: near-expiry input, now proved
+
+`ExpiryBarrier.lean` constructs
+`U(x,t)=(sqrt(t)-x)^2/(16*sqrt(t))` on `|x|<=sqrt(t)` for `t>0`.
+Its derivatives are checked:
+
+```text
+U_x = (x-sqrt(t))/(8*sqrt(t)),
+U_xx = 1/(8*sqrt(t)),
+U_t = (1-x^2/t)/(32*sqrt(t)).
+```
+
+On the strip, `0<=U<=sqrt(t)/4`; this also proves relative continuity at the
+collapsing initial slice. The right edge is zero. The left edge is `sqrt(t)/4`,
+below the intrinsic payoff when `t<=1`. The pricing subsolution inequality is
+proved when `(|k-h-1|+k)*sqrt(t)<=1/4` and `t<=1`. Continuity constructs a
+strictly positive time window with these properties. Applying the proved
+obstacle comparison gives `U<=p` on that entire strip.
+
+`NearExpiry.lean` evaluates the bound at `x=-sqrt(t)/64`. There `U>=sqrt(t)/16`,
+whereas `1-exp(x)<=sqrt(t)/64`. That point cannot be exercised, so
+`b(t)<-sqrt(t)/64` on the positive time window. This deliberately non-sharp
+bound implies `b(t)<-M*t` eventually for every fixed real `M`, and hence
+`b(t)/t -> -infinity` as `t -> 0+`.
+
+The ratio-limit theorem depends only on `DividendPutSolution`, not negative
+boundary speed, convexity, a European asymptotic, or a new analytic axiom. The
+zero-dividend specialization uses the original normalized pricing contract.
+This proves the expiry input required by Step 1, not the sharp published
+near-expiry asymptotic and not the remaining curvature theorem.
 
 ### Step 2: explicit comparison construction
 
@@ -327,14 +349,13 @@ negative intercept before every positive time. If curvature is nonnegative at
 negative-intercept tangents, then `d'<=0` wherever `d<0`. A proved scalar fencing
 argument applied to `exp(t)*d(t)` shows negative intercepts persist forward.
 Thus curvature control at negative-intercept tangents implies it everywhere.
-The near-expiry ratio limit itself has not been proved for the pricing solution.
+`NearExpiry.lean` now supplies the ratio limit for the actual pricing contract.
 
 `ComparisonAssembly.lean` proves the exact remaining implication:
 
 ```text
 DividendPutSolution k h p b
 + b'(t)<0 for every t>0
-+ b(t)/t -> -infinity as t -> 0+
 + for every c>0,d<0,t>0, the positive continuation set of v is an interval
   ==> b''(t)>=0 for every t>0.
 ```
@@ -342,18 +363,17 @@ DividendPutSolution k h p b
 The zero-dividend version uses the original CCJZ contract. The strict
 stock-curvature consequence is also checked: weak log curvature plus nonzero
 log speed makes `b''+(b')^2` strictly positive under the exact coordinate map.
-**This is a conditional assembly, not the completed theorem.** The three inputs
+**This is a conditional assembly, not the completed theorem.** The two remaining inputs
 are explicit theorem premises, not new fields of the pricing-solution contract,
 not axioms, and not asserted results. The interval input is precisely the main
 unresolved propagation claim, not something proved merely by this assembly.
 
 ## Analytic dependencies still to prove
 
-1. **First-order and expiry inputs.** Prove negative boundary speed and
-   near-expiry `b(t)/t -> -infinity` from the pricing problem. Intercept selection
-   and the negative-curvature tangent geometry are now checked conditionally.
-   Strict boundary negativity and obstacle subsolution comparison are now
-   proved; the proposed square-root barrier application remains unchecked.
+1. **First-order input.** Prove negative boundary speed from the pricing problem.
+   The near-expiry ratio limit is now proved and discharged from the assembly.
+   Negative-intercept selection, strict boundary negativity, obstacle comparison,
+   the square-root barrier bound and negative-curvature tangent geometry are checked.
 2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
    exact two-simple-root characterization, corner/tail control, and compact
    confinement are checked. The count-stability implication from initial
@@ -371,7 +391,7 @@ unresolved propagation claim, not something proved merely by this assembly.
 5. **Financial applicability.** Establish the properties needed for the
    actual American value, including boundary regularity and monotonicity,
    rather than only proving a conditional theorem for an uninhabited contract.
-6. **Conclusions.** Discharge the three inputs of the checked global assembly
+6. **Conclusions.** Discharge the two remaining inputs of the checked global assembly
    to prove the curvature claims and their parameter specializations. Stock
    transfer is checked. Retain the separate CCJZ route and its stronger target.
 

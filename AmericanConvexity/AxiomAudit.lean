@@ -426,3 +426,33 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.zeroDividend_obstacle_comparison
+
+/-- info: 'AmericanConvexity.Boundary.expiryBarrier_subsolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.expiryBarrier_subsolution
+
+/-- info: 'AmericanConvexity.Boundary.expiryBarrier_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.expiryBarrier_continuousOn
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.expiryBarrier_le_price' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.expiryBarrier_le_price
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.exists_boundary_sqrt_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.exists_boundary_sqrt_bound
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_ratio_tendsto_atBot' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_ratio_tendsto_atBot
+
+/-- info: 'AmericanConvexity.Boundary.zeroDividend_boundary_ratio_tendsto_atBot' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.zeroDividend_boundary_ratio_tendsto_atBot
