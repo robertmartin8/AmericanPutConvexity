@@ -192,8 +192,8 @@ identification and attainment. No MathFin binomial Snell theorem is substituted
 for an arbitrary-filtration theorem. `DiscreteContactMartingale.lean` explicitly
 derives the stopped martingale from conditional-expectation indicator identities.
 All final finite Bellman and optimality chains have guarded three-standard-axiom
-audits. The physical-grid reindexing is now proved below; continuous-time
-optimality remains separate.
+audits. The physical-grid reindexing and a separate continuous-time first-contact
+optimality argument are now proved below.
 
 `GridReindexing.lean` proves stopping-time admissibility in both directions using
 the actual capped sampled filtration and floor/ceiling identities, and proves
@@ -227,3 +227,14 @@ lift through completion and usual augmentation. Guarded audits of the waiting
 inequality and both final supermartingales allow only the three standard axioms.
 No classical-price verification or continuous-time optimal-stopping theorem is
 used to establish this actual-price supermartingale property.
+
+`OrderedSampling.lean` derives two-rule bounded continuous optional sampling
+from Mathlib's discrete result and dominated convergence. `VanishingGap.lean`
+uses Mathlib's L1-to-convergence-in-measure theorem and its almost-sure
+subsequence theorem, plus compact minimum attainment for the pathwise argument.
+`FirstContactOptimality.lean` assembles these into a general expected-value
+preservation/optimality theorem. `ActualOptimality.lean` applies it to the
+actual usual-filtration price and the already verified optimal-grid rules,
+with no classical or continuous-optimality premise. The final actual contact
+optimality theorem and its key supporting chains have guarded three-standard-axiom
+audits. No unfinished upstream continuous submartingale sampling theorem is used.

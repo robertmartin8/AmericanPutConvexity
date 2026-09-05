@@ -100,7 +100,8 @@ threshold and continuity from shorter maturities. It does not prove continuity
 from longer maturities. `ActualContact.lean` constructs an admissible first-contact
 rule directly from the actual price/payoff gap on the completed usual Brownian
 space. Contact and pre-contact continuation are proved without a classical pair;
-optimality of this rule and the dynamic programming principle remain open.
+optimality of this rule is now proved in `ActualOptimality.lean` below. The full
+dynamic programming principle remains open.
 
 `BermudanConvergence.lean` now proves that restricting exercise to finite grids
 converges to the actual American stopping value, without changing the underlying
@@ -120,7 +121,8 @@ two-way conversion to capped physical-time grid rules. `GridBellman.lean` proves
 grid-value identification and attainment, and constructs optimal grid rules whose
 expected payoffs converge to the actual American price, including the normalized
 usual-filtration price. Convergence of the stopping times themselves and
-continuous-time first-contact optimality are not asserted.
+continuous-time first-contact optimality do not follow from grid convergence
+alone. The latter is now proved by the separate vanishing-gap argument below.
 
 `BrownianBellman.lean` identifies these conditional Bellman values with an
 explicit deterministic Gaussian recursion in log spot, including the capped last
@@ -137,9 +139,17 @@ exercise on grids starting after the wait, followed by dominated convergence.
 `ActualSupermartingale.lean` consequently proves that the actual discounted
 normalized price, frozen at maturity, is a bounded continuous supermartingale
 on both raw and usual filtrations. Its initial value and exact payoff-gap
-identity are checked, without a classical solution. Full continuous-time dynamic
-programming, martingality up to actual first contact, first-contact optimality,
-and PDE regularity remain unproved.
+identity are checked, without a classical solution.
+
+`ActualOptimality.lean` now proves that the actual first-contact rule attains
+the canonical American stopping value, with no PDE, smooth-fit or classical-pair
+premise. `FirstContactOptimality.lean` proves a general bounded-supermartingale
+argument: nearly optimal rules have vanishing expected price/payoff gaps; an
+almost-sure subsequence, pathwise continuity and ordered optional sampling give
+equality of expected values at first contact. The already constructed optimal
+grid rules discharge the approximation hypothesis in the Brownian application.
+Full continuous-time dynamic programming, the stopped-martingale characterization,
+and PDE/boundary regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -306,7 +316,7 @@ All files below are included in the project build.
 | [`Stopping/PricePositivity.lean`](AmericanConvexity/Stopping/PricePositivity.lean) | Positive Gaussian maturity-payoff expectation and strict positivity of raw, usual and normalized American prices |
 | [`Stopping/StrictExerciseGeometry.lean`](AmericanConvexity/Stopping/StrictExerciseGeometry.lean) | Threshold strictly below strike, full contact/continuation characterization, and an open continuation domain, without a PDE premise |
 | [`Stopping/BoundarySemicontinuity.lean`](AmericanConvexity/Stopping/BoundarySemicontinuity.lean) | Upper semicontinuity and shorter-maturity-side continuity of the financial threshold, without a PDE premise |
-| [`Stopping/ActualContact.lean`](AmericanConvexity/Stopping/ActualContact.lean) | Actual-price first-contact rule, GBM normalization, attained contact and pre-contact continuation; optimality not yet proved |
+| [`Stopping/ActualContact.lean`](AmericanConvexity/Stopping/ActualContact.lean) | Actual-price first-contact rule, GBM normalization, attained contact and pre-contact continuation; optimality is proved later in ActualOptimality |
 | [`Stopping/FiniteExerciseGrid.lean`](AmericanConvexity/Stopping/FiniteExerciseGrid.lean) | Finite exercise grids, admissible upward rounding capped at maturity, and expected-payoff convergence |
 | [`Stopping/BermudanConvergence.lean`](AmericanConvexity/Stopping/BermudanConvergence.lean) | Genuine finite-grid stopping suprema converge to the American value in the same model; payoff and European bounds |
 | [`Stopping/FiniteBellman.lean`](AmericanConvexity/Stopping/FiniteBellman.lean) | General conditional-expectation Bellman recursion, adaptedness, integrability, payoff dominance, supermartingality and minimality |
@@ -322,6 +332,10 @@ All files below are included in the project build.
 | [`Stopping/DelayedGrid.lean`](AmericanConvexity/Stopping/DelayedGrid.lean) | Bellman identification on grids starting after a fixed wait, and domination by the American value |
 | [`Stopping/AmericanWaiting.lean`](AmericanConvexity/Stopping/AmericanWaiting.lean) | Deterministic waiting inequality for the actual raw and normalized usual prices via delayed-grid convergence |
 | [`Stopping/ActualSupermartingale.lean`](AmericanConvexity/Stopping/ActualSupermartingale.lean) | Bounded continuous actual discounted price is a raw/usual supermartingale; initial price and exact payoff-gap identity |
+| [`Stopping/OrderedSampling.lean`](AmericanConvexity/Stopping/OrderedSampling.lean) | Optional-sampling inequality for two ordered bounded continuous-time stopping rules |
+| [`Stopping/VanishingGap.lean`](AmericanConvexity/Stopping/VanishingGap.lean) | Almost-sure vanishing-gap subsequence and pathwise convergence of times capped at first contact |
+| [`Stopping/FirstContactOptimality.lean`](AmericanConvexity/Stopping/FirstContactOptimality.lean) | Expected-value preservation and first-contact optimality from a bounded supermartingale and nearly optimal rules |
+| [`Stopping/ActualOptimality.lean`](AmericanConvexity/Stopping/ActualOptimality.lean) | Actual usual-filtration first-contact rule attains the canonical American value without a classical solution |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

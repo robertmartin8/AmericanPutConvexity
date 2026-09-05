@@ -538,11 +538,10 @@ normalization. Contact is attained, all prior points belong to the actual open
 continuation region, and contact before expiry lies at or below the stock
 threshold. These conclusions use neither boundary smoothness nor the PDE.
 
-**Admissibility is not optimality.** No theorem here identifies this rule's
-expected payoff with the stopping supremum. Dynamic programming, the corresponding
-martingale characterization, and the continuation PDE remain to be proved for
-the actual price. The previously proved optimality results for a given classical
-pair do not discharge these existence-side obligations.
+Admissibility alone does not establish optimality. The later `ActualOptimality.lean`
+now identifies this rule's expected payoff with the stopping supremum, without
+a classical pair. The full dynamic programming principle, the corresponding
+stopped-martingale characterization, and the continuation PDE remain open.
 
 ## Finite-grid approximation of the American supremum
 
@@ -599,7 +598,7 @@ rules into a supremum and proves both `discreteStoppingValue_eq_bellman` and
 This general finite discrete-time stopping-supremum theorem is not a binomial
 specialization. Its physical-grid application is now proved by the explicit
 reindexing below. The finite-grid Brownian Markov recursion is also proved below;
-passage to continuous-time first-contact optimality remains open.
+continuous-time first-contact optimality is proved separately below.
 
 ## Attained Bellman optimality on physical exercise grids
 
@@ -623,7 +622,8 @@ by the checked finite-grid convergence theorem.
 instantiate the construction on the completed usual Brownian space and give
 convergence to the actual `canonicalPrice`, without a classical-solution premise.
 This is convergence of expected payoffs, not convergence of stopping times,
-and does not prove that the continuous-time first-contact rule is optimal.
+and alone does not prove that the continuous-time first-contact rule is optimal.
+The separate vanishing-gap argument below now establishes that optimality.
 Identification with a Brownian Markov pricing recursion is now proved below.
 The deterministic waiting inequality and actual-price supermartingality are now
 proved below. Full continuous-time dynamic programming and PDE regularity remain open.
@@ -666,8 +666,8 @@ classical-solution premise from positive-spot raw/usual value equality.
 
 These exact finite-grid dynamic-programming results and value convergence now
 also give the waiting inequality and supermartingality below. Full continuous-time
-dynamic programming, optimality of the actual first-contact rule, and classical
-PDE/boundary regularity remain open.
+dynamic programming and classical PDE/boundary regularity remain open. Actual
+first-contact optimality is now proved below.
 
 ## Waiting inequality and actual-price supermartingality
 
@@ -706,5 +706,43 @@ times the existing `canonicalGap`, linking it to the actual first-contact rule.
 
 These proofs assume no classical solution, boundary, PDE, or continuous-time
 optimal rule. Supermartingality alone does not prove martingality up to first
-contact; proving that property and optimality remains the next stopping-theory
-obligation before classical PDE/boundary regularity.
+contact. First-contact optimality is now proved below without first establishing
+that full martingale characterization. The characterization and classical
+PDE/boundary regularity remain open.
+
+## Actual first-contact optimality without a classical solution
+
+`OrderedSampling.lean` proves the optional-sampling inequality for any two
+ordered bounded stopping rules, by upward grid approximation and bounded
+dominated convergence. It also constructs the pointwise minimum of two rules.
+
+`FirstContactOptimality.lean` proves a general theorem for a bounded continuous
+supermartingale `U` dominating a bounded continuous reward process `Z` up to
+the horizon. Assume admissible rules `theta_n` have expected rewards tending to
+`E[U_0]`. Optional sampling then gives
+
+```text
+0 <= E[U(theta_n)-Z(theta_n)] <= E[U_0]-E[Z(theta_n)] -> 0.
+```
+
+`VanishingGap.lean` converts this to an almost-sure vanishing-gap subsequence
+using Mathlib's L1 convergence-in-measure and subsequence theorem. If the gap
+is strictly positive before `tau`, continuity and compactness imply
+`min(theta_(ns n),tau) -> tau` pathwise on that subsequence. Ordered optional
+sampling and dominated convergence give `E[U_tau]=E[U_0]`; payoff contact then
+gives `E[Z_tau]=E[U_0]`. This does not assert convergence of the untruncated
+stopping rules themselves, nor does it identify the stopped process as a
+martingale without a further argument.
+
+`ActualOptimality.lean` discharges every premise on the completed usual Brownian
+space. It uses the actual `canonicalDiscountedPrice`, the original discounted
+put payoff frozen at maturity, `brownianUsualActualContactRule`, and the already
+proved optimal-grid expected-payoff convergence. The final result is
+`brownianUsualActualContactRule_optimal`: the contact rule's expected monetary
+payoff equals `canonicalPrice k h x T` for `k>=0`, arbitrary real `h,x`, and
+nonnegative maturity. Strike is one and volatility is `sqrt(2)`, as in the
+canonical definition. This is actual continuous-time optimality, not merely
+optimality conditional on a PDE solution or on an assumed optimal rule.
+
+The full dynamic programming principle, stopped-martingale characterization,
+and classical PDE, smooth-fit and boundary-regularity obligations remain open.
