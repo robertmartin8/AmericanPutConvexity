@@ -52,10 +52,12 @@ This is the raw natural filtration. Equality with a formulation using the usual
 completed/right-continuous augmentation is not yet proved. No representation
 invariance across arbitrary Brownian probability spaces is claimed.
 
-The new financial modules reuse MathFin's GBM value **definition**, not a
-MathFin continuous-time American pricing or PDE-verification theorem. Their
-selected conclusions and the filtered Brownian result have build-enforced
-axiom guards. This is not an independent audit of every upstream theorem.
+The financial modules reuse MathFin's GBM value **definition** and, in the local
+stochastic bridge, its general Ito/local-martingale theorem. They do not import
+a continuous-time American pricing or American PDE-verification theorem. Their
+selected conclusions, the filtered Brownian result, and the new local Ito chain
+have build-enforced transitive axiom guards. This is not an independent audit of
+every upstream theorem.
 
 ## Checked value and contact-set results
 
@@ -161,6 +163,49 @@ Those two stochastic properties and existence of a classical pair remain open.
 An admissible contact rule is now constructed, but its optimality is still
 conditional on the unproved martingale properties. It is not an independently
 verified optimal stopping rule yet.
+
+## Checked local PDE-to-Ito connection
+
+`CandidatePDE.lean` writes the precise discounted price as a function of physical
+elapsed time `t` and Brownian coordinate `w`:
+
+```text
+F(t,w) = exp(-r*t)*K*p(x0+(r-q-sigma^2/2)*t+sigma*w, sigma^2/2*(T-t)).
+```
+
+At continuation points, the normalized pricing PDE proves
+`F_t+(1/2)*F_ww=0`. The time reversal, factor `sigma^2/2`, risk-neutral log drift,
+and discount term are all checked by derivative identities, not by renaming the
+PDE. The stochastic candidate evaluated before maturity agrees exactly with
+`F(t,W_t)`.
+
+`SmoothLocalization.lean` constructs a compactly supported globally C3 function
+`G` agreeing with `F` near any continuation point. A bump is supported strictly
+inside a neighborhood where the price is C3; outside that support its product
+with the price is locally zero. This does not require global smoothness of the
+price. `LocalPriceIto.lean` proves that `G_t+(1/2)*G_ww=0` on a neighborhood of
+the chosen point, not globally on the support transition region.
+
+`PlaneIto.lean` derives MathFin's six jointly continuous partial derivatives from
+joint C3 regularity and invokes `MathFin.ito_formula_unrestricted`. Consequently
+each local extension has an actual compensated local-martingale decomposition:
+
+```text
+G(t,W_t)-G(0,W_0) = M_t + integral_0^t (G_t+(1/2)*G_ww)(s,W_s) ds.
+```
+
+The local-martingale filtration here is explicitly MathFin's **null-augmented**
+Brownian filtration. This is not yet a martingale statement for the original
+candidate on the raw filtration. We still need to assemble the local statements
+along the path up to first contact, promote the bounded stopped process to a
+true martingale, and transfer to the raw filtration. The global candidate's
+supermartingale property across the exercise boundary is also still missing.
+
+The new import traverses upstream files containing unfinished declarations;
+the guarded axiom checks on `plane_ito_localMartingale` and `local_price_ito`
+verify their actual proof chains contain only `propext`, `Classical.choice`,
+and `Quot.sound`, not `sorryAx`. This is a dependency-specific check, not a
+claim that all imported declarations are complete.
 
 ## Price identification suffices for boundary identification
 

@@ -38,6 +38,12 @@ is now constructed, with proved contact and pre-contact continuation. Its
 supermartingale/contact-martingale properties still need to be derived from the
 PDE; identification remains open.
 
+The stochastic bridge now proves the exact Brownian-coordinate heat equation
+inside continuation and constructs compact C3 localizations with zero drift
+near each interior point. MathFin's Ito theorem supplies their compensated
+local martingales on the explicitly null-augmented filtration. Assembly up to
+first contact and the global supermartingale property remain unproved.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -168,6 +174,10 @@ All files below are included in the project build.
 | [`Stopping/FirstContact.lean`](AmericanConvexity/Stopping/FirstContact.lean) | Continuous adapted first-zero stopping rule from compact minima, without usual-filtration assumptions |
 | [`Stopping/ClassicalContact.lean`](AmericanConvexity/Stopping/ClassicalContact.lean) | Constructed classical first-contact rule, attained payoff contact, and strict continuation before contact |
 | [`Stopping/BrownianVerification.lean`](AmericanConvexity/Stopping/BrownianVerification.lean) | Constructed Brownian contact rule; price identification and boundary curvature reduced to two explicit martingale obligations |
+| [`Stopping/CandidatePDE.lean`](AmericanConvexity/Stopping/CandidatePDE.lean) | Exact physical-time/Brownian-coordinate derivatives and zero generator inside continuation |
+| [`Stopping/SmoothLocalization.lean`](AmericanConvexity/Stopping/SmoothLocalization.lean) | Compact C3 functions agreeing with the actual price near continuation points |
+| [`Stopping/PlaneIto.lean`](AmericanConvexity/Stopping/PlaneIto.lean) | Joint C3 regularity supplies the partials required by MathFin's local-martingale Ito theorem |
+| [`Stopping/LocalPriceIto.lean`](AmericanConvexity/Stopping/LocalPriceIto.lean) | Zero-drift local price extensions with genuine compensated local martingales; global stopped assembly remains open |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

@@ -79,3 +79,23 @@ The exact theorem statements and assumptions are authoritative, not README label
 examples against extra axioms or `sorryAx`; their allowed axioms are `propext`,
 `Classical.choice`, and `Quot.sound`. This checks proof dependencies, not whether a
 statement faithfully represents the finance question we intend to ask.
+
+## Stochastic bridge: Ito dependency
+
+The stopping/PDE bridge now also imports
+`MathFin.Foundations.ItoFormulaUnrestrictedLocMart`. The local adapter
+`Stopping/PlaneIto.lean` derives its partial-derivative hypotheses from joint C3
+regularity. `Stopping/LocalPriceIto.lean` applies it to compact smooth extensions
+of the classical discounted price inside continuation. This is substantive
+reuse of MathFin stochastic calculus, not reuse of an American pricing theorem.
+The completed classical boundary-convexity proof itself remains independent of
+these new stochastic modules.
+
+Fresh or replayed builds emit upstream `sorry` warnings for unrelated declarations
+in `BrownianMotion.StochasticIntegral.UniformIntegrable` (line 311),
+`OptionalSampling` (line 258), and `LocalMartingale` (line 94), at the pin above.
+These files are in the import graph. The build-enforced axiom guards for our
+final local Ito conclusions check the transitive **proof** graph and permit
+only `propext`, `Classical.choice`, and `Quot.sound`; no imported unfinished
+declaration is accepted as part of those conclusions. Importing a file and
+depending on every theorem in it are different claims.

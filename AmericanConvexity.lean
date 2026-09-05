@@ -16,6 +16,10 @@ import AmericanConvexity.Stopping.ClassicalCandidate
 import AmericanConvexity.Stopping.FirstContact
 import AmericanConvexity.Stopping.ClassicalContact
 import AmericanConvexity.Stopping.BrownianVerification
+import AmericanConvexity.Stopping.CandidatePDE
+import AmericanConvexity.Stopping.SmoothLocalization
+import AmericanConvexity.Stopping.PlaneIto
+import AmericanConvexity.Stopping.LocalPriceIto
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
