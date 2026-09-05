@@ -1,5 +1,17 @@
 # Building on formal-mathfin
 
+## Current final-theorem audit
+
+The [declaration-level dependency audit](dependency-audit.md) and its
+[machine-readable report](audits/final-proof-dependencies.json) now identify
+the actual proof dependencies of the final curvature results and the spatial
+interval invariant. A fresh empty-kernel replay passed for 74,785 declarations,
+including 498 declared in MathFin modules and 750 in BrownianMotion modules.
+The three standard axioms are the only axioms; negative controls reject a
+missing declaration, `sorryAx`, and a false proof term. This is more specific
+than the historical import descriptions below. It is not an independent
+kernel implementation or a review of every theorem in either repository.
+
 ## Use a downstream Lake package
 
 Our project depends on MathFin via Git; our source stays in `AmericanConvexity/`.

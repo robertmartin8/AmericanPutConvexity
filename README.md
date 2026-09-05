@@ -36,6 +36,13 @@ terminal barrier. `Stopping/AEHorizonValue.lean` also proves equivalence with
 the usual almost-sure maturity-bound convention for stopping times;
 `AEHorizonCurvature.lean` transfers the classical result to that convention.
 
+The [completion audit](docs/formalization-completion.md) maps the request to
+the checked results and distinguishes it from the unfinished independent CCJZ
+track and external review. The [dependency audit](docs/dependency-audit.md)
+records a fresh-kernel replay of 74,785 declarations, including the final
+actual-curvature theorem and interval invariant, using only Lean's three
+standard axioms. Its executable and machine-readable report are included.
+
 ## Historical development checkpoints
 
 > **Earlier status: actual log-boundary convexity and strict stock-boundary convexity
