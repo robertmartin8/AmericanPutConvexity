@@ -1120,3 +1120,30 @@ are explicit. Fifteen new transitive axiom guards cover the assembled chain.
 This is a right time derivative, not yet a continuous or two-sided time
 derivative. Those steps, and the actual boundary's C2 conclusion, remain
 unfinished.
+
+### Explicit regularized rate and local continuity
+
+`RegularizedHistoryDerivative.lean` records the frozen-reference derivative
+as an explicit function of observation time and elapsed source time. The
+reference velocity and density value vary for the continuity calculation,
+but are held fixed when interpreting the expression as a derivative at
+one observation. Thus continuity uses only continuity of velocity and
+density, not derivatives of those quantities.
+
+`MovingEndpointContinuity.lean` proves dominated continuity for a varying
+upper integration endpoint under the inverse-three-quarter majorant.
+The endpoint itself is the only excluded point in pointwise convergence,
+and has zero Lebesgue measure. `ActualRegularizedHistoryContinuity.lean`
+supplies a uniform majorant for the actual graph on a neighborhood and
+includes the continuous straight-line endpoint term in
+`regularizedHistoryRate`. A local positive source start exists for which
+this rate is continuous at the target time. Restricted parameter cases
+are explicit.
+
+`LocalHistoryRateIdentity.lean` identifies the previously constructed local
+right derivative with `regularizedHistoryRate` at its own source start.
+The continuity construction and derivative construction need not select
+the same start. Reconciling the rate formulas across starts and throughout
+a neighborhood remains necessary before asserting continuity of the actual
+time derivative. Ten new transitive axiom guards cover this checkpoint;
+two-sided differentiability and C2 remain unfinished.

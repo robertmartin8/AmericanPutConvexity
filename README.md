@@ -76,6 +76,14 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > actual heat flux (`ActualHeatFluxRightDerivative.lean`), including
 > zero-dividend and Liu cases. Continuity of this time derivative, two-sided
 > differentiability and C2 remain unfinished.
+> Toward continuity, the regularized derivative formula is now explicit.
+> A uniform integrable bound and dominated convergence prove continuity of
+> its moving-endpoint integral for a local source start on the actual graph
+> (`ActualRegularizedHistoryContinuity.lean`). The local right derivative is
+> also identified with this formula at its constructed start
+> (`LocalHistoryRateIdentity.lean`). These starts may differ: the rate
+> identities must still be reconciled across starts throughout a neighborhood
+> before concluding continuity of the intrinsic time derivative or C2.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming

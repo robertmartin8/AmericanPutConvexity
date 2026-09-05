@@ -111,6 +111,7 @@ import AmericanConvexity.Stopping.ActualFrozenDerivative
 import AmericanConvexity.Stopping.ActualRecentRemainder
 import AmericanConvexity.Stopping.ActualCommonPastDerivative
 import AmericanConvexity.Stopping.ActualHeatFluxRightDerivative
+import AmericanConvexity.Stopping.LocalHistoryRateIdentity
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -4947,3 +4948,53 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalHeatThetaRightFlux_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.integral_Ioo_moving_right_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integral_Ioo_moving_right_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.regularizedHistoryDerivative_eq_frozen_deriv' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.regularizedHistoryDerivative_eq_frozen_deriv
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryMotionDerivative_continuousAt_varying' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryMotionDerivative_continuousAt_varying
+
+/-- info: 'AmericanConvexity.Stopping.regularizedHistoryDerivative_continuousAt_time' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.regularizedHistoryDerivative_continuousAt_time
+
+/-- info: 'AmericanConvexity.Stopping.regularizedHistoryDerivative_source_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.regularizedHistoryDerivative_source_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.regularizedHistoryDerivative_threeQuarter_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.regularizedHistoryDerivative_threeQuarter_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalRegularizedHistoryRate_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalRegularizedHistoryRate_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalRegularizedHistoryRate_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalRegularizedHistoryRate_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalRegularizedHistoryRate_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalRegularizedHistoryRate_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLocalHistory_hasDerivWithinAt_regularizedRate' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLocalHistory_hasDerivWithinAt_regularizedRate

@@ -2915,3 +2915,38 @@ transitive axiom guards verify the complete dependency chain.
 Continuity of the time derivative and two-sided time differentiability are
 not yet established. No C2 boundary or classical pointwise curvature claim
 is made by this checkpoint.
+
+## Regularized rate: explicit formula and local continuity
+
+`RegularizedHistoryDerivative.lean` defines, with w=b'(t),
+
+`Rderiv(t,u) = M(u,b(t)-b(t-u),w)*f(t-u) - M(u,w*u,w)*f(t)`.
+
+Here M is the already checked motion derivative of the boundary kernel.
+At a fixed t this equals the derivative of the frozen-reference remainder.
+As t varies, the displayed formula varies its reference values; it does
+not differentiate them. It is continuous away from u=0 when b, b' and f
+are continuous, and the three-quarter comparison bounds give a uniform
+integrable `M0*u^(-3/4)` majorant.
+
+`MovingEndpointContinuity.lean` applies dominated convergence after encoding
+the varying upper endpoint as an indicator on a fixed integration interval.
+Pointwise convergence holds away from the single endpoint, whose measure
+is zero. The majorant also controls the singular lower endpoint.
+
+`ActualRegularizedHistoryContinuity.lean` constructs one source and
+observation neighborhood inside the actual velocity and density modulus
+windows. For a suitable positive local start a, it proves continuity at t
+of the candidate rate
+
+`regularizedHistoryRate(b,f,a,t)`
+` = integral_0^(t-a) Rderiv(t,u) du + H(t-a,b'(t)*(t-a))*f(t)`.
+
+`LocalHistoryRateIdentity.lean` separately proves that the actual graph's
+local history right derivative equals this rate at the local start supplied
+by its derivative construction. No second derivative is assumed.
+
+The two constructions may choose different source starts. A rate-comparison
+identity across starts and neighborhood-wide identification are still
+required to establish continuity of the intrinsic derivative. Ten new
+guarded transitive axiom checks cover these results. C2 remains unfinished.
