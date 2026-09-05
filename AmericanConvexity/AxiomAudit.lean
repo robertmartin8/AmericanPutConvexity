@@ -51,6 +51,7 @@ import AmericanConvexity.Stopping.IntervalHeatBoundary
 import AmericanConvexity.Stopping.ActualInteriorRegularity
 import AmericanConvexity.Stopping.PositiveExerciseBoundary
 import AmericanConvexity.Stopping.ActualBoundaryContinuity
+import AmericanConvexity.Stopping.ContactTimeBoundary
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1701,3 +1702,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_continuousOn
+
+/-- info: 'ProbabilityTheory.IsBrownianReal.indep_zero' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms ProbabilityTheory.IsBrownianReal.indep_zero
+
+/-- info: 'AmericanConvexity.Stopping.brownianProbe_hasLaw' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianProbe_hasLaw
+
+/-- info: 'AmericanConvexity.Stopping.brownianNegativeGerm_measurable_germ' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianNegativeGerm_measurable_germ
+
+/-- info: 'AmericanConvexity.Stopping.brownianNegativeGerm_prob_one' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianNegativeGerm_prob_one
+
+/-- info: 'AmericanConvexity.Stopping.brownian_downward_excursions_ae' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_downward_excursions_ae
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualActualContactTime_le_of_downcrossing' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualActualContactTime_le_of_downcrossing
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualActualContactTime_tendsto_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualActualContactTime_tendsto_boundary

@@ -378,3 +378,18 @@ Composition with the logarithm uses its proved positive argument. Guarded audits
 cover forcing, the maximum lemma, no-jump result and final stock/log continuity,
 with only `propext`, `Classical.choice` and `Quot.sound`. Smooth fit and boundary
 differentiability are neither assumed nor established in this chain.
+
+`BrownianGerm.lean` explicitly uses the pinned BrownianMotion package's proved
+`IsBrownianReal.indep_zero` (Blumenthal zero-one law), now covered by a guarded
+transitive axiom audit. Mathlib's Gaussian scaling theorem gives the identical
+standard-normal laws of normalized near-zero probes. Tail-event measurability
+uses the definition of the natural filtration and the decreasing probe times.
+Bounded convergence applied to a continuous negative-side test rules out a
+zero-probability negative germ event. No independence of the probes is assumed.
+Elementary scaling supplies arbitrarily early excursions for arbitrary drift
+and positive volatility. `ContactTimeBoundary.lean` combines these with actual
+boundary monotonicity and pre-contact continuation, proving almost-sure
+convergence of optimal contact times to zero at exercise under the completed
+measure. The zero-one theorem and all selected new chains audit to only
+`propext`, `Classical.choice` and `Quot.sound`. Smooth fit is not imported or
+asserted by this construction.

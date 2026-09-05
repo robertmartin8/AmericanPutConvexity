@@ -117,6 +117,14 @@ space. Contact and pre-contact continuation are proved without a classical pair;
 optimality of this rule is now proved in `ActualOptimality.lean` below. The full
 dynamic programming principle remains open.
 
+`BrownianGerm.lean` now derives arbitrarily early downward excursions, for any
+fixed drift and positive volatility, from the proved Brownian zero-one law and
+Gaussian marginals. `ContactTimeBoundary.lean` uses these excursions and boundary
+monotonicity to prove that the actual optimal contact times tend almost surely
+to zero as initial log price approaches the exercise boundary. This closes the
+probabilistic boundary-regularity step toward smooth fit, not the payoff
+difference-quotient or gradient-trace steps themselves.
+
 `BermudanConvergence.lean` now proves that restricting exercise to finite grids
 converges to the actual American stopping value, without changing the underlying
 process or filtration. Upward rounding capped at maturity is admissible and its
@@ -426,6 +434,8 @@ All files below are included in the project build.
 | [`Stopping/PositiveExerciseBoundary.lean`](AmericanConvexity/Stopping/PositiveExerciseBoundary.lean) | Uniformly positive actual exercise threshold, finite logarithmic boundary, value matching and exact continuation geometry; named zero-dividend checkpoint |
 | [`Stopping/ContinuationSlice.lean`](AmericanConvexity/Stopping/ContinuationSlice.lean) | Actual maturity derivative is nonnegative; elliptic forcing and a quadratic maximum argument exclude an instant continuation interval |
 | [`Stopping/ActualBoundaryContinuity.lean`](AmericanConvexity/Stopping/ActualBoundaryContinuity.lean) | No downward threshold jumps; actual stock/log boundary continuity including expiry and log-boundary monotonicity; named zero-dividend checkpoint |
+| [`Stopping/BrownianGerm.lean`](AmericanConvexity/Stopping/BrownianGerm.lean) | Brownian negative germ event has probability one; arbitrarily early downward excursions survive every fixed drift and positive volatility |
+| [`Stopping/ContactTimeBoundary.lean`](AmericanConvexity/Stopping/ContactTimeBoundary.lean) | Almost-sure convergence of actual optimal first-contact times to zero as initial log price approaches the exercise boundary |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

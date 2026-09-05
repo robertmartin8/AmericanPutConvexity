@@ -15,6 +15,10 @@ logarithmic boundary. `ActualBoundaryContinuity.lean` proves full stock/log
 boundary continuity, including expiry. Smooth fit, gradient trace and positive-time
 boundary smoothness remain open.
 
+The final section now also proves almost-sure convergence of actual optimal
+contact times to zero as the initial price approaches exercise. Passing payoff
+difference quotients to expectations, to establish smooth fit, remains open.
+
 ## Exact financial definition
 
 For an explicit filtration `F` on a probability space `(Omega,P)`, a
@@ -1212,3 +1216,51 @@ The time clamp supplies the two-sided statement at zero; the substantive part
 is the right-hand limit. Guarded transitive audits allow only the three standard
 axioms. Smooth fit, the continuation-side gradient trace, and positive-time
 boundary smoothness remain missing from the full classical pricing contract.
+
+## Optimal contact times shrink to zero at exercise
+
+`BrownianGerm.lean` samples the constructed Brownian motion at
+`t_n=(n+1)^(-2)` and sets `Z_n=(n+1)*W(t_n)`. It proves that every `Z_n` has
+standard Gaussian law. These overlapping evaluations are **not** asserted to
+be independent. The event `Z_n<-1` infinitely often is measurable in every
+positive-time natural filtration, hence in the Brownian germ sigma algebra.
+The pinned BrownianMotion package's proved `IsBrownianReal.indep_zero` makes its
+probability zero or one.
+
+Probability zero is excluded by bounded convergence. The continuous test
+`F(z)=max(0,min(1,-z-1))` lies in `[0,1]`, vanishes for `z>=-1`, and has strictly
+positive standard-Gaussian expectation. If there were only finitely many negative
+probes almost surely, `F(Z_n)` would tend to zero almost surely. Bounded convergence
+would force their expectations to tend to zero, contradicting their common
+positive Gaussian expectation. Thus the negative germ event has probability one.
+
+On this single event, for every real drift `mu`, every `sigma>0`, and every
+`delta>0`, there is a time `0<s<delta` with `mu*s+sigma*W(s)<0`. This follows from
+the checked sampling scale and `mu/(n+1)->0`; no law of the iterated logarithm,
+reflection principle or independent-samples premise is needed.
+
+`ContactTimeBoundary.lean` then proves
+
+```text
+for almost every Brownian path,
+  firstContactTime(x,T) -> 0 as x -> canonicalLogBoundary(k,h,T),
+```
+
+for `k>0`, `0<=h<=k`, and `T>0`, under the completed Brownian measure. Choose an
+early downward excursion shorter than both the requested tolerance and `T`.
+All sufficiently nearby starting prices then lie below the time-`T` boundary
+at that excursion. Since the boundary increases as remaining maturity decreases,
+they have reached exercise by then. The previously proved pre-contact
+continuation property gives the contact-time bound and hence the limit.
+
+These are the actual first-contact rules whose optimality was already proved;
+no assumed convergence or replacement family of stopping rules is used. The
+limit allows approaches from either side of the boundary. Guarded audits include
+the upstream zero-one theorem, Gaussian scaling, germ measurability, probability
+one, drifted excursions and the final contact-time limit. All use only the three
+standard axioms.
+
+This is a probabilistic regularity result, **not yet smooth fit**. The remaining
+next step is to combine optimality with bounded logarithmic-payoff difference
+quotients and pass them through expectation. The boundary derivative, its
+continuation-side trace, and positive-time boundary smoothness remain open.
