@@ -102,6 +102,7 @@ import AmericanConvexity.Stopping.ActualStefanVelocity
 import AmericanConvexity.Stopping.ActualHistoryTimeBounds
 import AmericanConvexity.Stopping.ActualHistoryHolder
 import AmericanConvexity.Stopping.ActualHeatFluxHolder
+import AmericanConvexity.Stopping.ActualGraphRemainder
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -4343,3 +4344,108 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalHeatThetaRightFlux_holder
+
+/-- info: 'AmericanConvexity.Stopping.LocalHalfHolderAt.congr' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalHalfHolderAt.congr
+
+/-- info: 'AmericanConvexity.Stopping.LocalHalfHolderAt.positive_rescale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalHalfHolderAt.positive_rescale
+
+/-- info: 'AmericanConvexity.Stopping.LocalHalfHolderAt.mul_contDiffAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalHalfHolderAt.mul_contDiffAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatThetaRightFlux_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatThetaRightFlux_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaRightFlux_eq_gauged_heat' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaRightFlux_eq_gauged_heat
+
+/-- info: 'AmericanConvexity.Stopping.inverseThetaHeatGauge_boundary_contDiffAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.inverseThetaHeatGauge_boundary_contDiffAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaRightFlux_holder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaRightFlux_holder
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_deriv_holder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_deriv_holder
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatGraph_deriv_holder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatGraph_deriv_holder
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalThetaRightFlux_holder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalThetaRightFlux_holder
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalThetaRightFlux_holder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalThetaRightFlux_holder
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_deriv_holder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_deriv_holder
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_deriv_holder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_deriv_holder
+
+/-- info: 'AmericanConvexity.Stopping.firstOrder_remainder_of_halfHolder_deriv' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.firstOrder_remainder_of_halfHolder_deriv
+
+/-- info: 'AmericanConvexity.Stopping.LocalHalfHolderAt.exists_positive_deriv_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalHalfHolderAt.exists_positive_deriv_window
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_linear_remainder_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_linear_remainder_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatHistory_integrand_linear_remainder_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistory_integrand_linear_remainder_bound
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatGraph_halfHolder_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatGraph_halfHolder_window
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatGraph_halfHolder_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatGraph_halfHolder_window
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_exists_canonicalHeatGraph_halfHolder_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_exists_canonicalHeatGraph_halfHolder_window
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatGraph_linear_kernel_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatGraph_linear_kernel_bound

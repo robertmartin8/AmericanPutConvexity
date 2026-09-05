@@ -954,3 +954,25 @@ continuous. Sixteen build-enforced transitive axiom guards cover the new
 steps. The pricing-gauge/velocity modulus transfer and higher bootstrap
 remain unfinished. These results do not assert actual-boundary C2 regularity
 or the literal classical second-derivative conclusion.
+
+### Further update: actual velocity is locally one-half Holder
+
+`ActualVelocityHolder.lean` now transfers the heat-flux modulus through the
+exact inverse pricing gauge and the proved Stefan identity. Both multiplier
+functions are C1 along the actual boundary; the Stefan denominator has the
+proved positive value `k-h*exp(b(t))`. Thus pricing flux and `b'` are locally
+one-half Holder, with explicit zero-dividend and Liu-range checkpoints. The
+actual boundary is locally C1,1/2, without a new regularity premise.
+
+The mean-value inequality then gives a uniform order-3/2 first-order remainder
+for the actual heat graph, using any derivative anchor between its endpoints
+(`HalfHolderRemainder.lean`, `ActualGraphRemainder.lean`). The kernel's spatial
+Lipschitz bound turns that graph error into a bounded difference from the
+corresponding straight-line history kernel (`HeatHistoryLinearization.lean`).
+The density-weighted version has a bounded remainder when the density has
+the proved square-root modulus.
+
+Twenty-one new transitive axiom guards cover this stage. The bounded remainder
+does not by itself establish its time regularity. Improving the time modulus
+beyond one-half, then obtaining C2 and the literal classical curvature
+formulation for the actual boundary, remain unfinished.

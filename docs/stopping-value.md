@@ -2617,3 +2617,50 @@ the continuation side; no total-derivative default is used. The full
 Sixteen new transitive axiom guards cover these steps. Transfer of this
 modulus to pricing flux and boundary velocity, and the higher regularity
 bootstrap toward C2, remain unfinished.
+
+## Pricing flux, C1,1/2 velocity, and linear history remainder
+
+`LocalHalfHolder.lean` records the precise local square-root modulus on all
+ordered pairs in a neighborhood. It proves preservation under local equality,
+positive time rescaling, and multiplication by a C1 factor, using continuity
+to obtain local bounds for the factors.
+
+`ActualVelocityHolder.lean` proves the exact intrinsic-flux identity
+
+`canonicalThetaRightFlux(t)`
+` = inverseThetaHeatGauge(b(t),t)*canonicalHeatThetaRightFlux(2*t)`.
+
+Both sides are genuine continuation-sided derivatives. The inverse gauge is
+C1 along the actual boundary. The heat-time change and this multiplier
+therefore transfer the one-half Holder bound to the pricing flux. The
+coefficient `-1/(k-h*exp(b(t)))` is C1 because its denominator is strictly
+positive. Multiplication by this coefficient and the proved Stefan identity
+give `LocalHalfHolderAt (deriv (canonicalLogBoundary k h)) t` at every t>0.
+The actual normalized boundary is thus locally C1,1/2. The corresponding
+heat-coordinate velocity has the same exponent. Zero-dividend and Liu-range
+pricing-flux and velocity checkpoints are explicit.
+
+`HalfHolderRemainder.lean` applies the mean-value inequality to the function
+minus an anchored line. On a sufficiently small positive interval, for
+s<=t and every anchor r in [s,t],
+
+`|b(t)-b(s)-b'(r)*(t-s)| <= A*(t-s)*sqrt(t-s)`.
+
+The derivative modulus and remainder are supplied for the actual heat graph
+by `ActualGraphRemainder.lean`, including the two restricted regimes. No
+second derivative is involved in this estimate.
+
+`HeatHistoryLinearization.lean` multiplies this order-u^(3/2) graph error
+by the checked order-u^(-3/2) spatial kernel bound. Hence
+
+`|H(u,x)-H(u,v*u)| <= 3*A/sqrt(2*pi)`
+
+whenever `|x-v*u|<=A*u*sqrt(u)`. With a one-half Holder density, subtracting
+the frozen linear-kernel/density product likewise has a bounded remainder.
+The unweighted kernel estimate is specialized to the actual graph, uniformly
+in endpoints and anchors on its local interval.
+
+Twenty-one new transitive axiom guards cover this stage. A bounded remainder
+alone is not a bound for its time derivative or increments. The next analytic
+step is to improve the history time modulus beyond exponent one-half; the
+higher bootstrap and actual-boundary C2 result remain unfinished.

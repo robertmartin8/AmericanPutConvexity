@@ -32,8 +32,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > differentiation. Combining this with the history estimate gives a local
 > one-half Holder bound for the density and the intrinsic actual right heat
 > flux (`ActualHeatFluxHolder.lean`), including zero-dividend and Liu cases.
-> Transfer to pricing flux/boundary velocity and the higher bootstrap remain
-> unfinished; no actual-boundary C2 claim follows from this checkpoint.
+> This modulus now transfers through the C1 inverse gauge to pricing flux,
+> and through the positive C1 Stefan denominator to boundary velocity
+> (`ActualVelocityHolder.lean`). Thus the actual boundary is locally C1,1/2.
+> Its first-order remainder is bounded by `A*(t-s)*sqrt(t-s)`, uniformly
+> for derivative anchors between the endpoints. Subtracting the associated
+> straight-line history kernel leaves a bounded remainder. Improving the
+> time modulus beyond one-half and proving C2 remain unfinished.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming

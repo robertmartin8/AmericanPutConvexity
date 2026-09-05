@@ -163,6 +163,11 @@ import AmericanConvexity.Stopping.HeatSourceSeparation
 import AmericanConvexity.Stopping.ActualForcingRegularity
 import AmericanConvexity.Stopping.ActualDensityHolder
 import AmericanConvexity.Stopping.ActualHeatFluxHolder
+import AmericanConvexity.Stopping.LocalHalfHolder
+import AmericanConvexity.Stopping.ActualVelocityHolder
+import AmericanConvexity.Stopping.HalfHolderRemainder
+import AmericanConvexity.Stopping.HeatHistoryLinearization
+import AmericanConvexity.Stopping.ActualGraphRemainder
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation
