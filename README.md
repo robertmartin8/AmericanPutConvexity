@@ -15,6 +15,9 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > from this contract, on both the raw and completed usual filtrations, with no
 > extra stochastic premise. Classical-solution
 > existence and the independent strict-log-curvature CCJZ proof remain open.
+> The actual stopping price is now proved smooth and satisfies the pricing PDE
+> inside continuation, without a classical-solution premise. Smooth fit and
+> free-boundary regularity remain open.
 
 ## Proposed extension and published checkpoints
 
@@ -83,8 +86,8 @@ optimal rules; joint continuity follows from a spot Lipschitz bound uniform in
 maturity. Decay is uniform on every bounded maturity interval: continuous paths
 have a positive minimum stock multiplier, so varying nearly optimal rules have
 vanishing rewards at large spot; dominated convergence passes to expectations.
-Continuation PDE regularity, boundary regularity and smooth fit remain
-to be established for this candidate.
+Continuation PDE regularity is now established for this candidate in
+`ActualInteriorRegularity.lean`; boundary regularity and smooth fit remain open.
 
 `PricePositivity.lean` proves that the deterministic maturity payoff has positive
 expectation for positive strike, spot, volatility and maturity, with nonnegative
@@ -174,10 +177,12 @@ its initial/lateral data on a continuation cylinder, including terminal time.
 `ContinuousHeatSmoothing.lean` now proves all-order positive-time smoothing from
 merely continuous compact data. `ContinuousPriceEvolution.lean` constructs a
 smooth pricing-equation solution matching the actual price's initial trace on
-any finite spatial interval. A two-sided heat-equation boundary correction is
-now constructed, but its pricing-coordinate transformation and assembly with
-the initial contribution remain open. Full continuous-time
-dynamic programming and classical PDE/boundary regularity remain unproved.
+any finite spatial interval. The two-sided heat-equation boundary correction is
+now transformed into pricing coordinates and assembled with the initial
+contribution in `PricingDirichlet.lean`. Local identification then proves actual
+interior smoothness and the pricing PDE in `ActualInteriorRegularity.lean`.
+Full continuous-time dynamic programming, smooth fit and free-boundary
+regularity remain unproved.
 
 The lateral-data construction now has a checked half-line boundary kernel:
 `H(t,x)=x*K(t,x)/t` satisfies the diffusivity-`1/2` heat equation, is positive
@@ -188,8 +193,10 @@ starts. For continuous compact boundary data, the integral's interior smoothness
 and heat equation are now proved, including a constructed half-line solution
 with zero initial data and the exact lateral trace. A strict finite-time
 cross-boundary contraction now constructs the correction matching both ends of
-a finite interval for continuous causal data. The pricing-coordinate assembly
-and actual-price regularity remain open.
+a finite interval for continuous causal data. Its pricing-coordinate assembly
+now closes actual-price interior regularity. The final theorems assume only
+`k>=0` and membership in the actual continuation region, not price derivatives
+or a classical solution contract.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -399,6 +406,10 @@ All files below are included in the project build.
 | [`Stopping/HeatBoundaryContraction.lean`](AmericanConvexity/Stopping/HeatBoundaryContraction.lean) | Strict finite-time kernel mass bound, complete space of causal boundary data and cross-boundary Lipschitz estimate |
 | [`Stopping/CoupledHeatBoundary.lean`](AmericanConvexity/Stopping/CoupledHeatBoundary.lean) | Fixed-point construction of the two coupled boundary inputs; compactness follows from compact cutoff and data |
 | [`Stopping/IntervalHeatBoundary.lean`](AmericanConvexity/Stopping/IntervalHeatBoundary.lean) | Constructed two-sided interval heat correction for continuous causal data, exact endpoint traces, zero initial data, interior smoothness and PDE |
+| [`Stopping/HeatPricingTransform.lean`](AmericanConvexity/Stopping/HeatPricingTransform.lean) | Fixed-endpoint exponential gauge and time scaling from heat to pricing PDE |
+| [`Stopping/PricingBoundaryCorrection.lean`](AmericanConvexity/Stopping/PricingBoundaryCorrection.lean) | Constructed pricing correction matching continuous causal lateral data and zero initial trace |
+| [`Stopping/PricingDirichlet.lean`](AmericanConvexity/Stopping/PricingDirichlet.lean) | Constructed smooth pricing solution matching all three parabolic sides supplied by a continuous function |
+| [`Stopping/ActualInteriorRegularity.lean`](AmericanConvexity/Stopping/ActualInteriorRegularity.lean) | Actual stopping price is jointly smooth and satisfies the pricing PDE throughout continuation; no classical-solution premise |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

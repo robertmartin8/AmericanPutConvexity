@@ -48,6 +48,7 @@ import AmericanConvexity.Stopping.ContinuousPriceEvolution
 import AmericanConvexity.Stopping.HeatBoundaryExtension
 import AmericanConvexity.Stopping.HeatBoundaryEquation
 import AmericanConvexity.Stopping.IntervalHeatBoundary
+import AmericanConvexity.Stopping.ActualInteriorRegularity
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1578,3 +1579,33 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.exists_interval_heat_boundary_solution_continuous
+
+/-- info: 'AmericanConvexity.Stopping.priceFromHeat_pricingOperator' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.priceFromHeat_pricingOperator
+
+/-- info: 'AmericanConvexity.Stopping.exists_interval_pricing_boundary_solution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_interval_pricing_boundary_solution
+
+/-- info: 'AmericanConvexity.Stopping.exists_pricing_dirichlet_solution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_pricing_dirichlet_solution
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_locally_eq_smooth_solution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_locally_eq_smooth_solution
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_contDiffOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_contDiffOn
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_continuation_pde' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_continuation_pde

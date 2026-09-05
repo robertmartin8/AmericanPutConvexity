@@ -5,6 +5,13 @@ defines the financial value and now proves that any pair satisfying that
 classical contract equals the Brownian American stopping value on both the raw
 and completed usual filtrations. Classical-pair existence remains open.
 
+**Current interior frontier:** `ActualInteriorRegularity.lean` proves joint
+all-order smoothness and the pricing PDE for the actual stopping price on its
+continuation region, without a classical-solution premise. The sections below
+record successive checkpoints; older references to an open interior-PDE step
+are superseded by the final section. Positive threshold, full boundary
+continuity, smooth fit, gradient trace and boundary smoothness remain open.
+
 ## Exact financial definition
 
 For an explicit filtration `F` on a probability space `(Omega,P)`, a
@@ -867,13 +874,12 @@ Brownian-driver generator of the discounted test at origin is exactly
 `phi_xx+(k-h-1)*phi_x-phi_t-k*phi`; all derivatives are of the test function.
 No boundary, smooth-fit or classical-price premise occurs in these results.
 
-This is a smooth-test formulation of the continuation equation. We have **not**
-yet proved equivalence to a viscosity formulation allowing all `C1,2` local
-tests, nor deduced interior classical regularity from it. Those distinctions
-matter: pointwise tests do not assert that the actual price itself has any of
-the displayed derivatives. Interior regularity and the free-boundary/smooth-fit
-obligations still separate the current actual-price results from the full
-classical contract used in the curvature theorem.
+This is a smooth-test formulation of the continuation equation. Equivalence to
+a viscosity formulation allowing all `C1,2` local tests is not proved here.
+Pointwise tests alone do not assert that the actual price has the displayed
+derivatives. Interior classical regularity is now deduced through local
+comparison and constructed Dirichlet solutions below. The free-boundary and
+smooth-fit obligations still separate this from the full classical contract.
 
 ## Local smooth comparison from the test formulation
 
@@ -901,11 +907,11 @@ both upper and lower comparison. The resulting
 continuous, interior-C3 solution of `P(F)=0` matching its initial/lateral values.
 Only the open interior of the cylinder needs to lie in continuation.
 
-This is a checked local identification theorem, **not** a construction or
-existence theorem for `F`. The remaining interior-regularity route is to construct
-smooth solutions for the actual continuous parabolic boundary data and apply
-this comparison result. No price differentiability, smooth fit, or exercise-boundary
-regularity was added as an assumption on the actual price in the comparison proof.
+This is a checked local identification theorem, **not by itself** a construction
+or existence theorem for `F`. The construction and its application to actual
+continuous parabolic boundary data are now completed below. No price
+differentiability, smooth fit, or exercise-boundary regularity was added as an
+assumption on the actual price in the comparison proof.
 
 ## Constructed initial-data contribution
 
@@ -934,11 +940,10 @@ solution with exactly that initial trace, rather than assuming its existence.
 
 This is only the initial-data contribution to the cylinder Dirichlet problem.
 Its lateral values at `L` and `R` are generally not the actual price's values.
-The corresponding two-sided heat correction is now constructed below; its
-pricing-coordinate transformation and combination with the initial contribution
-remain open. Consequently this construction alone does not satisfy the earlier
-local-identification theorem's full hypotheses or prove interior regularity of
-the actual price. Smooth fit and free-boundary regularity also remain open.
+The corresponding two-sided heat correction, pricing-coordinate transformation
+and assembly are constructed below. The initial contribution alone does not
+satisfy the local-identification theorem's full hypotheses. Smooth fit and
+free-boundary regularity remain open after the full interior construction.
 
 ## Half-line boundary kernel and continuous boundary trace
 
@@ -1018,9 +1023,9 @@ compact `g` vanishing for `t<=a`, with all of these conclusions:
 - all-order interior smoothness for `x>0`;
 - the heat equation `V_t=V_xx/2` for `x>0`.
 
-This half-line result is now used in the two-sided construction below. The
-pricing-coordinate transformation and assembly remain open. Actual interior
-regularity, smooth fit and free-boundary regularity remain open.
+This half-line result is used in the two-sided construction below, followed by
+pricing-coordinate assembly and actual interior regularity. Smooth fit and
+free-boundary regularity remain open.
 
 ## Constructed two-sided interval heat correction
 
@@ -1062,9 +1067,55 @@ support is supplied by a cutoff preserving both data on `[a,T]`. It constructs:
 - all-order interior smoothness for `0<x<L`;
 - `V_t=V_xx/2` throughout that spatial interior.
 
-This closes the zero-initial-data **heat** boundary correction. Still required
-for the actual price: extend its finite-time residual boundary data compatibly
-by zero before the initial time, transform this heat correction into the pricing
-equation's drift/discount coordinates, add the existing initial-data solution,
-and apply local identification. Actual-price interior and free-boundary
-regularity are not conclusions of this checkpoint alone.
+This closes the zero-initial-data **heat** boundary correction. The next section
+performs the pricing-coordinate assembly and local identification. Actual-price
+interior regularity is not a conclusion of the heat checkpoint alone.
+
+## Constructed pricing Dirichlet solution and actual interior regularity
+
+`HeatPricingTransform.lean` uses a fixed-endpoint transformation. With
+`alpha=k-h-1`, set
+
+```text
+G(x,t) = exp(-alpha*(x-L)/2 - (k+alpha^2/4)*(t-a)),
+C(x,t) = G(x,t) * V(x-L, 2*(t-a)).
+```
+
+The checked identity is `P(C)=G*(2*V_t-V_xx)` at the transformed point.
+It converts the diffusivity-`1/2` heat solution to the pricing equation while
+keeping the two spatial endpoints fixed. `PricingBoundaryCorrection.lean`
+rescales each continuous lateral datum and divides it by the nonzero gauge,
+constructs the heat correction, and transforms back. The result has exact
+lateral traces on `[a,T]`, vanishes for `t<=a`, and is smooth and solves the
+pricing PDE in the spatial interior. No sign assumption on `k,h` is needed for
+this analytic construction.
+
+`PricingDirichlet.lean` starts with any globally continuous function `u(x,t)`.
+The compactly extended initial trace gives the previously constructed evolution
+`U`. Its left residual is extended as
+`g0(t)=u(L,max(a,t))-U(L,max(a,t))`, and similarly on the right. These data are
+continuous and zero for `t<=a` because `U` already matches the initial endpoints.
+The boundary correction `C` therefore applies. The sum `F=U+C` is continuous,
+matches `u` on the initial and two lateral sides, is jointly smooth inside the
+cylinder, and satisfies `P(F)=0` there. Existence is constructed rather than
+assumed, and no derivatives of `u` are required.
+
+`ActualInteriorRegularity.lean` places a small cylinder around each point of the
+open actual continuation region, applies this construction to `canonicalPrice`,
+and invokes the checked comparison theorem. Thus the actual price agrees with
+`F` on a neighborhood. Smoothness and derivatives transfer through this local
+equality. The final statements, for `k>=0`, are:
+
+- `canonicalPrice_contDiffOn`: joint all-order smoothness on actual continuation;
+- `canonicalPrice_continuation_pde`: at every actual continuation point,
+  `p_t=p_xx+(k-h-1)*p_x-k*p`.
+
+Neither assumes a classical pricing pair, smooth fit, price differentiability,
+or boundary regularity. Guarded transitive axiom audits cover the transformation,
+both constructed existence results, local identification, smoothness and PDE.
+They allow only `propext`, `Classical.choice` and `Quot.sound`.
+
+This closes **interior** regularity, not classical-pair existence. Strict
+positivity of the stock threshold, full boundary continuity, smooth fit and its
+gradient trace, and positive-time boundary smoothness remain to be established.
+The independent published CCJZ strict-log-curvature proof also remains separate.

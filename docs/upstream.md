@@ -287,8 +287,9 @@ around an interior singleton; no boundary smoothness or terminal test is presume
 predicates from `PricingTests.lean`, then obtains both comparisons and local
 identification. Guarded audits cover the barrier algebra, generic comparison,
 actual predicates and final identification; they permit only the three standard
-axioms. Local Dirichlet-solution existence remains an explicit missing step, not
-an imported or hidden hypothesis asserting regularity of the actual price.
+axioms. Local Dirichlet-solution existence is constructed in the later
+`PricingDirichlet.lean` development, not imported or hidden in a hypothesis
+asserting regularity of the actual price.
 
 `ContinuousHeatSmoothing.lean` applies Mathlib's all-order parameter-convolution
 regularity theorem with a smooth compact cutoff on the Gaussian kernel and only
@@ -333,4 +334,19 @@ reflected PDE and assembles the interval correction. Guarded audits cover the
 strict mass estimate, operator bound, fixed-point equations, compactness,
 reflection, and both interval existence results. All selected chains use only
 `propext`, `Classical.choice`, and `Quot.sound`. Pricing-coordinate assembly and
-actual-price regularity remain separate obligations.
+actual-price interior regularity are now proved in the following development.
+
+`HeatPricingTransform.lean` proves the fixed-endpoint exponential gauge and
+time-rescaling identity using checked derivative rules and the local product
+second-derivative lemma. `PricingBoundaryCorrection.lean` rescales the continuous
+boundary data, applies the constructed interval heat solution and transforms
+back. `PricingDirichlet.lean` joins this correction to the existing initial-data
+evolution; continuous residual data extended with `max(a,t)` ensure corner
+compatibility without assuming boundary-data derivatives.
+`ActualInteriorRegularity.lean` uses openness of actual continuation to choose
+a local cylinder, constructs its Dirichlet solution, and applies the existing
+actual-price comparison theorem. Local equality transfers all-order smoothness
+and the pricing PDE to the actual stopping value. No external interior-regularity
+or classical-existence theorem is used. Guarded audits of the transformation,
+existence, identification, smoothness and final PDE chains allow only the three
+standard axioms. Smooth fit and free-boundary regularity remain open.
