@@ -1,0 +1,47 @@
+import AmericanConvexity.Stopping.LocalizationTimes
+import AmericanConvexity.Stopping.MartingaleLimits
+
+/-!
+# Interior approximation of the constructed Brownian first-contact rule
+
+The sequence is explicit and converges pathwise. Martingale verification for
+each interior stopped candidate is still required; if supplied locally on the
+null augmentation, promotion, raw transfer and the contact-time limit are proved.
+-/
+
+namespace AmericanConvexity.Stopping
+
+open MeasureTheory ProbabilityTheory Boundary Filter
+open scoped NNReal Topology
+
+variable {K r q σ S : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
+
+noncomputable def brownianInteriorRule
+    (hp : DividendPutSolution (normalizedRate r σ) (normalizedRate q σ) p b)
+    (T : ℝ≥0) (n : ℕ) : BoundedRule brownianFiltration T :=
+  interiorRule (Z := classicalGap brownian K r q σ S p T)
+    (classicalGap_adapted hp brownian_adapted T) brownian_adapted
+    (classicalGap_continuous hp continuous_brownian T) continuous_brownian T n
+
+theorem brownianInteriorRule_tendsto
+    (hp : DividendPutSolution (normalizedRate r σ) (normalizedRate q σ) p b)
+    (hK : 0 < K) (hS : 0 < S) (T : ℝ≥0) (ω : ℝ≥0 → ℝ) :
+    Tendsto (fun n => (brownianInteriorRule (K := K) (S := S) hp T n).time ω) atTop
+      (𝓝 ((brownianClassicalContactRule hp hK hS T).time ω)) :=
+  interiorRule_tendsto_contact (classicalGap_adapted hp brownian_adapted T) brownian_adapted
+    (classicalGap_continuous hp continuous_brownian T) continuous_brownian
+    (classicalGap_nonneg hp hK hS T) (classicalGap_terminal hp hK hS T) ω
+
+theorem brownian_contact_martingale_of_interior_localMartingales
+    (hp : DividendPutSolution (normalizedRate r σ) (normalizedRate q σ) p b)
+    (hK : 0 < K) (hr : 0 ≤ r) (hS : 0 < S) (T : ℝ≥0)
+    (hlocal : ∀ n, IsLocalMartingale (fun t ω => classicalCandidate brownian K r q σ S p T
+      (min t ((brownianInteriorRule (K := K) (S := S) hp T n).time ω)) ω) brownianAugFiltration gaussianLimit) :
+    Martingale (fun t ω => classicalCandidate brownian K r q σ S p T
+      (min t ((brownianClassicalContactRule hp hK hS T).time ω)) ω) brownianFiltration gaussianLimit :=
+  stoppedCandidate_martingale_of_rule_limit hp brownian_adapted continuous_brownian hK.le hr
+    (brownianClassicalContactRule hp hK hS T) (brownianInteriorRule hp T)
+    (Eventually.of_forall (brownianInteriorRule_tendsto hp hK hS T))
+    (fun n => brownian_stoppedCandidate_martingale_of_local hp hK hr _ (hlocal n))
+
+end AmericanConvexity.Stopping

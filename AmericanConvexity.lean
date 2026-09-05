@@ -22,6 +22,9 @@ import AmericanConvexity.Stopping.PlaneIto
 import AmericanConvexity.Stopping.LocalPriceIto
 import AmericanConvexity.Stopping.BoundedLocalMartingale
 import AmericanConvexity.Stopping.BrownianLocalVerification
+import AmericanConvexity.Stopping.LocalizationTimes
+import AmericanConvexity.Stopping.MartingaleLimits
+import AmericanConvexity.Stopping.BrownianInteriorLocalization
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

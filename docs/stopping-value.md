@@ -238,6 +238,41 @@ This transfers the particular adapted candidate process, not all admissible
 stopping rules or the value supremum. Equality of raw- and augmented-filtration
 American values is still not claimed.
 
+## Checked interior approximation and contact-time limit
+
+`LocalizationTimes.lean` constructs actual bounded stopping rules by taking the
+first zero of the continuous adapted nonnegative margin
+
+```text
+max(0, min(Z_t - eps_n, n+1 - |W_t|, T-t-eps_n)),
+eps_n = 1/(n+1),   Z = discounted classical price - discounted payoff.
+```
+
+Before this rule all three margins are strictly positive. At a positive exit
+time their weak inequalities hold by continuity, still giving a strictly
+positive price/payoff gap and remaining maturity. This last statement explicitly
+excludes immediate stopping: an initially violated margin need not satisfy the
+closed inequalities.
+
+Every rule precedes first contact. On each compact interval strictly before
+contact, the gap has a positive minimum and the continuous driver is bounded.
+Consequently the rules eventually exceed every pre-contact time and converge
+pathwise to first contact. No monotonicity of the sequence is needed here.
+
+`MartingaleLimits.lean` proves that deterministically bounded martingales with
+almost-sure limits at every fixed time yield an adapted martingale limit, by
+dominated convergence of integrals over earlier measurable events. Continuity
+and the classical price bound apply this to converging stopped candidates.
+
+`BrownianInteriorLocalization.lean` combines these facts with bounded promotion
+and raw-filtration transfer. Its theorem
+`brownian_contact_martingale_of_interior_localMartingales` requires local
+martingality of each exact interior-stopped candidate on the null augmentation,
+and proves true martingality at first contact on the raw filtration.
+**The interior local-martingale premises still need to be proved from Ito.**
+This is not yet the stochastic identification theorem. The global
+supermartingale property and existence of the classical solution remain open.
+
 ## Price identification suffices for boundary identification
 
 `DividendContact.lean` proves, for a classical dividend solution,

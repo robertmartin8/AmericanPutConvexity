@@ -47,6 +47,12 @@ Once local martingality of the stopped candidate is established, its promotion
 to a true martingale and transfer to the raw filtration are now proved from
 boundedness and adaptation; neither remains an extra hypothesis.
 
+Explicit interior stopping rules now converge pathwise to first contact. Before
+each rule, the price/payoff gap and remaining maturity are bounded away from
+zero, and the Brownian coordinate is bounded. A checked bounded-martingale limit
+then reduces contact martingality to local martingality at these interior rules.
+Deriving the latter from the local Ito representations remains open.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -183,6 +189,9 @@ All files below are included in the project build.
 | [`Stopping/LocalPriceIto.lean`](AmericanConvexity/Stopping/LocalPriceIto.lean) | Zero-drift local price extensions with genuine compensated local martingales; global stopped assembly remains open |
 | [`Stopping/BoundedLocalMartingale.lean`](AmericanConvexity/Stopping/BoundedLocalMartingale.lean) | Deterministically bounded local martingales are true martingales, by localized set-integral limits; transfer to smaller filtrations |
 | [`Stopping/BrownianLocalVerification.lean`](AmericanConvexity/Stopping/BrownianLocalVerification.lean) | Stopped candidate is raw-adapted and bounded; augmented local martingality implies the raw true-martingale property needed for verification |
+| [`Stopping/LocalizationTimes.lean`](AmericanConvexity/Stopping/LocalizationTimes.lean) | Explicit interior stopping rules, strict pre-exit and closed positive-exit margins, and pathwise convergence to first contact |
+| [`Stopping/MartingaleLimits.lean`](AmericanConvexity/Stopping/MartingaleLimits.lean) | Bounded pointwise limits preserve martingality; continuous stopped candidates pass to limits of stopping rules |
+| [`Stopping/BrownianInteriorLocalization.lean`](AmericanConvexity/Stopping/BrownianInteriorLocalization.lean) | Brownian interior approximation and reduction of contact martingality to interior local martingales |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
