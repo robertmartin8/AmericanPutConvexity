@@ -126,6 +126,42 @@ unproved; the optional-stopping and verification results do not supply them.
 In particular, no global C2 regularity across the exercise boundary is assumed
 to justify an unqualified application of Ito's formula.
 
+## Constructed first-contact stopping rule
+
+`FirstContact.lean` constructs the first zero of a nonnegative continuous adapted
+process `Z` that vanishes at a fixed horizon. Its zero-time set is closed and
+nonempty, so its infimum is an attained zero, bounded by the horizon. For every
+deterministic `t`, the event of contact by `t` is measurable in `F(t)`: it is the
+event that the running minimum on `[0,min(t,T)]` is zero. Measurability follows
+from measurable infima of continuous paths on a separable compact interval;
+compactness proves that a zero minimum is attained. No completion or
+right-continuity of the filtration is assumed.
+
+`ClassicalContact.lean` applies this to
+
+```text
+Z_t = U_t - exp(-r*s)*max(K-S_s,0),   s=min(t,T).
+```
+
+The classical contract and adapted continuous stock driver prove adaptation,
+continuity, nonnegativity, and zero gap at maturity. The resulting
+`classicalContactRule` has exact payoff contact. With positive volatility,
+every time strictly before it has positive remaining maturity and log spot
+strictly above the classical boundary. This locates the stopped trajectory
+inside the continuation region where the PDE and smoothness are available.
+
+`BrownianVerification.lean` instantiates this rule on the constructed Brownian
+space. `brownian_price_identification_of_martingales` no longer asks for a rule
+or contact hypothesis: it asks only for supermartingality of the exact candidate
+and martingality of that candidate stopped at its constructed first contact.
+The final `brownian_boundary_curvature_of_martingales` transfers curvature when
+these properties hold for every positive initial spot and finite horizon.
+
+Those two stochastic properties and existence of a classical pair remain open.
+An admissible contact rule is now constructed, but its optimality is still
+conditional on the unproved martingale properties. It is not an independently
+verified optimal stopping rule yet.
+
 ## Price identification suffices for boundary identification
 
 `DividendContact.lean` proves, for a classical dividend solution,

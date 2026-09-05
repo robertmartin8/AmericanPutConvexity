@@ -20,6 +20,7 @@ import AmericanConvexity.Boundary.ComparisonConclusion
 import AmericanConvexity.Boundary.StockConclusion
 import AmericanConvexity.Stopping.ClassicalBridge
 import AmericanConvexity.Stopping.ClassicalCandidate
+import AmericanConvexity.Stopping.BrownianVerification
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -690,3 +691,28 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.classical_price_eq_value_of_verification
+
+/-- info: 'AmericanConvexity.Stopping.firstContactRule' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.firstContactRule
+
+/-- info: 'AmericanConvexity.Stopping.classicalContactRule_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.classicalContactRule_contact
+
+/-- info: 'AmericanConvexity.Stopping.classicalContactRule_continuation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.classicalContactRule_continuation
+
+/-- info: 'AmericanConvexity.Stopping.brownian_price_identification_of_martingales' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_price_identification_of_martingales
+
+/-- info: 'AmericanConvexity.Stopping.brownian_boundary_curvature_of_martingales' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_boundary_curvature_of_martingales

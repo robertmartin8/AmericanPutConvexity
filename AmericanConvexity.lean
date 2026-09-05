@@ -13,6 +13,9 @@ import AmericanConvexity.Stopping.ClassicalBridge
 import AmericanConvexity.Stopping.GridSampling
 import AmericanConvexity.Stopping.Verification
 import AmericanConvexity.Stopping.ClassicalCandidate
+import AmericanConvexity.Stopping.FirstContact
+import AmericanConvexity.Stopping.ClassicalContact
+import AmericanConvexity.Stopping.BrownianVerification
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
