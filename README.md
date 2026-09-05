@@ -54,14 +54,17 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > regularity to local Lipschitz continuity. Boundary smoothness remains open.
 > A further contact argument now proves that the actual price is jointly
 > differentiable in space and time at every positive maturity, including the
-> exercise boundary. Its time derivative at contact is zero. Continuity of
-> that time derivative is not yet proved. The boundary's finite one-sided
+> exercise boundary. Its time derivative at contact is zero. Joint continuity
+> of that time derivative at contact is now proved. The boundary's finite one-sided
 > speeds are proved negative and ordered; their equality remains open.
 > Quadratic upper growth of the actual premium is now proved uniformly near
 > contact. Together with Lipschitz boundary motion this bounds contact-time
 > increments by `A*(delta t)^2`, and their difference quotients by `A*delta t`.
-> Propagation of this small boundary data to a time-derivative trace estimate
-> remains open; these bounds do not by themselves prove boundary smoothness.
+> A stationary exponential comparison now propagates that small boundary data
+> to `0<=p_t(x,s)<=N*(x-b(s))`, uniformly at nearby maturities below the strike.
+> This proves the joint contact trace `p_t->0`. The PDE then gives the exact
+> continuation-side premium-curvature trace `u_xx->k-h*exp(b(t))>0`.
+> Boundary smoothness remains open; this is not a second derivative across exercise.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

@@ -11,8 +11,11 @@ to the actual physical-unit stopping threshold. Exact price normalization is
 proved via finite-grid Bellman rescaling, without a classical contract.
 `Stopping/ActualContactDifferentiability.lean` now proves joint first
 differentiability of the actual price across contact and zero time derivative
-there. This does not assert continuity of that derivative or smoothness of the
-boundary. `ActualBoundaryOneSided.lean` isolates the remaining first-order
+there. `ActualTimeDerivativeContinuity.lean` now also proves joint continuity
+of that derivative at contact, via a uniform linear time-derivative bound.
+`ActualSpatialSecondTrace.lean` identifies the exact continuation-side
+premium-curvature limit as `k-h*exp(b(t))>0`. Neither assertion establishes
+boundary smoothness. `ActualBoundaryOneSided.lean` isolates the remaining first-order
 boundary issue as equality of its finite, negative one-sided speeds.
 Full positive-time boundary smoothness and the independent published strict-log
 proof remain open. The early statement review below records the original CCJZ

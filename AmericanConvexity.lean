@@ -100,6 +100,11 @@ import AmericanConvexity.Stopping.ActualSpatialSecondBound
 import AmericanConvexity.Stopping.ActualQuadraticUpper
 import AmericanConvexity.Stopping.ActualContactIncrement
 import AmericanConvexity.Boundary.DiscountedMaximum
+import AmericanConvexity.Boundary.StationaryBarrier
+import AmericanConvexity.Stopping.ActualIncrementComparison
+import AmericanConvexity.Stopping.ActualTemporalTraceBound
+import AmericanConvexity.Stopping.ActualTimeDerivativeContinuity
+import AmericanConvexity.Stopping.ActualSpatialSecondTrace
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

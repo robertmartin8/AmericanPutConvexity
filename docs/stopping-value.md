@@ -1911,8 +1911,55 @@ for `w_t<=w_xx+D*w_x-k*w`, `k>0`, using a positive compact maximum and the
 negative discount term. Boundary continuity suffices. Thirteen transitive
 axiom guards cover these estimates and the comparison principle.
 
-The uniform contact quotient bound is the left-boundary datum for a future
-comparison inside continuation. That propagation and continuity of the
-actual time derivative at contact remain **unproved**, as does boundary
-smoothness. This addition does not change the already unconditional
-function-level boundary convexity theorem.
+The uniform contact quotient bound supplies the left-boundary datum for the
+comparison inside continuation proved in the following stage. Boundary
+smoothness remains open. These regularity estimates do not change the already
+unconditional function-level boundary convexity theorem.
+
+## Joint time-derivative continuity and exact spatial-curvature trace
+
+`Boundary/StationaryBarrier.lean` proves the calculus and supersolution
+inequality for `phi(x)=1-exp(-rho*(x-beta))`, where `rho` is positive and at
+least the drift `k-h-1`. It is nonnegative to the right of `beta`, and bounded
+above there by `rho*(x-beta)`. Positive affine multiples remain stationary
+pricing supersolutions when the constant offset is nonnegative.
+
+`ActualIncrementComparison.lean` compares actual time increments with a
+stationary supersolution on a continuous moving strip. Both price slices
+solve the PDE in the earlier continuation region. The previously proved
+discounted maximum principle handles their difference from the barrier.
+The exponential specialization has explicit initial-gap, uniform increment,
+and quadratic left-boundary hypotheses.
+
+`ActualTemporalTraceBound.lean` discharges these hypotheses using actual-price
+theorems alone. Around a reference maturity `t`, it chooses a fixed earlier
+time `a` and restricts the variable terminal maturity `s` to a smaller
+neighborhood. The stationary reference `beta=b(s)` lies below all earlier
+boundaries by antitonicity. Strict decrease supplies a uniform positive gap
+at the initial time. The right endpoint is the strike `x=0`. On the resulting
+compact space-time rectangle, temporal Lipschitz continuity gives a uniform
+`M*delta` increment bound. The earlier-contact estimate gives `A*delta^2`
+on the moving left side.
+
+The comparison gives `w_delta(x,s)<=A*delta^2+delta*C*phi(x)`. Dividing by
+positive `delta` and taking the right limit, using the proved actual time
+differentiability, yields
+
+`0<=p_t(x,s)<=N*(x-b(s))` for `b(s)<=x<=0`, uniformly in nearby `s`.
+
+`ActualTimeDerivativeContinuity.lean` first proves `p_t=0` throughout exercise,
+including contact. The linear estimate is extended across exercise by the
+continuous majorant `N*max(0,x-b(s))`. This majorant tends to zero jointly at
+contact. Squeezing proves `ContinuousAt` of the actual time derivative at
+every positive-time boundary point.
+
+`ActualSpatialSecondTrace.lean` now passes to the contact limit in the premium
+PDE, using `p_t->0`, `u_x->0`, and `u->0`. It proves the joint continuation-side
+limit `u_xx->k-h*exp(b(t))>0`. No second spatial derivative at contact or across
+exercise is asserted. The time-derivative continuity and curvature-trace
+theorems have explicit zero-dividend and Liu-range checkpoints. Twenty guarded
+transitive audits allow only `propext`, `Classical.choice`, and `Quot.sound`.
+
+Boundary smoothness and equality of its one-sided speeds remain **unproved**.
+The next regularity work must control the mixed derivative/flux or otherwise
+eliminate boundary corners; the trace theorems alone do not do so.

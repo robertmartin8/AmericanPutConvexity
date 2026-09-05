@@ -194,9 +194,34 @@ The zero-dividend and Liu-range contact-increment checkpoints are explicit.
 `DiscountedMaximum.lean` also proves the moving-strip maximum principle with
 positive discounting, intended for the next time-increment comparison.
 
-Thirteen guarded transitive axiom checks cover this addition. Continuity of
-the actual time derivative at contact and boundary smoothness remain open:
-small left-boundary data must still be propagated into continuation.
+Thirteen guarded transitive axiom checks cover this addition. The propagation
+of small left-boundary data into continuation is now proved in the next stage.
+
+### Joint time-derivative and spatial-curvature traces
+
+`StationaryBarrier.lean` uses `phi(x)=1-exp(-rho*(x-beta))`, with
+`rho=|k-h-1|+1`. On `x>=beta` it is nonnegative, at most `rho*(x-beta)`,
+and a stationary pricing supersolution. `ActualIncrementComparison.lean`
+compares actual time increments with positive affine multiples of this profile
+on the earlier continuation region. No boundary derivative is used.
+
+`ActualTemporalTraceBound.lean` supplies all the comparison data from proved
+actual-price properties. A fixed earlier time `a` and strict boundary decrease
+give a uniform positive gap from `b(a)` to every nearby terminal boundary
+`beta=b(s)`. Compact spatial/time intervals give a uniform increment bound
+`M*delta`, and the preceding contact estimate gives `A*delta^2` on the left.
+After comparison and division by `delta`, taking `delta` down to zero proves
+`0<=p_t(x,s)<=N*(x-b(s))`, with one `N` for all nearby `s` and `b(s)<=x<=0`.
+
+`ActualTimeDerivativeContinuity.lean` combines this with zero time derivative
+in exercise and continuous boundary motion to obtain joint continuity of
+`p_t` at contact, where its value is zero. `ActualSpatialSecondTrace.lean`
+then uses the pricing PDE and the existing premium/gradient traces to prove
+`u_xx -> k-h*exp(b(t))` within continuation. This limit is positive by the
+already proved boundary-forcing theorem. It is not a second derivative across
+exercise, and it does not yet prove boundary smoothness or equality of the
+boundary's one-sided speeds. Zero-dividend and Liu-range trace checkpoints
+and twenty new guarded transitive axiom checks cover this stage.
 
 ### Exercise-boundary calculus and obstacle comparison
 

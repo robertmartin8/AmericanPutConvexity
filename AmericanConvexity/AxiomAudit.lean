@@ -74,6 +74,11 @@ import AmericanConvexity.Stopping.ActualSpatialSecondBound
 import AmericanConvexity.Stopping.ActualQuadraticUpper
 import AmericanConvexity.Stopping.ActualContactIncrement
 import AmericanConvexity.Boundary.DiscountedMaximum
+import AmericanConvexity.Boundary.StationaryBarrier
+import AmericanConvexity.Stopping.ActualIncrementComparison
+import AmericanConvexity.Stopping.ActualTemporalTraceBound
+import AmericanConvexity.Stopping.ActualTimeDerivativeContinuity
+import AmericanConvexity.Stopping.ActualSpatialSecondTrace
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2644,3 +2649,103 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.discounted_parabolic_maximum
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_contDiff' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_contDiff
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_hasDerivAt
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_deriv2' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_deriv2
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_nonneg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_nonneg
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_pos
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_mono_distance' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_mono_distance
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_le_linear' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_le_linear
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_operator_nonpos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_operator_nonpos
+
+/-- info: 'AmericanConvexity.Boundary.stationaryBoundaryBarrier_affine_operator_nonpos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.stationaryBoundaryBarrier_affine_operator_nonpos
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTimeIncrement_le_stationary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTimeIncrement_le_stationary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTimeIncrement_le_exponential' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTimeIncrement_le_exponential
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_temporal_lipschitz_on_rectangle' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_temporal_lipschitz_on_rectangle
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_time_deriv_linear_near_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_time_deriv_linear_near_boundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_time_deriv_exercise' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_time_deriv_exercise
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_time_deriv_continuousAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_time_deriv_continuousAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_time_deriv_continuousAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_time_deriv_continuousAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_time_deriv_continuousAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_time_deriv_continuousAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalIntrinsicPremium_deriv2_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalIntrinsicPremium_deriv2_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_deriv2_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_deriv2_tendsto_contact
