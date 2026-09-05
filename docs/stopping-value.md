@@ -801,3 +801,38 @@ The representation assumes only `k>=0`, rectangle containment and `delta<=T`;
 the existence theorem supplies positive interior rectangles. It does **not** yet
 prove differentiability, the continuation PDE, smooth fit or boundary regularity.
 No general random-time restart or strong Markov theorem is assumed or inferred.
+
+## Smooth test functions without smoothness of the price
+
+`PlaneDynkin.lean` constructs the explicit residual
+`G(t,W_t)-G(0,W_0)-integral_0^t (G_t+G_ww/2)(s,W_s) ds` for a jointly `C3`
+plane test `G`. The MathFin Itô identity and continuous paths give simultaneous
+almost-sure equality with a local martingale before random-time evaluation.
+Raw adaptation is checked. Bounds on `G` and its generator on a finite time slab
+then bound the residual stopped at any bounded raw Brownian rule; the checked
+bounded-local-martingale promotion proves true stopped martingality. Its expected
+residual is zero. Separate integrability proofs yield Dynkin's identity:
+the expected stopped test equals its value at `(0,0)` plus the expected stopped
+generator integral. Compactly supported `C3` tests automatically satisfy the
+bounds, including the generator bound via compact support of derivatives.
+
+`ActualTestFunctions.lean` constructs the same rectangle exit in the raw
+filtration and proves its time equals the usual-filtration exit time. Original
+measurable integrals are unchanged by completion, so the actual-price rectangle
+mean-value identity transfers to the raw space used by Itô. The stopped path
+stays in the closed driver-coordinate rectangle almost surely and its exit is
+strictly positive for positive radius and duration.
+
+In driver coordinates the discounted price is
+`U(s,w)=exp(-k*s)*canonicalPrice(k,h,x+(k-h-1)*s+sqrt(2)*w,T-s)`.
+If a compact `C3` test `G` matches `U(0,0)` and bounds `U` above throughout an
+interior rectangle, its expected stopped generator integral is nonnegative.
+For a lower bound it is nonpositive. Both statements also have versions assuming
+the bound only at exit almost surely. These are genuine consequences for the
+actual stopping price, not hypotheses about an unknown classical solution.
+
+The price is still used only as a continuous function. These **integrated** test
+inequalities do not yet establish pointwise viscosity inequalities, a classical
+PDE, interior differentiability, smooth fit or boundary regularity. The next
+analytic step is to turn the integrated inequalities into pointwise test
+conditions using shrinking rectangles and strict positivity of exit duration.

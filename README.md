@@ -156,8 +156,13 @@ between two times on a past-measurable event. `ActualLocalMeanValue.lean` now
 constructs exits from backward space-time rectangles contained in continuation,
 proves they precede contact, and obtains the exact discounted exit representation.
 Such rectangles exist around every continuation point. This uses no PDE or
-smooth-fit premise. Full continuous-time dynamic programming and classical
-PDE/boundary regularity remain unproved.
+smooth-fit premise. `PlaneDynkin.lean` now proves the expected generator-integral
+identity for smooth tests at bounded stopping rules. `ActualTestFunctions.lean`
+combines it with the actual-price representation: tests matching the initial
+price and bounding it above/below on a continuation rectangle have nonnegative/
+nonpositive expected generator integral. Smoothness is required only of the test,
+not of the price. Pointwise PDE tests, full continuous-time dynamic programming
+and classical PDE/boundary regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -349,6 +354,8 @@ All files below are included in the project build.
 | [`Stopping/RectangleExit.lean`](AmericanConvexity/Stopping/RectangleExit.lean) | Constructed bounded rectangle exit, pre-exit inequalities and attained parabolic boundary |
 | [`Stopping/ContinuationRectangles.lean`](AmericanConvexity/Stopping/ContinuationRectangles.lean) | Closed backward rectangles inside the actual continuation region around every continuation point |
 | [`Stopping/ActualLocalMeanValue.lean`](AmericanConvexity/Stopping/ActualLocalMeanValue.lean) | Actual rectangle exit precedes exercise contact; exact discounted local exit representation without a PDE premise |
+| [`Stopping/PlaneDynkin.lean`](AmericanConvexity/Stopping/PlaneDynkin.lean) | Compensated smooth plane process, bounded stopped martingality and Dynkin identity; compact tests discharge bounds |
+| [`Stopping/ActualTestFunctions.lean`](AmericanConvexity/Stopping/ActualTestFunctions.lean) | Raw rectangle mean value and upper/lower smooth-test expected generator inequalities for the actual price |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

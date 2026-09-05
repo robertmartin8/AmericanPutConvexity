@@ -41,6 +41,7 @@ import AmericanConvexity.Stopping.ActualSupermartingale
 import AmericanConvexity.Stopping.ActualOptimality
 import AmericanConvexity.Stopping.ActualContactMartingale
 import AmericanConvexity.Stopping.ActualLocalMeanValue
+import AmericanConvexity.Stopping.ActualTestFunctions
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1281,3 +1282,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalPrice_rectangle_meanValue
+
+/-- info: 'AmericanConvexity.Stopping.planeResidual_localMartingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.planeResidual_localMartingale
+
+/-- info: 'AmericanConvexity.Stopping.planeResidual_stopped_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.planeResidual_stopped_martingale
+
+/-- info: 'AmericanConvexity.Stopping.plane_dynkin_compact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.plane_dynkin_compact
+
+/-- info: 'AmericanConvexity.Stopping.rawRectangleExit_path_mem_ae' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.rawRectangleExit_path_mem_ae
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_rectangle_meanValue_raw' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_rectangle_meanValue_raw
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_rectangle_upper_test_of_patch' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_rectangle_upper_test_of_patch
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_rectangle_lower_test_of_patch' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_rectangle_lower_test_of_patch

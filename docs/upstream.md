@@ -257,3 +257,14 @@ precede actual contact and specializes the stopped mean-value identity to an
 exact local exit representation. Guarded audits of rectangle existence, actual
 exit geometry, contact ordering and the final identity admit only the three
 standard axioms. This adds no PDE regularity or random-time restart assumption.
+
+`PlaneDynkin.lean` reuses MathFin's checked continuous drift primitive and raw
+adapted residual, plus the existing plane Itô adapter. Continuous modifications
+are proved indistinguishable before stopping. Our local-martingale transfer and
+bounded promotion prove the stopped Dynkin identity, with separate integrability
+checks and derived compact-test bounds. `ActualTestFunctions.lean` combines it
+with actual-price rectangle mean value via the checked completion integral
+transfer. Guarded audits cover the generic residual, stopped martingale, compact
+Dynkin identity and both final deterministic-patch test inequalities; they admit
+only `propext`, `Classical.choice` and `Quot.sound`. The imported unfinished
+continuous submartingale sampling results are not used in these proof chains.

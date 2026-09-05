@@ -545,9 +545,11 @@ and strict stock curvature together. It does not assert strict log curvature.
    every bounded observation rule capped at actual contact. Backward rectangles
    inside continuation and their bounded exit rules are now constructed. Their
    exits precede contact, yielding the exact discounted local mean-value identity
-   for the actual price, without a PDE premise. Deriving interior regularity from
-   this identity remains open, as do full continuous-time dynamic programming,
-   smooth fit and classical boundary regularity.
+   for the actual price, without a PDE premise. Bounded stopped Dynkin identities
+   for smooth tests now give expected generator-integral inequalities for tests
+   bounding the actual price above or below on these rectangles. Pointwise PDE
+   tests and interior regularity remain to be derived, as do full continuous-time
+   dynamic programming, smooth fit and classical boundary regularity.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.
