@@ -108,7 +108,7 @@ Following the supplied paper, rather than detouring through a binomial limit:
 | --- | --- | --- |
 | Financial interpretation | Introduction, p. 186 | Identify the GBM optimal stopping value with the obstacle/free-boundary solution |
 | Analytic solution | Equation (1.1), external references | Existence, uniqueness, boundary regularity, monotonicity, smooth fit; non-vacuity of solution hypotheses |
-| Smooth approximate profiles | Lemma 3.4, appendix | Construct the specific profiles and verify (2.3), (2.6), (3.1), (3.2), (3.8), including uniform estimates implicit in `O(ε)` |
+| Smooth approximate profiles | Lemma 3.4, appendix | Implemented: (2.3), (2.6), (3.1), (3.2), (3.8); exact sign identities avoid the informal `O(ε)` estimates |
 | Stefan solutions | Lemma 2.1 | Existence, uniqueness and regularity on moving/unbounded domains; proof is cited, not supplied in the paper |
 | Recover prices and boundaries | Lemma 2.2, Theorem 2.1 | ODE/integral reconstruction, obstacle comparison, convergence of **boundaries**, not just prices |
 | Sign geometry | Lemmas 3.1–3.2 | Parabolic zero-number principle, Hopf lemma, unique smooth zero curves, behavior at spatial infinity |
@@ -187,16 +187,18 @@ The normalized obstacle and smooth-data Stefan predicates are now implemented,
 with explicit regularity and one-sided boundary conditions. The contact/payoff
 correspondence in stock units is checked. The analytic curvature and existence
 goals are explicit proposition definitions, with no proof asserted. The appendix
-coefficient and profiles satisfy all of (2.3) and positive initial slope; the
-remaining parts of Lemma 3.4 are still open.
+coefficient and profiles now satisfy all of (2.3), (2.6), (3.1), (3.2), and (3.8),
+completing the initial-data construction in Lemma 3.4. The
+[appendix proof notes](appendix-proof.md) explain the exact replacements for the
+source's asymptotic sign estimates.
 
 See [solution definitions and statement review](solution-contract.md) for the exact
 scope, source checks and the proof-route decision. We may use a different valid
 proof of the known theorem; there is no requirement to reproduce CCJZ's argument.
 
-The next bounded construction task is to prove the profile concentration limits
-and sign/quotient estimates. Analytic existence/uniqueness, higher corner regularity
-and the stochastic verification link remain separate major obligations. Never
+The remaining work now concerns analytic existence/uniqueness, propagation of the
+initial sign conditions through the Stefan evolution, higher corner regularity,
+boundary convergence and the stochastic verification link. Never
 package convexity, derivative convergence, or the desired maximum-principle
 conclusion as an unexplained field and call the resulting projection a proof of
 Theorem 1.1.

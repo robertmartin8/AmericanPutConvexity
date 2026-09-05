@@ -103,13 +103,18 @@ The earlier flat-slope profile `x^3*exp(-x)` also satisfies `StefanInitialData`.
 This verifies that the new intrinsic formulation preserves the endpoint issue
 found in the printed auxiliary lemma instead of silently strengthening (2.3).
 
+The subsequent development completes the initial-data assertion of Lemma 3.4:
+`ProfileConcentration.lean` proves (2.6); `ProfileGeometry.lean` and
+`ProfileOperator.lean` prove (3.1), (3.2), and (3.8). See the
+[exact appendix proof](appendix-proof.md). The estimates are proved for the
+explicit family, not assumed in a solution interface.
+
 ## Remaining obligations and next proof work
 
-1. Complete the profile approximation package: mass/concentration limits (2.6),
-   sign geometry (3.1)--(3.2), and the quotient estimate (3.8), with explicit
-   small-epsilon quantifiers and bounds.
-2. Prove analytic existence/uniqueness and required boundary regularity, including
+1. Prove analytic existence/uniqueness and required boundary regularity, including
    that the proposed solution class is inhabited for each positive rate.
+2. Prove the parabolic zero-number and maximum-principle results propagating the
+   now-verified initial sign conditions to the Stefan evolution.
 3. Define the admissible GBM stopping problem and prove the solution/value
    identification, including threshold geometry. The payoff/coordinate lemmas
    alone do not supply this verification theorem.

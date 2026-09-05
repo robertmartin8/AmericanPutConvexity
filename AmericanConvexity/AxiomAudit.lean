@@ -3,6 +3,8 @@ import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.InitialProfileCheck
 import AmericanConvexity.Boundary.Profiles
+import AmericanConvexity.Boundary.ProfileConcentration
+import AmericanConvexity.Boundary.ProfileOperator
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -83,3 +85,18 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.flatInitialProfile_initialData
+
+/-- info: 'AmericanConvexity.Boundary.appendixProfile_concentration' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.appendixProfile_concentration
+
+/-- info: 'AmericanConvexity.Boundary.appendixProfile_sign_conditions' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.appendixProfile_sign_conditions
+
+/-- info: 'AmericanConvexity.Boundary.operator_quotient_deriv_neg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.operator_quotient_deriv_neg

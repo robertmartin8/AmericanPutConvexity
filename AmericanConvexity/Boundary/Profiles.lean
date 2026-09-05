@@ -6,8 +6,10 @@ import AmericanConvexity.Boundary.Stefan
 The polynomial-times-exponential profiles in CCJZ's appendix (Lemma 3.4).
 The coefficient is constructed explicitly, rather than assumed to exist.
 This file verifies the initial-data conditions (2.3) and positive initial slope.
-It does not claim the Dirac limit (2.6), sign geometry (3.1)--(3.2), or quotient
-estimate (3.8), which are separate approximation obligations.
+The Dirac limits (2.6) are proved in `ProfileConcentration.lean`; the sign
+geometry (3.1)--(3.2) and quotient estimate (3.8) are in `ProfileOperator.lean`.
+Together these prove the initial-data construction in Lemma 3.4. They do not
+establish existence or curvature of the evolving Stefan boundaries.
 -/
 
 namespace AmericanConvexity.Boundary
@@ -19,14 +21,14 @@ open scoped Topology ContDiff
 noncomputable def profileShape (b y : ℝ) : ℝ :=
   (b * y + y ^ 2 / 2) * Real.exp (-y)
 
-private theorem shape_derivative (b y : ℝ) :
+theorem shape_derivative (b y : ℝ) :
     HasDerivAt (profileShape b) ((b + (1 - b) * y - y ^ 2 / 2) * Real.exp (-y)) y := by
   convert! (((hasDerivAt_id y).const_mul b).add
     (((hasDerivAt_id y).pow 2).div_const 2)).mul (hasDerivAt_id y).neg.exp using 1
   simp only [id_eq, Pi.pow_apply, Pi.neg_apply, Pi.add_apply]
   ring
 
-private theorem shape_second_derivative (b y : ℝ) :
+theorem shape_second_derivative (b y : ℝ) :
     HasDerivAt (fun z => (b + (1 - b) * z - z ^ 2 / 2) * Real.exp (-z))
       ((1 - 2 * b - (2 - b) * y + y ^ 2 / 2) * Real.exp (-y)) y := by
   convert! ((((hasDerivAt_id y).const_mul (1 - b)).const_add b).sub
@@ -41,13 +43,13 @@ theorem scaledProfile_smooth (b c : ℝ) : ContDiff ℝ ∞ (scaledProfile b c) 
   unfold scaledProfile profileShape
   fun_prop
 
-private theorem scaled_derivative (b c x : ℝ) :
+theorem scaled_derivative (b c x : ℝ) :
     HasDerivAt (scaledProfile b c)
       (c ^ 2 * ((b + (1 - b) * (c * x) - (c * x) ^ 2 / 2) * Real.exp (-(c * x)))) x := by
   convert! ((shape_derivative b (c * x)).comp x ((hasDerivAt_id x).const_mul c)).const_mul c using 1
   ring
 
-private theorem deriv_scaled (b c : ℝ) : deriv (scaledProfile b c) =
+theorem deriv_scaled (b c : ℝ) : deriv (scaledProfile b c) =
     fun x => c ^ 2 * ((b + (1 - b) * (c * x) - (c * x) ^ 2 / 2) * Real.exp (-(c * x))) := by
   funext x
   exact (scaled_derivative b c x).deriv

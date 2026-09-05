@@ -90,6 +90,9 @@ All files below are included in the project build.
 | [`Boundary/Problem.lean`](AmericanConvexity/Boundary/Problem.lean) | Classical normalized solution predicate; payoff/contact correspondence in stock units; uniqueness of the threshold for a fixed price; explicit open analytic goals |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
+| [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |
+| [`Boundary/ProfileGeometry.lean`](AmericanConvexity/Boundary/ProfileGeometry.lean) | Unique profile peak and an exact strictly negative operator/slope quotient derivative |
+| [`Boundary/ProfileOperator.lean`](AmericanConvexity/Boundary/ProfileOperator.lean) | All initial sign conditions (3.1), (3.2), (3.8), using a quadratic crossing lemma |
 | [`Boundary/InitialProfileCheck.lean`](AmericanConvexity/Boundary/InitialProfileCheck.lean) | A concrete initial-endpoint issue in the printed assumptions/conclusion of Lemma 2.1 |
 | [`Finance.lean`](AmericanConvexity/Finance.lean) | Applications of MathFin's American-put payoff bound, European-price bound, and Snell minimality; integration examples, not new finance results |
 | [`Basic.lean`](AmericanConvexity/Basic.lean) | Introductory interval-convexity, inequality, and tactic examples |
@@ -117,10 +120,12 @@ the threshold geometry is part of the analytic solution predicate and still need
 to be established for the financial value. [Statement review and current proof
 obligations](docs/solution-contract.md).
 
-The appendix profiles satisfy all of (2.3), including corner compatibility, and
-have positive initial slope. Their concentration limits, sign geometry and quotient
-estimate have not yet been proved; this is not a completed Lemma 3.4. The earlier
-flat-slope example also satisfies the new initial-data predicate.
+The initial-data construction of **Lemma 3.4 is now verified**: the explicit family
+satisfies (2.3), (2.6), (3.1), (3.2), and (3.8). Exact polynomial identities replace
+the appendix's asymptotic sign calculations. This proves properties of the initial
+profiles, not existence or curvature of their evolving boundaries.
+[Detailed proof and remaining gaps](docs/appendix-proof.md).
+The earlier flat-slope example also satisfies the initial-data predicate.
 
 ### 4. Source-paper audit findings
 
@@ -200,9 +205,8 @@ Following the supplied paper requires:
    smooth-data Stefan predicates are implemented. Prove existence/uniqueness,
    establish the additional corner regularity needed downstream, and identify the
    solution with the GBM optimal-stopping value so the assumptions are not vacuous.
-2. **Approximation theory.** Complete the appendix profiles' concentration and
-   sign estimates beyond the checked (2.3) conditions, establish Stefan
-   well-posedness, recover the obstacle prices, and prove
+2. **Approximation theory.** The initial-data construction is checked. Establish
+   Stefan well-posedness, recover the obstacle prices, and prove
    convergence of the exercise boundaries—not merely convergence of prices.
 3. **Curvature of approximating boundaries.** Develop the parabolic zero-number,
    maximum-principle and Hopf-lemma arguments supporting Lemmas 3.1–3.3, including
