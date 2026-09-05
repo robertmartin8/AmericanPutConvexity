@@ -36,6 +36,7 @@ import AmericanConvexity.Stopping.ClassicalHeatComparison
 import AmericanConvexity.Stopping.ClassicalSupermartingale
 import AmericanConvexity.Stopping.UsualBrownianValue
 import AmericanConvexity.Stopping.CanonicalPrice
+import AmericanConvexity.Stopping.StrictExerciseGeometry
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

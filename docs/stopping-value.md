@@ -475,8 +475,9 @@ time, with no classical-solution premise or optimal-rule assumption.
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
 of any such pair against both raw and usual stopping values is now proved. The remaining
-construction includes the needed existence, continuation PDE, strict continuation,
-positive-time boundary regularity, smooth fit and gradient trace.
+construction includes the needed existence, continuation PDE, positivity of the
+stock threshold, boundary continuity and positive-time regularity, smooth fit
+and gradient trace.
 No such facts follow merely from the supremum
 definition or the spot-convexity proof above.
 
@@ -484,3 +485,28 @@ The identification and resulting boundary properties remain conditional on
 existence of that pair; they are not unconditional existence results for the
 financial free boundary. This gap remains visible and is not replaced with
 an axiom or added as a field of the financial value.
+
+## Strict positivity and full continuation geometry
+
+`PricePositivity.lean` uses the actual Gaussian terminal law to show that the
+deterministic maturity rule has strictly positive expected put payoff when
+`K,S,sigma,T>0` and `r>=0`. The Gaussian measure gives positive mass to every
+nonempty open set; the continuous nonnegative terminal payoff is positive on
+one such set and is integrable by the strike bound. The law-transfer identity
+gives positivity of its Brownian expectation. Measure completion preserves this
+deterministic-rule integral, so positivity of both raw and usual stopping values
+follows without a classical solution or raw/usual value-equality premise.
+
+`StrictExerciseGeometry.lean` combines positivity with the attained contact
+threshold. The value at the strike is positive, so the threshold is strictly
+below strike. Positive price rules out all out-of-the-money payoff contact.
+Consequently the complete nonnegative-spot contact set is exactly `[0,B(T)]`,
+and strict continuation is equivalent to `B(T)<S`.
+
+For normalized parameters, `canonicalStockBoundary` is the usual-filtration
+threshold at strike one and volatility `sqrt(2)`. It starts at one and lies in
+`[0,1)` at positive time. `canonicalPrice_contact_iff` and
+`canonicalPrice_strict_continuation_iff` characterize its regions in log-spot
+coordinates using `exp(x)`. Joint price continuity proves the actual
+`canonicalContinuationRegion` is open. None of this asserts `B(T)>0`; a finite
+logarithmic boundary and its regularity still need to be established.

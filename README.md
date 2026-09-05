@@ -86,6 +86,15 @@ vanishing rewards at large spot; dominated convergence passes to expectations.
 Continuation PDE regularity, boundary regularity and smooth fit remain
 to be established for this candidate.
 
+`PricePositivity.lean` proves that the deterministic maturity payoff has positive
+expectation for positive strike, spot, volatility and maturity, with nonnegative
+rate. Hence both raw and usual American prices are strictly positive, without a
+classical-solution premise. `StrictExerciseGeometry.lean` proves that the
+normalized stock threshold is in `[0,1)` at positive maturity, and that contact
+and strict continuation occur exactly below/at and above this threshold. The
+continuation region is open. Strict positivity of the threshold itself, needed
+for a finite logarithmic boundary, remains unproved.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -248,6 +257,8 @@ All files below are included in the project build.
 | [`Stopping/JointPriceContinuity.lean`](AmericanConvexity/Stopping/JointPriceContinuity.lean) | Uniform local spot Lipschitz bound and joint spot/maturity continuity at positive spot |
 | [`Stopping/CanonicalPrice.lean`](AmericanConvexity/Stopping/CanonicalPrice.lean) | Concrete normalized usual-filtration stopping price, joint continuity, initial payoff, bounds and uniform finite-maturity tail decay |
 | [`Stopping/SpotDecay.lean`](AmericanConvexity/Stopping/SpotDecay.lean) | Large-spot decay of the stopping supremum from pathwise compactness and nearly optimal rules, uniform over bounded maturities |
+| [`Stopping/PricePositivity.lean`](AmericanConvexity/Stopping/PricePositivity.lean) | Positive Gaussian maturity-payoff expectation and strict positivity of raw, usual and normalized American prices |
+| [`Stopping/StrictExerciseGeometry.lean`](AmericanConvexity/Stopping/StrictExerciseGeometry.lean) | Threshold strictly below strike, full contact/continuation characterization, and an open continuation domain, without a PDE premise |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

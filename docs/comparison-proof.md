@@ -519,6 +519,10 @@ and strict stock curvature together. It does not assert strict log curvature.
    stopping value, with joint continuity, initial payoff, bounds and tail decay proved
    without a classical-solution premise. Classical existence/regularity remains open; see
    [the financial verification frontier](stopping-value.md).
+   Strict price positivity, separation of the stock threshold from strike, and
+   exact contact/strict-continuation characterization are also now proved from
+   the stopping value. The resulting continuation domain is open. Positivity
+   of the stock threshold itself and regularity of its logarithm remain open.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

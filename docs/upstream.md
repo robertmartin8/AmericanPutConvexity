@@ -157,3 +157,12 @@ varying stopping rules. Nearly optimal rules transfer the limit to the actual
 supremum. No maximal inequality, optimal stopping existence theorem, or PDE
 solution is assumed. The general decay result and its normalized fixed-time and
 uniform finite-maturity versions have guarded three-standard-axiom audits.
+
+`PricePositivity.lean` uses the constructed Brownian terminal Gaussian law,
+Mathlib's theorem that Lebesgue measure is absolutely continuous with respect
+to a nondegenerate Gaussian measure, and positivity of the integral of a continuous
+nonnegative function nonzero somewhere. Measure-completion integral transfer
+handles the usual filtration without using conditional classical verification.
+`StrictExerciseGeometry.lean` combines this with the already proved contact-set
+interval and price continuity. The price-positivity and final continuation-domain
+proof chains have guarded audits allowing only the three standard axioms.
