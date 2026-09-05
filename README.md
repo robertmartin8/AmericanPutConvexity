@@ -103,17 +103,23 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > `F-V/2` have zero exterior flux and interior flux equal to the density,
 > provided its forcing is twice the free term's derivative. A new bounded
 > Neumann uniqueness theorem works on either side of a continuous moving graph,
-> with no boundary velocity or decay assumption. Constructing the free heat
-> potential and checking/identifying the candidate PDE solution still remain.
+> with no boundary velocity or decay assumption. Checking the candidate's PDE
+> and identifying it with actual theta still remain.
 > The actual theta has now been transformed to the diffusivity-1/2 heat
 > equation, with heat time twice normalized pricing time. Around every positive
 > contact, a compact smooth cutoff equal to one nearby is constructed with
 > spatial transitions away from the graph and support after any prescribed
 > earlier nonnegative heat time. The resulting source is proved continuous,
 > bounded, compactly supported, causal, and zero on the exercise side. Its
-> exact localized PDE is checked in continuation. Constructing the free heat
-> potential from this source, and then identifying the layer representation,
-> remain open; actual boundary flux and smoothness are not yet established.
+> exact localized PDE is checked in continuation. The source's free heat
+> potential is now constructed, with a continuous spatial derivative, uniform
+> bounds, and zero initial data. Gaussian rescaling supplies the integrable
+> inverse-square-root derivative bound. The forcing twice this derivative on
+> the actual graph is a constructed bounded continuous causal function, and
+> its density equation is solved on a window around every positive contact.
+> Zero-dividend and Liu-range checkpoints are explicit. The potential's
+> inhomogeneous heat PDE and the layer candidate's PDE/identification remain
+> open; actual boundary flux and smoothness are not yet established.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

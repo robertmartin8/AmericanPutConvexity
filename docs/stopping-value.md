@@ -2219,8 +2219,8 @@ required PDE or equals actual theta. The remaining route is:
 
 1. **Proved below:** localize and gauge the actual theta equation, obtaining
    a bounded causal source without presuming boundary derivatives.
-2. Construct its free heat source potential F and the continuous causal forcing
-   `g=2*F_x` on the local graph.
+2. **Proved below:** construct its free heat source potential F and the
+   continuous causal forcing `g=2*F_x` on the local graph.
 3. Verify the layer candidate's PDE, boundedness and initial values. The proved
    exterior Neumann uniqueness then supplies its zero exterior values.
 4. Identify the candidate with localized theta by Dirichlet uniqueness, obtain
@@ -2267,9 +2267,58 @@ constructed short Volterra window. Fifteen guarded transitive axiom checks
 cover the transform, localized equation, support/continuity estimates, and
 actual source construction.
 
-This completes the source-localization step, not the free-potential or
-representation step. Next construct the Duhamel potential F of Q, prove its
-continuous spatial derivative, and supply the boundary forcing
-`g(s)=2*F_x(b(s/2),s)` to the density equation. The candidate's PDE and
-identification with localized W, the actual Stefan flux identity, and the
-boundary smoothness bootstrap remain unproved.
+This completes the source-localization step. The free potential, its spatial
+derivative, and the associated forcing are now constructed below. The
+candidate's PDE and identification with localized W, the actual Stefan flux
+identity, and the boundary smoothness bootstrap remain unproved.
+
+## The source potential and actual boundary forcing
+
+`HeatSourceMoments.lean` rescales the Gaussian spatial convolution to fixed
+unit-time Gaussian moments. For any bounded continuous space-time source Q,
+these moments depend continuously on elapsed time and the evaluation point,
+without differentiating Q. The derivative moment has the uniform estimate
+
+`|spatialAverage(Q,u,x,s)| <= C*M1/sqrt(u)`,
+
+where `|Q|<=C` and `M1=integral |H(1,y)|` is a proved finite Gaussian first
+moment. Exact change-of-variable identities relate both moments to their
+ordinary heat-kernel convolution formulas.
+
+`HeatSourceDerivative.lean` differentiates the spatial convolution by taking
+derivatives of the kernel only. Compact support of Q supplies compact spatial
+slices; Q needs continuity, not differentiability. This proves the rescaled
+derivative formula as a genuine `HasDerivAt` statement.
+
+`HeatSourcePotential.lean` integrates the Gaussian average over `0<u<D`.
+Its continuous spatial derivative is the integral of the derivative average.
+The singular endpoint is included: `integral_0^D 1/sqrt(u)=2*sqrt(D)` supplies
+an integrable uniform majorant for differentiation and continuity. Both the
+potential and its spatial derivative have uniform bounds and vanish at and
+before the source's causal start a. On `s<=a+D`, the truncation includes the
+entire causal past, and the potential is proved exactly equal to
+
+`F(x,s)=integral_{0<u<s-a} integral_y G(u,y-x)*Q(y,s-u)`.
+
+`ActualHeatForcing.lean` constructs the bounded continuous causal boundary
+forcing `g(s)=2*F_x(b(s/2),s)`. To obtain a globally continuous representative,
+it first evaluates on `b(max(a,s)/2)`. Since F_x vanishes for all x at and
+before a, the representative is proved equal to the actual-graph formula
+for every s. Thus neither expiry behavior nor a negative-time boundary
+extension is an added assumption. The exact derivative `g(s)/2` of F at the
+graph is proved as well.
+
+`exists_actualHeatSource_density` chooses a short actual-graph Volterra window,
+constructs the actual theta cutoff/source after its start, builds this specific
+forcing, and solves the density equation. The density is no longer conditional
+on an arbitrary supplied forcing. Explicit zero-dividend and Liu-range versions
+are included, and nineteen guarded transitive axiom checks cover this stage.
+
+The next obligations are still substantive: prove the free potential's
+inhomogeneous heat PDE off the graph, prove the single-layer potential's PDE,
+and check the candidate representation's boundedness and initial data. Then
+the proved exterior Neumann and interior Dirichlet uniqueness results can
+identify it with localized W. The source is continuous across contact but
+not asserted globally smooth; the PDE proof must respect that distinction.
+Actual theta's normal flux, the Stefan velocity identity, and smoothness of
+the actual exercise boundary remain unproved.

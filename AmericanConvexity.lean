@@ -127,6 +127,10 @@ import AmericanConvexity.Stopping.HeatLayerMatching
 import AmericanConvexity.Stopping.ActualHeatTheta
 import AmericanConvexity.Stopping.HeatLocalizationSource
 import AmericanConvexity.Stopping.ActualHeatSource
+import AmericanConvexity.Stopping.HeatSourceMoments
+import AmericanConvexity.Stopping.HeatSourceDerivative
+import AmericanConvexity.Stopping.HeatSourcePotential
+import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

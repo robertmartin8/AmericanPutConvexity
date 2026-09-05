@@ -92,6 +92,7 @@ import AmericanConvexity.Stopping.ActualHeatDensity
 import AmericanConvexity.Boundary.NeumannExterior
 import AmericanConvexity.Stopping.HeatLayerMatching
 import AmericanConvexity.Stopping.ActualHeatSource
+import AmericanConvexity.Stopping.ActualHeatForcing
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -3292,3 +3293,98 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.exists_actualHeatTheta_source
+
+/-- info: 'AmericanConvexity.Stopping.heatSourceMoment_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourceMoment_continuous
+
+/-- info: 'AmericanConvexity.Stopping.heatKernel_integral_rescale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatKernel_integral_rescale
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_integral_rescale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_integral_rescale
+
+/-- info: 'AmericanConvexity.Stopping.heatSourceSpatial_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourceSpatial_bound
+
+/-- info: 'AmericanConvexity.Stopping.compact_heat_convolution_hasDeriv' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_heat_convolution_hasDeriv
+
+/-- info: 'AmericanConvexity.Stopping.heatSourceAverage_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourceAverage_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotential_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotential_continuous
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotentialSpatial_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotentialSpatial_continuous
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotential_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotential_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotentialSpatial_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotentialSpatial_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotential_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotential_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotential_causal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotential_causal
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotentialSpatial_causal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotentialSpatial_causal
+
+/-- info: 'AmericanConvexity.Stopping.heatSourcePotential_eq_causal_integral' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatSourcePotential_eq_causal_integral
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatSourceForcing_apply' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatSourceForcing_apply
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatSourceForcing_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatSourceForcing_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.exists_actualHeatSource_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_actualHeatSource_density
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_exists_actualHeatSource_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_exists_actualHeatSource_density
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_exists_actualHeatSource_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_exists_actualHeatSource_density
