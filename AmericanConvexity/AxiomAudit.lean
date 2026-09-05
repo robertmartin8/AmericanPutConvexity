@@ -59,6 +59,8 @@ import AmericanConvexity.Stopping.ActualSpatialRegularity
 import AmericanConvexity.Stopping.ActualBoundaryNondegeneracy
 import AmericanConvexity.Stopping.ActualQuadraticSeparation
 import AmericanConvexity.Stopping.ActualBoundaryIncrement
+import AmericanConvexity.Stopping.ActualTemporalModulus
+import AmericanConvexity.Stopping.ActualBoundaryTemporalModulus
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1919,3 +1921,63 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_increment_bounds
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_spatial_deriv_gt_exercise' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_spatial_deriv_gt_exercise
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTimeIncrement_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTimeIncrement_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTimeIncrement_no_positive_max' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTimeIncrement_no_positive_max
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTimeIncrement_le_of_initial_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTimeIncrement_le_of_initial_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_expiry_gap_le_atStrike' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_expiry_gap_le_atStrike
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_temporal_modulus' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_temporal_modulus
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_atStrike_tendsto_zero' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_atStrike_tendsto_zero
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_temporal_modulus' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_temporal_modulus
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_temporal_modulus' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_temporal_modulus
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_increment_le_atStrike' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_increment_le_atStrike
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_increment_le_atStrike' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_increment_le_atStrike
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_increment_le_atStrike' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_increment_le_atStrike

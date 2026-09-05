@@ -65,6 +65,8 @@ import AmericanConvexity.Stopping.ActualSpatialRegularity
 import AmericanConvexity.Stopping.ActualBoundaryNondegeneracy
 import AmericanConvexity.Stopping.ActualQuadraticSeparation
 import AmericanConvexity.Stopping.ActualBoundaryIncrement
+import AmericanConvexity.Stopping.ActualTemporalModulus
+import AmericanConvexity.Stopping.ActualBoundaryTemporalModulus
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

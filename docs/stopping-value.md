@@ -28,6 +28,8 @@ intrinsic premium's second spatial derivative near that boundary. Boundary
 smoothness itself remains open.
 The latest quantitative step integrates this bound and controls boundary
 displacement by price and gradient increments at the earlier exercise spot.
+Actual temporal comparison now bounds all price increments by the at-strike
+short-maturity price and transfers that scalar modulus to the boundary.
 
 ## Exact financial definition
 
@@ -1474,3 +1476,61 @@ These estimates transfer quantitative temporal control of the price or its
 spatial gradient to control of boundary increments. They do not by themselves
 prove a temporal Lipschitz/Hölder estimate, differentiability of the boundary,
 or the outstanding positive-time boundary smoothness. Those steps remain open.
+
+## Actual temporal comparison without a smooth-boundary premise
+
+`ActualStrictSpatialSlope.lean` proves `p_x(x,t)>-exp(x)` in continuation.
+In stock coordinates, convexity puts the derivative above the secant from the
+exercise boundary, and strict value/payoff separation makes that secant greater
+than `-1`. The exponential chain rule gives the log-coordinate inequality.
+
+For `delta>=0`, define `W(x,t)=p(x,t+delta)-p(x,t)`.
+`ActualTimeIncrement.lean` proves its continuity and its pricing PDE wherever
+the earlier point is in continuation. At a positive spatial maximum, the
+earlier point cannot be in exercise: the later price is strictly above payoff,
+its derivative exceeds `-exp(x)`, and the earlier exercise derivative equals
+`-exp(x)`, contradicting `W_x=0`. Both points are therefore in continuation.
+The interior PDE, a nonpositive second spatial derivative, a nonnegative
+left-time derivative and `k>0` exclude a positive space-time maximum.
+
+`ActualTemporalComparison.lean` applies this argument on a finite rectangle,
+including its terminal time. It then removes the spatial truncation: on the
+left `W<=exp(x)`, and on the right the uniform price tail tends to zero.
+Consequently, if `C>=0` and `p(x,delta)-payoff(x)<=C` for all `x`, then
+`W(x,t)<=C` for every `x` and `t>=0`. No full dynamic-programming theorem or
+free-boundary derivative is used.
+
+## A single at-strike price controls temporal and boundary increments
+
+`ActualTemporalModulus.lean` proves that `u=p-(1-exp(x))` is increasing in
+space: its derivative is zero in exercise and strictly positive in continuation.
+Thus, below strike, the price/payoff gap is bounded by its value at strike.
+Above strike, price monotonicity gives the same bound. The largest expiry gap
+is therefore bounded by `p(0,delta)`. The preceding temporal comparison and
+time monotonicity yield
+
+```text
+abs(p(x,t)-p(x,s)) <= p(0,abs(t-s))     (s,t >= 0).
+```
+
+Joint price continuity and the zero expiry payoff at strike prove
+`p(0,delta)->0` as `delta->0`. This modulus is uniform in log spot and in both
+maturities. Named zero-dividend and Liu-range specializations are checked.
+An explicit power-law rate is not yet proved.
+
+`ActualBoundaryTemporalModulus.lean` combines this with the earlier quadratic
+separation result. Fix `t0>0` and `A=k-h*exp(b(t0))>0`. For nearby `s<=v`,
+
+```text
+A/4*(b(s)-b(v))^2 <= p(0,v-s).
+```
+
+This is an actual stopping-price and boundary statement, without a classical
+contract or boundary-smoothness premise. Zero-dividend and Liu-range results
+are explicit. Guarded transitive audits cover the strict slope, time-increment
+PDE, maximum principle, global comparison, scalar modulus and boundary
+consequence, allowing only the three standard axioms.
+
+The next rate-producing step is an explicit short-maturity upper bound at
+strike. Even such a rate would not itself prove the outstanding positive-time
+boundary smoothness; the full unconditional classical contract remains open.

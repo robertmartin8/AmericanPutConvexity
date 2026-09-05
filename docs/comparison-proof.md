@@ -535,7 +535,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    lower bound for the intrinsic premium in continuation are now proved.
    This now yields uniform quadratic separation from contact and quantitative
    control of boundary increments by price/gradient time increments. The
-   temporal regularity estimates needed to complete boundary smoothness remain open.
+   actual temporal comparison now controls all price increments by the at-strike
+   short-maturity price. An explicit temporal rate and the further regularity
+   needed to complete boundary smoothness remain open.
    Full continuity of the normalized stock and log boundaries, including expiry,
    is now proved: the interior PDE and maturity monotonicity exclude downward
    jumps, complementing the earlier upper semicontinuity. An actual-price first-contact
