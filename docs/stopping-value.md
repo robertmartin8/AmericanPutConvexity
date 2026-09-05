@@ -2139,3 +2139,45 @@ is that potential. Constructing or identifying the actual PDE solution's
 layer representation and establishing the required density regularity remain
 the next analytic tasks, followed by the Stefan velocity identity and
 boundary bootstrap. The actual boundary's smoothness is still unproved.
+
+## Constructing the causal heat-layer density
+
+`HeatHistoryOperator.lean` defines the elapsed-time operator
+
+`K_D f(t)=integral_{0<s<D} H(s,b(t)-b(t-s))*f(t-s)`.
+
+For continuous graph motion satisfying `|b(t)-b(t-s)|<=L*s`, its
+bounded-continuous-function norm is at most
+
+`Q(L,D)=6*L*sqrt(D)/sqrt(2*pi)`.
+
+This estimate includes the singular endpoint. The proof computes the exact
+integral of `1/sqrt(s)` and uses the previously checked moving-kernel bound.
+The operator is continuous in time, preserves causality, and has a proved
+difference estimate with the same norm constant. A positive window with
+`Q(L,D)<1` is constructed for every `L`.
+
+`HeatDensityEquation.lean` solves `f=g+K_D f` by the Banach contraction
+theorem on the complete space of bounded continuous functions that vanish
+at and before a specified starting time. The solution is unique in that
+space for the global truncated equation. On the first time window, its
+truncated history is proved equal to the entire causal past, so the solution
+satisfies the genuine local Volterra integral equation. Continuity and
+boundedness of the density are conclusions of the construction.
+
+`ActualHeatDensity.lean` applies this construction to the actual graph.
+Mathlib's real-valued Lipschitz extension theorem supplies a global graph
+agreeing with the actual boundary near a positive target maturity `a`.
+A sufficiently small `0<D<a` gives the heat-time window
+`[2*a-D/2,2*a+D/2]`, so the target is strictly inside it. The final equation
+contains `b(t/2)-b((t-s)/2)`, not the auxiliary extension. For every bounded
+continuous forcing that vanishes up to the initial heat time, a bounded
+continuous causal density is constructed on this window. Zero-dividend and
+Liu-range checkpoints and fifteen guarded transitive axiom checks cover it.
+
+The forcing contract is important: this is **not** a solution of arbitrary
+singular expiry data, nor an identification of the constructed density with
+actual theta's flux. The remaining representation argument must localize
+the actual equation, construct the appropriate causal forcing, and show
+that the resulting layer potential represents the actual solution. The
+Stefan velocity identity and boundary regularity bootstrap remain open.

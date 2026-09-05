@@ -92,6 +92,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > parameterized data with uniform bounds. The actual boundary supplies the
 > required graph hypotheses, with zero-dividend and Liu checkpoints. These are
 > flux results for layer potentials, not yet a representation of actual theta.
+> `HeatDensityEquation.lean` now constructs the unique bounded continuous
+> causal density solving the short-window heat boundary integral equation.
+> Its contraction bound is proved directly from the kernel. A Lipschitz
+> extension transfers the construction to the actual graph on a time window
+> surrounding any positive target maturity, with zero-dividend/Liu checkpoints.
+> Identifying the forcing and the represented solution with localized actual
+> theta remains open; this is not yet the actual Stefan flux identity.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

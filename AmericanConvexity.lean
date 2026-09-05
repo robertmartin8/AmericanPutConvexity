@@ -117,6 +117,9 @@ import AmericanConvexity.Stopping.MovingHeatJump
 import AmericanConvexity.Stopping.ActualBoundaryHeatJump
 import AmericanConvexity.Stopping.HeatLayerPotential
 import AmericanConvexity.Stopping.ActualBoundaryHeatLayer
+import AmericanConvexity.Stopping.HeatHistoryOperator
+import AmericanConvexity.Stopping.HeatDensityEquation
+import AmericanConvexity.Stopping.ActualHeatDensity
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

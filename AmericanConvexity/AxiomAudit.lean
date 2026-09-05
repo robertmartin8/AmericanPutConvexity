@@ -88,6 +88,7 @@ import AmericanConvexity.Boundary.QuantitativeHopf
 import AmericanConvexity.Stopping.ActualThetaContactGrowth
 import AmericanConvexity.Stopping.ActualBoundaryHeatJump
 import AmericanConvexity.Stopping.ActualBoundaryHeatLayer
+import AmericanConvexity.Stopping.ActualHeatDensity
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -3098,3 +3099,78 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_heatLayer_flux
+
+/-- info: 'AmericanConvexity.Stopping.integral_inverse_sqrt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integral_inverse_sqrt
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryNormBound_mono' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryNormBound_mono
+
+/-- info: 'AmericanConvexity.Stopping.exists_small_heatHistory_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_small_heatHistory_window
+
+/-- info: 'AmericanConvexity.Stopping.heatHistory_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistory_integrable
+
+/-- info: 'AmericanConvexity.Stopping.heatHistory_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistory_continuous
+
+/-- info: 'AmericanConvexity.Stopping.heatHistory_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistory_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryBCF_dist' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryBCF_dist
+
+/-- info: 'AmericanConvexity.Stopping.heatDensityStep_contracting' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatDensityStep_contracting
+
+/-- info: 'AmericanConvexity.Stopping.exists_unique_causal_heat_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_unique_causal_heat_density
+
+/-- info: 'AmericanConvexity.Stopping.heatHistory_eq_causal_past' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistory_eq_causal_past
+
+/-- info: 'AmericanConvexity.Stopping.exists_local_causal_heat_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_local_causal_heat_density
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_local_lipschitz_extension' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_local_lipschitz_extension
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalLogBoundary_heat_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalLogBoundary_heat_density
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_exists_canonicalLogBoundary_heat_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_exists_canonicalLogBoundary_heat_density
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_exists_canonicalLogBoundary_heat_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_exists_canonicalLogBoundary_heat_density
