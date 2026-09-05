@@ -530,8 +530,10 @@ and strict stock curvature together. It does not assert strict log curvature.
    Finite exercise-grid stopping suprema now converge to the actual American
    value in the same model, providing a checked approximation step toward those
    obligations. General finite discrete-time Bellman identification and optimal
-   first contact are now proved. Reindexing the physical-time grid rules into
-   that theorem, Markov dynamic programming and the continuous-time limit remain open.
+   first contact are now proved. Physical-time grid reindexing, Bellman
+   identification and attainment are also proved, with optimal-grid expected
+   payoffs converging to the American price. Markov dynamic programming and
+   continuous-time first-contact optimality remain open.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

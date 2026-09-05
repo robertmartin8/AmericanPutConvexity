@@ -561,8 +561,8 @@ is not asserted. The normalized usual-filtration specialization is
 `canonicalGridPrice_tendsto`.
 
 This gives an approximation route toward dynamic programming and actual-rule
-optimality. It does not yet prove that a grid supremum is attained, identify it
-with a backward Bellman recursion, or yield a quantitative convergence rate.
+optimality. Bellman identification and grid-supremum attainment are now proved
+below. A quantitative convergence rate is not supplied.
 The stock dynamics remain continuous-time Brownian dynamics; no binomial tree
 or change of model is introduced.
 
@@ -591,9 +591,34 @@ rule by this value. `DiscreteStoppingValue.lean` packages all such natural-index
 rules into a supremum and proves both `discreteStoppingValue_eq_bellman` and
 `finiteBellmanRule_attains_value`.
 
-This is the full general finite discrete-time stopping theorem, not a binomial
-specialization. Its application to `gridAmericanPutValue` still needs an explicit
-two-way reindexing between capped physical-time grid rules and natural-index
-rules with the sampled filtration. That bridge, the Brownian Markov recursion,
-and passage to continuous-time optimality remain open; none is silently inferred
-from the finite theorem.
+This general finite discrete-time stopping-supremum theorem is not a binomial
+specialization. Its physical-grid application is now proved by the explicit
+reindexing below. The Brownian Markov recursion and passage to continuous-time
+first-contact optimality remain open.
+
+## Attained Bellman optimality on physical exercise grids
+
+`GridReindexing.lean` samples the original filtration at `min(i*delta,T)`.
+Every `GridRule` maps to a bounded natural-index rule using its upward-rounded
+index. Conversely, every bounded rule in this capped sampled filtration maps
+to an admissible physical-time grid rule. Both directions preserve the payoff;
+`gridValue_eq_discreteValue` proves equality of their full expected-payoff
+suprema. This handles a non-grid-aligned maturity and maturity zero, with
+`delta>0`. No underlying process or probability measure is replaced.
+
+`GridBellman.lean` checks adaptedness and integrability of the actual discounted
+put reward on this sampled filtration. `gridValue_eq_bellman` identifies the
+physical-grid value with the expected initial conditional-expectation Bellman
+value. `optimalGridRule` transfers the discrete first-contact rule back to an
+actual physical stopping rule; `optimalGridRule_attains_value` proves attainment.
+The expected payoffs of these optimal rules converge to the American supremum
+by the checked finite-grid convergence theorem.
+
+`canonicalOptimalGridRule` and `canonicalOptimalGridRule_payoffs_tendsto`
+instantiate the construction on the completed usual Brownian space and give
+convergence to the actual `canonicalPrice`, without a classical-solution premise.
+This is convergence of expected payoffs, not convergence of stopping times,
+and does not prove that the continuous-time first-contact rule is optimal.
+Identification of the conditional Bellman recursion with a Brownian Markov
+pricing recursion, continuous-time dynamic programming, and PDE regularity
+remain the next obligations.

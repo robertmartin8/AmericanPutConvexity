@@ -192,4 +192,15 @@ identification and attainment. No MathFin binomial Snell theorem is substituted
 for an arbitrary-filtration theorem. `DiscreteContactMartingale.lean` explicitly
 derives the stopped martingale from conditional-expectation indicator identities.
 All final finite Bellman and optimality chains have guarded three-standard-axiom
-audits; physical-grid reindexing and continuous-time optimality remain separate.
+audits. The physical-grid reindexing is now proved below; continuous-time
+optimality remains separate.
+
+`GridReindexing.lean` proves stopping-time admissibility in both directions using
+the actual capped sampled filtration and floor/ceiling identities, and proves
+equality of payoff ranges. `GridBellman.lean` applies the local general Bellman
+optimality theorem to the original discounted put reward. Its explicit physical
+grid rules attain the grid supremum and their expected payoffs converge to the
+American value, including on the completed usual Brownian model. The final
+identification, attainment and convergence proofs have guarded audits allowing
+only the three standard axioms; they do not assume a PDE solution or continuous
+optimal-stopping theorem.

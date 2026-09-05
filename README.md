@@ -107,17 +107,21 @@ converges to the actual American stopping value, without changing the underlying
 process or filtration. Upward rounding capped at maturity is admissible and its
 expected payoff converges for every fixed rule. This yields convergence of the
 grid-value suprema, including `canonicalGridPrice_tendsto` on the usual Brownian
-space. Its physical-time grid supremum still needs to be connected to the
-discrete Bellman theorem below; this is an approximation theorem, not a binomial-model identification or numerical
-error estimate.
+space. Its physical-time grid supremum is now identified with the discrete
+Bellman value below. This is not a binomial-model identification or quantitative
+numerical error estimate.
 
 `DiscreteStoppingValue.lean` now proves the general finite-horizon Bellman
 identification on an arbitrary filtered probability space. The backward
 conditional-expectation value is a dominating supermartingale; first payoff
 contact gives a stopped martingale and attains the supremum over all bounded
-discrete stopping rules. Connecting these rules to the earlier capped
-physical-time exercise grids remains the next bridge. Continuous-time optimality,
-Markov dynamic programming and PDE regularity are not yet proved.
+discrete stopping rules. `GridReindexing.lean` proves the payoff-preserving
+two-way conversion to capped physical-time grid rules. `GridBellman.lean` proves
+grid-value identification and attainment, and constructs optimal grid rules whose
+expected payoffs converge to the actual American price, including the normalized
+usual-filtration price. Convergence of the stopping times themselves and
+continuous-time first-contact optimality are not asserted. Markov dynamic
+programming and PDE regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -291,6 +295,8 @@ All files below are included in the project build.
 | [`Stopping/DiscreteContactMartingale.lean`](AmericanConvexity/Stopping/DiscreteContactMartingale.lean) | Discrete processes with zero conditional drift before stopping become stopped martingales |
 | [`Stopping/FiniteBellmanOptimality.lean`](AmericanConvexity/Stopping/FiniteBellmanOptimality.lean) | Bellman first-contact stopping time, attained payoff, martingale property and finite-horizon optimality |
 | [`Stopping/DiscreteStoppingValue.lean`](AmericanConvexity/Stopping/DiscreteStoppingValue.lean) | Bellman identification with the full bounded discrete stopping supremum and an explicit attaining rule |
+| [`Stopping/GridReindexing.lean`](AmericanConvexity/Stopping/GridReindexing.lean) | Two-way payoff-preserving conversion between physical-time grid rules and bounded discrete rules in the capped sampled filtration |
+| [`Stopping/GridBellman.lean`](AmericanConvexity/Stopping/GridBellman.lean) | Actual grid-value Bellman identification and attainment; optimal-grid expected payoffs converge to the American value |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

@@ -35,6 +35,7 @@ import AmericanConvexity.Stopping.BoundarySemicontinuity
 import AmericanConvexity.Stopping.ActualContact
 import AmericanConvexity.Stopping.BermudanConvergence
 import AmericanConvexity.Stopping.DiscreteStoppingValue
+import AmericanConvexity.Stopping.GridBellman
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1110,3 +1111,28 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.finiteBellmanRule_attains_value
+
+/-- info: 'AmericanConvexity.Stopping.gridValue_eq_discreteValue' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.gridValue_eq_discreteValue
+
+/-- info: 'AmericanConvexity.Stopping.gridValue_eq_bellman' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.gridValue_eq_bellman
+
+/-- info: 'AmericanConvexity.Stopping.optimalGridRule_attains_value' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.optimalGridRule_attains_value
+
+/-- info: 'AmericanConvexity.Stopping.optimalGridRule_payoffs_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.optimalGridRule_payoffs_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.canonicalOptimalGridRule_payoffs_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalOptimalGridRule_payoffs_tendsto
