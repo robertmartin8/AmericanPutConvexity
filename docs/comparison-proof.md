@@ -30,6 +30,7 @@ will not be described as an independent verification of a published proof.
 | Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; that contract is now identified with the actual raw-filtration stopping value |
 | Actual normalized log boundary | `ConvexOn` on positive maturities, for the entire parameter regime | Proved directly for the usual-filtration stopping boundary without a classical contract or boundary smoothness; zero-dividend and Liu-range checkpoints included |
 | Actual normalized stock boundary | Strict decrease and `StrictConvexOn` on positive maturities | Proved without boundary smoothness, with zero-dividend and Liu-range checkpoints; both actual boundaries are locally Lipschitz away from expiry |
+| Actual physical-unit boundary | Log convexity, strict stock convexity, strict decrease and local Lipschitz continuity | Proved for the completed usual-filtration stopping threshold under only physical parameter assumptions; exact financial normalization and zero-dividend/Liu-range checkpoints included |
 | Strict stock-boundary consequence | `B'' > 0` for the full regime, including zero dividends and Liu's range | Proved on the classical contracts, with no additional speed premise; both time conventions checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
@@ -105,7 +106,7 @@ square-root barrier to the actual price. `ActualNearExpiry.lean` proves
 same actual stopping-value definition. The statement is convexity of the
 normalized log boundary as a function, not an assertion that classical second
 derivatives exist. The literal differential conclusions for the
-actual value and full physical-unit assembly remain separate obligations, as
+actual value remain separate obligations, as
 does the retained independent CCJZ proof track.
 
 ### Actual strict decrease and strict stock convexity
@@ -131,6 +132,31 @@ regularity also gives local Lipschitz continuity of both boundaries on `t>0`,
 improving the preceding half-power bound. All these results have guarded
 transitive axiom audits. Strict convexity as a function is not the stronger
 assertion that a classical second derivative exists and is everywhere positive.
+
+### Actual financial normalization and physical-unit conclusions
+
+`ShrinkingGrids.lean` extends exercise-grid convergence to every positive mesh
+sequence tending to zero. Rounding any bounded stopping rule upward changes its
+time by at most the mesh; path continuity and bounded convergence then give the
+American stopping supremum in the limit. No nesting of grids is needed.
+
+`GridNormalization.lean` proves exact scaling of the deterministic Bellman
+recursion. Multiplying times by `a=sigma^2/2`, replacing rates by `r/a,q/a`,
+volatility by `sqrt(2)`, and log spot by `log(S/K)` preserves every drift and
+Gaussian variance increment. Payoffs and values scale by `K`, and the capped
+grid and its number of steps scale exactly. `ActualNormalization.lean` passes
+this identity to the limits, proving price normalization for both raw and usual
+Brownian stopping values without a classical solution or dividend restriction.
+
+For `0<=q<=r`, `ActualBoundaryNormalization.lean` then identifies the usual
+exercise threshold from price/payoff contact. This is a proved identity between
+actual financial thresholds, not a definition of a replacement boundary.
+`PhysicalBoundaryConvexity.lean` establishes, on positive remaining maturities,
+convexity of `log(B(tau)/K)`, strict convexity and strict decrease of `B`, and
+local Lipschitz continuity of both profiles. Only `K>0`, `r>0`, `sigma>0`, and
+`0<=q<=r` are assumed. Named zero-dividend and Liu-range specializations and
+26 guarded transitive axiom checks cover the new chain. Boundary smoothness and
+the literal everywhere second-derivative conclusions remain unfinished.
 
 ### Exercise-boundary calculus and obstacle comparison
 

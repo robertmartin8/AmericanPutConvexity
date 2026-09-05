@@ -10,7 +10,10 @@ normalized logarithmic boundary on all positive maturities from only `k>0`
 and `0<=h<=k`. This uses a continuous-boundary comparison and chord argument,
 not a classical-pair existence premise. The classical second-derivative and
 strict stock-curvature statements are still distinguished from this
-convex-function conclusion. See the final section below.
+convex-function conclusion. `PhysicalBoundaryConvexity.lean` now proves log
+convexity, strict stock convexity, strict decrease, and local Lipschitz continuity
+for the actual physical-unit threshold, using exact stopping-value normalization.
+No classical contract is assumed. See the final sections below.
 
 **Current frontier:** `ActualInteriorRegularity.lean` proves joint
 all-order smoothness and the pricing PDE for the actual stopping price on its
@@ -1783,3 +1786,51 @@ convexity nor local Lipschitz continuity supplies the still-missing classical
 boundary smoothness field. Literal `b''>=0`, strict classical stock curvature,
 and full physical-unit identification remain separate from these unconditional
 normalized function-level results.
+
+## Exact normalization and physical-unit boundary convexity
+
+The physical-unit identification left open in the preceding checkpoint is now
+proved independently of boundary smoothness. The new chain is:
+
+1. `ShrinkingGrids.lean`: any positive exercise mesh tending to zero converges
+   to the actual American stopping value. Upward rounding has error at most the
+   mesh; payoff path continuity and bounded convergence give the result. The
+   stochastic model and filtration are not discretized or replaced.
+2. `GridNormalization.lean`: exact Bellman recursion rescaling. With
+   `a=sigma^2/2`, scaled times `a*T,a*delta`, rates `r/a,q/a`, volatility
+   `sqrt(2)`, and shifted log spot `log(S/K)`, both drift and Gaussian variance
+   increments agree. Discounted payoffs scale by `K`, multiplication by positive
+   `K` commutes with each Bellman maximum, and the grid step count is unchanged.
+3. `ActualNormalization.lean`: pass that identity to the finite-grid limits.
+   For `K>0`, `r>=0`, `sigma>0`, `S>0`, and every nonnegative maturity `T`,
+   both raw and usual values satisfy
+
+   ```text
+   V(K,r,q,sigma,S,T)
+     = K * canonicalPrice (2*r/sigma^2) (2*q/sigma^2)
+         (log(S/K)) (sigma^2/2*T).
+   ```
+
+   No restriction on `q` or classical-pair hypothesis is required for this
+   price identity.
+4. `ActualBoundaryNormalization.lean`: for `r>0`, `0<=q<=r`, recover the
+   physical usual-filtration exercise threshold from price/payoff contact,
+   obtaining `B(tau)=K*exp(b(a*tau))`. Its normalized logarithm therefore equals
+   `b(a*tau)` exactly at every positive remaining maturity.
+5. `PhysicalBoundaryConvexity.lean`: transfer the established shape results
+   through this positive time/price rescaling.
+
+The final theorem `brownianUsualLogBoundary_convexOn` states convexity of
+`tau -> log(brownianUsualExerciseBoundary K r q sigma tau.toNNReal / K)` on
+`tau>0`. `brownianUsualStockBoundary_strictConvexOn` states strict convexity of
+that actual stock threshold. Strict decrease and local Lipschitz continuity
+are also proved. Their hypotheses are only `K>0`, `r>0`, `sigma>0`, `0<=q<=r`.
+Explicit zero-dividend and Liu-range versions use the same financial definition.
+
+Twenty-six new guarded transitive audits cover mesh convergence, finite-grid
+scaling, price and threshold identification, and the physical-unit conclusions.
+They permit only `propext`, `Classical.choice`, and `Quot.sound`. These results
+finish physical-unit transfer for the convex-function conclusions. They do not
+prove classical boundary second-derivative existence or strict positivity of
+the classical stock second derivative; boundary regularity remains the next
+substantive obligation.

@@ -6,6 +6,9 @@ now proved without the classical contract in `Stopping/ActualLogConvexity.lean`.
 `Stopping/ActualStockConvexity.lean` also proves actual strict decrease, strict
 stock-boundary convexity, and local Lipschitz continuity at positive times.
 These are function-level conclusions, not existence of classical derivatives.
+`Stopping/PhysicalBoundaryConvexity.lean` now transfers those shape conclusions
+to the actual physical-unit stopping threshold. Exact price normalization is
+proved via finite-grid Bellman rescaling, without a classical contract.
 Full positive-time boundary smoothness and the independent published strict-log
 proof remain open. The early statement review below records the original CCJZ
 track; historical frontier statements are superseded by the current README.

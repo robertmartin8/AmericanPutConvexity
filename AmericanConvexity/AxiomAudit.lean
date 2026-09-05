@@ -66,6 +66,7 @@ import AmericanConvexity.Stopping.ActualBoundaryQuarterBound
 import AmericanConvexity.Stopping.ActualBoundaryHalfBound
 import AmericanConvexity.Stopping.ActualLogConvexity
 import AmericanConvexity.Stopping.ActualStockConvexity
+import AmericanConvexity.Stopping.PhysicalBoundaryConvexity
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2356,3 +2357,133 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalStockBoundary_strictConvexOn
+
+/-- info: 'AmericanConvexity.Stopping.BoundedRule.roundUp_time_tendsto_of_mesh' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.BoundedRule.roundUp_time_tendsto_of_mesh
+
+/-- info: 'AmericanConvexity.Stopping.expectedReward_roundUp_tendsto_of_mesh' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expectedReward_roundUp_tendsto_of_mesh
+
+/-- info: 'AmericanConvexity.Stopping.gridValue_tendsto_americanValue_of_mesh' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.gridValue_tendsto_americanValue_of_mesh
+
+/-- info: 'AmericanConvexity.Stopping.brownianGridPrice_tendsto_usual_of_mesh' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianGridPrice_tendsto_usual_of_mesh
+
+/-- info: 'AmericanConvexity.Stopping.brownianGridMarkovAux_scale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianGridMarkovAux_scale
+
+/-- info: 'AmericanConvexity.Stopping.discountedLogPayoff_scale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.discountedLogPayoff_scale
+
+/-- info: 'AmericanConvexity.Stopping.brownianGridPrice_scale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianGridPrice_scale
+
+/-- info: 'AmericanConvexity.Stopping.brownianGridPrice_normalization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianGridPrice_normalization
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualAmericanPut_normalization_log' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualAmericanPut_normalization_log
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualAmericanPut_normalization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualAmericanPut_normalization
+
+/-- info: 'AmericanConvexity.Stopping.brownianAmericanPut_normalization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianAmericanPut_normalization
+
+/-- info: 'AmericanConvexity.Stopping.normalized_rates_admissible' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.normalized_rates_admissible
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualExerciseBoundary_normalization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualExerciseBoundary_normalization
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualExerciseBoundary_eq_scaled_canonical' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualExerciseBoundary_eq_scaled_canonical
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualLogBoundary_normalization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualLogBoundary_normalization
+
+/-- info: 'AmericanConvexity.Stopping.convexOn_positive_time_rescale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.convexOn_positive_time_rescale
+
+/-- info: 'AmericanConvexity.Stopping.strictConvexOn_positive_rescale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.strictConvexOn_positive_rescale
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualLogBoundary_convexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualLogBoundary_convexOn
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualStockBoundary_strictConvexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualStockBoundary_strictConvexOn
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualStockBoundary_strictAntiOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualStockBoundary_strictAntiOn
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualStockBoundary_locallyLipschitzOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualStockBoundary_locallyLipschitzOn
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualLogBoundary_locallyLipschitzOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualLogBoundary_locallyLipschitzOn
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_brownianUsualLogBoundary_convexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_brownianUsualLogBoundary_convexOn
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_brownianUsualStockBoundary_strictConvexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_brownianUsualStockBoundary_strictConvexOn
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_brownianUsualLogBoundary_convexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_brownianUsualLogBoundary_convexOn
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_brownianUsualStockBoundary_strictConvexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_brownianUsualStockBoundary_strictConvexOn

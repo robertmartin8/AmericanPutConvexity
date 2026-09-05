@@ -87,6 +87,11 @@ import AmericanConvexity.Stopping.ActualIncrementPositivity
 import AmericanConvexity.Stopping.ActualNoFlatTail
 import AmericanConvexity.Boundary.ConvexStrictMonotonicity
 import AmericanConvexity.Stopping.ActualStockConvexity
+import AmericanConvexity.Stopping.ShrinkingGrids
+import AmericanConvexity.Stopping.GridNormalization
+import AmericanConvexity.Stopping.ActualNormalization
+import AmericanConvexity.Stopping.ActualBoundaryNormalization
+import AmericanConvexity.Stopping.PhysicalBoundaryConvexity
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

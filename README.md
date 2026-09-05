@@ -7,7 +7,13 @@ independent published CCJZ proof development is retained. The project integrates
 [MathFin](https://github.com/formal-applied-math/formal-mathfin); the boundary
 proof modules currently use Mathlib and local results, not MathFin pricing results.
 
-> **Status: convexity of the actual normalized logarithmic boundary is proved.**
+> **Status: actual log-boundary convexity and strict stock-boundary convexity
+> are proved in physical units.** `PhysicalBoundaryConvexity.lean` gives these
+> function-level results for the completed usual-filtration exercise threshold
+> under only `K>0`, `r>0`, `sigma>0`, and `0<=q<=r`. Zero-dividend and Liu-range
+> checkpoints are explicit. Exact price normalization follows from finite-grid
+> Bellman rescaling and convergence, without a classical-solution premise.
+>
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
 > only `k>0` and `0<=h<=k`. It assumes neither a classical solution nor boundary
@@ -55,8 +61,11 @@ and [the derivative-free proof summary](docs/comparison-proof.md#actual-value-co
 The subsequent [strict stock-convexity proof](AmericanConvexity/Stopping/ActualStockConvexity.lean)
 excludes flat boundary tails using actual-price time increments and the terminal
 Hopf barrier, then applies convex-function geometry and strict convexity of `exp`.
-The literal classical second-derivative statements and their full physical-unit
-actual-value assembly are not claimed complete by this convex-function theorem.
+The [physical-unit assembly](AmericanConvexity/Stopping/PhysicalBoundaryConvexity.lean)
+identifies the actual price and contact threshold after rescaling strike and time,
+then transfers log convexity, strict stock convexity, strict decrease and local
+Lipschitz continuity. The literal classical second-derivative statements are
+not claimed complete by these convex-function theorems.
 
 ## Proposed extension and published checkpoints
 
