@@ -86,6 +86,12 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > explicit. It uses an integrably dominated moving-boundary correction to the
 > flat kernel. Identification of theta with a suitable layer potential and
 > regularity of its density are still needed before this gives the actual flux.
+> `HeatLayerPotential.lean` now justifies differentiation under the singular
+> layer integral. It proves the potential's interior derivative trace, its
+> genuine one-sided derivative at contact, and flux continuity for continuously
+> parameterized data with uniform bounds. The actual boundary supplies the
+> required graph hypotheses, with zero-dividend and Liu checkpoints. These are
+> flux results for layer potentials, not yet a representation of actual theta.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

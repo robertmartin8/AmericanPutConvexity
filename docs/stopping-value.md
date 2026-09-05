@@ -2089,9 +2089,53 @@ The jump theorem applies to every bounded continuous density supported in that
 window, with explicit zero-dividend and Liu-range checkpoints.
 
 This is a **kernel jump theorem**, not yet a flux theorem for actual theta.
-Differentiating a layer potential in the interior, constructing/identifying
-the actual solution's layer representation with a suitably regular density,
-and establishing the Stefan velocity identity remain substantive obligations.
+The next section justifies differentiating a layer potential in the interior.
+Constructing/identifying the actual solution's layer representation with a
+suitably regular density and establishing the Stefan velocity identity remain
+substantive obligations.
 Boundary differentiability and the literal everywhere second-derivative
 conclusions are still unproved. The already checked actual-boundary convexity
 theorems do not depend on those remaining obligations.
+
+## Differentiated heat layer potentials and their flux
+
+`HeatLayerPotential.lean` defines
+
+`V(x)=integral_{0<s<T} heatKernel(s,x+d(s))*g(s)`.
+
+The Gaussian bound `|heatKernel(s,y)|<=1/sqrt(2*pi*s)` proves absolute
+integrability and continuity of the potential, including at `x=0`.
+For spatial evaluation points bounded away from zero, a Gaussian moment
+bound gives an integrable uniform bound for the flat normal kernel. Adding
+the already proved motion correction gives an integrable envelope for
+the derivative of the moving kernel. The parameterized-integral derivative
+theorem therefore applies even at arbitrarily small positive elapsed times.
+Neither the density nor the graph is differentiated.
+
+The proved interior derivative is
+
+`V'(x)=-integral_{0<s<T} H(s,x+d(s))*g(s)`, for `x>0`.
+
+For bounded continuous density cut off beyond `T`, the kernel jump gives
+the continuation-side limit
+
+`V'(x) -> -(g(0)+integral_{0<s<T} H(s,d(s))*g(s))`.
+
+Continuity of `V` and this derivative limit also prove a genuine
+`HasDerivWithinAt` on `Ici 0` at zero, with the same flux value. This
+does not assert a two-sided derivative of the layer at contact. The flux
+formula is continuous under continuous parameter variation of the graph
+displacements and densities, provided their Lipschitz and size bounds are
+uniform; dominated convergence handles the singular time endpoint.
+
+`ActualBoundaryHeatLayer.lean` supplies the actual graph hypotheses in a
+local positive-time window and proves both the one-sided derivative and
+interior derivative trace for every such density. The elapsed-time
+displacement remains `b(t)-b(t-s/2)`. Explicit zero-dividend and Liu-range
+specializations and twelve guarded transitive axiom checks cover this stage.
+
+These are **actual-graph layer-potential theorems**, not a claim that theta
+is that potential. Constructing or identifying the actual PDE solution's
+layer representation and establishing the required density regularity remain
+the next analytic tasks, followed by the Stefan velocity identity and
+boundary bootstrap. The actual boundary's smoothness is still unproved.

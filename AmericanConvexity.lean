@@ -115,6 +115,8 @@ import AmericanConvexity.Stopping.ActualThetaContactGrowth
 import AmericanConvexity.Stopping.MovingHeatKernelBound
 import AmericanConvexity.Stopping.MovingHeatJump
 import AmericanConvexity.Stopping.ActualBoundaryHeatJump
+import AmericanConvexity.Stopping.HeatLayerPotential
+import AmericanConvexity.Stopping.ActualBoundaryHeatLayer
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
