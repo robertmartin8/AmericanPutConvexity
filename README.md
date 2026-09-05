@@ -126,10 +126,15 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > potential now has a proved inhomogeneous heat PDE for smooth compact sources,
 > including the exact finite-window endpoint term and its disappearance under
 > causality. Spatial derivatives of every finite order and time differentiation
-> commute with the potential in this smooth-source case. Extending this PDE to
-> the actual source, which is only locally smooth off the graph, and identifying
-> the candidate remain open; actual boundary flux and smoothness are not yet
-> established.
+> commute with the potential in this smooth-source case. The inhomogeneous PDE
+> is now extended to the actual source off the exercise graph: a smooth compact
+> localization handles the nearby source, and a source-time kernel integral
+> handles the separated remainder without differentiating it. Fubini and a
+> causal change of variables identify that integral with the original potential.
+> Spatial C2 regularity and time differentiability are checked on both sides of
+> the graph, with zero-dividend and Liu-range PDE checkpoints. Assembling and
+> identifying the represented candidate remain open; actual boundary flux and
+> smoothness are not yet established.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

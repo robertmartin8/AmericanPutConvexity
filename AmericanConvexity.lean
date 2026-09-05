@@ -132,6 +132,11 @@ import AmericanConvexity.Stopping.HeatSourceDerivative
 import AmericanConvexity.Stopping.HeatSourcePotential
 import AmericanConvexity.Stopping.SmoothHeatSource
 import AmericanConvexity.Stopping.SourceHeatEquation
+import AmericanConvexity.Stopping.LocalHeatSource
+import AmericanConvexity.Stopping.SupportedKernelIntegral
+import AmericanConvexity.Stopping.SeparatedSourceEquation
+import AmericanConvexity.Stopping.SeparatedSourceBridge
+import AmericanConvexity.Stopping.LocalSourceEquation
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation

@@ -864,12 +864,30 @@ The Gaussian average at elapsed time zero is exactly `Q`. If `Q` vanishes at
 source times at most `a` and the evaluation time is at most `a+D`, the other
 endpoint term is zero, giving `F_t = F_xx/2 + Q`.
 
-This theorem currently requires a globally smooth compact source. The actual
-localized theta source is continuous globally and smooth only off the exercise
-graph. A local decomposition into a smooth compact source and a source vanishing
-near the evaluation point is still required before applying the representation
-and uniqueness argument to actual theta. No boundary smoothness or actual flux
-conclusion follows from the smooth-source theorem alone.
+`LocalHeatSource.lean` now constructs that smooth compact source near any point
+of an open smoothness region. It agrees with the original source locally and
+preserves its zero values, hence causality. The compact continuous remainder
+vanishes on a neighborhood of the evaluation point. The actual localized theta
+source has a checked open smoothness region on both sides of the exercise graph.
+
+`SupportedKernelIntegral.lean` allows differentiation of a compact continuous
+source's integral when the kernel is regular only on the source support.
+`SeparatedSourceEquation.lean` applies this to the causal heat kernel, proving
+the source-time integral's homogeneous heat equation and spatial regularity
+away from the source support. `SeparatedSourceBridge.lean` proves integrability,
+uses Fubini, and changes from source time to elapsed time. Causality gives exact
+agreement with `heatSourcePotential` on the first causal window, including local
+agreement sufficient to transfer derivatives and spatial regularity.
+
+`LocalSourceEquation.lean` combines the smooth and separated parts, using proved
+linearity of the potential. `actualHeatSourcePotential_regular` now establishes
+spatial C2 regularity, time differentiability, and `F_t = F_xx/2 + Q` for the
+actual source off the exercise graph at positive times strictly before `a+D`.
+The cutoff hypotheses are precisely those already constructed for actual theta;
+no source smoothness across contact is assumed. Zero-dividend and Liu-range
+PDE specializations are explicit. The subsequent assembly and uniqueness
+identification with localized actual theta, the actual one-sided flux, and
+boundary smoothness still remain unproved.
 
 All new proof modules use Mathlib, not MathFin's pricing theorems. No `sorry`,
 new axiom, numerical output, or purported review is used as a proof premise.
