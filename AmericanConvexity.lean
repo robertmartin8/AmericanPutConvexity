@@ -157,6 +157,12 @@ import AmericanConvexity.Stopping.ActualHistoryTimeBounds
 import AmericanConvexity.Stopping.HeatHistorySourceTime
 import AmericanConvexity.Stopping.HeatHistoryHolder
 import AmericanConvexity.Stopping.ActualHistoryHolder
+import AmericanConvexity.Stopping.SeparatedSourceCurve
+import AmericanConvexity.Stopping.SeparatedSourceForcing
+import AmericanConvexity.Stopping.HeatSourceSeparation
+import AmericanConvexity.Stopping.ActualForcingRegularity
+import AmericanConvexity.Stopping.ActualDensityHolder
+import AmericanConvexity.Stopping.ActualHeatFluxHolder
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation

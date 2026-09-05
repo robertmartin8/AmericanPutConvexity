@@ -2578,3 +2578,42 @@ The actual density satisfies `f=forcing+history`. This stage proves the
 history part's regularity, not the forcing part's. Establishing regularity
 of the localized source forcing is the next step before asserting a Holder
 bound for the actual density/flux and then improving C1 boundary regularity.
+
+## Actual forcing regularity and one-half Holder right heat flux
+
+The next stage is now proved, without increasing the boundary regularity
+assumptions. `SeparatedSourceCurve.lean` differentiates a source-time integral
+along a C1 curve disjoint from the compact source support. The derivative is
+the time-kernel integral plus the curve velocity times the spatial-kernel
+integral. Both are continuous. Only the kernel is differentiated; the source
+is merely continuous and compactly supported.
+
+`SeparatedSourceForcing.lean` identifies the fixed-window potential's spatial
+derivative with the differentiated source-time integral, using genuine
+derivatives and the local potential equality before the causal window ends.
+`HeatSourceSeparation.lean` proves that a cutoff constant near contact makes
+its localization source zero nearby. This needs no differentiability of
+theta across exercise.
+
+`ActualForcingRegularity.lean` applies these facts to the actual C1 heat graph.
+The forcing, twice the potential's first spatial derivative, is C1 and locally
+Lipschitz near the target contact. `ActualDensityHolder.lean` combines this with the full history
+estimate. On a sufficiently small time neighborhood, the Lipschitz term is
+bounded by a constant times `sqrt(t2-t1)`. The continuous bounded density in
+the constructed integral equation is therefore one-half Holder. Its derivative
+or a prior Holder assumption is never used.
+
+`ActualHeatFluxHolder.lean` removes the cutoff through the actual layer
+representation and identifies the density with the intrinsic one-sided
+derivative `canonicalHeatThetaRightFlux`. At every positive maturity, there
+are a neighborhood U of its heat time and A>=0 such that, for s1<s2 in U,
+
+`|canonicalHeatThetaRightFlux(s2)-canonicalHeatThetaRightFlux(s1)|`
+` <= A*sqrt(s2-s1)`.
+
+The intrinsic derivative is also proved to satisfy `HasDerivWithinAt` from
+the continuation side; no total-derivative default is used. The full
+`k>0,0<=h<=k` theorem has explicit zero-dividend and Liu specializations.
+Sixteen new transitive axiom guards cover these steps. Transfer of this
+modulus to pricing flux and boundary velocity, and the higher regularity
+bootstrap toward C2, remain unfinished.

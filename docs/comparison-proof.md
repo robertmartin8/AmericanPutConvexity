@@ -929,3 +929,28 @@ Selected new declarations have build-enforced axiom guards.
 The pasted numerical reports have not been reproduced. The named solver/test
 scripts and figure were not supplied in this repository at the initial audit.
 No novelty claim is certified by either these reports or the current Lean build.
+
+### Regularity update: C1 forcing and one-half Holder actual heat flux
+
+The actual boundary is now proved C1 with its Stefan velocity identity
+(`ActualStefanVelocity.lean`). The full history integral along its heat graph
+has a one-half Holder time estimate for continuous bounded density
+(`ActualHistoryHolder.lean`). The next step is also checked:
+
+- `SeparatedSourceCurve.lean` differentiates the source integral along a C1
+  graph separated from the source, differentiating only the heat kernel.
+- `HeatSourceSeparation.lean` proves that the localization source vanishes
+  near any point where the cutoff is constant.
+- `SeparatedSourceForcing.lean` and `ActualForcingRegularity.lean` identify
+  the forcing and prove it C1, hence locally Lipschitz, near actual contact.
+- `ActualDensityHolder.lean` uses `density=forcing+history` to prove the
+  density one-half Holder, without a density derivative assumption.
+- `ActualHeatFluxHolder.lean` uses the actual layer representation to transfer
+  the bound to the intrinsic one-sided heat flux. Zero-dividend and Liu-range
+  checkpoints are explicit.
+
+This supersedes the earlier statements that the actual flux was only known
+continuous. Sixteen build-enforced transitive axiom guards cover the new
+steps. The pricing-gauge/velocity modulus transfer and higher bootstrap
+remain unfinished. These results do not assert actual-boundary C2 regularity
+or the literal classical second-derivative conclusion.

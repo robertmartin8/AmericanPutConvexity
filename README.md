@@ -26,9 +26,14 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > Toward higher regularity, the full actual-graph boundary history now has
 > a one-half Holder time bound for every continuous bounded density. Genuine
 > integrability, source-time reflection, the common-past difference and the
-> recent-source contribution are all checked. This does not yet establish
-> a Holder bound for the actual flux: regularity of its forcing term remains
-> to be proved and combined with the history estimate.
+> recent-source contribution are all checked. The localized source forcing
+> is now proved C1 along the actual boundary: the cutoff is constant near
+> contact, so its source is separated from contact and only the kernel needs
+> differentiation. Combining this with the history estimate gives a local
+> one-half Holder bound for the density and the intrinsic actual right heat
+> flux (`ActualHeatFluxHolder.lean`), including zero-dividend and Liu cases.
+> Transfer to pricing flux/boundary velocity and the higher bootstrap remain
+> unfinished; no actual-boundary C2 claim follows from this checkpoint.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
