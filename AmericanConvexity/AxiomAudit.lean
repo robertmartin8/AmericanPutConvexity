@@ -46,6 +46,7 @@ import AmericanConvexity.Stopping.PricingTests
 import AmericanConvexity.Stopping.ActualSmoothComparison
 import AmericanConvexity.Stopping.ContinuousPriceEvolution
 import AmericanConvexity.Stopping.HeatBoundaryExtension
+import AmericanConvexity.Stopping.HeatBoundaryEquation
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1476,3 +1477,53 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.heatBoundaryExtension_eq_integral
+
+/-- info: 'AmericanConvexity.Stopping.flatRpow_smooth' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.flatRpow_smooth
+
+/-- info: 'AmericanConvexity.Stopping.causalHeatBoundaryKernel_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalHeatBoundaryKernel_eq
+
+/-- info: 'AmericanConvexity.Stopping.causalHeatBoundaryKernel_smoothAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalHeatBoundaryKernel_smoothAt
+
+/-- info: 'AmericanConvexity.Stopping.causalHeatBoundaryKernel_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalHeatBoundaryKernel_equation
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_eq_causalBoundaryIntegral' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_eq_causalBoundaryIntegral
+
+/-- info: 'AmericanConvexity.Stopping.compact_heatBoundaryExtension_smooth' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_heatBoundaryExtension_smooth
+
+/-- info: 'AmericanConvexity.Stopping.compact_kernelIntegral_hasDeriv' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_kernelIntegral_hasDeriv
+
+/-- info: 'AmericanConvexity.Stopping.compact_causalBoundaryIntegral_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_causalBoundaryIntegral_equation
+
+/-- info: 'AmericanConvexity.Stopping.compact_heatBoundaryExtension_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_heatBoundaryExtension_equation
+
+/-- info: 'AmericanConvexity.Stopping.exists_halfLine_heat_boundary_solution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_halfLine_heat_boundary_solution

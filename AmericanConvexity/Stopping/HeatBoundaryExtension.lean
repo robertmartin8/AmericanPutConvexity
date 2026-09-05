@@ -5,8 +5,9 @@ import AmericanConvexity.Stopping.HeatBoundaryKernel
 The fixed-density formula includes the boundary x=0 without a singular integral.
 For x>0 it agrees with integration against the heat boundary kernel in elapsed
 time. This file proves continuity, the exact boundary trace, and causality for
-bounded continuous data. Interior smoothness and the PDE for this integral, and
-the finite-interval lateral correction, are separate obligations.
+bounded continuous data. `HeatBoundaryEquation` proves interior smoothness and
+the PDE for compact continuous data. The finite-interval lateral correction
+remains a separate obligation.
 -/
 
 namespace AmericanConvexity.Stopping

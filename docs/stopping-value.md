@@ -969,9 +969,55 @@ under joint space/time approach. It preserves the bound `|V_g|<=C` whenever
 substitution identifies this formula with the usual boundary integral
 `integral over s>0 of H(s,x)*g(t-s)`.
 
-These are boundary-extension facts, **not yet a heat-solution theorem for the
-integral**. Passing derivatives under that integral for merely continuous data,
-including control as elapsed time tends to zero away from the spatial boundary,
-remains to be proved. Constructing a correction matching both ends of a finite
-interval also remains open. Neither interior regularity of the actual price nor
-the full classical pricing contract follows from this checkpoint alone.
+The extension's interior smoothness and PDE are now proved for continuous
+compact boundary data, as described next. Constructing a correction matching
+both ends of a finite interval remains open. Neither interior regularity of the
+actual price nor the full classical pricing contract follows from this
+half-line checkpoint alone.
+
+## Constructed half-line heat solution
+
+`FlatHeatKernel.lean` proves that `t^p*expNegInvGlue(t)` is smooth for every real
+power `p`, including negative fractional powers. For each finite derivative
+order, the proof factors this expression into a sufficiently high real power
+and a polynomial in `1/t` times the smooth flat exponential. This handles the
+singularity at elapsed time zero explicitly.
+
+The resulting `causalHeatBoundaryKernel` agrees with `H(t,x)` for `t,x>0`, is
+zero for `t<=0`, and is jointly smooth whenever `x` is nonzero. Its heat equation
+holds for every elapsed time at `x>0`, including zero. At nonpositive elapsed
+times its spatial slice is identically zero; nonnegativity supplies a temporal
+minimum and hence a zero time derivative.
+
+For continuous compact `g`, `HeatBoundarySmoothing.lean` proves all-order
+interior smoothing of
+
+```
+integral over y in R of causalHeatBoundaryKernel(t-y,x)*g(y).
+```
+
+The proof again places a compact cutoff on the kernel rather than
+differentiating `g`. A checked reflection/translation change of variables
+identifies this integral with the existing `heatBoundaryExtension` for `x>0`.
+
+`CompactKernelDerivative.lean` supplies a derivative-under-the-integral theorem:
+jointly continuous kernel derivatives on an open parameter set have a uniform
+bound on a small closed parameter ball times the compact support of `g`.
+That bound times `|g|` is integrable. `HeatBoundaryEquation.lean` applies this
+theorem to the temporal and first/second spatial derivatives, then integrates
+the causal kernel's PDE. Thus the boundary extension satisfies `V_t=V_xx/2`
+at every interior point `x>0`.
+
+`exists_halfLine_heat_boundary_solution` now constructs `V` from continuous
+compact `g` vanishing for `t<=a`, with all of these conclusions:
+
+- joint continuity, including at the initial/boundary corner;
+- exact boundary values `V(0,t)=g(t)`;
+- zero values for `t<=a`;
+- all-order interior smoothness for `x>0`;
+- the heat equation `V_t=V_xx/2` for `x>0`.
+
+This is a half-line construction, not the two-sided interval correction needed
+by actual-price local identification. The finite-interval problem and its
+pricing-coordinate transformation remain the next construction steps. Actual
+interior regularity, smooth fit and free-boundary regularity remain open.

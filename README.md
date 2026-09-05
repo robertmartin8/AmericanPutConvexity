@@ -183,9 +183,10 @@ The lateral-data construction now has a checked half-line boundary kernel:
 for `t,x>0`, and has unit integral over positive elapsed time. Its integral
 extension of bounded continuous boundary data is jointly continuous, has the
 exact boundary trace, preserves the uniform bound, and is zero before the data
-starts. The integral's interior smoothness/PDE and the finite-interval lateral
-correction remain open; these kernel results do not yet establish actual-price
-regularity.
+starts. For continuous compact boundary data, the integral's interior smoothness
+and heat equation are now proved, including a constructed half-line solution
+with zero initial data and the exact lateral trace. Matching both ends of a
+finite interval remains open, so actual-price regularity is not yet established.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -387,7 +388,11 @@ All files below are included in the project build.
 | [`Stopping/ContinuousHeatSmoothing.lean`](AmericanConvexity/Stopping/ContinuousHeatSmoothing.lean) | All-order joint heat smoothing for continuous compact data; no derivatives of the datum |
 | [`Stopping/ContinuousPriceEvolution.lean`](AmericanConvexity/Stopping/ContinuousPriceEvolution.lean) | Constructed continuous initial-data pricing evolution, exact initial trace, positive-time smoothness and PDE; actual-price interval traces included |
 | [`Stopping/HeatBoundaryKernel.lean`](AmericanConvexity/Stopping/HeatBoundaryKernel.lean) | Positive-time half-line heat boundary kernel, exact derivatives/PDE, temporal unit mass, integrability and parabolic scaling |
-| [`Stopping/HeatBoundaryExtension.lean`](AmericanConvexity/Stopping/HeatBoundaryExtension.lean) | Bounded continuous boundary-data integral: joint continuity, exact trace, causality, uniform bound and elapsed-time representation; integral PDE not yet proved |
+| [`Stopping/HeatBoundaryExtension.lean`](AmericanConvexity/Stopping/HeatBoundaryExtension.lean) | Bounded continuous boundary-data integral: joint continuity, exact trace, causality, uniform bound and elapsed-time representation |
+| [`Stopping/FlatHeatKernel.lean`](AmericanConvexity/Stopping/FlatHeatKernel.lean) | Smooth zero extension of the boundary kernel across elapsed time zero, with the PDE valid away from the spatial boundary |
+| [`Stopping/HeatBoundarySmoothing.lean`](AmericanConvexity/Stopping/HeatBoundarySmoothing.lean) | All-order interior smoothing for continuous compact boundary data, via the causal kernel; no derivatives of the datum |
+| [`Stopping/CompactKernelDerivative.lean`](AmericanConvexity/Stopping/CompactKernelDerivative.lean) | Derivative-under-the-integral theorem with explicit local compact domination of kernel derivatives |
+| [`Stopping/HeatBoundaryEquation.lean`](AmericanConvexity/Stopping/HeatBoundaryEquation.lean) | Boundary integral heat equation and constructed half-line solution with continuous compact boundary data and zero initial data |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

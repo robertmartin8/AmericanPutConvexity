@@ -309,4 +309,17 @@ integrable density and Mathlib's dominated-convergence continuity theorem for
 bounded continuous data. Guarded audits cover the kernel PDE, normalization,
 integrability, scaling, extension continuity, joint trace, causality, bound and
 elapsed-time representation. Only the three standard axioms occur. No theorem
-asserting interior regularity of the extension or the actual price is assumed.
+asserting regularity of the actual price is assumed.
+
+`FlatHeatKernel.lean` now proves the causal kernel's all-order smoothness using
+Mathlib's polynomial-times-flat-exponential and real-power smoothness results.
+The extension by zero at elapsed time zero is checked explicitly.
+`HeatBoundarySmoothing.lean` uses the parameter-convolution theorem with compact
+kernel cutoff and continuous data. `CompactKernelDerivative.lean` supplies the
+local domination hypotheses of Mathlib's differentiation-under-the-integral
+theorem from compactness and joint continuity of kernel derivatives.
+`HeatBoundaryEquation.lean` then proves the boundary integral's PDE and assembles
+a constructed half-line heat solution. Guarded audits cover these steps and
+the final existence theorem, with only the three standard axioms. Neither
+finite-interval Dirichlet existence nor actual-price regularity is imported or
+assumed by this construction.
