@@ -161,8 +161,13 @@ identity for smooth tests at bounded stopping rules. `ActualTestFunctions.lean`
 combines it with the actual-price representation: tests matching the initial
 price and bounding it above/below on a continuation rectangle have nonnegative/
 nonpositive expected generator integral. Smoothness is required only of the test,
-not of the price. Pointwise PDE tests, full continuous-time dynamic programming
-and classical PDE/boundary regularity remain unproved.
+not of the price. `PointwiseTests.lean` now turns these integrated inequalities
+into pointwise generator conditions using strict drift and shrinking rectangles,
+and removes compact support of the tests by a smooth cutoff. `PricingTests.lean`
+translates them to the normalized pricing operator: a jointly `C3` upper test
+satisfies `phi_t <= phi_xx+(k-h-1)*phi_x-k*phi`, and a lower test satisfies the
+reverse inequality, at any actual continuation point. Full continuous-time
+dynamic programming and classical PDE/boundary regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -356,6 +361,9 @@ All files below are included in the project build.
 | [`Stopping/ActualLocalMeanValue.lean`](AmericanConvexity/Stopping/ActualLocalMeanValue.lean) | Actual rectangle exit precedes exercise contact; exact discounted local exit representation without a PDE premise |
 | [`Stopping/PlaneDynkin.lean`](AmericanConvexity/Stopping/PlaneDynkin.lean) | Compensated smooth plane process, bounded stopped martingality and Dynkin identity; compact tests discharge bounds |
 | [`Stopping/ActualTestFunctions.lean`](AmericanConvexity/Stopping/ActualTestFunctions.lean) | Raw rectangle mean value and upper/lower smooth-test expected generator inequalities for the actual price |
+| [`Stopping/StrictDrift.lean`](AmericanConvexity/Stopping/StrictDrift.lean) | Strict generator sign gives strict sign of the expected integral up to positive rectangle exit |
+| [`Stopping/PointwiseTests.lean`](AmericanConvexity/Stopping/PointwiseTests.lean) | Arbitrarily small continuation rectangles and pointwise generator inequalities for upper/lower C3 tests, without a compact-support requirement |
+| [`Stopping/PricingTests.lean`](AmericanConvexity/Stopping/PricingTests.lean) | Exact transformation to upper/lower test inequalities for the normalized pricing equation |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

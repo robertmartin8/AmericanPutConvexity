@@ -42,6 +42,7 @@ import AmericanConvexity.Stopping.ActualOptimality
 import AmericanConvexity.Stopping.ActualContactMartingale
 import AmericanConvexity.Stopping.ActualLocalMeanValue
 import AmericanConvexity.Stopping.ActualTestFunctions
+import AmericanConvexity.Stopping.PricingTests
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1317,3 +1318,43 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalPrice_rectangle_lower_test_of_patch
+
+/-- info: 'AmericanConvexity.Stopping.expected_rectangle_drift_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expected_rectangle_drift_pos
+
+/-- info: 'AmericanConvexity.Stopping.expected_rectangle_drift_neg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expected_rectangle_drift_neg
+
+/-- info: 'AmericanConvexity.Stopping.exists_continuationRectangle_in_nhds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_continuationRectangle_in_nhds
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_upper_generator_test' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_upper_generator_test
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_lower_generator_test' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_lower_generator_test
+
+/-- info: 'AmericanConvexity.Stopping.pricingTestKernel_generator' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.pricingTestKernel_generator
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_upper_pricing_test' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_upper_pricing_test
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_lower_pricing_test' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_lower_pricing_test

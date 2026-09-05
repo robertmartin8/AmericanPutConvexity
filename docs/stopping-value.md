@@ -831,8 +831,46 @@ For a lower bound it is nonpositive. Both statements also have versions assuming
 the bound only at exit almost surely. These are genuine consequences for the
 actual stopping price, not hypotheses about an unknown classical solution.
 
-The price is still used only as a continuous function. These **integrated** test
-inequalities do not yet establish pointwise viscosity inequalities, a classical
-PDE, interior differentiability, smooth fit or boundary regularity. The next
-analytic step is to turn the integrated inequalities into pointwise test
-conditions using shrinking rectangles and strict positivity of exit duration.
+The price is still used only as a continuous function. The integrated inequalities
+are strengthened to pointwise smooth-test conditions below; classical PDE,
+interior differentiability, smooth fit and boundary regularity remain open.
+
+## Pointwise pricing tests
+
+`StrictDrift.lean` proves that a strictly positive/negative generator throughout
+a closed driver rectangle has a strictly positive/negative expected integral
+up to its exit. This is not just monotonicity of the integral: the duration is
+strictly positive almost surely, each time integral is integrable, and the
+resulting random drift integral is integrable as well. Strict positivity of an
+integrable function almost everywhere on a nonzero measure space implies a
+strictly positive integral.
+
+`PointwiseTests.lean` constructs continuation rectangles contained in any
+prescribed neighborhood of driver origin. If a test touching from above had a
+negative generator there, continuity would keep that sign throughout one of
+these rectangles. Strict drift contradicts the nonnegative expected integral
+proved previously. A lower test is analogous. Multiplication by a smooth bump
+preserves the test locally, including its first and second derivatives; this
+removes compact support as a hypothesis on the final tests.
+
+`PricingTests.lean` checks the exact coordinate and discounting transformation.
+For every actual continuation point `(x,T)`, `k>=0`, arbitrary real `h`, and every
+globally jointly `C3` real-plane test `phi` that agrees with the actual canonical
+price there and bounds it above on a neighborhood, it proves
+
+```text
+phi_t(x,T) <= phi_xx(x,T) + (k-h-1)*phi_x(x,T) - k*phi(x,T).
+```
+
+For a lower test the inequality is reversed. The proof checks that the
+Brownian-driver generator of the discounted test at origin is exactly
+`phi_xx+(k-h-1)*phi_x-phi_t-k*phi`; all derivatives are of the test function.
+No boundary, smooth-fit or classical-price premise occurs in these results.
+
+This is a smooth-test formulation of the continuation equation. We have **not**
+yet proved equivalence to a viscosity formulation allowing all `C1,2` local
+tests, nor deduced interior classical regularity from it. Those distinctions
+matter: pointwise tests do not assert that the actual price itself has any of
+the displayed derivatives. Interior regularity and the free-boundary/smooth-fit
+obligations still separate the current actual-price results from the full
+classical contract used in the curvature theorem.

@@ -268,3 +268,13 @@ transfer. Guarded audits cover the generic residual, stopped martingale, compact
 Dynkin identity and both final deterministic-patch test inequalities; they admit
 only `propext`, `Classical.choice` and `Quot.sound`. The imported unfinished
 continuous submartingale sampling results are not used in these proof chains.
+
+`StrictDrift.lean` uses nonzero-measure strict integral positivity, continuity
+and the already checked stopped-drift integrability. `PointwiseTests.lean`
+combines this with small-rectangle geometry and smooth bump localization.
+`PricingTests.lean` reuses the checked time/space chain-rule calculations from
+`CandidatePDE.lean`, but supplies smoothness of the test rather than a classical
+option solution. Guarded audits of both final normalized pricing-test chains,
+their coordinate identity and their key stochastic/geometry supports allow only
+the three standard axioms. No interior-regularity theorem is assumed or imported
+as a premise of the actual-price test conditions.

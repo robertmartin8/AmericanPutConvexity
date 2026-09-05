@@ -547,9 +547,12 @@ and strict stock curvature together. It does not assert strict log curvature.
    exits precede contact, yielding the exact discounted local mean-value identity
    for the actual price, without a PDE premise. Bounded stopped Dynkin identities
    for smooth tests now give expected generator-integral inequalities for tests
-   bounding the actual price above or below on these rectangles. Pointwise PDE
-   tests and interior regularity remain to be derived, as do full continuous-time
-   dynamic programming, smooth fit and classical boundary regularity.
+   bounding the actual price above or below on these rectangles. Strict drift
+   and shrinking rectangles now prove pointwise upper/lower generator tests;
+   cutoff localization removes compact support. The exact normalized pricing
+   inequalities for jointly C3 tests are proved. Interior differentiability,
+   full continuous-time dynamic programming, smooth fit and classical boundary
+   regularity remain open.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.
