@@ -2314,11 +2314,57 @@ forcing, and solves the density equation. The density is no longer conditional
 on an arbitrary supplied forcing. Explicit zero-dividend and Liu-range versions
 are included, and nineteen guarded transitive axiom checks cover this stage.
 
-The next obligations are still substantive: prove the free potential's
-inhomogeneous heat PDE off the graph, prove the single-layer potential's PDE,
-and check the candidate representation's boundedness and initial data. Then
-the proved exterior Neumann and interior Dirichlet uniqueness results can
-identify it with localized W. The source is continuous across contact but
-not asserted globally smooth; the PDE proof must respect that distinction.
-Actual theta's normal flux, the Stefan velocity identity, and smoothness of
-the actual exercise boundary remain unproved.
+The single-layer potential's PDE, regularity, bounds, and initial data are
+now proved below. The free potential's inhomogeneous heat PDE off the graph
+is still needed before applying the exterior Neumann and interior Dirichlet
+uniqueness results to identify the candidate with localized W. The source is
+continuous across contact but not asserted globally smooth; the PDE proof
+must respect that distinction. Actual theta's normal flux, the Stefan
+velocity identity, and smoothness of the actual exercise boundary remain
+unproved.
+
+## A classical heat layer without differentiating the moving graph
+
+`CausalHeatKernel.lean` extends the Gaussian G by zero at nonpositive elapsed
+time. The resulting space-time function is proved smooth away from (0,0),
+including across time zero at nonzero spatial displacement, and satisfies
+the diffusivity-1/2 heat equation there. The proof uses the already checked
+flat exponential extension; no regularity at the singular origin is asserted.
+
+`MovingHeatLayerEquation.lean` works in original source time:
+
+`V(x,t)=integral_u G_causal(t-u,x-b(u))*f(u)`.
+
+If x differs from b(t), every kernel evaluation avoids the singular origin.
+For continuous b and continuous compactly supported f, the integrand and
+its parameter derivatives are continuous jointly with source time. Compact
+source support justifies differentiation under the integral. The graph is
+never differentiated: b(u) is held fixed when differentiating x or t.
+The layer has a proved heat PDE, spatial derivatives of every finite order,
+and a time derivative off the graph.
+
+`CausalLayerLocalization.lean` removes the compact-support restriction on
+the density. A smooth cutoff preserves any continuous causal density on
+its entire past up to a chosen time and changes only its future. The causal
+kernel ignores that changed future. Consequently the PDE, spatial C2
+regularity, and time differentiability hold for continuous causal densities,
+including those already constructed by the boundary integral equation.
+
+`MovingHeatLayerBridge.lean` proves exact equality, on the first causal
+window, with the elapsed-time integral used by the jump theorem:
+
+`V(x,t)=integral_{0<u<D} G(u,x-b(t-u))*f(t-u)`.
+
+The Gaussian inverse-square-root bound gives joint continuity across the
+graph and a uniform bound `2*C*sqrt(D)/sqrt(2*pi)` when `|f|<=C`.
+The layer vanishes at and before the density's causal start.
+Its left and right contact derivatives are exactly
+`f(t)-K_D f(t)` and `-(f(t)+K_D f(t))`. The normal-trace theorem retains
+the local Lipschitz-displacement hypothesis needed for those traces; the
+PDE and continuity theorems only require graph continuity.
+
+Nineteen guarded transitive axiom checks cover this connection. The layer
+PDE and jump formulas are now about the same function, not disconnected
+constructions. The remaining representation task is the free source
+potential's inhomogeneous heat PDE and application of uniqueness to
+`F-V/2`, followed by the actual flux/Stefan identity and boundary bootstrap.

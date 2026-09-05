@@ -93,6 +93,7 @@ import AmericanConvexity.Boundary.NeumannExterior
 import AmericanConvexity.Stopping.HeatLayerMatching
 import AmericanConvexity.Stopping.ActualHeatSource
 import AmericanConvexity.Stopping.ActualHeatForcing
+import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -3388,3 +3389,98 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_exists_actualHeatSource_density
+
+/-- info: 'AmericanConvexity.Stopping.causalHeatKernel_smoothAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalHeatKernel_smoothAt
+
+/-- info: 'AmericanConvexity.Stopping.causalHeatKernel_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalHeatKernel_equation
+
+/-- info: 'AmericanConvexity.Stopping.causalHeatKernelPlane_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalHeatKernelPlane_equation
+
+/-- info: 'AmericanConvexity.Stopping.compact_movingPlaneIntegral_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_movingPlaneIntegral_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.compact_movingPlaneIntegral_hasDeriv_space' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_movingPlaneIntegral_hasDeriv_space
+
+/-- info: 'AmericanConvexity.Stopping.compact_movingPlaneIntegral_hasDeriv_time' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_movingPlaneIntegral_hasDeriv_time
+
+/-- info: 'AmericanConvexity.Stopping.compact_movingPlaneIntegral_contDiffOn_space' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_movingPlaneIntegral_contDiffOn_space
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_equation
+
+/-- info: 'AmericanConvexity.Stopping.exists_compact_causal_density' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_compact_causal_density
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_equation_of_causal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_equation_of_causal
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_contDiffAt_space_of_causal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_contDiffAt_space_of_causal
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_differentiableAt_time_of_causal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_differentiableAt_time_of_causal
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_eq_elapsed' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_eq_elapsed
+
+/-- info: 'AmericanConvexity.Stopping.elapsedMovingHeatLayer_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.elapsedMovingHeatLayer_continuous
+
+/-- info: 'AmericanConvexity.Stopping.elapsedMovingHeatLayer_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.elapsedMovingHeatLayer_bound
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_continuousOn_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_continuousOn_window
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_bound_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_bound_window
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_zero_initial' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_zero_initial
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_normal_traces' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_normal_traces

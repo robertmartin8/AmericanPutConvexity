@@ -117,8 +117,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > inverse-square-root derivative bound. The forcing twice this derivative on
 > the actual graph is a constructed bounded continuous causal function, and
 > its density equation is solved on a window around every positive contact.
-> Zero-dividend and Liu-range checkpoints are explicit. The potential's
-> inhomogeneous heat PDE and the layer candidate's PDE/identification remain
+> Zero-dividend and Liu-range checkpoints are explicit. The single heat layer
+> now has a proved PDE, spatial C2 regularity, and time differentiability off a
+> merely continuous graph. Its original-source-time integral is identified
+> with the elapsed-time layer, joining the PDE to the checked normal traces.
+> Joint continuity across the graph, uniform bounds, and zero initial values
+> are proved for continuous bounded causal densities. The free source
+> potential's inhomogeneous heat PDE and the candidate's identification remain
 > open; actual boundary flux and smoothness are not yet established.
 
 The new actual-value proof uses the same straight-line comparator, interval
