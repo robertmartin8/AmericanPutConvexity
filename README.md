@@ -20,6 +20,8 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > free-boundary regularity remain open.
 > Its exercise threshold also has a proved positive lower bound, uniform over
 > maturities, so the actual logarithmic boundary is now constructed.
+> Both actual boundaries are continuous, including at expiry. Smooth fit,
+> gradient trace and positive-time boundary smoothness are still unproved.
 
 ## Proposed extension and published checkpoints
 
@@ -105,8 +107,11 @@ This uses the actual interior PDE and a constructed stationary upper barrier,
 not smooth fit or a classical pricing contract.
 
 `BoundarySemicontinuity.lean` proves upper semicontinuity of the financial
-threshold and continuity from shorter maturities. It does not prove continuity
-from longer maturities. `ActualContact.lean` constructs an admissible first-contact
+threshold and continuity from shorter maturities. `ActualBoundaryContinuity.lean`
+now excludes downward jumps using the interior PDE and maturity monotonicity,
+proving full continuity of the normalized stock and log boundaries on nonnegative
+maturities, including expiry. No smooth fit or boundary differentiability is
+assumed. `ActualContact.lean` constructs an admissible first-contact
 rule directly from the actual price/payoff gap on the completed usual Brownian
 space. Contact and pre-contact continuation are proved without a classical pair;
 optimality of this rule is now proved in `ActualOptimality.lean` below. The full
@@ -419,6 +424,8 @@ All files below are included in the project build.
 | [`Stopping/UpperSupportComparison.lean`](AmericanConvexity/Stopping/UpperSupportComparison.lean) | Actual-price comparison with smooth upper supports, allowing a comparator's second derivative to jump at its join |
 | [`Stopping/StationaryPutCap.lean`](AmericanConvexity/Stopping/StationaryPutCap.lean) | Constructed payoff-matching stationary supersolution, explicit exponential branch and checked supports |
 | [`Stopping/PositiveExerciseBoundary.lean`](AmericanConvexity/Stopping/PositiveExerciseBoundary.lean) | Uniformly positive actual exercise threshold, finite logarithmic boundary, value matching and exact continuation geometry; named zero-dividend checkpoint |
+| [`Stopping/ContinuationSlice.lean`](AmericanConvexity/Stopping/ContinuationSlice.lean) | Actual maturity derivative is nonnegative; elliptic forcing and a quadratic maximum argument exclude an instant continuation interval |
+| [`Stopping/ActualBoundaryContinuity.lean`](AmericanConvexity/Stopping/ActualBoundaryContinuity.lean) | No downward threshold jumps; actual stock/log boundary continuity including expiry and log-boundary monotonicity; named zero-dividend checkpoint |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

@@ -56,6 +56,7 @@ import AmericanConvexity.Stopping.HeatBoundaryEquation
 import AmericanConvexity.Stopping.IntervalHeatBoundary
 import AmericanConvexity.Stopping.ActualInteriorRegularity
 import AmericanConvexity.Stopping.PositiveExerciseBoundary
+import AmericanConvexity.Stopping.ActualBoundaryContinuity
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

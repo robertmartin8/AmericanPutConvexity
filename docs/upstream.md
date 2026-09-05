@@ -363,3 +363,18 @@ value matching and exact continuation geometry. Guarded audits of comparison,
 barrier, parameter existence, positivity and logarithmic-boundary conclusions
 permit only `propext`, `Classical.choice` and `Quot.sound`. No perpetual-price,
 smooth-fit, or boundary-regularity theorem is imported or assumed.
+
+`ContinuationSlice.lean` derives actual-price maturity monotonicity from the
+stopping supremum and uses Mathlib's derivative sign lemma for monotone functions.
+The already checked actual PDE then gives an elliptic forcing inequality for
+the intrinsic premium. A local quadratic maximum argument uses compact maximum
+attainment and the project's proved second-derivative maximum lemma; no
+elliptic regularity theorem is imported. Continuity of only the two endpoint
+price values excludes an instantaneous interval of continuation.
+`ActualBoundaryContinuity.lean` combines this with positive threshold, exact
+contact geometry and monotonicity to exclude downward jumps, then uses the
+existing upper semicontinuity to prove full continuity, including expiry.
+Composition with the logarithm uses its proved positive argument. Guarded audits
+cover forcing, the maximum lemma, no-jump result and final stock/log continuity,
+with only `propext`, `Classical.choice` and `Quot.sound`. Smooth fit and boundary
+differentiability are neither assumed nor established in this chain.

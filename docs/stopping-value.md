@@ -11,7 +11,8 @@ continuation region, without a classical-solution premise. The sections below
 record successive checkpoints; older references to an open interior-PDE step
 are superseded by the later construction. `PositiveExerciseBoundary.lean` now
 proves a uniform positive lower bound on the threshold and constructs the actual
-logarithmic boundary. Full boundary continuity, smooth fit, gradient trace and
+logarithmic boundary. `ActualBoundaryContinuity.lean` proves full stock/log
+boundary continuity, including expiry. Smooth fit, gradient trace and positive-time
 boundary smoothness remain open.
 
 ## Exact financial definition
@@ -489,9 +490,9 @@ time, with no classical-solution premise or optimal-rule assumption.
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
 of any such pair against both raw and usual stopping values is now proved. The remaining
-construction still requires boundary continuity and positive-time regularity,
-smooth fit and gradient trace. Interior PDE regularity and positivity of the
-threshold are now proved below; neither follows merely from the supremum
+construction still requires positive-time boundary smoothness, smooth fit and
+gradient trace. Interior PDE regularity, positivity of the threshold and boundary
+continuity are now proved below; none follows merely from the supremum
 definition or the spot-convexity proof above.
 
 The identification and resulting boundary properties remain conditional on
@@ -533,9 +534,11 @@ the threshold and at most the strike, its strictly positive continuation premium
 persists at nearby maturities. If the test spot exceeds strike, the uniform
 threshold bound suffices. Thus all nearby thresholds remain below any fixed
 strict upper bound for the threshold at the base time. Maturity monotonicity
-then proves continuity from shorter maturities. This is not a proof of continuity
-from longer maturities or of the right limit at expiry. The results apply to the
-raw and usual models, and to `canonicalStockBoundary` with its real-time clamp.
+then proves continuity from shorter maturities. This argument alone does not
+prove continuity from longer maturities or the right limit at expiry; those are
+now proved for the normalized candidate in the final section. The one-sided
+results apply to the raw and usual models, and to `canonicalStockBoundary` with
+its real-time clamp.
 
 `ActualContact.lean` no longer needs a classical pair to construct a candidate
 exercise rule. Along the frozen normalized log path
@@ -1118,8 +1121,8 @@ both constructed existence results, local identification, smoothness and PDE.
 They allow only `propext`, `Classical.choice` and `Quot.sound`.
 
 This closes **interior** regularity, not classical-pair existence. Positivity of
-the stock threshold is proved next. Full boundary continuity, smooth fit and its
-gradient trace, and positive-time boundary smoothness remain to be established.
+the stock threshold and full boundary continuity are proved below. Smooth fit
+and its gradient trace, and positive-time boundary smoothness remain open.
 The independent published CCJZ strict-log-curvature proof also remains separate.
 
 ## Positive exercise threshold and actual logarithmic boundary
@@ -1163,5 +1166,49 @@ The final checked conclusions include:
 No classical pricing contract, smooth fit, boundary continuity, or optimal
 perpetual-option formula is assumed. This comparator is only a proved upper
 bound; it is not asserted to be the perpetual option value. Guarded audits allow
-only the three standard axioms. Full boundary continuity, smooth fit, gradient
-trace and boundary smoothness remain open.
+only the three standard axioms. Boundary continuity is proved next; smooth fit,
+gradient trace and boundary smoothness remain open.
+
+## Full actual-boundary continuity, including expiry
+
+`ContinuationSlice.lean` derives maturity monotonicity directly from the stopping
+supremum and hence `p_t>=0`. For the intrinsic premium
+`f(x,t)=p(x,t)-(1-exp(x))`, the proved continuation PDE gives
+
+```text
+f_xx + (k-h-1)*f_x - k*f >= k-h*exp(x).
+```
+
+On any closed spatial interval strictly below strike, the right side is bounded
+below by a positive constant when `k>0` and `0<=h<=k`. A generic scalar maximum
+lemma shows that a nonnegative profile with this forcing cannot have arbitrarily
+small values at both endpoints: maximize `f(x)-eta*(x-c)^2` on `[c-rho,c+rho]`,
+choosing `2*eta*(1+abs(k-h-1)*rho)` smaller than the forcing. Small endpoint
+values force an interior maximum; its first- and second-derivative inequalities
+contradict the forcing. The maximum and all constants are constructed.
+
+Consequently an interval below strike cannot become continuation at every time
+immediately after a time when its endpoints were in payoff contact. Joint price
+continuity supplies the small endpoint premiums. No derivative convergence,
+initial-time PDE, smooth-fit assertion, or parabolic boundary regularity is used.
+
+`ActualBoundaryContinuity.lean` applies this to rule out a downward threshold
+jump. If every later threshold were at most `u<B(a)`, positivity gives `u>0` and
+one can choose a compact log-price interval strictly between `log(u)` and
+`log(B(a))`, below strike. The interval's endpoints were in contact at `a`
+(using the exact initial payoff if `a=0`) but every interior point would be in
+continuation at every later time, contradicting the slice lemma.
+
+Thus for each `u<B(a)` there is a later `t` with `u<B(t)`. Threshold monotonicity
+turns this into lower semicontinuity; the previously proved upper semicontinuity
+completes continuity. Positivity permits composition with the logarithm. Checked
+results include:
+
+- `canonicalStockBoundary_continuousAt` at every nonnegative maturity;
+- `canonicalLogBoundary_continuousOn` on `[0,infinity)`, including expiry;
+- `canonicalLogBoundary_antitoneOn` and a named zero-dividend continuity result.
+
+The time clamp supplies the two-sided statement at zero; the substantive part
+is the right-hand limit. Guarded transitive audits allow only the three standard
+axioms. Smooth fit, the continuation-side gradient trace, and positive-time
+boundary smoothness remain missing from the full classical pricing contract.

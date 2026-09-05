@@ -526,8 +526,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    A constructed stationary supersolution also proves a uniform positive lower
    bound on the stock threshold and supplies a finite actual logarithmic
    boundary with value matching. Smooth fit and boundary regularity remain open.
-   Upper semicontinuity and continuity from shorter maturities are proved, but
-   continuity from longer maturities remains open. An actual-price first-contact
+   Full continuity of the normalized stock and log boundaries, including expiry,
+   is now proved: the interior PDE and maturity monotonicity exclude downward
+   jumps, complementing the earlier upper semicontinuity. An actual-price first-contact
    rule is now constructed with attained contact and pre-contact continuation;
    its optimality is now proved below without a classical pair. The full dynamic
    programming principle remains open.
