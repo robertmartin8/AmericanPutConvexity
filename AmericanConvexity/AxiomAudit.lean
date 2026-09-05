@@ -79,6 +79,8 @@ import AmericanConvexity.Stopping.ActualIncrementComparison
 import AmericanConvexity.Stopping.ActualTemporalTraceBound
 import AmericanConvexity.Stopping.ActualTimeDerivativeContinuity
 import AmericanConvexity.Stopping.ActualSpatialSecondTrace
+import AmericanConvexity.Stopping.ActualPriceC1
+import AmericanConvexity.Stopping.ActualCurvatureExtension
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2749,3 +2751,78 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_deriv2_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_time_deriv_eq_partial' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_time_deriv_eq_partial
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_time_deriv_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_time_deriv_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.fderiv_plane_eq_partials' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.fderiv_plane_eq_partials
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_fderiv_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_fderiv_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_contDiffAt_one' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_contDiffAt_one
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_contDiffOn_one' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_contDiffOn_one
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_contDiffOn_one' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_contDiffOn_one
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_contDiffOn_one' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_contDiffOn_one
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumCurvatureExtension_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumCurvatureExtension_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumCurvatureExtension_eq_deriv2' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumCurvatureExtension_eq_deriv2
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumCurvatureExtension_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumCurvatureExtension_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_gradient_hasDerivWithinAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_gradient_hasDerivWithinAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_gradient_right_slope_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_gradient_right_slope_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalIntrinsicPremium_gradient_hasDerivWithinAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalIntrinsicPremium_gradient_hasDerivWithinAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_gradient_hasDerivWithinAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_gradient_hasDerivWithinAt_contact

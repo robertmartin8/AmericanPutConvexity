@@ -65,6 +65,12 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > This proves the joint contact trace `p_t->0`. The PDE then gives the exact
 > continuation-side premium-curvature trace `u_xx->k-h*exp(b(t))>0`.
 > Boundary smoothness remains open; this is not a second derivative across exercise.
+> `ActualPriceC1.lean` now assembles genuine joint `ContDiffOn` regularity of
+> order one for the actual price at all positive maturities. A continuous PDE
+> extension of the premium curvature agrees with `u_xx` in continuation and
+> has value `k-h*exp(b(t))` at contact. The gradient has this value as a proved
+> right-sided derivative there (`ActualCurvatureExtension.lean`). The mixed
+> derivative/flux at contact and boundary differentiability remain separate.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

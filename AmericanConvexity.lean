@@ -105,6 +105,8 @@ import AmericanConvexity.Stopping.ActualIncrementComparison
 import AmericanConvexity.Stopping.ActualTemporalTraceBound
 import AmericanConvexity.Stopping.ActualTimeDerivativeContinuity
 import AmericanConvexity.Stopping.ActualSpatialSecondTrace
+import AmericanConvexity.Stopping.ActualPriceC1
+import AmericanConvexity.Stopping.ActualCurvatureExtension
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

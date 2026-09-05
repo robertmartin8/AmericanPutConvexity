@@ -223,6 +223,29 @@ exercise, and it does not yet prove boundary smoothness or equality of the
 boundary's one-sided speeds. Zero-dividend and Liu-range trace checkpoints
 and twenty new guarded transitive axiom checks cover this stage.
 
+### Joint C1 price and the normal derivative at contact
+
+`ActualPriceC1.lean` extends the time-derivative continuity statement from
+contact to all positive-time points. In exercise the derivative vanishes
+locally; in continuation it is a smooth directional derivative of the jointly
+smooth price. Together with spatial-gradient continuity, the coordinate
+representation of the full derivative gives genuine `ContDiffOn` of order one
+for the actual price on `{(x,t) | t>0}`. No boundary-smoothness premise enters.
+
+`ActualCurvatureExtension.lean` defines the PDE expression
+`p_t+k-h*exp(x)-(k-h-1)*u_x+k*u`. It is continuous at every positive-time point,
+equals `u_xx` in continuation, and equals `k-h*exp(b(t))` at contact. On the
+exercise side it is only an extension, not the second derivative of `u`.
+Continuity of `u_x`, interior differentiability, and the curvature trace now
+give `HasDerivWithinAt` for `u_x` on the right half-line at contact. In
+particular `u_x(x,t)/(x-b(t))` tends to `k-h*exp(b(t))` from the right.
+
+Fifteen new guarded transitive checks and explicit zero-dividend/Liu-range
+checkpoints cover these results. A contact mixed-derivative/flux argument is
+still needed to deduce boundary differentiability; joint C1 price regularity
+and a nonzero normal derivative do not alone justify an implicit-function
+argument for the gradient's zero set.
+
 ### Exercise-boundary calculus and obstacle comparison
 
 `ExerciseGeometry.lean` proves ordinary spatial differentiability at contact

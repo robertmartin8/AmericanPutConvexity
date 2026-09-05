@@ -15,7 +15,11 @@ there. `ActualTimeDerivativeContinuity.lean` now also proves joint continuity
 of that derivative at contact, via a uniform linear time-derivative bound.
 `ActualSpatialSecondTrace.lean` identifies the exact continuation-side
 premium-curvature limit as `k-h*exp(b(t))>0`. Neither assertion establishes
-boundary smoothness. `ActualBoundaryOneSided.lean` isolates the remaining first-order
+boundary smoothness. `ActualPriceC1.lean` now gives joint C1 price regularity on
+all positive-time space-time, and `ActualCurvatureExtension.lean` gives a
+continuous continuation-curvature extension and a genuine right-sided
+derivative of the premium gradient at contact. The mixed derivative/flux at
+contact is not yet established. `ActualBoundaryOneSided.lean` isolates the remaining first-order
 boundary issue as equality of its finite, negative one-sided speeds.
 Full positive-time boundary smoothness and the independent published strict-log
 proof remain open. The early statement review below records the original CCJZ

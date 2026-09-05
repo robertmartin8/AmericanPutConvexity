@@ -1963,3 +1963,33 @@ transitive audits allow only `propext`, `Classical.choice`, and `Quot.sound`.
 Boundary smoothness and equality of its one-sided speeds remain **unproved**.
 The next regularity work must control the mixed derivative/flux or otherwise
 eliminate boundary corners; the trace theorems alone do not do so.
+
+## Joint C1 price and right-sided gradient derivative
+
+`ActualPriceC1.lean` proves continuity of the actual time derivative throughout
+positive-time space-time. The exercise interior is locally constant in time;
+the continuation interior uses the smooth Fréchet directional derivative;
+contact uses the proved joint trace. A general coordinate identity expresses
+the full derivative of a differentiable plane function through its two slice
+derivatives. Their continuity proves continuity of the actual price's full
+derivative. `canonicalPrice_contDiffOn_one` then proves genuine joint C1
+regularity on `{z : real * real | 0<z.2}`.
+
+`ActualCurvatureExtension.lean` defines a continuous extension of the
+continuation curvature by the PDE expression
+
+`p_t+k-h*exp(x)-(k-h-1)*u_x+k*u`.
+
+It equals `u_xx` in continuation and equals `k-h*exp(b(t))` at contact. It is
+**not** asserted to equal the actual second derivative in exercise. The
+gradient's continuity and continuation-side derivative limit give a genuine
+`HasDerivWithinAt` for `u_x` on `Ici(b(t))` at `b(t)`, with derivative
+`k-h*exp(b(t))`. Hence the right-sided ratio `u_x(x,t)/(x-b(t))` tends to that
+strictly positive coefficient.
+
+Both the C1 price theorem and the right-sided gradient derivative have explicit
+zero-dividend and Liu-range checkpoints. Fifteen guarded transitive axiom
+checks cover this addition. Boundary differentiability still requires control
+of the contact mixed derivative/flux or another corner-exclusion argument.
+These results alone do not establish that the gradient has a joint C1 extension
+across contact, so the implicit-function theorem cannot yet be applied to it.
