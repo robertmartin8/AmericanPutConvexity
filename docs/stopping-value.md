@@ -305,6 +305,39 @@ Stopping stability uses the proved upstream **martingale** optional-sampling
 and uniform-integrability chain, not its unfinished submartingale counterparts.
 The final contact and conditional curvature axiom guards check this distinction.
 
+## Checked Gaussian comparison toward the global upper bound
+
+`WindowComparison.lean` extends the obstacle comparison to a rectangle beginning
+at any nonnegative time, not only expiry. The same exercise-boundary test handles
+contact; no price second derivative across the boundary is assumed. Subtracting
+a small quadratic supersolution, comparing on a sufficiently large rectangle,
+and removing the penalty proves comparison on the entire spatial line for
+bounded-above tests.
+
+`CompactHeatFlow.lean` proves joint C2 regularity of the Gaussian heat evolution
+for C2 compactly supported data. Compact support permits a parameter-dependent
+convolution argument. Scaling the data to an exponential bound lets MathFin's
+kernel differentiation theorems supply the genuine heat equation. These are
+derivatives of comparison functions, not of the American price across exercise.
+
+`BrownianHeatFlow.lean` identifies this heat flow with an actual expectation on
+our constructed Brownian space. Dominated convergence proves joint continuity
+including time zero, and the Brownian initial value supplies the exact initial
+payoff. `LinearPriceComparison.lean` checks drift and discount factors and proves:
+
+```text
+0 <= a <= t,  f is C2 with compact support,  f(y) <= p(y,a) for every y
+  => exp(-k*(t-a)) * E[f(x+(k-h-1)*(t-a)+W_(2*(t-a)))] <= p(x,t).
+```
+
+The time variable here is normalized time remaining; `W` is standard Brownian
+motion, so the variance is exactly `2*(t-a)`. This is an unconditional expectation
+comparison for smooth test payoffs. It is **not yet** the supermartingale
+inequality for the actual price process. The remaining steps on this route are
+approximation of the continuous price slice by suitable smooth compact tests,
+passage through the expectation, and the Brownian conditional-expectation/Markov
+step in physical coordinates. The classical existence obligation is unchanged.
+
 ## Price identification suffices for boundary identification
 
 `DividendContact.lean` proves, for a classical dividend solution,

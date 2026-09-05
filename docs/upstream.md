@@ -108,3 +108,13 @@ The contact-martingale and final conditional curvature guards also permit only
 the three standard axioms. Mathlib's smooth partition-of-unity construction is
 used to extend the price around compact interior regions; no global smoothness
 of the price across the free boundary is assumed.
+
+The global-upper-bound development also uses
+`MathFin.Foundations.FeynmanKacHeatEquation`: its kernel differentiation and
+Gaussian-law integral transfer, not merely its algebraic kernel PDE identity.
+`CompactHeatFlow.lean` proves the actual heat-flow derivative equation after
+scaling arbitrary compact data to the upstream exponential-growth hypothesis.
+Mathlib's parameter-dependent convolution supplies joint regularity.
+`LinearPriceComparison.lean` then combines this with our obstacle comparison.
+Its final guarded proof chain uses only the three standard axioms; the price
+slice approximation and conditional-expectation steps remain open.

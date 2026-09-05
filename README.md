@@ -55,6 +55,13 @@ complete `brownianClassicalContactRule_martingale`, without an additional
 martingale premise. This also proves that the classical price is the expected
 payoff of this admissible rule, hence is no greater than the actual American value.
 
+For the remaining opposite bound, arbitrary-start obstacle comparison is now
+proved on the whole spatial line. The Brownian heat evolution of every smooth,
+compactly supported test payoff below an initial price slice stays below the
+classical price. This does not yet establish the global supermartingale
+property: approximation of the price slice and the conditional-expectation
+step remain to be completed.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -198,6 +205,10 @@ All files below are included in the project build.
 | [`Stopping/InteriorRegion.lean`](AmericanConvexity/Stopping/InteriorRegion.lean) | Explicit compact regions containing trajectories up to positive interior exits; one smooth extension works for all such paths |
 | [`Stopping/InteriorIto.lean`](AmericanConvexity/Stopping/InteriorIto.lean) | Simultaneous almost-sure stopped-time Ito representation, using dense times and continuity; includes immediate stopping |
 | [`Stopping/ContactMartingale.lean`](AmericanConvexity/Stopping/ContactMartingale.lean) | Contact martingality and realized contact payoff from the classical PDE; identification now requires only the global supermartingale property in addition to the classical contract |
+| [`Boundary/WindowComparison.lean`](AmericanConvexity/Boundary/WindowComparison.lean) | Obstacle comparison from any nonnegative initial time, on a finite rectangle and then the full spatial line by removing a quadratic penalty |
+| [`Stopping/CompactHeatFlow.lean`](AmericanConvexity/Stopping/CompactHeatFlow.lean) | Joint smoothness and the heat equation for compactly supported smooth test data; extends MathFin's kernel differentiation by scaling |
+| [`Stopping/BrownianHeatFlow.lean`](AmericanConvexity/Stopping/BrownianHeatFlow.lean) | Heat flow as an actual Brownian expectation, with continuity at time zero, initial payoff and uniform bounds; discounted drifted pricing evolution |
+| [`Stopping/LinearPriceComparison.lean`](AmericanConvexity/Stopping/LinearPriceComparison.lean) | The test-payoff Gaussian pricing evolution satisfies the normalized PDE and stays below the classical price from any nonnegative initial time |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

@@ -29,6 +29,9 @@ import AmericanConvexity.Stopping.CompactLocalization
 import AmericanConvexity.Stopping.InteriorRegion
 import AmericanConvexity.Stopping.InteriorIto
 import AmericanConvexity.Stopping.ContactMartingale
+import AmericanConvexity.Stopping.CompactHeatFlow
+import AmericanConvexity.Stopping.BrownianHeatFlow
+import AmericanConvexity.Stopping.LinearPriceComparison
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
@@ -71,6 +74,7 @@ import AmericanConvexity.Boundary.NearExpiry
 import AmericanConvexity.Boundary.DelayedPrice
 import AmericanConvexity.Boundary.LocalizationBarrier
 import AmericanConvexity.Boundary.TimeMonotonicity
+import AmericanConvexity.Boundary.WindowComparison
 import AmericanConvexity.Boundary.BoundaryMonotonicity
 import AmericanConvexity.Boundary.SmoothValley
 import AmericanConvexity.Boundary.OrderedTriples

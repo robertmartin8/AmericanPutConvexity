@@ -25,6 +25,7 @@ import AmericanConvexity.Stopping.LocalPriceIto
 import AmericanConvexity.Stopping.BrownianLocalVerification
 import AmericanConvexity.Stopping.BrownianInteriorLocalization
 import AmericanConvexity.Stopping.ContactMartingale
+import AmericanConvexity.Stopping.LinearPriceComparison
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -840,3 +841,33 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.classicalPrice_le_brownianAmericanPut
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.obstacle_comparison_unbounded_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.obstacle_comparison_unbounded_window
+
+/-- info: 'AmericanConvexity.Stopping.compact_heatFlow_contDiff' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_heatFlow_contDiff
+
+/-- info: 'AmericanConvexity.Stopping.compact_heatFlow_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_heatFlow_equation
+
+/-- info: 'AmericanConvexity.Stopping.brownianHeatFlow_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianHeatFlow_continuous
+
+/-- info: 'AmericanConvexity.Stopping.brownianHeatFlow_eq_kernel' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianHeatFlow_eq_kernel
+
+/-- info: 'AmericanConvexity.Stopping.linearPriceEvolution_le_classical' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.linearPriceEvolution_le_classical
