@@ -95,6 +95,11 @@ import AmericanConvexity.Stopping.PhysicalBoundaryConvexity
 import AmericanConvexity.Boundary.LipschitzContactDifferentiability
 import AmericanConvexity.Stopping.ActualContactDifferentiability
 import AmericanConvexity.Stopping.ActualBoundaryOneSided
+import AmericanConvexity.Stopping.QuadraticUpper
+import AmericanConvexity.Stopping.ActualSpatialSecondBound
+import AmericanConvexity.Stopping.ActualQuadraticUpper
+import AmericanConvexity.Stopping.ActualContactIncrement
+import AmericanConvexity.Boundary.DiscountedMaximum
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

@@ -177,6 +177,27 @@ exact equivalence between boundary differentiability and equality of the two
 speeds. It does not prove that equality. Explicit zero-dividend and Liu-range
 checkpoints and seventeen guarded transitive audits cover these new results.
 
+### Quadratic upper contact estimates
+
+`ActualSpatialSecondBound.lean` uses the premium PDE and the already proved
+time-derivative bound to bound `u_xx` above locally in continuation.
+`QuadraticUpper.lean` integrates an upper second-derivative bound from a flat
+contact point. `ActualQuadraticUpper.lean` applies it uniformly at nearby
+maturities, yielding `u_x<=C*(x-b(s))` and `u<=C/2*(x-b(s))^2`.
+
+`ActualContactIncrement.lean` combines this with the proved local pairwise
+Lipschitz bound on `b`. For nearby `s<=v`, it proves
+`0<=p(b(s),v)-p(b(s),s)<=A*(v-s)^2`. A smaller fixed neighborhood gives the
+uniform contact difference-quotient bound `0<delta<eta` implies
+`0<=(p(b(s),s+delta)-p(b(s),s))/delta<=A*delta`.
+The zero-dividend and Liu-range contact-increment checkpoints are explicit.
+`DiscountedMaximum.lean` also proves the moving-strip maximum principle with
+positive discounting, intended for the next time-increment comparison.
+
+Thirteen guarded transitive axiom checks cover this addition. Continuity of
+the actual time derivative at contact and boundary smoothness remain open:
+small left-boundary data must still be propagated into continuation.
+
 ### Exercise-boundary calculus and obstacle comparison
 
 `ExerciseGeometry.lean` proves ordinary spatial differentiability at contact

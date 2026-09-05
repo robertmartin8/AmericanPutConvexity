@@ -69,6 +69,11 @@ import AmericanConvexity.Stopping.ActualStockConvexity
 import AmericanConvexity.Stopping.PhysicalBoundaryConvexity
 import AmericanConvexity.Stopping.ActualContactDifferentiability
 import AmericanConvexity.Stopping.ActualBoundaryOneSided
+import AmericanConvexity.Stopping.QuadraticUpper
+import AmericanConvexity.Stopping.ActualSpatialSecondBound
+import AmericanConvexity.Stopping.ActualQuadraticUpper
+import AmericanConvexity.Stopping.ActualContactIncrement
+import AmericanConvexity.Boundary.DiscountedMaximum
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2574,3 +2579,68 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_oneSided_speed
+
+/-- info: 'AmericanConvexity.Stopping.quadratic_upper_of_deriv2_upper' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.quadratic_upper_of_deriv2_upper
+
+/-- info: 'AmericanConvexity.Stopping.actualSpatialSecondBound_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualSpatialSecondBound_pos
+
+/-- info: 'AmericanConvexity.Stopping.actualSpatialSecondBound_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualSpatialSecondBound_continuous
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_le_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_le_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_upper_near' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_upper_near
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_upper_of_deriv2_upper' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_upper_of_deriv2_upper
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_upper_near_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_upper_near_boundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_local_pairwise_lipschitz' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_local_pairwise_lipschitz
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_contact_increment_quadratic' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_contact_increment_quadratic
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_contact_difference_quotient_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_contact_difference_quotient_bound
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_contact_increment_quadratic' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_contact_increment_quadratic
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_contact_increment_quadratic' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_contact_increment_quadratic
+
+/-- info: 'AmericanConvexity.Boundary.discounted_parabolic_maximum' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.discounted_parabolic_maximum

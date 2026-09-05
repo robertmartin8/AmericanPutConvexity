@@ -57,6 +57,11 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > exercise boundary. Its time derivative at contact is zero. Continuity of
 > that time derivative is not yet proved. The boundary's finite one-sided
 > speeds are proved negative and ordered; their equality remains open.
+> Quadratic upper growth of the actual premium is now proved uniformly near
+> contact. Together with Lipschitz boundary motion this bounds contact-time
+> increments by `A*(delta t)^2`, and their difference quotients by `A*delta t`.
+> Propagation of this small boundary data to a time-derivative trace estimate
+> remains open; these bounds do not by themselves prove boundary smoothness.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

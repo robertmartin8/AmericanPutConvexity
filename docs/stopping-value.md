@@ -1879,3 +1879,40 @@ transitive audits allow only `propext`, `Classical.choice`, and `Quot.sound`.
 The next regularity obligations include control of derivative traces and
 elimination of possible corners in the boundary; neither first price
 differentiability nor convexity alone completes the classical contract.
+
+## Quadratic upper growth and uniform contact-time increments
+
+`ActualSpatialSecondBound.lean` derives a locally uniform continuation-side
+upper bound for `u_xx`, where `u=p-(1-exp(x))`. The PDE gives
+`u_xx=u_t-(k-h-1)*u_x+k*u+k-h*exp(x)`. The existing upper bound on `p_t=u_t`,
+the spatial bounds `0<=u_x<=exp(x)`, and `u<=exp(x)` control every term.
+No second spatial derivative at contact is asserted.
+
+`QuadraticUpper.lean` proves the elementary integration lemma from flat
+contact. With the actual gradient trace, `ActualQuadraticUpper.lean` gives
+uniform `u_x<=C*(x-b(s))` and `u<=C/2*(x-b(s))^2` on a short interval to the
+right of the boundary at every nearby maturity.
+
+`ActualContactIncrement.lean` retains pairwise local Lipschitz control of the
+boundary and evaluates that upper estimate at the earlier boundary `b(s)`
+at the later maturity `v`. Since `b(v)<=b(s)` and
+`b(s)-b(v)<=L*(v-s)`, this proves
+
+`0<=p(b(s),v)-p(b(s),s)<=A*(v-s)^2`.
+
+The constants and neighborhood are uniform in both maturities. Shrinking
+the neighborhood gives
+
+`0<=(p(b(s),s+delta)-p(b(s),s))/delta<=A*delta`.
+
+The zero-dividend and Liu-range quadratic contact estimates are explicit.
+`Boundary/DiscountedMaximum.lean` proves a moving-strip comparison principle
+for `w_t<=w_xx+D*w_x-k*w`, `k>0`, using a positive compact maximum and the
+negative discount term. Boundary continuity suffices. Thirteen transitive
+axiom guards cover these estimates and the comparison principle.
+
+The uniform contact quotient bound is the left-boundary datum for a future
+comparison inside continuation. That propagation and continuity of the
+actual time derivative at contact remain **unproved**, as does boundary
+smoothness. This addition does not change the already unconditional
+function-level boundary convexity theorem.
