@@ -20,8 +20,9 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > Its exercise threshold also has a proved positive lower bound, uniform over
 > maturities, so the actual logarithmic boundary is now constructed.
 > Both actual boundaries are continuous, including at expiry. Actual-price
-> smooth fit is now proved. The continuation-side gradient trace and
-> positive-time boundary smoothness are still unproved.
+> smooth fit and the continuation-side gradient trace are now proved.
+> Positive-time boundary smoothness is the sole remaining field needed to
+> construct the classical pricing contract for this actual pair.
 
 ## Proposed extension and published checkpoints
 
@@ -91,8 +92,9 @@ maturity. Decay is uniform on every bounded maturity interval: continuous paths
 have a positive minimum stock multiplier, so varying nearly optimal rules have
 vanishing rewards at large spot; dominated convergence passes to expectations.
 Continuation PDE regularity is now established for this candidate in
-`ActualInteriorRegularity.lean`. Smooth fit is now proved in `ActualSmoothFit.lean`;
-the gradient trace and positive-time boundary smoothness remain open.
+`ActualInteriorRegularity.lean`. Smooth fit is proved in `ActualSmoothFit.lean`
+and the gradient trace in `ActualGradientTrace.lean`. Positive-time boundary
+smoothness remains open.
 
 `PricePositivity.lean` proves that the deterministic maturity payoff has positive
 expectation for positive strike, spot, volatility and maturity, with nonnegative
@@ -129,8 +131,13 @@ difference-quotient or gradient-trace steps themselves. `PayoffSlope.lean` and
 expectation limit. Optimality and payoff domination squeeze the actual price
 quotient between two functions with limit `-exp(b(t))`. `ActualSmoothFit.lean`
 proves the exact right-sided derivative required by the classical contract,
-including a named zero-dividend result. It does not yet prove the separate
-continuation-side derivative trace.
+including a named zero-dividend result. `ConvexDerivativeTrace.lean` proves a
+general secant squeeze for the interior derivatives of a convex function.
+`ActualGradientTrace.lean` applies it in stock coordinates and then changes to
+log coordinates, proving the separate continuation-side derivative trace.
+Zero-dividend and Liu-range checkpoints are explicit. `ActualClassicalContract.lean`
+assembles the full actual-price contract with positive-time boundary smoothness
+as its sole remaining analytic hypothesis. That hypothesis is not yet proved.
 
 `BermudanConvergence.lean` now proves that restricting exercise to finite grids
 converges to the actual American stopping value, without changing the underlying
@@ -207,8 +214,8 @@ any finite spatial interval. The two-sided heat-equation boundary correction is
 now transformed into pricing coordinates and assembled with the initial
 contribution in `PricingDirichlet.lean`. Local identification then proves actual
 interior smoothness and the pricing PDE in `ActualInteriorRegularity.lean`.
-Full continuous-time dynamic programming, the continuation-side gradient trace
-and positive-time boundary smoothness remain unproved.
+Full continuous-time dynamic programming and positive-time boundary smoothness
+remain unproved. The gradient trace is now proved as described above.
 
 The lateral-data construction now has a checked half-line boundary kernel:
 `H(t,x)=x*K(t,x)/t` satisfies the diffusivity-`1/2` heat equation, is positive
@@ -446,6 +453,9 @@ All files below are included in the project build.
 | [`Stopping/PayoffSlope.lean`](AmericanConvexity/Stopping/PayoffSlope.lean) | Global 1-Lipschitz log payoff; uniformly bounded discounted slopes and their short-time boundary limit |
 | [`Stopping/StoppedSlopeExpectation.lean`](AmericanConvexity/Stopping/StoppedSlopeExpectation.lean) | Checked reward normalization, measurability, domination and expected-slope limit along actual optimal rules |
 | [`Stopping/ActualSmoothFit.lean`](AmericanConvexity/Stopping/ActualSmoothFit.lean) | Actual-price smooth fit from optimality, payoff domination and the expected-slope limit; named zero-dividend checkpoint |
+| [`Stopping/ConvexDerivativeTrace.lean`](AmericanConvexity/Stopping/ConvexDerivativeTrace.lean) | General right derivative trace from convexity, boundary smooth fit and interior differentiability |
+| [`Stopping/ActualGradientTrace.lean`](AmericanConvexity/Stopping/ActualGradientTrace.lean) | Actual stock/log gradient traces; explicit zero-dividend and Liu-range checkpoints |
+| [`Stopping/ActualClassicalContract.lean`](AmericanConvexity/Stopping/ActualClassicalContract.lean) | Full actual-price contract conditional only on positive-time boundary smoothness |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

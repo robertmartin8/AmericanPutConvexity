@@ -59,6 +59,8 @@ import AmericanConvexity.Stopping.PositiveExerciseBoundary
 import AmericanConvexity.Stopping.ActualBoundaryContinuity
 import AmericanConvexity.Stopping.ContactTimeBoundary
 import AmericanConvexity.Stopping.ActualSmoothFit
+import AmericanConvexity.Stopping.ActualGradientTrace
+import AmericanConvexity.Stopping.ActualClassicalContract
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

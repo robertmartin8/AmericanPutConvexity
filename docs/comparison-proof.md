@@ -527,7 +527,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    bound on the stock threshold and supplies a finite actual logarithmic
    boundary with value matching. Actual-price one-sided smooth fit is now proved
    using optimality and dominated convergence of bounded payoff quotients.
-   The continuation-side gradient trace and boundary smoothness remain open.
+   The continuation-side gradient trace is now proved using stock convexity and
+   a secant squeeze. Assembly of the actual classical contract now needs only
+   positive-time boundary smoothness, which remains open.
    Full continuity of the normalized stock and log boundaries, including expiry,
    is now proved: the interior PDE and maturity monotonicity exclude downward
    jumps, complementing the earlier upper semicontinuity. An actual-price first-contact

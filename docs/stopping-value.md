@@ -13,12 +13,15 @@ are superseded by the later construction. `PositiveExerciseBoundary.lean` now
 proves a uniform positive lower bound on the threshold and constructs the actual
 logarithmic boundary. `ActualBoundaryContinuity.lean` proves full stock/log
 boundary continuity, including expiry. `ActualSmoothFit.lean` proves the
-one-sided smooth-fit derivative. The continuation-side gradient trace and
-positive-time boundary smoothness remain open.
+one-sided smooth-fit derivative. `ActualGradientTrace.lean` proves the distinct
+continuation-side derivative trace. `ActualClassicalContract.lean` assembles all
+contract fields conditional only on positive-time boundary smoothness, which
+remains open.
 
 The final sections prove almost-sure convergence of actual optimal contact times
 to zero at exercise, bounded convergence of the resulting payoff quotients, and
-smooth fit by comparison with the actual price quotient.
+smooth fit by comparison with the actual price quotient, and the gradient trace
+using convexity in stock price.
 
 ## Exact financial definition
 
@@ -495,9 +498,9 @@ time, with no classical-solution premise or optimal-rule assumption.
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
 of any such pair against both raw and usual stopping values is now proved. The remaining
-construction still requires positive-time boundary smoothness and gradient trace.
+construction still requires positive-time boundary smoothness.
 Interior PDE regularity, positivity of the threshold, boundary continuity and
-smooth fit are now proved below; none follows merely from the supremum
+smooth fit and gradient trace are now proved below; none follows merely from the supremum
 definition or the spot-convexity proof above.
 
 The identification and resulting boundary properties remain conditional on
@@ -1127,7 +1130,7 @@ They allow only `propext`, `Classical.choice` and `Quot.sound`.
 
 This closes **interior** regularity, not classical-pair existence. Positivity of
 the stock threshold, full boundary continuity and smooth fit are proved below.
-The gradient trace and positive-time boundary smoothness remain open.
+The gradient trace is proved below; positive-time boundary smoothness remains open.
 The independent published CCJZ strict-log-curvature proof also remains separate.
 
 ## Positive exercise threshold and actual logarithmic boundary
@@ -1172,7 +1175,7 @@ No classical pricing contract, smooth fit, boundary continuity, or optimal
 perpetual-option formula is assumed. This comparator is only a proved upper
 bound; it is not asserted to be the perpetual option value. Guarded audits allow
 only the three standard axioms. Boundary continuity and smooth fit are proved
-below; the gradient trace and boundary smoothness remain open.
+below, as is the gradient trace; positive-time boundary smoothness remains open.
 
 ## Full actual-boundary continuity, including expiry
 
@@ -1215,8 +1218,8 @@ results include:
 
 The time clamp supplies the two-sided statement at zero; the substantive part
 is the right-hand limit. Guarded transitive audits allow only the three standard
-axioms. Smooth fit is proved below; the continuation-side gradient trace and
-positive-time boundary smoothness remain missing from the classical contract.
+axioms. Smooth fit and the continuation-side gradient trace are proved below;
+positive-time boundary smoothness remains missing from the classical contract.
 
 ## Optimal contact times shrink to zero at exercise
 
@@ -1318,6 +1321,49 @@ transitive audits of the payoff bound, expectation limit, optimality comparison
 and final smooth-fit theorem allow only the three standard axioms.
 
 The distinct `gradient_trace` field asserts convergence of the **interior
-derivatives**, not of difference quotients at the boundary. It remains open,
-as does positive-time smoothness of the exercise boundary. The full classical
-contract and unconditional curvature theorem are therefore not yet complete.
+derivatives**, not of difference quotients at the boundary. It is proved next.
+
+## Actual continuation-side gradient trace and the remaining contract field
+
+`ConvexDerivativeTrace.lean` proves the following general real-variable fact.
+Suppose `f` is convex on `[B,infinity)`, differentiable on `(B,infinity)`, and
+has right derivative `d` at `B`. For `S>B`, convexity gives
+
+```text
+slope(f,B,S) <= f'(S) <= slope(f,S,2*S-B)
+  = 2*slope(f,B,2*S-B) - slope(f,B,S).
+```
+
+Both bounds tend to `d`, so `f'(S)` tends to `d` from the right. The proof needs
+no second derivative and makes no assertion of convexity in log coordinates.
+
+`ActualGradientTrace.lean` defines `canonicalStockPrice` as the same actual
+stopping value at stock spot `S`. Its convexity comes from `SpotShape.lean`.
+The logarithmic chain rule converts the proved smooth fit to stock derivative
+`-1` at the positive stock boundary. Actual interior smoothness gives stock
+differentiability above that boundary. The secant lemma therefore proves the
+stock gradient trace. The exponential chain rule then gives exactly
+
+```text
+Tendsto (fun x => deriv (fun y => canonicalPrice k h y t) x)
+  (nhdsWithin (canonicalLogBoundary k h t) (Ioi (canonicalLogBoundary k h t)))
+  (nhds (-exp(canonicalLogBoundary k h t))).
+```
+
+This holds for `k>0`, `0<=h<=k` and `t>0`, without a classical solution or
+boundary-differentiability premise. Named zero-dividend and Liu-range results
+are checked, with guarded transitive audits allowing only the three standard
+axioms.
+
+`ActualClassicalContract.lean` now proves
+`canonicalPrice_dividendPutSolution_of_boundary_smooth`: the actual price and
+constructed log boundary satisfy `DividendPutSolution` provided that
+`ContDiffOn R infinity (canonicalLogBoundary k h) (Ioi 0)` holds. Every other
+contract field is discharged by proved actual-price results, including the
+gradient trace. Zero-dividend and Liu-range assemblies retain precisely this
+same explicit remaining hypothesis; they are not independent published proofs.
+
+Positive-time boundary smoothness is **not yet proved**. Consequently the full
+unconditional classical contract and unconditional curvature theorem are still
+unfinished. The separate full dynamic programming and independent CCJZ proof
+tracks also remain open.

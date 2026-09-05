@@ -53,6 +53,8 @@ import AmericanConvexity.Stopping.PositiveExerciseBoundary
 import AmericanConvexity.Stopping.ActualBoundaryContinuity
 import AmericanConvexity.Stopping.ContactTimeBoundary
 import AmericanConvexity.Stopping.ActualSmoothFit
+import AmericanConvexity.Stopping.ActualGradientTrace
+import AmericanConvexity.Stopping.ActualClassicalContract
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1778,3 +1780,48 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_smooth_fit
+
+/-- info: 'AmericanConvexity.Stopping.convex_deriv_tendsto_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.convex_deriv_tendsto_right
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockPrice_smooth_fit' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockPrice_smooth_fit
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockPrice_gradient_trace' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockPrice_gradient_trace
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_gradient_trace' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_gradient_trace
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_gradient_trace' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_gradient_trace
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_gradient_trace' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_gradient_trace
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_dividendPutSolution_of_boundary_smooth' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_dividendPutSolution_of_boundary_smooth
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_solution_of_boundary_smooth' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_solution_of_boundary_smooth
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_solution_of_boundary_smooth' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_solution_of_boundary_smooth
