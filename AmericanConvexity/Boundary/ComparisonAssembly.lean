@@ -6,11 +6,11 @@ import AmericanConvexity.Boundary.BoundaryMonotonicity
 /-!
 # Conditional assembly of the straight-line comparison proof
 
-This is NOT the completed American-put curvature theorem. The positive-interval
-invariant remains an explicit unproved premise for log curvature. The expiry
-ratio limit and nonpositive boundary speed are proved from the contract; the
-latter gives strict negative speed at any hypothetical negative-curvature point.
-Strict stock curvature still has a separate global strict-speed premise.
+These modular implications retain explicit interval and speed arguments.
+`ComparisonConclusion` supplies the interval invariant for weak log curvature;
+`StrictBoundarySpeed` and `StockConclusion` then discharge the strict-speed
+argument for strict stock curvature. The actual stopping-value identification
+is separate from these classical-contract results.
 -/
 
 namespace AmericanConvexity.Boundary.Comparison
@@ -18,7 +18,7 @@ namespace AmericanConvexity.Boundary.Comparison
 open Set Filter
 open scoped Topology
 
-/-- The proposed log-curvature conclusion, conditional only on the remaining
+/-- The proposed log-curvature conclusion, conditional only on the
 interval invariant. In particular this invariant is not claimed as a
 consequence of an unformalized zero-number theorem. -/
 theorem dividend_curvature_of_comparison_inputs {k h : ℝ}
@@ -34,7 +34,7 @@ theorem dividend_curvature_of_comparison_inputs {k h : ℝ}
     (hinterval (-deriv b t) (b t - t * deriv b t) (neg_pos.mpr hspeed) hd))
 
 /-- Zero dividends with the original CCJZ contract. The interval invariant
-remains OPEN, and the conclusion is weak log curvature, not CCJZ's
+is supplied in `ComparisonConclusion`, and the conclusion is weak log curvature, not CCJZ's
 strict log curvature theorem. -/
 theorem zeroDividend_curvature_of_comparison_inputs {k : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} (hp : NormalizedPutSolution k p b)

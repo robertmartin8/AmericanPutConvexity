@@ -12,7 +12,7 @@ b(t) = log(B(t/a) / K),
 k = r/a, h = q/a, alpha = k-h-1.
 
 Target: b''(t) >= 0 for every t > 0.
-Consequence, once b'(t)<0 is established: B''(tau) > 0.
+Consequence, using the now-proved b'(t)<0: B''(tau) > 0.
 ```
 
 Time is time REMAINING, and arguments of prices are `(x,t)`. This is not
@@ -28,6 +28,7 @@ will not be described as an independent verification of a published proof.
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
 | Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Proved on the dividend classical contract; physical parameter correspondence checked |
 | Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; actual stopping-value identification remains open |
+| Strict stock-boundary consequence | `B'' > 0` for the full regime, including zero dividends and Liu's range | Proved on the classical contracts, with no additional speed premise; both time conventions checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -432,10 +433,10 @@ DividendPutSolution k h p b
 ```
 
 The zero-dividend version uses the original CCJZ contract. The log-curvature
-assembly no longer assumes global strict speed: it uses the proved speed result
-only at a hypothetical negative-curvature point. The strict stock-curvature
-consequence retains an additional global strict-speed premise, because that
-conclusion uses positivity of `b''+(b')^2`, not just nonnegativity.
+assembly does not assume global strict speed: it uses the proved speed result
+only at a hypothetical negative-curvature point. Its modular strict stock-curvature
+lemma retains a strict-speed argument, now supplied by `StrictBoundarySpeed.lean`.
+That conclusion uses positivity of `b''+(b')^2`, not just nonnegativity.
 `ComparisonConclusion.lean` discharges that interval premise and proves:
 
 ```text
@@ -448,21 +449,68 @@ No interval, speed, expiry, zero-count, or derivative-trace assumption was added
 to the pricing contract. The weaker parameter cases specialize this proof;
 they are not independent verifications of the published proofs.
 
+### Strict boundary speed and the stock-curvature consequence
+
+`FlatTail.lean` proves that the boundary derivative is nondecreasing, using
+the completed weak log-curvature theorem. Since it is also nonpositive, zero
+speed at a positive time would force zero speed and a constant boundary at
+every subsequent time. This reduction does not use strictness in the weak
+log-curvature proof and creates no circular dependency.
+
+`PositiveBump.lean` constructs `Q(x)=x^2*(L-x)^2`. For `L>0` and `|D|<=M`,
+
+```text
+Q'' + D*Q' + (M^2+16/L^2)*Q >= 0.
+```
+
+The proof rewrites the expression as a sum of squares and a nonnegative term.
+Multiplying `Q` by `eta*exp(-(M^2+16/L^2)*(t-a))` gives a positive interior
+subsolution vanishing at both spatial endpoints. `PositivePropagation.lean`
+chooses `eta>0` below a compact positive bottom edge and applies the proved
+weak maximum principle. Moving-line coordinates carry the positive patch
+along a straight tube, with drift bound increased by the tube's absolute speed.
+
+`StrongPositivity.lean` starts from one positive point, uses continuity to
+choose a positive bottom patch, and constructs a tube to any specified
+interior point at a strictly later time. This proves a strong positivity
+principle for a nonnegative solution on a spatial half-line with bounded drift.
+It is not an imported PDE axiom and needs no derivative trace at initial time.
+
+`TimeIncrement.lean` applies the stationary positive-profile gauge to
+`p(x,t+delta)-p(x,t)`. The earlier continuation region is contained in the
+later one by the already-proved boundary monotonicity. The gauged increment
+satisfies a no-zero-order equation with bounded drift and is nonnegative by
+price monotonicity. It is initially positive above strike.
+`IncrementPositivity.lean` propagates this positivity above strike, then to
+every later interior point on any hypothetical flat boundary tail. At a
+boundary shared by the two time slices, it proves both zero value and zero
+spatial derivative from value matching and smooth fit.
+
+`StrictBoundarySpeed.lean` excludes a flat tail. A decreasing straight line
+lies strictly above the constant boundary before its terminal contact. A
+backward rectangle to its right therefore has strictly positive bottom and
+right edges for the gauged increment. The checked terminal Hopf lemma gives
+a positive spatial derivative at contact, contradicting the zero derivative.
+Together with `FlatTail.lean`, this proves `b'(t)<0` at every positive time.
+
+Finally `StockConclusion.lean` supplies the proved strict speed to the coordinate
+formula and obtains strict stock curvature with no additional premise. It
+defines `remainingTimeBoundary E sigma b tau = E*exp(b(sigma^2/2*tau))` and
+checks that time reversal preserves the second derivative. Named zero-dividend
+and Liu-range theorems specialize the strict stock conclusion. The combined
+`dividend_boundary_conclusions` theorem states negative speed, weak log curvature,
+and strict stock curvature together. It does not assert strict log curvature.
+
 ## Analytic dependencies still to prove
 
-1. **Strict stock-curvature input.** Prove globally strictly negative boundary
-   speed, or another sufficient strictness result, for the `B''>0` consequence.
-   Price and boundary monotonicity, nonpositive speed, and negative speed at a
-   hypothetical concave point are proved. Global strict speed is no longer
-   needed as a premise for weak log curvature. The expiry limit is also proved.
-2. **Financial applicability.** Establish existence and identify the classical
+1. **Financial applicability.** Establish existence and identify the classical
    contract with the actual GBM American stopping value, including the required
    boundary regularity and smooth fit. Monotonicity is already derived from
    the contract; it is not a separate contract assumption.
-3. **Independent published proof and strictness.** Retain the separate CCJZ
+2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.
-4. **Optional Sturm route.** Initial derivative traces and general positive-time
+3. **Optional Sturm route.** Initial derivative traces and general positive-time
    zero-count propagation remain unproved. These would complete the retained
    root-count approach, but are not prerequisites of the direct proof.
 

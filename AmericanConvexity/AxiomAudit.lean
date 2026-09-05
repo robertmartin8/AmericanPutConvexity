@@ -17,13 +17,14 @@ import AmericanConvexity.Boundary.RootStability
 import AmericanConvexity.Boundary.ComparisonIntervals
 import AmericanConvexity.Boundary.ObstacleComparison
 import AmericanConvexity.Boundary.ComparisonConclusion
+import AmericanConvexity.Boundary.StockConclusion
 
 /-!
 # Axiom checks for selected upstream and local results
 
 These guards fail if a change introduces additional axioms, including `sorryAx`,
-into these results. They do not audit all of MathFin or prove the still-outstanding
-American-put boundary-convexity theorem.
+into these results. They do not audit all of MathFin or establish identification
+of the classical pricing contract with the American optimal-stopping value.
 -/
 
 /-- info: 'MathFin.americanPrice_ge_intrinsic' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -547,3 +548,68 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.stock_curvature_of_strict_speed
+
+/-- info: 'AmericanConvexity.Boundary.positiveBump_operator' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.positiveBump_operator
+
+/-- info: 'AmericanConvexity.Boundary.positive_straight_tube' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.positive_straight_tube
+
+/-- info: 'AmericanConvexity.Boundary.positive_later_of_positive_point' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.positive_later_of_positive_point
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_flat_tail_of_zero_speed' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_flat_tail_of_zero_speed
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.incrementGauge_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.incrementGauge_equation
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.incrementGauge_pos_on_flat_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.incrementGauge_pos_on_flat_tail
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_no_flat_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_no_flat_tail
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_deriv_neg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_deriv_neg
+
+/-- info: 'AmericanConvexity.Boundary.dividend_stock_curvature' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.dividend_stock_curvature
+
+/-- info: 'AmericanConvexity.Boundary.dividend_remainingTime_curvature' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.dividend_remainingTime_curvature
+
+/-- info: 'AmericanConvexity.Boundary.zeroDividend_remainingTime_curvature' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.zeroDividend_remainingTime_curvature
+
+/-- info: 'AmericanConvexity.Boundary.liuRange_remainingTime_curvature' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.liuRange_remainingTime_curvature
+
+/-- info: 'AmericanConvexity.Boundary.dividend_boundary_conclusions' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.dividend_boundary_conclusions

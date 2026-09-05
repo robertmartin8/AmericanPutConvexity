@@ -8,8 +8,8 @@ import AmericanConvexity.Boundary.ComparisonCoefficients
 
 The moving-coordinate PDE and one-sided zero derivative at contact are derived
 from the pricing contract. A positive backward rectangle is then impossible.
-Constructing that rectangle still requires the unproved interval invariant and
-tangency geometry; they are not fields of the pricing-solution contract.
+The rectangle is constructed in `Tangency` using the interval invariant,
+which is proved in `ComparisonUnimodality`; neither is a pricing-contract field.
 -/
 
 namespace AmericanConvexity.Boundary.Comparison

@@ -22,6 +22,14 @@ import AmericanConvexity.Boundary.TangentGeometry
 import AmericanConvexity.Boundary.TangentIntercept
 import AmericanConvexity.Boundary.Tangency
 import AmericanConvexity.Boundary.ComparisonAssembly
+import AmericanConvexity.Boundary.PositiveBump
+import AmericanConvexity.Boundary.PositivePropagation
+import AmericanConvexity.Boundary.StrongPositivity
+import AmericanConvexity.Boundary.FlatTail
+import AmericanConvexity.Boundary.TimeIncrement
+import AmericanConvexity.Boundary.IncrementPositivity
+import AmericanConvexity.Boundary.StrictBoundarySpeed
+import AmericanConvexity.Boundary.StockConclusion
 import AmericanConvexity.Boundary.InitialRoots
 import AmericanConvexity.Boundary.RootConfinement
 import AmericanConvexity.Boundary.RootStability

@@ -7,11 +7,12 @@ independent published CCJZ proof development is retained. The project integrates
 [MathFin](https://github.com/formal-applied-math/formal-mathfin); the boundary
 proof modules currently use Mathlib and local results, not MathFin pricing results.
 
-> **Status: normalized weak log-curvature is proved for the classical pricing
-> contract.** `DividendPutSolution k h p b` implies `b''(t)>=0` for every `t>0`.
+> **Status: weak log-curvature and strict stock curvature are proved for the
+> classical pricing contract.** `DividendPutSolution k h p b` implies `b''(t)>=0`,
+> `b'(t)<0`, and the reconstructed stock boundary satisfies `B''(tau)>0`.
 > No extra interval, speed, expiry, zero-count or derivative-trace premise remains.
-> Identification with the actual American stopping value, strict stock curvature
-> without an extra strictness premise, and the independent strict CCJZ proof remain open.
+> Identification with the actual American stopping value and the independent
+> strict-log-curvature CCJZ proof remain open.
 
 ## Proposed extension and published checkpoints
 
@@ -20,7 +21,14 @@ The active target is `b''(t)>=0` for `t>0`, where
 The proposed proof and its exact verification frontier are tracked in
 [`docs/comparison-proof.md`](docs/comparison-proof.md).
 
-**New checked progress:** a direct three-point maximum principle proves the
+**New checked progress:** the classical contract now also implies globally
+strictly negative boundary speed. Weak log curvature reduces zero speed to a
+flat tail. Explicit positive-patch barriers propagate positivity of actual
+time increments; a slanted terminal Hopf rectangle excludes a flat tail.
+`StockConclusion.lean` proves strict stock curvature in calendar time and time
+remaining, including named zero-dividend and Liu-range specializations.
+
+A direct three-point maximum principle proves the
 positive-interval invariant. It uses continuous initial data and the normalized
 PDE, bypassing the full Sturm theorem and the initial derivative-trace argument.
 `ComparisonConclusion.lean` discharges the last premise of the log-curvature
@@ -38,7 +46,8 @@ published strict-log-curvature proof.**
 The earlier zero-count route is retained: exact initial roots, confinement and
 conditional initialization are checked. Its derivative-trace and Sturm inputs
 remain unproved, but neither is used in the completed classical log-curvature
-proof. Strict stock curvature still has a global strict-speed premise.
+proof. The earlier strict-speed premise is now discharged by
+`StrictBoundarySpeed.lean`, without adding any pricing-contract fields.
 
 The pricing contract now also yields strict separation of the boundary from
 the strike, and a proved comparison theorem for smooth subsolutions on strips
@@ -150,6 +159,14 @@ All files below are included in the project build.
 | [`Boundary/ParabolicUnimodality.lean`](AmericanConvexity/Boundary/ParabolicUnimodality.lean) | Removal of smoothing and time perturbations; propagated three-point inequality |
 | [`Boundary/ComparisonUnimodality.lean`](AmericanConvexity/Boundary/ComparisonUnimodality.lean) | Actual comparison superlevels are intervals; no Sturm or initial derivative-trace premise |
 | [`Boundary/ComparisonConclusion.lean`](AmericanConvexity/Boundary/ComparisonConclusion.lean) | Weak normalized log curvature from the classical contract alone; zero-dividend and Liu-range milestones; strict stock curvature with strict speed |
+| [`Boundary/PositiveBump.lean`](AmericanConvexity/Boundary/PositiveBump.lean) | Explicit polynomial-times-exponential subsolution for bounded drift |
+| [`Boundary/PositivePropagation.lean`](AmericanConvexity/Boundary/PositivePropagation.lean) | Positive bottom patches stay positive inside a rectangle or moving straight tube |
+| [`Boundary/StrongPositivity.lean`](AmericanConvexity/Boundary/StrongPositivity.lean) | One positive point propagates to every later interior point of a half-line |
+| [`Boundary/FlatTail.lean`](AmericanConvexity/Boundary/FlatTail.lean) | Proved weak curvature and monotonicity turn zero speed into a flat tail |
+| [`Boundary/TimeIncrement.lean`](AmericanConvexity/Boundary/TimeIncrement.lean) | Actual time-increment PDE, positive-profile normalization, bounded drift, and nonnegativity |
+| [`Boundary/IncrementPositivity.lean`](AmericanConvexity/Boundary/IncrementPositivity.lean) | Strict increment positivity above strike and on hypothetical flat tails; shared-boundary smooth fit |
+| [`Boundary/StrictBoundarySpeed.lean`](AmericanConvexity/Boundary/StrictBoundarySpeed.lean) | No flat tail by slanted Hopf rectangle; globally strictly negative boundary speed |
+| [`Boundary/StockConclusion.lean`](AmericanConvexity/Boundary/StockConclusion.lean) | Strict stock curvature with no extra speed premise; both time conventions; zero-dividend and Liu-range specializations; combined derivative conclusions |
 | [`Boundary/InitialRoots.lean`](AmericanConvexity/Boundary/InitialRoots.lean) | Exactly two simple initial roots below a higher positive initial value; identification of the actual spatial derivatives |
 | [`Boundary/RootConfinement.lean`](AmericanConvexity/Boundary/RootConfinement.lean) | Every small-time positive-level root lies near the initial roots, using only continuity, initial data and tail bounds |
 | [`Boundary/RootStability.lean`](AmericanConvexity/Boundary/RootStability.lean) | At-most-two-root initialization conditional on the still-open initial derivative traces; no-positive-data branch and zero-dividend specialization |
@@ -279,8 +296,8 @@ For the active straight-line proof, see the dependency list in
 [`docs/comparison-proof.md`](docs/comparison-proof.md). Weak normalized log
 curvature, the interval invariant, and the tangency contradiction are proved.
 The direct three-point argument bypasses the unfinished zero-number route.
-Actual stopping-value identification and strict stock curvature without an extra
-strictness premise remain open. The proved weaker parameter cases are tracked
+Strict stock curvature is also proved with no extra strictness premise.
+Actual stopping-value identification remains open. The proved weaker parameter cases are tracked
 separately from independent verification of the published proofs.
 
 The detailed dependency map is in [`docs/ccjz-audit.md`](docs/ccjz-audit.md).

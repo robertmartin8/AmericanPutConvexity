@@ -10,7 +10,8 @@ no extra expiry, speed, interval, zero-count, or derivative-trace premise.
 
 Identification of this classical contract with the actual continuous-time
 American value is separate. Strict logarithmic curvature is not asserted.
-The strict stock-curvature consequence below still assumes strict speed.
+The modular stock-curvature consequence below takes strict speed as an argument;
+`StrictBoundarySpeed` proves it and `StockConclusion` supplies the final result.
 -/
 
 namespace AmericanConvexity.Boundary.Comparison
