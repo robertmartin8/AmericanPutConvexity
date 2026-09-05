@@ -64,7 +64,7 @@ boundary-contact case needed for an obstacle comparison principle. -/
 theorem boundary_test_residual_pos {k h : ℝ} {p U : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t)
     (hU : DifferentiableAt ℝ (fun z : ℝ × ℝ => U z.1 z.2) (b t,t))
-    (hspace : ContDiff ℝ 2 (fun x => U x t))
+    (hspace : ContDiffAt ℝ 2 (fun x => U x t) (b t))
     (hmaxSpace : IsLocalMax (fun x => U x t - p x t) (b t))
     (hmaxTime : ∀ᶠ s in 𝓝[<] t,
       U (b s) s - p (b s) s ≤ U (b t) t - p (b t) t)

@@ -90,16 +90,17 @@ theorem DividendPutSolution.no_positive_max_off_boundary
 stay below it throughout a compact moving strip, even when it crosses the
 exercise region. Compactness of the chosen strip is an explicit topological
 premise; no comparison result is assumed in the pricing contract. -/
-theorem DividendPutSolution.obstacle_comparison
+theorem DividendPutSolution.obstacle_comparison_of_local_tests
     {k h T : ℝ} {p U : ℝ → ℝ → ℝ} {b L R : ℝ → ℝ}
     (hp : DividendPutSolution k h p b)
     (hL : Continuous L) (hR : Continuous R)
     (hQ : IsCompact (twoSidedStrip L R T))
     (hUc : ContinuousOn (fun z : ℝ × ℝ => U z.1 z.2) (twoSidedStrip L R T))
-    (hUs : ∀ t, 0 < t → t ≤ T → ContDiff ℝ 2 (fun x => U x t))
     (hUj : ∀ x t, 0 < t → t ≤ T → L t < x → x < R t →
+      p x t < U x t →
       ContDiffAt ℝ 2 (fun z : ℝ × ℝ => U z.1 z.2) (x,t))
     (hsub : ∀ x t, 0 < t → t ≤ T → L t < x → x < R t →
+      p x t < U x t →
       deriv (U x) t ≤ dividendSpatialOperator k h (fun y => U y t) x)
     (hinit : ∀ x, L 0 ≤ x → x ≤ R 0 → U x 0 ≤ p x 0)
     (hleft : ∀ t, 0 ≤ t → t ≤ T → U (L t) t ≤ p (L t) t)
@@ -140,11 +141,14 @@ theorem DividendPutSolution.obstacle_comparison
       simpa [he] using hmax
         (show (b s,s) ∈ twoSidedStrip L R T from ⟨hs.1,hs.2,hls.le,hrs.le⟩)
     have hsp : IsLocalMax (fun x => U x w.2 - p x w.2) (b w.2) := by simpa [he] using hspace
-    have hj : DifferentiableAt ℝ (fun z : ℝ × ℝ => U z.1 z.2) (b w.2,w.2) := by
-      simpa [he] using (hUj w.1 w.2 ht hwT hl hr).differentiableAt (by norm_num)
-    have hres := hp.boundary_test_residual_pos ht hj (hUs w.2 ht hwT) hsp hbtmax
+    have hj : ContDiffAt ℝ 2 (fun z : ℝ × ℝ => U z.1 z.2) (b w.2,w.2) := by
+      simpa [he] using hUj w.1 w.2 ht hwT hl hr (sub_pos.mp hwpos)
+    have hxs : ContDiffAt ℝ 2 (fun x => U x w.2) (b w.2) := by
+      simpa only [Function.comp_def] using hj.comp (b w.2)
+        (show ContDiffAt ℝ 2 (fun x : ℝ => (x,w.2)) (b w.2) by fun_prop)
+    have hres := hp.boundary_test_residual_pos ht (hj.differentiableAt (by norm_num)) hxs hsp hbtmax
       (by simpa [he] using (sub_pos.mp hwpos).le)
-    have hineq := hsub w.1 w.2 ht hwT hl hr
+    have hineq := hsub w.1 w.2 ht hwT hl hr (sub_pos.mp hwpos)
     rw [he] at hineq
     linarith
   · have hxl : ∀ᶠ s in 𝓝[<] w.2, L s < w.1 :=
@@ -154,8 +158,30 @@ theorem DividendPutSolution.obstacle_comparison
     have htm : ∀ᶠ s in 𝓝[<] w.2, U w.1 s - p w.1 s ≤ U w.1 w.2 - p w.1 w.2 := by
       filter_upwards [htimebound,hxl,hxr] with s hs hls hrs
       exact hmax (show (w.1,s) ∈ twoSidedStrip L R T from ⟨hs.1,hs.2,hls.le,hrs.le⟩)
-    exact hp.no_positive_max_off_boundary ht he (hUj w.1 w.2 ht hwT hl hr)
-      hspace htm (sub_pos.mp hwpos) (hsub w.1 w.2 ht hwT hl hr)
+    exact hp.no_positive_max_off_boundary ht he (hUj w.1 w.2 ht hwT hl hr (sub_pos.mp hwpos))
+      hspace htm (sub_pos.mp hwpos) (hsub w.1 w.2 ht hwT hl hr (sub_pos.mp hwpos))
+
+/-- The globally smooth spatial-test formulation remains available. The
+stronger local version above only needs smoothness and the PDE inequality at
+points where the candidate exceeds the price. -/
+theorem DividendPutSolution.obstacle_comparison
+    {k h T : ℝ} {p U : ℝ → ℝ → ℝ} {b L R : ℝ → ℝ}
+    (hp : DividendPutSolution k h p b)
+    (hL : Continuous L) (hR : Continuous R)
+    (hQ : IsCompact (twoSidedStrip L R T))
+    (hUc : ContinuousOn (fun z : ℝ × ℝ => U z.1 z.2) (twoSidedStrip L R T))
+    (_hUs : ∀ t, 0 < t → t ≤ T → ContDiff ℝ 2 (fun x => U x t))
+    (hUj : ∀ x t, 0 < t → t ≤ T → L t < x → x < R t →
+      ContDiffAt ℝ 2 (fun z : ℝ × ℝ => U z.1 z.2) (x,t))
+    (hsub : ∀ x t, 0 < t → t ≤ T → L t < x → x < R t →
+      deriv (U x) t ≤ dividendSpatialOperator k h (fun y => U y t) x)
+    (hinit : ∀ x, L 0 ≤ x → x ≤ R 0 → U x 0 ≤ p x 0)
+    (hleft : ∀ t, 0 ≤ t → t ≤ T → U (L t) t ≤ p (L t) t)
+    (hright : ∀ t, 0 ≤ t → t ≤ T → U (R t) t ≤ p (R t) t) :
+    ∀ z ∈ twoSidedStrip L R T, U z.1 z.2 ≤ p z.1 z.2 :=
+  hp.obstacle_comparison_of_local_tests hL hR hQ hUc
+    (fun x t ht hT hl hr _ => hUj x t ht hT hl hr)
+    (fun x t ht hT hl hr _ => hsub x t ht hT hl hr) hinit hleft hright
 
 /-- Zero-dividend milestone on the original normalized solution contract.
 This specializes the newly proved obstacle comparison, without using a

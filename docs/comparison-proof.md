@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; expiry ratio limit checked on the old CCJZ contract; curvature follows from two still-unproved inputs: negative speed and the interval invariant |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; expiry and monotonicity inputs checked on the old CCJZ contract; curvature follows from the still-unproved interval invariant |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; physical condition and expiry limit checked; the full conditional assembly applies with two remaining inputs |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; expiry ratio limit proved and discharged from the log and strict stock-curvature assembly; negative speed and interval invariant remain unproved |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; physical condition, expiry and monotonicity checked; the log-curvature assembly has the interval invariant as its remaining input |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; log curvature now follows from the interval invariant alone; strict stock curvature additionally requires global strict speed |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -71,7 +71,8 @@ inequality; the continuation PDE gives the same inequality on the other side.
 nonpositive second derivative. Applying it to a smooth test minus the exercise
 payoff shows that at a spatial maximum of test minus price, the test's first
 derivative is `-exp(b(t))` and its second derivative is at most `-exp(b(t))`.
-No second price derivative across the boundary is asserted.
+Only local test smoothness is needed. No second price derivative across the
+boundary is asserted.
 
 `BoundaryTest.lean` differentiates the test minus payoff along the moving
 boundary at a backward contact maximum. Smooth fit cancels the boundary-speed
@@ -84,7 +85,35 @@ maximum is excluded separately in the continuation region, exercise interior,
 and on the free boundary. The first two use classical derivatives; the third
 uses the proved boundary test. Compactness is proved by a unit-interval
 parameterization, including zero-width slices. There is a named zero-dividend
-specialization on the original normalized pricing contract.
+specialization on the original normalized pricing contract. The local-test
+version requires smoothness and the subsolution inequality only where the
+candidate exceeds the price, allowing a candidate with its own exercise obstacle.
+
+### First-order inputs from delayed-price comparison
+
+`DelayedPrice.lean` defines `D(x,t)=p(x,max(t-a,0))` for a nonnegative delay `a`.
+It is continuous and has initial payoff. Wherever it exceeds the payoff,
+`t>a` and `x>b(t-a)`, so its local smoothness and pricing PDE are checked.
+
+`LocalizationBarrier.lean` proves that
+`W(x,t)=exp((2+|k-h-1|)*t)*(1+x^2)` is a positive pricing supersolution and is
+at least `1+x^2` for nonnegative time. `TimeMonotonicity.lean` compares
+`D-epsilon*W` with `p` on a sufficiently large finite rectangle. At a potential
+positive contact, `D` exceeds the payoff, so the local-test comparison applies.
+Boundedness of the price and the explicit quadratic lower bound control both
+spatial endpoints. Removing the positive penalty pointwise proves `D<=p`, hence
+`p(x,s)<=p(x,t)` whenever `0<=s<=t`. No uniform decay estimate or financial
+optimal-stopping representation is used for this proof.
+
+`BoundaryMonotonicity.lean` then proves `b(t)<=b(s)` for `0<=s<=t`: otherwise a
+point exercised at the later time would have had price strictly above payoff
+at the earlier time, contradicting price monotonicity. This yields `b'(t)<=0`.
+At any hypothetical point with `b''(t)<0`, one must have `b'(t)<0`; if instead
+`b'(t)=0`, that would be a local maximum of the nonpositive function `b'`, forcing
+`b''(t)=0`. This supplies exactly the speed needed for the negative-curvature
+tangent contradiction. **It does not prove `b'(t)<0` at every positive time.**
+Named zero-dividend price and boundary monotonicity checkpoints use the original
+normalized pricing contract.
 
 ### Step 1: near-expiry input, now proved
 
@@ -355,25 +384,26 @@ Thus curvature control at negative-intercept tangents implies it everywhere.
 
 ```text
 DividendPutSolution k h p b
-+ b'(t)<0 for every t>0
 + for every c>0,d<0,t>0, the positive continuation set of v is an interval
   ==> b''(t)>=0 for every t>0.
 ```
 
-The zero-dividend version uses the original CCJZ contract. The strict
-stock-curvature consequence is also checked: weak log curvature plus nonzero
-log speed makes `b''+(b')^2` strictly positive under the exact coordinate map.
-**This is a conditional assembly, not the completed theorem.** The two remaining inputs
-are explicit theorem premises, not new fields of the pricing-solution contract,
-not axioms, and not asserted results. The interval input is precisely the main
-unresolved propagation claim, not something proved merely by this assembly.
+The zero-dividend version uses the original CCJZ contract. The log-curvature
+assembly no longer assumes global strict speed: it uses the proved speed result
+only at a hypothetical negative-curvature point. The strict stock-curvature
+consequence retains an additional global strict-speed premise, because that
+conclusion uses positivity of `b''+(b')^2`, not just nonnegativity.
+**This is a conditional assembly, not the completed theorem.** The interval
+invariant remains an explicit theorem premise, not a new contract field, axiom,
+or asserted result. It is precisely the main unresolved propagation claim.
 
 ## Analytic dependencies still to prove
 
-1. **First-order input.** Prove negative boundary speed from the pricing problem.
-   The near-expiry ratio limit is now proved and discharged from the assembly.
-   Negative-intercept selection, strict boundary negativity, obstacle comparison,
-   the square-root barrier bound and negative-curvature tangent geometry are checked.
+1. **Strict stock-curvature input.** Prove globally strictly negative boundary
+   speed, or another sufficient strictness result, for the `B''>0` consequence.
+   Price and boundary monotonicity, nonpositive speed, and negative speed at a
+   hypothetical concave point are proved. Global strict speed is no longer
+   needed as a premise for weak log curvature. The expiry limit is also proved.
 2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
    exact two-simple-root characterization, corner/tail control, and compact
    confinement are checked. The count-stability implication from initial
@@ -391,9 +421,10 @@ unresolved propagation claim, not something proved merely by this assembly.
 5. **Financial applicability.** Establish the properties needed for the
    actual American value, including boundary regularity and monotonicity,
    rather than only proving a conditional theorem for an uninhabited contract.
-6. **Conclusions.** Discharge the two remaining inputs of the checked global assembly
-   to prove the curvature claims and their parameter specializations. Stock
-   transfer is checked. Retain the separate CCJZ route and its stronger target.
+6. **Conclusions.** Discharge the interval invariant to prove weak log curvature
+   and its parameter specializations. The strict stock transfer needs the
+   additional strictness input above. Retain the separate CCJZ route and its
+   stronger log-curvature target.
 
 For the informal audit, [Lou's Theorem 1.2 and Lemma 2.1](https://arxiv.org/pdf/1809.00309)
 provide an appropriate moving-boundary zero-number statement: with nonzero

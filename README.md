@@ -19,11 +19,14 @@ The active target is `b''(t)>=0` for `t>0`, where
 The proposed proof and its exact verification frontier are tracked in
 [`docs/comparison-proof.md`](docs/comparison-proof.md).
 
-**New checked progress:** the near-expiry ratio limit is now proved from the
-pricing contract using an explicit shrinking-strip barrier. It has been removed
-as an assumption from the curvature assembly. The two analytic inputs still to
-prove are negative boundary speed and the positive-interval invariant. Neither
-was added to the pricing contract as a field, or asserted as a theorem.
+**New checked progress:** price time-monotonicity and a nonincreasing exercise
+boundary are now proved from the pricing contract. At a hypothetical point of
+negative curvature this gives strictly negative speed, which is enough for the
+log-curvature contradiction. Together with the proved expiry ratio limit, this
+leaves only the positive-interval invariant as an analytic premise of the
+log-curvature assembly. That invariant remains unproved, not a contract field.
+The strict stock-curvature consequence still requires a global strict-speed
+premise; this stronger first-order conclusion is not asserted as proved.
 
 The checked chain includes the explicit comparison/PDE/smooth fit, payoff
 domination, initial shape, normalized PDE, tail/coefficient and boundary-sign
@@ -146,7 +149,7 @@ All files below are included in the project build.
 | [`Boundary/TangentGeometry.lean`](AmericanConvexity/Boundary/TangentGeometry.lean) | Negative curvature puts a smooth function strictly below its tangent nearby |
 | [`Boundary/TangentIntercept.lean`](AmericanConvexity/Boundary/TangentIntercept.lean) | Generic negative-intercept selection and global curvature reduction; its ratio-limit premise is now discharged for the pricing solution |
 | [`Boundary/Tangency.lean`](AmericanConvexity/Boundary/Tangency.lean) | Positive rectangle construction and exclusion of concave tangency, conditional on the interval invariant |
-| [`Boundary/ComparisonAssembly.lean`](AmericanConvexity/Boundary/ComparisonAssembly.lean) | Global log and strict stock curvature implications with two unproved inputs explicit (speed and interval invariant); the expiry input is discharged; zero-dividend specialization |
+| [`Boundary/ComparisonAssembly.lean`](AmericanConvexity/Boundary/ComparisonAssembly.lean) | Log-curvature implication conditional only on the interval invariant; strict stock curvature also requires strict speed; zero-dividend specialization |
 | [`Boundary/InitialRoots.lean`](AmericanConvexity/Boundary/InitialRoots.lean) | Exactly two simple initial roots below a higher positive initial value; identification of the actual spatial derivatives |
 | [`Boundary/RootConfinement.lean`](AmericanConvexity/Boundary/RootConfinement.lean) | Every small-time positive-level root lies near the initial roots, using only continuity, initial data and tail bounds |
 | [`Boundary/RootStability.lean`](AmericanConvexity/Boundary/RootStability.lean) | At-most-two-root initialization conditional on the still-open initial derivative traces; no-positive-data branch and zero-dividend specialization |
@@ -155,9 +158,13 @@ All files below are included in the project build.
 | [`Boundary/ExerciseGeometry.lean`](AmericanConvexity/Boundary/ExerciseGeometry.lean) | Ordinary spatial derivative at contact, strictly negative boundary, positive boundary forcing, and classical supersolution property off the boundary |
 | [`Boundary/OneSidedContact.lean`](AmericanConvexity/Boundary/OneSidedContact.lean) | One-sided stationary second-derivative test and spatial test-function bounds at exercise contact |
 | [`Boundary/BoundaryTest.lean`](AmericanConvexity/Boundary/BoundaryTest.lean) | Differentiation along the moving boundary; cancellation by smooth fit; exclusion of subsolution contact maxima |
-| [`Boundary/ObstacleComparison.lean`](AmericanConvexity/Boundary/ObstacleComparison.lean) | Proved subsolution comparison across the exercise obstacle on compact two-sided moving strips, including zero dividends and strips collapsing at expiry |
+| [`Boundary/ObstacleComparison.lean`](AmericanConvexity/Boundary/ObstacleComparison.lean) | Proved obstacle comparison, requiring only local smoothness at potential positive contacts; includes zero dividends and strips collapsing at expiry |
 | [`Boundary/ExpiryBarrier.lean`](AmericanConvexity/Boundary/ExpiryBarrier.lean) | Explicit quadratic shrinking-strip barrier: derivatives, pricing inequality, relative expiry continuity, lateral bounds and actual price comparison |
 | [`Boundary/NearExpiry.lean`](AmericanConvexity/Boundary/NearExpiry.lean) | Non-sharp square-root boundary bound and `b(t)/t -> -infinity` from the pricing contract, including zero dividends |
+| [`Boundary/DelayedPrice.lean`](AmericanConvexity/Boundary/DelayedPrice.lean) | Clamped time delay, continuation at points above payoff, and the delayed pricing equation |
+| [`Boundary/LocalizationBarrier.lean`](AmericanConvexity/Boundary/LocalizationBarrier.lean) | Explicit quadratic supersolution for spatial localization without uniform tail assumptions |
+| [`Boundary/TimeMonotonicity.lean`](AmericanConvexity/Boundary/TimeMonotonicity.lean) | Localized delayed-price comparison, removal of the penalty, and price time-monotonicity from the contract |
+| [`Boundary/BoundaryMonotonicity.lean`](AmericanConvexity/Boundary/BoundaryMonotonicity.lean) | Nonincreasing boundary, nonpositive speed, and strictly negative speed at hypothetical concave points; zero-dividend checkpoints |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |

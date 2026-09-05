@@ -456,3 +456,48 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.zeroDividend_boundary_ratio_tendsto_atBot
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.obstacle_comparison_of_local_tests' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.obstacle_comparison_of_local_tests
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.delayedPrice_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.delayedPrice_equation
+
+/-- info: 'AmericanConvexity.Boundary.localizationBarrier_supersolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.localizationBarrier_supersolution
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.penalizedDelay_le_price' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.penalizedDelay_le_price
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.price_mono_time' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.price_mono_time
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_antitoneOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_antitoneOn
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_deriv_neg_of_curvature_neg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_deriv_neg_of_curvature_neg
+
+/-- info: 'AmericanConvexity.Boundary.zeroDividend_price_mono_time' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.zeroDividend_price_mono_time
+
+/-- info: 'AmericanConvexity.Boundary.zeroDividend_boundary_antitoneOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.zeroDividend_boundary_antitoneOn

@@ -33,6 +33,10 @@ import AmericanConvexity.Boundary.BoundaryTest
 import AmericanConvexity.Boundary.ObstacleComparison
 import AmericanConvexity.Boundary.ExpiryBarrier
 import AmericanConvexity.Boundary.NearExpiry
+import AmericanConvexity.Boundary.DelayedPrice
+import AmericanConvexity.Boundary.LocalizationBarrier
+import AmericanConvexity.Boundary.TimeMonotonicity
+import AmericanConvexity.Boundary.BoundaryMonotonicity
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration

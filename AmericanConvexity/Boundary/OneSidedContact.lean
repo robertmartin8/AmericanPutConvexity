@@ -14,7 +14,7 @@ open Set Filter
 open scoped Topology
 
 theorem second_deriv_nonpos_at_left_stationary_max {F : ℝ → ℝ} {x : ℝ}
-    (hF : ContinuousOn F (Iic x)) (hstationary : deriv F x = 0)
+    (hF : ContinuousAt F x) (hstationary : deriv F x = 0)
     (hmax : ∀ᶠ y in 𝓝[<] x, F y ≤ F x) : deriv (deriv F) x ≤ 0 := by
   by_contra hn
   have hpos : 0 < deriv (deriv F) x := lt_of_not_ge hn
@@ -27,7 +27,12 @@ theorem second_deriv_nonpos_at_left_stationary_max {F : ℝ → ℝ} {x : ℝ}
   have hmx : m < x := by dsimp [m]; linarith
   have hanti : StrictAntiOn F (Icc m x) :=
     strictAntiOn_of_deriv_neg (convex_Icc m x)
-      (hF.mono (fun _ hy => hy.2)) (by
+      (by
+        intro y hy
+        rcases eq_or_lt_of_le hy.2 with he | he
+        · simpa [he] using hF.continuousWithinAt
+        · exact (differentiableAt_of_deriv_ne_zero
+            (hall ⟨hlm.trans_le hy.1,he⟩).1.ne).continuousAt.continuousWithinAt) (by
         intro y hy
         rw [interior_Icc] at hy
         exact (hall ⟨hlm.trans hy.1,hy.2⟩).1)
@@ -43,33 +48,39 @@ contact value, this is a test touching the price from below. Only the test
 function has a second derivative across the boundary. -/
 theorem spatial_test_at_boundary {k h : ℝ} {p : ℝ → ℝ → ℝ} {b F : ℝ → ℝ}
     (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t)
-    (hF : ContDiff ℝ 2 F)
+    (hF : ContDiffAt ℝ 2 F (b t))
     (hmax : IsLocalMax (fun x => F x - p x t) (b t)) :
     deriv F (b t) = -Real.exp (b t) ∧
       deriv (deriv F) (b t) ≤ -Real.exp (b t) := by
-  have hdF : Differentiable ℝ F := hF.differentiable (by norm_num)
-  have hddF : Differentiable ℝ (deriv F) :=
-    (hF.deriv' (n := 1)).differentiable (by norm_num)
+  have hdF : DifferentiableAt ℝ F (b t) := hF.differentiableAt (by norm_num)
   have hfit := (hp.price_hasDerivAt_boundary ht)
-  have hsub := ((hdF (b t)).hasDerivAt.sub hfit).deriv
+  have hsub := (hdF.hasDerivAt.sub hfit).deriv
   change deriv (fun x => F x - p x t) (b t) = deriv F (b t) - -Real.exp (b t) at hsub
   rw [hmax.deriv_eq_zero] at hsub
   have hslope : deriv F (b t) = -Real.exp (b t) := by linarith
   refine ⟨hslope,?_⟩
   let G : ℝ → ℝ := fun x => F x - (1 - Real.exp x)
-  have hG : Continuous G := hF.continuous.sub (continuous_const.sub Real.continuous_exp)
-  have hGderiv : deriv G = fun x => deriv F x + Real.exp x := by
-    funext x
-    convert! ((hdF x).hasDerivAt.sub ((Real.hasDerivAt_exp x).const_sub 1)).deriv using 1
-    ring
+  have hpayoff : ContDiffAt ℝ 2 (fun x : ℝ => 1-Real.exp x) (b t) := by fun_prop
+  have hG : ContinuousAt G (b t) := hF.continuousAt.sub hpayoff.continuousAt
+  have hGzero : deriv G (b t) = 0 := by
+    have hd := (hdF.hasDerivAt.sub ((Real.hasDerivAt_exp (b t)).const_sub 1)).deriv
+    change deriv G (b t) = deriv F (b t) - -Real.exp (b t) at hd
+    simpa [hslope] using hd
+  have hGsecond : deriv (deriv G) (b t) = deriv (deriv F) (b t) + Real.exp (b t) := by
+    have he : deriv (fun x : ℝ => 1-Real.exp x) = fun x => -Real.exp x :=
+      funext (fun x => ((Real.hasDerivAt_exp x).const_sub 1).deriv)
+    have hh : deriv (deriv (fun x : ℝ => 1-Real.exp x)) (b t) = -Real.exp (b t) := by
+      rw [he]
+      exact (Real.hasDerivAt_exp (b t)).neg.deriv
+    have hd := iteratedDeriv_fun_sub (n := 2) hF hpayoff
+    simpa [iteratedDeriv_succ,hh,G] using hd
   have hGmax : ∀ᶠ x in 𝓝[<] (b t), G x ≤ G (b t) := by
     filter_upwards [nhdsWithin_le_nhds hmax, self_mem_nhdsWithin] with x hx hxb
     change F x - p x t ≤ F (b t) - p (b t) t at hx
     simpa only [G, hp.exercise x t ht (show x < b t from hxb).le,
       hp.exercise (b t) t ht le_rfl] using hx
-  have hsecond := second_deriv_nonpos_at_left_stationary_max hG.continuousOn
-    (show deriv G (b t) = 0 by simp [hGderiv,hslope]) hGmax
-  rw [hGderiv,deriv_fun_add (hddF (b t)) (Real.differentiableAt_exp), Real.deriv_exp] at hsecond
+  have hsecond := second_deriv_nonpos_at_left_stationary_max hG hGzero hGmax
+  rw [hGsecond] at hsecond
   linarith
 
 end DividendPutSolution
