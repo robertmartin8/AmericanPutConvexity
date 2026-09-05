@@ -28,6 +28,7 @@ import AmericanConvexity.Stopping.ContactMartingale
 import AmericanConvexity.Stopping.LinearPriceComparison
 import AmericanConvexity.Stopping.ClassicalHeatComparison
 import AmericanConvexity.Stopping.ClassicalSupermartingale
+import AmericanConvexity.Stopping.UsualBrownianValue
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -918,3 +919,33 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.brownian_liuRange_boundary_conclusions
+
+/-- info: 'AmericanConvexity.Stopping.bounded_continuous_supermartingale_rightCont' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.bounded_continuous_supermartingale_rightCont
+
+/-- info: 'AmericanConvexity.Stopping.brownianRightAugAmericanPut_eq_raw' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianRightAugAmericanPut_eq_raw
+
+/-- info: 'AmericanConvexity.Stopping.bounded_supermartingale_completion' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.bounded_supermartingale_completion
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualFiltration_isComplete' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualFiltration_isComplete
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualAmericanPut_eq_raw' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualAmericanPut_eq_raw
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsual_boundary_conclusions' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsual_boundary_conclusions

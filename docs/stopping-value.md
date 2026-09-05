@@ -2,8 +2,8 @@
 
 The curvature proof is complete for `DividendPutSolution`. This development
 defines the financial value and now proves that any pair satisfying that
-classical contract equals the Brownian American stopping value. Classical-pair
-existence and the raw/usual-filtration comparison remain open.
+classical contract equals the Brownian American stopping value on both the raw
+and completed usual filtrations. Classical-pair existence remains open.
 
 ## Exact financial definition
 
@@ -49,9 +49,10 @@ and `brownian_filtered` proves adaptation and independence of future increments
 from that filtration. No bare Brownian-existence premise is left in the
 definitions `brownianAmericanPut` and `brownianExerciseBoundary`.
 
-This is the raw natural filtration. Equality with a formulation using the usual
-completed/right-continuous augmentation is not yet proved. No representation
-invariance across arbitrary Brownian probability spaces is claimed.
+This is the raw natural filtration. `UsualBrownianValue.lean` now proves equality
+with the completed/right-continuous usual augmentation from the classical
+contract. No representation invariance across arbitrary Brownian probability
+spaces is claimed.
 
 The financial modules reuse MathFin's GBM value **definition** and, in the local
 stochastic bridge, its general Ito/local-martingale theorem. They do not import
@@ -238,9 +239,9 @@ property and augmented local martingality up to first contact. The later
 directly, removing that stochastic premise from the final reductions. The
 subsequent Gaussian comparison removes the global supermartingale premise too.
 
-This transfers the particular adapted candidate process, not all admissible
-stopping rules or the value supremum. Equality of raw- and augmented-filtration
-American values is still not claimed.
+This local transfer concerns the particular adapted candidate process, not
+all admissible stopping rules or the value supremum. The separate development
+below now proves equality of the raw and usual-filtration American values.
 
 ## Checked interior approximation and contact-time limit
 
@@ -381,8 +382,34 @@ without any additional stochastic premise. The boundary is identified with
 stock-boundary curvature for the actual stopping-value threshold. Named
 zero-dividend and Liu-range versions specialize this theorem; they do not
 independently formalize the published proofs. All remain conditional on a pair
-satisfying the classical contract. Existence/regularity of that pair and equality
-of the raw- and usual-augmented-filtration American values are not proved.
+satisfying the classical contract. Existence/regularity of that pair remains
+unproved. The following development proves raw/usual-filtration value equality.
+
+## Checked completion and the usual Brownian filtration
+
+`FiltrationExtension.lean` proves that a uniformly bounded continuous-path
+supermartingale remains a supermartingale on the right-continuation of its
+filtration. For a past event in `F_(i+)`, compare at times decreasing to `i`
+from above and pass the set-integral inequality through dominated convergence.
+Adjoining ambient-measurable null sets separately preserves conditional
+expectations. `AugmentedValue.lean` first proves value equality for this
+right-continuous ambient-null extension.
+
+`CompletedSpace.lean` then genuinely completes the ambient measure space using
+Mathlib's completion, rather than treating ambient-null augmentation as full
+completion. Original measurable functions have unchanged integrals. Their
+bounded supermartingale property transfers by the set-integral criterion.
+
+`brownianUsualFiltration` adjoins all null events in this completed space and
+takes the right-continuation. Its `IsComplete` and `IsRightContinuous` instances
+are proved. The classical candidate is a supermartingale on this filtration.
+All usual-filtration stopping rewards are bounded above by its initial value;
+the original contact rule remains admissible and has the same expected reward
+after completion. Therefore `brownianUsualAmericanPut_eq_raw` proves equality
+of the two financial values for positive initial spot under the classical
+contract. The usual contact threshold is identified with the classical boundary,
+and `brownianUsual_boundary_conclusions` proves weak log curvature and strict
+stock curvature for it. No extra filtration or stochastic premise remains.
 
 ## Price identification suffices for boundary identification
 
@@ -418,14 +445,13 @@ curvature theorems therefore have no separate price-identification premise.
 
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
-of any such pair against the raw stopping value is now proved. The remaining
+of any such pair against both raw and usual stopping values is now proved. The remaining
 construction includes the needed existence, continuation PDE, strict continuation,
 positive-time boundary regularity, smooth fit and gradient trace, joint price
 continuity, and tail behavior. No such facts follow merely from the supremum
 definition or the spot-convexity proof above.
 
-In particular, strict positivity of the financial threshold, separation from
-the strike at positive maturity, continuity of that threshold, and legitimacy
-of its logarithm as the classical boundary are not established here. The
-augmented-filtration comparison is also outstanding. These gaps remain visible;
-none is replaced with an axiom or added as a field of the financial value.
+The identification and resulting boundary properties remain conditional on
+existence of that pair; they are not unconditional existence results for the
+financial free boundary. This gap remains visible and is not replaced with
+an axiom or added as a field of the financial value.

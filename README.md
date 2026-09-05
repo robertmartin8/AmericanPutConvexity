@@ -12,7 +12,8 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > `b'(t)<0`, and the reconstructed stock boundary satisfies `B''(tau)>0`.
 > No extra interval, speed, expiry, zero-count or derivative-trace premise remains.
 > Identification with the actual Brownian American stopping value is now proved
-> from this contract, with no extra stochastic premise. Classical-solution
+> from this contract, on both the raw and completed usual filtrations, with no
+> extra stochastic premise. Classical-solution
 > existence and the independent strict-log-curvature CCJZ proof remain open.
 
 ## Proposed extension and published checkpoints
@@ -68,8 +69,10 @@ normalization now give global supermartingality, including the process frozen
 at maturity. `ClassicalSupermartingale.lean` identifies the classical price with
 the stopping supremum and proves both curvature conclusions for the actual
 boundary. Zero-dividend and Liu-range financial specializations are explicit.
-Existence of the classical pair and equality with the usual-augmented-filtration
-American value are not asserted.
+`UsualBrownianValue.lean` now proves equality with the completed usual-filtration
+American value and transfers both boundary-curvature conclusions to it. Its
+filtration has checked completeness and right-continuity. Existence of the
+classical pair is still not asserted.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -224,6 +227,10 @@ All files below are included in the project build.
 | [`Stopping/BrownianTransition.lean`](AmericanConvexity/Stopping/BrownianTransition.lean) | The raw-filtration conditional Brownian transition, with exact scaled-increment variance |
 | [`Stopping/ClassicalTransition.lean`](AmericanConvexity/Stopping/ClassicalTransition.lean) | Physical-time discount/drift normalization and the conditional price inequality before maturity |
 | [`Stopping/ClassicalSupermartingale.lean`](AmericanConvexity/Stopping/ClassicalSupermartingale.lean) | Global supermartingality, price and boundary identification, and actual-boundary curvature from the classical contract; includes zero-dividend and Liu-range milestones |
+| [`Stopping/FiltrationExtension.lean`](AmericanConvexity/Stopping/FiltrationExtension.lean) | Bounded continuous supermartingales survive right continuation and ambient-null augmentation |
+| [`Stopping/AugmentedValue.lean`](AmericanConvexity/Stopping/AugmentedValue.lean) | Equality of raw and right-continuous ambient-null-augmented stopping values from the classical contract |
+| [`Stopping/CompletedSpace.lean`](AmericanConvexity/Stopping/CompletedSpace.lean) | Full ambient completion preserves original measurable integrals and bounded supermartingales |
+| [`Stopping/UsualBrownianValue.lean`](AmericanConvexity/Stopping/UsualBrownianValue.lean) | Complete right-continuous Brownian filtration, equality with the raw stopping value, and usual-filtration boundary curvature from the classical contract |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
@@ -386,7 +393,8 @@ curvature, the interval invariant, and the tangency contradiction are proved.
 The direct three-point argument bypasses the unfinished zero-number route.
 Strict stock curvature is also proved with no extra strictness premise.
 Actual stopping-value identification is now proved from the classical contract;
-existence and the usual-filtration comparison remain open. The weaker parameter cases are tracked
+the usual-filtration comparison is also proved. Classical existence remains
+open. The weaker parameter cases are tracked
 separately from independent verification of the published proofs.
 The financial value and its in-the-money contact threshold are now constructed;
 their checked properties and precise remaining PDE/filtration gaps are in

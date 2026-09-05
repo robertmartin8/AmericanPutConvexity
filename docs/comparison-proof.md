@@ -512,8 +512,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    natural filtration, and its payoff bounds, spot shape, and contact threshold
    are proved independently of the classical contract. Contact martingality and
    global supermartingality now prove price identification, boundary identification,
-   and both actual-boundary curvature conclusions from the contract. Classical
-   existence/regularity and the usual-filtration comparison remain open; see
+   and both actual-boundary curvature conclusions from the contract. Equality
+   with the completed usual-filtration value and its boundary curvature are
+   also proved. Classical existence/regularity remains open; see
    [the financial verification frontier](stopping-value.md).
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak

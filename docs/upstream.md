@@ -131,4 +131,14 @@ independence from the raw past, with Mathlib's Gaussian scaling theorem.
 identification and the actual boundary curvature conclusions. These final
 proof chains, including the zero-dividend and Liu-range specializations, have
 guarded audits allowing only the three standard axioms. Classical-solution
-existence and the raw/usual-filtration value comparison remain unproved.
+existence remains unproved. The raw/usual-filtration comparison is now checked
+in `UsualBrownianValue.lean`.
+
+`FiltrationExtension.lean` uses MathFin's proved `condExp_sup_nulls` to transfer
+supermartingality under ambient-null augmentation. Its right-continuation
+argument uses bounded dominated convergence on past-measurable sets, not an
+upstream unfinished submartingale optional-sampling result. `CompletedSpace.lean`
+uses Mathlib's actual measure completion and integral-trimming theorem to move
+to the complete ambient space. The completed filtration in `UsualBrownianValue.lean`
+has proved `IsComplete` and `IsRightContinuous` instances. Its value equality
+and final boundary conclusions are guarded against any nonstandard axiom.
