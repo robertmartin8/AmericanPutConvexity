@@ -44,6 +44,7 @@ import AmericanConvexity.Stopping.ActualLocalMeanValue
 import AmericanConvexity.Stopping.ActualTestFunctions
 import AmericanConvexity.Stopping.PricingTests
 import AmericanConvexity.Stopping.ActualSmoothComparison
+import AmericanConvexity.Stopping.ContinuousPriceEvolution
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1394,3 +1395,33 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalPrice_eq_smooth_on_cylinder
+
+/-- info: 'AmericanConvexity.Stopping.compact_continuous_heatFlow_smooth' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.compact_continuous_heatFlow_smooth
+
+/-- info: 'AmericanConvexity.Stopping.linearPriceKernel_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.linearPriceKernel_equation
+
+/-- info: 'AmericanConvexity.Stopping.linearPriceEvolution_smoothAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.linearPriceEvolution_smoothAt
+
+/-- info: 'AmericanConvexity.Stopping.linearPriceEvolution_pricingOperator' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.linearPriceEvolution_pricingOperator
+
+/-- info: 'AmericanConvexity.Stopping.exists_smooth_initial_solution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_smooth_initial_solution
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalPrice_initial_solution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalPrice_initial_solution

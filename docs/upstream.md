@@ -289,3 +289,14 @@ identification. Guarded audits cover the barrier algebra, generic comparison,
 actual predicates and final identification; they permit only the three standard
 axioms. Local Dirichlet-solution existence remains an explicit missing step, not
 an imported or hidden hypothesis asserting regularity of the actual price.
+
+`ContinuousHeatSmoothing.lean` applies Mathlib's all-order parameter-convolution
+regularity theorem with a smooth compact cutoff on the Gaussian kernel and only
+continuous (hence locally integrable) reflected initial data. The kernel and
+initial datum are not confused: no derivative of the datum is used. The existing
+MathFin kernel-side PDE identity, checked Brownian initial trace, and drift/discount
+chain rule then prove the explicit initial-data pricing solution. Guarded audits
+cover the smoothing theorem, generalized PDE, smooth evolution and both constructed
+existence results in `ContinuousPriceEvolution.lean`; only the three standard
+axioms occur. No lateral-boundary solution or full Dirichlet existence theorem
+has been imported or assumed by this construction.

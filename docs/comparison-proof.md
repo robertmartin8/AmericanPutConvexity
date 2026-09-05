@@ -553,9 +553,12 @@ and strict stock curvature together. It does not assert strict log curvature.
    inequalities for jointly C3 tests are proved. A time-weighted maximum argument
    now derives local smooth comparison from those tests, including terminal time.
    This identifies the actual price with any supplied continuous, interior-C3
-   solution with matching initial/lateral data. Constructing those local smooth
-   solutions and deriving interior differentiability remain open, as do full
-   continuous-time dynamic programming, smooth fit and boundary regularity.
+   solution with matching initial/lateral data. The initial-data contribution is
+   now constructed from merely continuous compact data, with all-order heat
+   smoothing and exact pricing PDE; a cutoff matches the actual initial price
+   on any finite interval. The lateral correction, full local solution and
+   interior differentiability remain open, as do full continuous-time dynamic
+   programming, smooth fit and boundary regularity.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

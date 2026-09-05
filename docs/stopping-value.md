@@ -906,3 +906,35 @@ existence theorem for `F`. The remaining interior-regularity route is to constru
 smooth solutions for the actual continuous parabolic boundary data and apply
 this comparison result. No price differentiability, smooth fit, or exercise-boundary
 regularity was added as an assumption on the actual price in the comparison proof.
+
+## Constructed initial-data contribution
+
+`ContinuousHeatSmoothing.lean` strengthens the existing heat evolution: continuous
+compactly supported data, with no differentiability hypothesis, produces a jointly
+smooth heat solution at positive times. The proof puts a smooth cutoff on the
+**kernel** factor of Mathlib's parameter-dependent convolution theorem. The cutoff
+equals one on the support of the datum, which remains only locally integrable in
+that theorem. Thus all derivatives are taken on the kernel side. The generalized
+`LinearPriceComparison.lean` chain-rule/PDE lemmas now require only continuous
+compact data; the prior classical comparison clients still compile.
+
+`ContinuousPriceEvolution.lean` uses the explicit discounted, drifted Gaussian
+evolution already defined as `linearPriceEvolution`. For any continuous compact
+datum `f`, any `k,h,a`, it constructs `U` with all of the following checked:
+
+- joint continuity, including the initial time;
+- exact initial value `U(x,a)=f(x)`;
+- joint smoothness of every order for `t>a`;
+- `pricingOperator(k,h,U)=0` for `t>a`.
+
+A continuous compact cutoff extension then matches the actual canonical price's
+time-`a` trace on any prescribed finite spatial interval `[L,R]`. The resulting
+`exists_canonicalPrice_initial_solution` supplies a constructed smooth PDE
+solution with exactly that initial trace, rather than assuming its existence.
+
+This is only the initial-data contribution to the cylinder Dirichlet problem.
+Its lateral values at `L` and `R` are generally not the actual price's values.
+Constructing a correction with zero initial data and the required lateral traces
+remains open. Consequently this construction alone does not satisfy the earlier
+local-identification theorem's full hypotheses or prove interior regularity of
+the actual price. Smooth fit and free-boundary regularity also remain open.

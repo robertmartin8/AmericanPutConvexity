@@ -171,8 +171,12 @@ now derives parabolic comparison from these tests, with only continuity of the
 subsolution and interior smoothness of the comparator. `ActualSmoothComparison.lean`
 identifies the actual price with any continuous, interior-C3 PDE solution having
 its initial/lateral data on a continuation cylinder, including terminal time.
-Constructing such local smooth solutions, full continuous-time dynamic programming
-and classical PDE/boundary regularity remain unproved.
+`ContinuousHeatSmoothing.lean` now proves all-order positive-time smoothing from
+merely continuous compact data. `ContinuousPriceEvolution.lean` constructs a
+smooth pricing-equation solution matching the actual price's initial trace on
+any finite spatial interval. The missing lateral-boundary correction still
+prevents using it as the full local Dirichlet solution. Full continuous-time
+dynamic programming and classical PDE/boundary regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -371,6 +375,8 @@ All files below are included in the project build.
 | [`Stopping/PricingTests.lean`](AmericanConvexity/Stopping/PricingTests.lean) | Exact transformation to upper/lower test inequalities for the normalized pricing equation |
 | [`Stopping/SmoothPricingComparison.lean`](AmericanConvexity/Stopping/SmoothPricingComparison.lean) | Parabolic comparison from smooth tests for continuous functions, with terminal-time recovery and only interior-C3 comparator regularity |
 | [`Stopping/ActualSmoothComparison.lean`](AmericanConvexity/Stopping/ActualSmoothComparison.lean) | Actual-price upper/lower local comparison and identification with a supplied smooth Dirichlet solution; existence remains separate |
+| [`Stopping/ContinuousHeatSmoothing.lean`](AmericanConvexity/Stopping/ContinuousHeatSmoothing.lean) | All-order joint heat smoothing for continuous compact data; no derivatives of the datum |
+| [`Stopping/ContinuousPriceEvolution.lean`](AmericanConvexity/Stopping/ContinuousPriceEvolution.lean) | Constructed continuous initial-data pricing evolution, exact initial trace, positive-time smoothness and PDE; actual-price interval traces included |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
