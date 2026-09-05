@@ -30,6 +30,8 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > yielding local bounds on boundary displacement by price/gradient increments.
 > A new actual-price temporal comparison bounds every price increment by the
 > at-strike short-maturity price, which also controls squared boundary displacement.
+> An explicit expiry cap now gives a square-root temporal price bound and a
+> local quarter-power continuity bound for the actual logarithmic boundary.
 
 ## Proposed extension and published checkpoints
 
@@ -175,8 +177,15 @@ uniform expiry-increment bound to all maturities. `ActualTemporalModulus.lean`
 identifies the maximum expiry gap at strike, giving
 `abs(p(x,t)-p(x,s)) <= p(0,abs(t-s))` for nonnegative maturities. The right-hand
 side tends to zero. `ActualBoundaryTemporalModulus.lean` inserts this bound into
-the boundary-increment inequality. Explicit temporal rates and further
-regularity sufficient for boundary smoothness are still needed.
+the boundary-increment inequality. `ExpiryUpperCap.lean` constructs the smooth
+positive-time supersolution `(sqrt(x^2+4*t)-x)/2+abs(k-h-1)*t`.
+`ActualExpiryUpperBound.lean` compares the actual price to this cap and proves
+`p(0,t) <= sqrt(t)+abs(k-h-1)*t`, hence the same bound for every temporal
+price increment with `t` replaced by the maturity difference.
+`ActualBoundaryQuarterBound.lean` combines it with quadratic separation to
+prove a local quarter-power continuity bound for the actual log boundary.
+Zero-dividend and Liu-range checkpoints are explicit. Stronger regularity
+sufficient for boundary smoothness is still needed.
 
 `BermudanConvergence.lean` now proves that restricting exercise to finite grids
 converges to the actual American stopping value, without changing the underlying
@@ -506,6 +515,9 @@ All files below are included in the project build.
 | [`Stopping/ActualTemporalComparison.lean`](AmericanConvexity/Stopping/ActualTemporalComparison.lean) | Uniform expiry-increment bounds propagate to every later maturity |
 | [`Stopping/ActualTemporalModulus.lean`](AmericanConvexity/Stopping/ActualTemporalModulus.lean) | At-strike short-maturity price controls all temporal price increments and tends to zero |
 | [`Stopping/ActualBoundaryTemporalModulus.lean`](AmericanConvexity/Stopping/ActualBoundaryTemporalModulus.lean) | Local squared boundary displacement bounded by the at-strike short-maturity price |
+| [`Stopping/ExpiryUpperCap.lean`](AmericanConvexity/Stopping/ExpiryUpperCap.lean) | Explicit square-root payoff majorant and pricing supersolution |
+| [`Stopping/ActualExpiryUpperBound.lean`](AmericanConvexity/Stopping/ActualExpiryUpperBound.lean) | Actual expiry and uniform temporal square-root bounds |
+| [`Stopping/ActualBoundaryQuarterBound.lean`](AmericanConvexity/Stopping/ActualBoundaryQuarterBound.lean) | Genuine local quarter-power continuity of the actual log boundary, with restricted parameter checkpoints |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

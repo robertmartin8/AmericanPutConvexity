@@ -61,6 +61,8 @@ import AmericanConvexity.Stopping.ActualQuadraticSeparation
 import AmericanConvexity.Stopping.ActualBoundaryIncrement
 import AmericanConvexity.Stopping.ActualTemporalModulus
 import AmericanConvexity.Stopping.ActualBoundaryTemporalModulus
+import AmericanConvexity.Stopping.ActualExpiryUpperBound
+import AmericanConvexity.Stopping.ActualBoundaryQuarterBound
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1981,3 +1983,58 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_increment_le_atStrike
+
+/-- info: 'AmericanConvexity.Stopping.expiryUpperCap_supersolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expiryUpperCap_supersolution
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_le_expiryUpperCap' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_le_expiryUpperCap
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_atStrike_sqrt_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_atStrike_sqrt_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_temporal_sqrt_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_temporal_sqrt_bound
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_temporal_sqrt_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_temporal_sqrt_bound
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_temporal_sqrt_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_temporal_sqrt_bound
+
+/-- info: 'AmericanConvexity.Stopping.quarter_bound_of_square_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.quarter_bound_of_square_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_squared_increment_sqrt_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_squared_increment_sqrt_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_local_quarter_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_local_quarter_bound
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_local_quarter_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_local_quarter_bound
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_local_quarter_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_local_quarter_bound

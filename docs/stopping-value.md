@@ -30,6 +30,8 @@ The latest quantitative step integrates this bound and controls boundary
 displacement by price and gradient increments at the earlier exercise spot.
 Actual temporal comparison now bounds all price increments by the at-strike
 short-maturity price and transfers that scalar modulus to the boundary.
+An explicit expiry supersolution now gives a square-root temporal price bound
+and a local quarter-power continuity bound for the actual log boundary.
 
 ## Exact financial definition
 
@@ -1516,7 +1518,7 @@ abs(p(x,t)-p(x,s)) <= p(0,abs(t-s))     (s,t >= 0).
 Joint price continuity and the zero expiry payoff at strike prove
 `p(0,delta)->0` as `delta->0`. This modulus is uniform in log spot and in both
 maturities. Named zero-dividend and Liu-range specializations are checked.
-An explicit power-law rate is not yet proved.
+An explicit power-law rate is now proved in the following section.
 
 `ActualBoundaryTemporalModulus.lean` combines this with the earlier quadratic
 separation result. Fix `t0>0` and `A=k-h*exp(b(t0))>0`. For nearby `s<=v`,
@@ -1531,6 +1533,78 @@ are explicit. Guarded transitive audits cover the strict slope, time-increment
 PDE, maximum principle, global comparison, scalar modulus and boundary
 consequence, allowing only the three standard axioms.
 
-The next rate-producing step is an explicit short-maturity upper bound at
-strike. Even such a rate would not itself prove the outstanding positive-time
-boundary smoothness; the full unconditional classical contract remains open.
+The explicit short-maturity upper bound at strike is now proved below. It does
+not itself prove the outstanding positive-time boundary smoothness; the full
+unconditional classical contract remains open.
+
+## An explicit expiry cap and quantitative temporal rates
+
+`ExpiryUpperCap.lean` defines, with `alpha=k-h-1`,
+
+```text
+U(x,t) = (sqrt(x^2+4*t)-x)/2 + abs(alpha)*t.
+```
+
+For `t>=0`, it dominates both zero and `-x`, hence the put payoff. It is jointly
+continuous, including at expiry, and smooth at positive times. Writing
+`r=sqrt(x^2+4*t)`, its derivatives are
+
+```text
+U_x  = (x/r-1)/2,       abs(U_x) <= 1,
+U_xx = 2*t/r^3,
+U_t  = 1/r+abs(alpha).
+```
+
+Since `2*t/r^3<=1/r`, the diffusion residual is nonnegative. The drift correction
+dominates `alpha*U_x`, and `k*U>=0`, proving the pricing supersolution inequality.
+All derivatives and signs are checked, not postulated.
+
+`ActualExpiryUpperBound.lean` applies actual-price upper-support comparison to
+`U+epsilon` on a finite rectangle. On a sufficiently negative left edge,
+`U>=1>=p`; on the right, price decay supplies the `epsilon` bound. Sending
+`epsilon` to zero gives `p<=U`. At strike this yields, for every `t>=0`,
+
+```text
+p(0,t) <= sqrt(t)+abs(k-h-1)*t.
+```
+
+The earlier temporal comparison therefore proves, uniformly over all log spots
+and all nonnegative maturities,
+
+```text
+abs(p(x,t)-p(x,s)) <= sqrt(abs(t-s))+abs(k-h-1)*abs(t-s).
+```
+
+This is a square-root temporal rate; it uses no European formula or
+classical-solution premise. Zero-dividend and Liu-range specializations are
+explicit.
+
+## A local quarter-power modulus for the actual log boundary
+
+Fix `t0>0` and `A=k-h*exp(b(t0))>0`. The preceding results give, for nearby
+ordered maturities `s<=v`,
+
+```text
+A/4*(b(s)-b(v))^2 <= sqrt(v-s)+abs(k-h-1)*(v-s).
+```
+
+`ActualBoundaryQuarterBound.lean` shrinks the neighborhood so `v-s<=1`, bounds
+the linear term by a multiple of the square root, and takes another square
+root. It proves that there are `eta>0` and `C>0` such that **every pair** of
+maturities in that neighborhood satisfies
+
+```text
+dist(b(s),b(v)) <= C*sqrt(sqrt(dist(s,v))).
+```
+
+The nested square root is the quarter-power modulus for nonnegative distance.
+One checked choice of constant is
+`C=1+4*(1+abs(k-h-1))/A`. The proof treats both maturity orderings explicitly.
+Named zero-dividend and Liu-range boundary estimates are retained.
+
+Guarded transitive audits cover the cap supersolution, actual comparison,
+temporal rates and quarter-power boundary estimate, allowing only the three
+standard axioms. This strengthens continuity to a quantitative local modulus;
+it does **not** prove boundary differentiability, higher regularity, or the full
+unconditional classical pricing contract. Positive-time boundary smoothness
+remains the outstanding contract obligation.
