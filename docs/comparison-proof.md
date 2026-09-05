@@ -523,6 +523,10 @@ and strict stock curvature together. It does not assert strict log curvature.
    exact contact/strict-continuation characterization are also now proved from
    the stopping value. The resulting continuation domain is open. Positivity
    of the stock threshold itself and regularity of its logarithm remain open.
+   Upper semicontinuity and continuity from shorter maturities are proved, but
+   continuity from longer maturities remains open. An actual-price first-contact
+   rule is now constructed with attained contact and pre-contact continuation;
+   its optimality and the dynamic programming principle are not yet proved.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

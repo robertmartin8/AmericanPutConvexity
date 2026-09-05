@@ -510,3 +510,31 @@ threshold at strike one and volatility `sqrt(2)`. It starts at one and lies in
 coordinates using `exp(x)`. Joint price continuity proves the actual
 `canonicalContinuationRegion` is open. None of this asserts `B(T)>0`; a finite
 logarithmic boundary and its regularity still need to be established.
+
+## One-sided boundary continuity and actual first contact
+
+`BoundarySemicontinuity.lean` proves upper semicontinuity of the actual threshold
+from maturity continuity of the stopping value. If a test spot is strictly above
+the threshold and at most the strike, its strictly positive continuation premium
+persists at nearby maturities. If the test spot exceeds strike, the uniform
+threshold bound suffices. Thus all nearby thresholds remain below any fixed
+strict upper bound for the threshold at the base time. Maturity monotonicity
+then proves continuity from shorter maturities. This is not a proof of continuity
+from longer maturities or of the right limit at expiry. The results apply to the
+raw and usual models, and to `canonicalStockBoundary` with its real-time clamp.
+
+`ActualContact.lean` no longer needs a classical pair to construct a candidate
+exercise rule. Along the frozen normalized log path
+`x+(k-h-1)*min(t,T)+sqrt(2)*W(min(t,T))`, the actual canonical price minus payoff
+is continuous, adapted, nonnegative and zero at maturity. Its first zero defines
+`canonicalContactRule`; `brownianUsualActualContactRule` instantiates it on the
+completed usual Brownian space. `canonicalLogPath_exp` verifies the exact GBM
+normalization. Contact is attained, all prior points belong to the actual open
+continuation region, and contact before expiry lies at or below the stock
+threshold. These conclusions use neither boundary smoothness nor the PDE.
+
+**Admissibility is not optimality.** No theorem here identifies this rule's
+expected payoff with the stopping supremum. Dynamic programming, the corresponding
+martingale characterization, and the continuation PDE remain to be proved for
+the actual price. The previously proved optimality results for a given classical
+pair do not discharge these existence-side obligations.

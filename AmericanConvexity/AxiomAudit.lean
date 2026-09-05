@@ -31,6 +31,8 @@ import AmericanConvexity.Stopping.ClassicalSupermartingale
 import AmericanConvexity.Stopping.UsualBrownianValue
 import AmericanConvexity.Stopping.CanonicalPrice
 import AmericanConvexity.Stopping.StrictExerciseGeometry
+import AmericanConvexity.Stopping.BoundarySemicontinuity
+import AmericanConvexity.Stopping.ActualContact
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1016,3 +1018,33 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalContinuationRegion_isOpen
+
+/-- info: 'AmericanConvexity.Stopping.threshold_upperSemicontinuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.threshold_upperSemicontinuous
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockBoundary_continuousWithinAt_left' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockBoundary_continuousWithinAt_left
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualActualContactRule' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualActualContactRule
+
+/-- info: 'AmericanConvexity.Stopping.canonicalContactRule_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalContactRule_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalContactRule_continuation_before' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalContactRule_continuation_before
+
+/-- info: 'AmericanConvexity.Stopping.canonicalContactRule_exercise_before_expiry' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalContactRule_exercise_before_expiry

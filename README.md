@@ -95,6 +95,13 @@ and strict continuation occur exactly below/at and above this threshold. The
 continuation region is open. Strict positivity of the threshold itself, needed
 for a finite logarithmic boundary, remains unproved.
 
+`BoundarySemicontinuity.lean` proves upper semicontinuity of the financial
+threshold and continuity from shorter maturities. It does not prove continuity
+from longer maturities. `ActualContact.lean` constructs an admissible first-contact
+rule directly from the actual price/payoff gap on the completed usual Brownian
+space. Contact and pre-contact continuation are proved without a classical pair;
+optimality of this rule and the dynamic programming principle remain open.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -259,6 +266,8 @@ All files below are included in the project build.
 | [`Stopping/SpotDecay.lean`](AmericanConvexity/Stopping/SpotDecay.lean) | Large-spot decay of the stopping supremum from pathwise compactness and nearly optimal rules, uniform over bounded maturities |
 | [`Stopping/PricePositivity.lean`](AmericanConvexity/Stopping/PricePositivity.lean) | Positive Gaussian maturity-payoff expectation and strict positivity of raw, usual and normalized American prices |
 | [`Stopping/StrictExerciseGeometry.lean`](AmericanConvexity/Stopping/StrictExerciseGeometry.lean) | Threshold strictly below strike, full contact/continuation characterization, and an open continuation domain, without a PDE premise |
+| [`Stopping/BoundarySemicontinuity.lean`](AmericanConvexity/Stopping/BoundarySemicontinuity.lean) | Upper semicontinuity and shorter-maturity-side continuity of the financial threshold, without a PDE premise |
+| [`Stopping/ActualContact.lean`](AmericanConvexity/Stopping/ActualContact.lean) | Actual-price first-contact rule, GBM normalization, attained contact and pre-contact continuation; optimality not yet proved |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
