@@ -12,12 +12,13 @@ record successive checkpoints; older references to an open interior-PDE step
 are superseded by the later construction. `PositiveExerciseBoundary.lean` now
 proves a uniform positive lower bound on the threshold and constructs the actual
 logarithmic boundary. `ActualBoundaryContinuity.lean` proves full stock/log
-boundary continuity, including expiry. Smooth fit, gradient trace and positive-time
-boundary smoothness remain open.
+boundary continuity, including expiry. `ActualSmoothFit.lean` proves the
+one-sided smooth-fit derivative. The continuation-side gradient trace and
+positive-time boundary smoothness remain open.
 
-The final section now also proves almost-sure convergence of actual optimal
-contact times to zero as the initial price approaches exercise. Passing payoff
-difference quotients to expectations, to establish smooth fit, remains open.
+The final sections prove almost-sure convergence of actual optimal contact times
+to zero at exercise, bounded convergence of the resulting payoff quotients, and
+smooth fit by comparison with the actual price quotient.
 
 ## Exact financial definition
 
@@ -494,9 +495,9 @@ time, with no classical-solution premise or optimal-rule assumption.
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
 of any such pair against both raw and usual stopping values is now proved. The remaining
-construction still requires positive-time boundary smoothness, smooth fit and
-gradient trace. Interior PDE regularity, positivity of the threshold and boundary
-continuity are now proved below; none follows merely from the supremum
+construction still requires positive-time boundary smoothness and gradient trace.
+Interior PDE regularity, positivity of the threshold, boundary continuity and
+smooth fit are now proved below; none follows merely from the supremum
 definition or the spot-convexity proof above.
 
 The identification and resulting boundary properties remain conditional on
@@ -1125,8 +1126,8 @@ both constructed existence results, local identification, smoothness and PDE.
 They allow only `propext`, `Classical.choice` and `Quot.sound`.
 
 This closes **interior** regularity, not classical-pair existence. Positivity of
-the stock threshold and full boundary continuity are proved below. Smooth fit
-and its gradient trace, and positive-time boundary smoothness remain open.
+the stock threshold, full boundary continuity and smooth fit are proved below.
+The gradient trace and positive-time boundary smoothness remain open.
 The independent published CCJZ strict-log-curvature proof also remains separate.
 
 ## Positive exercise threshold and actual logarithmic boundary
@@ -1170,8 +1171,8 @@ The final checked conclusions include:
 No classical pricing contract, smooth fit, boundary continuity, or optimal
 perpetual-option formula is assumed. This comparator is only a proved upper
 bound; it is not asserted to be the perpetual option value. Guarded audits allow
-only the three standard axioms. Boundary continuity is proved next; smooth fit,
-gradient trace and boundary smoothness remain open.
+only the three standard axioms. Boundary continuity and smooth fit are proved
+below; the gradient trace and boundary smoothness remain open.
 
 ## Full actual-boundary continuity, including expiry
 
@@ -1214,8 +1215,8 @@ results include:
 
 The time clamp supplies the two-sided statement at zero; the substantive part
 is the right-hand limit. Guarded transitive audits allow only the three standard
-axioms. Smooth fit, the continuation-side gradient trace, and positive-time
-boundary smoothness remain missing from the full classical pricing contract.
+axioms. Smooth fit is proved below; the continuation-side gradient trace and
+positive-time boundary smoothness remain missing from the classical contract.
 
 ## Optimal contact times shrink to zero at exercise
 
@@ -1260,7 +1261,63 @@ the upstream zero-one theorem, Gaussian scaling, germ measurability, probability
 one, drifted excursions and the final contact-time limit. All use only the three
 standard axioms.
 
-This is a probabilistic regularity result, **not yet smooth fit**. The remaining
-next step is to combine optimality with bounded logarithmic-payoff difference
-quotients and pass them through expectation. The boundary derivative, its
-continuation-side trace, and positive-time boundary smoothness remain open.
+This probabilistic regularity result alone is **not smooth fit**. The next
+section combines it with optimality and bounded logarithmic-payoff difference
+quotients to prove the boundary derivative. Its continuation-side trace and
+positive-time boundary smoothness remain open.
+
+## Smooth fit of the actual stopping price
+
+`PayoffSlope.lean` proves that `max(1-exp(x),0)` is globally 1-Lipschitz. On
+the negative half-line the exponential derivative is at most one; the checked
+proof uses the elementary exponential tangent inequality and handles crossing
+the payoff kink separately. Consequently, for any fixed stopped time `s>=0`
+and log-return `D`, the quotient
+
+```text
+exp(-k*s) * (payoff(x+D)-payoff(b+D)) / (x-b)
+```
+
+has absolute value at most one for `k>=0`. This remains valid for an unbounded
+stock multiplier and at `x=b`, where Lean's total division gives zero.
+Only the punctured right-hand limit is used for differentiation.
+
+As `x->b<0`, with `s(x)->0` and `D(x)->0`, both payoff arguments eventually lie
+below strike. The quotient then equals
+`-exp(-k*s(x)+D(x))*slope(exp,b,x)` and tends to `-exp(b)`.
+`StoppedSlopeExpectation.lean` identifies this expression with the normalized
+GBM stopped-reward difference quotient for the actual optimal rule chosen at
+`x`. The previously proved contact-time limit and Brownian path continuity at
+zero give the required almost-sure limit. Checked measurability, the constant
+bound one and filter-form dominated convergence pass it through expectation.
+
+`ActualSmoothFit.lean` compares the actual price quotient to these quantities.
+For `x>b`, the rule optimal at `x` is also admissible at `b`, so
+
+```text
+(payoff(x)-payoff(b))/(x-b)
+  <= (p(x,t)-p(b,t))/(x-b)
+  <= E[(reward(x,tau_x)-reward(b,tau_x))/(x-b)].
+```
+
+The left bound uses payoff domination and the already proved value matching;
+the right uses proved optimality at `x` and the stopping supremum at `b`.
+Both outside terms tend to `-exp(b)`, proving the middle limit. Thus, for
+`k>0`, `0<=h<=k` and `t>0`, `canonicalPrice_smooth_fit` proves exactly
+
+```text
+HasDerivWithinAt (fun x => canonicalPrice k h x t)
+  (-exp(canonicalLogBoundary k h t))
+  (Ici (canonicalLogBoundary k h t)) (canonicalLogBoundary k h t).
+```
+
+This is the `smooth_fit` field of the classical pricing contract, now proved
+for the actual candidate without assuming a classical solution or boundary
+differentiability. A named zero-dividend specialization is checked. Guarded
+transitive audits of the payoff bound, expectation limit, optimality comparison
+and final smooth-fit theorem allow only the three standard axioms.
+
+The distinct `gradient_trace` field asserts convergence of the **interior
+derivatives**, not of difference quotients at the boundary. It remains open,
+as does positive-time smoothness of the exercise boundary. The full classical
+contract and unconditional curvature theorem are therefore not yet complete.

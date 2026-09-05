@@ -525,7 +525,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    smoothness and pricing PDE are now proved without a classical premise.
    A constructed stationary supersolution also proves a uniform positive lower
    bound on the stock threshold and supplies a finite actual logarithmic
-   boundary with value matching. Smooth fit and boundary regularity remain open.
+   boundary with value matching. Actual-price one-sided smooth fit is now proved
+   using optimality and dominated convergence of bounded payoff quotients.
+   The continuation-side gradient trace and boundary smoothness remain open.
    Full continuity of the normalized stock and log boundaries, including expiry,
    is now proved: the interior PDE and maturity monotonicity exclude downward
    jumps, complementing the earlier upper semicontinuity. An actual-price first-contact

@@ -393,3 +393,15 @@ convergence of optimal contact times to zero at exercise under the completed
 measure. The zero-one theorem and all selected new chains audit to only
 `propext`, `Classical.choice` and `Quot.sound`. Smooth fit is not imported or
 asserted by this construction.
+
+`PayoffSlope.lean` proves the global log-payoff Lipschitz bound and uses only
+elementary derivative/limit rules to identify the short-time quotient limit.
+`StoppedSlopeExpectation.lean` checks the GBM normalization against MathFin's
+definition and applies Mathlib's filter-form dominated convergence with bound
+one. Actual-rule measurability and the previously proved almost-sure contact-time
+limit discharge its hypotheses. `ActualSmoothFit.lean` uses the proved
+optimality theorem and the stopping supremum, then Mathlib's squeeze theorem
+and derivative/slope equivalence. No smooth-fit theorem is imported or assumed.
+Guarded audits of the bound, expectation limit, price comparison and final
+one-sided smooth-fit theorem use only the three standard axioms. The interior
+gradient trace and positive-time boundary smoothness remain separate obligations.

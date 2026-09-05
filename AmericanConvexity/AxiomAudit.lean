@@ -52,6 +52,7 @@ import AmericanConvexity.Stopping.ActualInteriorRegularity
 import AmericanConvexity.Stopping.PositiveExerciseBoundary
 import AmericanConvexity.Stopping.ActualBoundaryContinuity
 import AmericanConvexity.Stopping.ContactTimeBoundary
+import AmericanConvexity.Stopping.ActualSmoothFit
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1737,3 +1738,43 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.brownianUsualActualContactTime_tendsto_boundary
+
+/-- info: 'AmericanConvexity.Stopping.putPayoff_norm_sub_le' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.putPayoff_norm_sub_le
+
+/-- info: 'AmericanConvexity.Stopping.discountedPutSlope_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.discountedPutSlope_bound
+
+/-- info: 'AmericanConvexity.Stopping.discountedPutSlope_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.discountedPutSlope_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.actualContactSlope_integral_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualContactSlope_integral_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_slope_le_contactSlope' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_slope_le_contactSlope
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_slope_tendsto_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_slope_tendsto_boundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_smooth_fit' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_smooth_fit
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_smooth_fit' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_smooth_fit
