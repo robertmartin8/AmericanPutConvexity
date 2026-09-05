@@ -113,6 +113,7 @@ import AmericanConvexity.Stopping.ActualCommonPastDerivative
 import AmericanConvexity.Stopping.ActualHeatFluxRightDerivative
 import AmericanConvexity.Stopping.LocalHistoryRateIdentity
 import AmericanConvexity.Stopping.PhysicalBoundaryCurvature
+import AmericanConvexity.Stopping.AEHorizonCurvature
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -5189,3 +5190,63 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_brownianUsualStockBoundary_deriv2_pos
+
+/-- info: 'AmericanConvexity.Stopping.AEBoundedRule.clip_expectedReward' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.AEBoundedRule.clip_expectedReward
+
+/-- info: 'AmericanConvexity.Stopping.AEBoundedRule.reward_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.AEBoundedRule.reward_integrable
+
+/-- info: 'AmericanConvexity.Stopping.aeExerciseValues_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.aeExerciseValues_eq
+
+/-- info: 'AmericanConvexity.Stopping.aeAmericanPutValue_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.aeAmericanPutValue_eq
+
+/-- info: 'AmericanConvexity.Stopping.aeExerciseValues_nonempty' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.aeExerciseValues_nonempty
+
+/-- info: 'AmericanConvexity.Stopping.aeExerciseValues_bddAbove' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.aeExerciseValues_bddAbove
+
+/-- info: 'AmericanConvexity.Stopping.aeExerciseThreshold_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.aeExerciseThreshold_eq
+
+/-- info: 'AmericanConvexity.Stopping.brownianAEExerciseBoundary_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianAEExerciseBoundary_eq
+
+/-- info: 'AmericanConvexity.Stopping.brownianAEBoundary_classical_curvature' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianAEBoundary_classical_curvature
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_brownianAEBoundary_deriv2_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_brownianAEBoundary_deriv2_pos
+
+/-- info: 'AmericanConvexity.Stopping.equalRates_brownianAEBoundary_deriv2_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.equalRates_brownianAEBoundary_deriv2_pos
+
+/-- info: 'AmericanConvexity.Stopping.openRange_brownianAEBoundary_example' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.openRange_brownianAEBoundary_example

@@ -219,6 +219,8 @@ import AmericanConvexity.Stopping.ActualHeatFluxC1
 import AmericanConvexity.Stopping.ActualBoundaryC2
 import AmericanConvexity.Stopping.ActualBoundaryCurvature
 import AmericanConvexity.Stopping.PhysicalBoundaryCurvature
+import AmericanConvexity.Stopping.AEHorizonValue
+import AmericanConvexity.Stopping.AEHorizonCurvature
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation

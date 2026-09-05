@@ -1,5 +1,13 @@
 # Straight-line comparison proof: target and verification frontier
 
+**Current result:** `Stopping/PhysicalBoundaryCurvature.lean` proves the full
+proposed classical curvature conclusion for the actual completed-usual-filtration
+Brownian stopping boundary, including C2 regularity. No classical-solution or
+boundary-smoothness premise remains in that theorem. The earlier technical
+frontiers below are historical where superseded. See the
+[straight-line audit](straight-line-audit.md) for a concise explanation of the
+Sturm replacement, terminal barrier, and correspondence with the supplied proof.
+
 ## Target, conventions, and milestones
 
 The current goal is to verify the user's proposed proof for the Black--Scholes
@@ -24,14 +32,14 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Proved on the original normalized classical contract |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Proved for the actual boundary, with C2 regularity and strict stock curvature |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Proved on the dividend classical contract; physical parameter correspondence checked |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; that contract is now identified with the actual raw-filtration stopping value |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Proved for the actual boundary; physical parameter correspondence and strict stock curvature checked |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved for the actual usual-filtration stopping boundary, with C2 regularity and no classical-solution premise |
 | Actual normalized log boundary | `ConvexOn` on positive maturities, for the entire parameter regime | Proved directly for the usual-filtration stopping boundary without a classical contract or boundary smoothness; zero-dividend and Liu-range checkpoints included |
 | Actual normalized stock boundary | Strict decrease and `StrictConvexOn` on positive maturities | Proved without boundary smoothness, with zero-dividend and Liu-range checkpoints; both actual boundaries are locally Lipschitz away from expiry |
 | Actual physical-unit boundary | Log convexity, strict stock convexity, strict decrease and local Lipschitz continuity | Proved for the completed usual-filtration stopping threshold under only physical parameter assumptions; exact financial normalization and zero-dividend/Liu-range checkpoints included |
-| Strict stock-boundary consequence | `B'' > 0` for the full regime, including zero dividends and Liu's range | Proved on the classical contracts, with no additional speed premise; both time conventions checked |
+| Strict stock-boundary consequence | `B'' > 0` for the full regime, including zero dividends and Liu's range | Proved for the actual physical boundary at every positive remaining maturity; C2 regularity is included explicitly |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -105,9 +113,9 @@ square-root barrier to the actual price. `ActualNearExpiry.lean` proves
 `k>0`, `h>=0`, and `h<=k`. Named zero-dividend and Liu-range versions use the
 same actual stopping-value definition. The statement is convexity of the
 normalized log boundary as a function, not an assertion that classical second
-derivatives exist. The literal differential conclusions for the
-actual value remain separate obligations, as
-does the retained independent CCJZ proof track.
+derivatives exist. The literal differential conclusions for the actual value
+are now separately proved in `PhysicalBoundaryCurvature.lean`; the retained
+independent CCJZ proof track remains unfinished.
 
 ### Actual strict decrease and strict stock convexity
 
@@ -155,8 +163,9 @@ actual financial thresholds, not a definition of a replacement boundary.
 convexity of `log(B(tau)/K)`, strict convexity and strict decrease of `B`, and
 local Lipschitz continuity of both profiles. Only `K>0`, `r>0`, `sigma>0`, and
 `0<=q<=r` are assumed. Named zero-dividend and Liu-range specializations and
-26 guarded transitive axiom checks cover the new chain. Boundary smoothness and
-the literal everywhere second-derivative conclusions remain unfinished.
+26 guarded transitive axiom checks cover this normalization chain. The later
+`PhysicalBoundaryCurvature.lean` now supplies C2 regularity and the literal
+everywhere second-derivative conclusions as well.
 
 ### First differentiability at actual contact
 

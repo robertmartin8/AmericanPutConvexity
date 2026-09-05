@@ -30,6 +30,12 @@ The independent CCJZ proof development remains unfinished. The historical
 milestones below retain their then-current limitations; statements there that
 C2 or actual classical curvature is unfinished are superseded by this result.
 
+The [straight-line proof audit](docs/straight-line-audit.md) explains the
+formal proof's direct three-point replacement for Sturm and its explicit
+terminal barrier. `Stopping/AEHorizonValue.lean` also proves equivalence with
+the usual almost-sure maturity-bound convention for stopping times;
+`AEHorizonCurvature.lean` transfers the classical result to that convention.
+
 ## Historical development checkpoints
 
 > **Earlier status: actual log-boundary convexity and strict stock-boundary convexity

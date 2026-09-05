@@ -39,7 +39,18 @@ The full build and new transitive axiom guards passed for these conclusions.
 This targeted check does not replace a broader independent review of the
 Brownian construction, completion/filtration bridges, or analytic proof chain.
 
-Current status: the classical-contract curvature proof and stochastic
+The stopping-rule convention has now received an additional formal check:
+`AEHorizonValue.lean` allows stopping times bounded by maturity almost surely,
+including infinity on a null set. Clipping at maturity proves equality of the
+entire expected-reward sets with the pointwise-bounded convention, hence
+equality of values and exercise thresholds. Integrability and nonempty bounded
+reward sets are proved under the financial hypotheses. `AEHorizonCurvature.lean`
+transfers C2 and both curvature conclusions to this convention. This removes
+a possible statement mismatch; it is not an extra modeling assumption.
+
+### Historical checkpoints
+
+Earlier status: the classical-contract curvature proof and stochastic
 identification are proved. Convexity of the actual normalized log boundary is
 now proved without the classical contract in `Stopping/ActualLogConvexity.lean`.
 `Stopping/ActualStockConvexity.lean` also proves actual strict decrease, strict
