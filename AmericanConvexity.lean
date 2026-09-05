@@ -40,6 +40,7 @@ import AmericanConvexity.Stopping.StrictExerciseGeometry
 import AmericanConvexity.Stopping.BoundarySemicontinuity
 import AmericanConvexity.Stopping.ActualContact
 import AmericanConvexity.Stopping.BermudanConvergence
+import AmericanConvexity.Stopping.DiscreteStoppingValue
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

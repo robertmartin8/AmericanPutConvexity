@@ -565,3 +565,35 @@ optimality. It does not yet prove that a grid supremum is attained, identify it
 with a backward Bellman recursion, or yield a quantitative convergence rate.
 The stock dynamics remain continuous-time Brownian dynamics; no binomial tree
 or change of model is introduced.
+
+## General finite-horizon Bellman optimality
+
+`FiniteBellman.lean` defines backward recursion on an arbitrary filtered
+probability space with adapted integrable real rewards:
+`V_N=Z_N`, `V_i=max(Z_i,E[V_(i+1)|F_i])`. The process is frozen after `N`.
+Adaptedness, integrability, pointwise payoff dominance and the supermartingale
+property are proved. It is minimal, up to almost-sure comparison before the
+horizon, among integrable supermartingales dominating the reward process.
+
+`DiscreteContactMartingale.lean` proves that stopping a discrete process whose
+conditional drift vanishes before stopping yields a martingale. Its proof writes
+the stopped increment as the unstopped increment times the past-measurable
+indicator of not having stopped; conditional-expectation indicator and subtraction
+identities give zero drift.
+
+`FiniteBellmanOptimality.lean` constructs the first payoff-contact index using a
+bounded discrete hitting time. Contact exists because the terminal Bellman
+value equals the reward. Strict pre-contact separation forces the continuation
+branch of the recursion, so the stopped Bellman process is a martingale.
+Its expected terminal payoff equals the expected initial Bellman value.
+Discrete optional stopping and payoff dominance bound every competing bounded
+rule by this value. `DiscreteStoppingValue.lean` packages all such natural-index
+rules into a supremum and proves both `discreteStoppingValue_eq_bellman` and
+`finiteBellmanRule_attains_value`.
+
+This is the full general finite discrete-time stopping theorem, not a binomial
+specialization. Its application to `gridAmericanPutValue` still needs an explicit
+two-way reindexing between capped physical-time grid rules and natural-index
+rules with the sampled filtration. That bridge, the Brownian Markov recursion,
+and passage to continuous-time optimality remain open; none is silently inferred
+from the finite theorem.

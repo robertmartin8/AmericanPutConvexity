@@ -184,3 +184,12 @@ of finite-grid values in the original process and filtration. MathFin's binomial
 Snell/Bermudan modules are not used for this result: their tree dynamics and
 recursions are not an identification with these Brownian stopping suprema.
 The final grid-convergence chains have guarded three-standard-axiom audits.
+
+`FiniteBellman.lean` and its optimality modules use Mathlib's actual conditional
+expectation, discrete hitting times, and discrete optional stopping. They prove
+the general finite-horizon Snell/Bellman theorem locally, including supremum
+identification and attainment. No MathFin binomial Snell theorem is substituted
+for an arbitrary-filtration theorem. `DiscreteContactMartingale.lean` explicitly
+derives the stopped martingale from conditional-expectation indicator identities.
+All final finite Bellman and optimality chains have guarded three-standard-axiom
+audits; physical-grid reindexing and continuous-time optimality remain separate.

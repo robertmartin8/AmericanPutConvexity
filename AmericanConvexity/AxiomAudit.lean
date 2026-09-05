@@ -34,6 +34,7 @@ import AmericanConvexity.Stopping.StrictExerciseGeometry
 import AmericanConvexity.Stopping.BoundarySemicontinuity
 import AmericanConvexity.Stopping.ActualContact
 import AmericanConvexity.Stopping.BermudanConvergence
+import AmericanConvexity.Stopping.DiscreteStoppingValue
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1074,3 +1075,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalGridPrice_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.finiteBellman_supermartingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.finiteBellman_supermartingale
+
+/-- info: 'AmericanConvexity.Stopping.finiteBellman_le_supermartingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.finiteBellman_le_supermartingale
+
+/-- info: 'AmericanConvexity.Stopping.discrete_stopped_martingale_of_before' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.discrete_stopped_martingale_of_before
+
+/-- info: 'AmericanConvexity.Stopping.finiteBellmanContact_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.finiteBellmanContact_martingale
+
+/-- info: 'AmericanConvexity.Stopping.finiteBellmanContact_optimal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.finiteBellmanContact_optimal
+
+/-- info: 'AmericanConvexity.Stopping.discreteStoppingValue_eq_bellman' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.discreteStoppingValue_eq_bellman
+
+/-- info: 'AmericanConvexity.Stopping.finiteBellmanRule_attains_value' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.finiteBellmanRule_attains_value
