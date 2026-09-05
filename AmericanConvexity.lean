@@ -25,6 +25,8 @@ import AmericanConvexity.Boundary.ComparisonAssembly
 import AmericanConvexity.Boundary.InitialRoots
 import AmericanConvexity.Boundary.RootConfinement
 import AmericanConvexity.Boundary.RootStability
+import AmericanConvexity.Boundary.ZeroCountGeometry
+import AmericanConvexity.Boundary.ComparisonIntervals
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration

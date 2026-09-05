@@ -37,6 +37,12 @@ small-time root confinement. An at-most-two-root initialization follows from an
 explicit initial derivative-trace premise; that regularity input and subsequent
 zero-count propagation remain unproved.
 
+The spatial conclusion of Step 4 is now checked too: at most two positive-level
+roots, together with the proved boundary signs and tail bound, force an interval
+superlevel set. Passing from all positive levels to the positive set is checked,
+with a named zero-dividend specialization. This does not prove propagation of
+the root count.
+
 The published zero-dividend checkpoint is:
 
 X. Chen, J. Chadam, L. Jiang, and W. Zheng, **Convexity of the Exercise Boundary
@@ -136,6 +142,8 @@ All files below are included in the project build.
 | [`Boundary/InitialRoots.lean`](AmericanConvexity/Boundary/InitialRoots.lean) | Exactly two simple initial roots below a higher positive initial value; identification of the actual spatial derivatives |
 | [`Boundary/RootConfinement.lean`](AmericanConvexity/Boundary/RootConfinement.lean) | Every small-time positive-level root lies near the initial roots, using only continuity, initial data and tail bounds |
 | [`Boundary/RootStability.lean`](AmericanConvexity/Boundary/RootStability.lean) | At-most-two-root initialization conditional on the still-open initial derivative traces; no-positive-data branch and zero-dividend specialization |
+| [`Boundary/ZeroCountGeometry.lean`](AmericanConvexity/Boundary/ZeroCountGeometry.lean) | Spatial two-root bound plus negative endpoint data implies interval superlevels; positive-level to zero-level passage |
+| [`Boundary/ComparisonIntervals.lean`](AmericanConvexity/Boundary/ComparisonIntervals.lean) | Actual comparison's interval consequence conditional on root counts, with boundary/truncation hypotheses discharged and a zero-dividend specialization |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |

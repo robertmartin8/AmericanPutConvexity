@@ -14,6 +14,7 @@ import AmericanConvexity.Boundary.ComparisonMaximum
 import AmericanConvexity.Boundary.ComparisonHopf
 import AmericanConvexity.Boundary.ComparisonAssembly
 import AmericanConvexity.Boundary.RootStability
+import AmericanConvexity.Boundary.ComparisonIntervals
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -349,3 +350,28 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_level_initialization
+
+/-- info: 'AmericanConvexity.Boundary.superlevel_ordConnected_of_two_roots' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.superlevel_ordConnected_of_two_roots
+
+/-- info: 'AmericanConvexity.Boundary.positive_set_ordConnected_of_positive_levels' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.positive_set_ordConnected_of_positive_levels
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_superlevel_of_two_roots' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_superlevel_of_two_roots
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_positive_interval_of_level_counts' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_positive_interval_of_level_counts
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_positive_interval_of_level_counts' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_positive_interval_of_level_counts

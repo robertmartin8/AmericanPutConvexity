@@ -195,6 +195,28 @@ It was not added to the solution contract or proved by the compactness argument.
 This checkpoint neither asserts that confinement bounds the number of roots
 inside a neighborhood nor propagates a count to arbitrary later times.
 
+### Step 4: spatial root-count consequences and passage to zero level
+
+`ZeroCountGeometry.lean` proves that a continuous spatial profile with endpoint
+values strictly below a level has an interval-shaped strict superlevel set if
+its level set has at most two points. Two positive points separated by a value
+at or below the level would produce three distinct roots by the intermediate
+value theorem. This also rules out an isolated zero separating positive pieces;
+merely counting sign changes would need additional care there.
+
+`ComparisonIntervals.lean` applies this result to the actual normalized
+comparison. Its boundary sign, continuity, and fixed negative right truncation
+are discharged from already proved results. The two-root premise remains
+explicit and unproved at general positive times. Levels with no value above
+them give the empty set, so no root-count premise is needed in that branch.
+
+Finally, interval superlevel sets at every positive level imply that `{v>0}`
+is an interval: for two positive endpoints, choose half their minimum value
+as the level. This avoids any regularity or simple-root claim at level zero.
+The zero-dividend specialization uses the original normalized solution
+contract; it is not an independent published-proof verification. These results
+finish the spatial and epsilon-to-zero implications, **not Sturm propagation**.
+
 ### Steps 4 and 5: maximum principle and the earlier positive point
 
 `ParabolicMaximum.lean` proves the weak maximum principle for
@@ -298,9 +320,10 @@ unresolved propagation claim, not something proved merely by this assembly.
    (for example by proving the required initial-time derivative convergence).
 3. **Step 4, propagation.** Prove the necessary parabolic zero-number result
    and connect its exact hypotheses to the checked coefficient
-   and truncation bounds. The weak maximum principle is now proved. Pass from
-   positive levels to the positivity set. Do not assume the desired invariant
-   as a field of the pricing-solution contract.
+   and truncation bounds. The weak maximum principle, the spatial implication
+   from root counts to interval superlevels, and the positive-level to zero-level
+   passage are proved. Do not assume the desired invariant as a field of the
+   pricing-solution contract.
 4. **Step 5.** The earlier-positive-point argument, terminal-rectangle
    smooth-fit contradiction, and geometric assembly are checked. Discharge
    their single-interval premise through the missing Step 4 propagation proof.
