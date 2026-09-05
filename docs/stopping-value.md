@@ -2877,3 +2877,41 @@ this derivative. Twelve new axiom guards check the transitive dependencies.
 The derivative of the full original history is not yet assembled. The
 straight-line reference and older-source derivatives must be included,
 and continuity/two-sided differentiability established before claiming C2.
+
+## Right differentiation from the original causal start to the actual flux
+
+The straight-line reference now has the ordinary derivative
+
+`d/dT linearHeatHistoryIntegral(v,c,T) = H(T,v*T)*c`, for T>0.
+
+`HistoryRightAssembly.lean` checks the exact increment decomposition in
+elapsed time and combines the reference derivative with common-past right
+differentiation and the vanishing new-source quotient. It produces a right
+derivative for a complete local history integral, without differentiating
+the reference slope, density value or source density.
+
+`OlderHistoryDerivative.lean` separately differentiates the old-source
+integral. Its interval ends strictly before the observation time; a positive
+gap controls the kernel derivative uniformly on a two-sided observation
+neighborhood. The actual graph is only required to be C1, and the density
+continuous and bounded. Genuine integrability is supplied by the actual
+history theorem and a constant derivative majorant on a finite interval.
+
+`FullHistoryRightDerivative.lean` extends the result to any original positive
+causal start. If that start lies before the constructed local one, the old
+portion is added; if it lies after it, the intervening old portion is
+subtracted. The exact split holds on a neighborhood of the observation.
+Both original source-time and elapsed-time formulations have a right
+derivative.
+
+`ActualDensityRightDerivative.lean` applies this result to the constructed
+density equation, after deriving its three-quarter modulus from C1 forcing.
+`ActualHeatFluxRightDerivative.lean` removes the cutoff via the proved
+local layer representation and uniqueness of the right spatial derivative.
+The resulting intrinsic heat flux has a right time derivative at every
+positive heat time. Zero-dividend and Liu cases are explicit. Fifteen new
+transitive axiom guards verify the complete dependency chain.
+
+Continuity of the time derivative and two-sided time differentiability are
+not yet established. No C2 boundary or classical pointwise curvature claim
+is made by this checkpoint.

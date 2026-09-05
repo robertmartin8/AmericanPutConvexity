@@ -110,6 +110,7 @@ import AmericanConvexity.Stopping.ActualVelocityThreeQuarter
 import AmericanConvexity.Stopping.ActualFrozenDerivative
 import AmericanConvexity.Stopping.ActualRecentRemainder
 import AmericanConvexity.Stopping.ActualCommonPastDerivative
+import AmericanConvexity.Stopping.ActualHeatFluxRightDerivative
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -4871,3 +4872,78 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalCommonPast_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.linearHeatHistoryIntegral_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.linearHeatHistoryIntegral_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.linearHeatHistoryIntegral_shift_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.linearHeatHistoryIntegral_shift_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.hasDerivWithinAt_Ici_of_increment_remainder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.hasDerivWithinAt_Ici_of_increment_remainder
+
+/-- info: 'AmericanConvexity.Stopping.tendsto_sub_nhdsGT' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.tendsto_sub_nhdsGT
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryFrom_frozen_increment_elapsed' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryFrom_frozen_increment_elapsed
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLocalHistory_hasDerivWithinAt_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLocalHistory_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.canonicalOlderHistory_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalOlderHistory_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatHistoryFrom_split' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatHistoryFrom_split
+
+/-- info: 'AmericanConvexity.Stopping.canonicalFullHistory_hasDerivWithinAt_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalFullHistory_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.canonicalFullElapsedHistory_hasDerivWithinAt_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalFullElapsedHistory_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatDensity_hasDerivWithinAt_right_of_C1_forcing' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatDensity_hasDerivWithinAt_right_of_C1_forcing
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatSource_density_hasDerivWithinAt_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatSource_density_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatThetaRightFlux_hasDerivWithinAt_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatThetaRightFlux_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalHeatThetaRightFlux_hasDerivWithinAt_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalHeatThetaRightFlux_hasDerivWithinAt_right
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalHeatThetaRightFlux_hasDerivWithinAt_right' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalHeatThetaRightFlux_hasDerivWithinAt_right

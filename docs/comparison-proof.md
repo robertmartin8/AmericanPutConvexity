@@ -1093,3 +1093,30 @@ new transitive axiom guards cover these steps.
 The full original-history derivative still needs assembly with the
 straight-line reference and older sources. Continuity of that derivative,
 two-sided differentiability and C2 remain unfinished.
+
+### Complete original-history and actual heat-flux right derivatives
+
+`HistoryReferenceDerivative.lean` applies the fundamental theorem of
+calculus to the genuinely integrable frozen straight-line reference.
+`HistoryRightAssembly.lean` assembles this derivative, the common-past
+right derivative and the vanishing new-source quotient, using an exact
+source-time decomposition with the same reference values at both observations.
+This gives a right derivative of the complete local history.
+
+`OlderHistoryDerivative.lean` proves an ordinary derivative for the old
+source portion, using a uniform positive source/observation gap and
+dominated differentiation on a two-sided neighborhood.
+`FullHistoryRightDerivative.lean` adds or subtracts that portion to handle
+any original positive causal start, not only the newly selected local start.
+
+`ActualDensityRightDerivative.lean` transfers the full-history right
+derivative through the same density equation and the C1 source forcing.
+The already proved three-quarter density modulus supplies its regularity
+premise. `ActualHeatFluxRightDerivative.lean` identifies this density with
+the actual intrinsic heat flux near contact, yielding a true
+`HasDerivWithinAt` in time on the right. Both restricted parameter cases
+are explicit. Fifteen new transitive axiom guards cover the assembled chain.
+
+This is a right time derivative, not yet a continuous or two-sided time
+derivative. Those steps, and the actual boundary's C2 conclusion, remain
+unfinished.

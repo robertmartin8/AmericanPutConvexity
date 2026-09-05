@@ -68,6 +68,14 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > three-quarter modulus (`ActualCommonPastDerivative.lean`). Assembly with
 > the reference integral and older sources, continuity of the derivative,
 > and the full C2 conclusion remain unfinished.
+> The right-derivative assembly is now complete: the straight-line reference
+> derivative and older-source ordinary derivative extend the local result
+> to the full history from any positive causal start
+> (`FullHistoryRightDerivative.lean`). The density equation and actual layer
+> representation transfer this to a right time derivative of the intrinsic
+> actual heat flux (`ActualHeatFluxRightDerivative.lean`), including
+> zero-dividend and Liu cases. Continuity of this time derivative, two-sided
+> differentiability and C2 remain unfinished.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
