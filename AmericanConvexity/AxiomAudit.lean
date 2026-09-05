@@ -86,6 +86,7 @@ import AmericanConvexity.Stopping.ActualTheta
 import AmericanConvexity.Stopping.ActualThetaPositivity
 import AmericanConvexity.Boundary.QuantitativeHopf
 import AmericanConvexity.Stopping.ActualThetaContactGrowth
+import AmericanConvexity.Stopping.ActualBoundaryHeatJump
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2976,3 +2977,63 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalTheta_contact_slope_bounds
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_deriv_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_deriv_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_sub_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_sub_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_lipschitz_motion_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_lipschitz_motion_bound
+
+/-- info: 'AmericanConvexity.Stopping.integrableOn_inverse_sqrt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integrableOn_inverse_sqrt
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatRemainder_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatRemainder_integrable
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatRemainder_integral_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatRemainder_integral_continuous
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatBoundaryKernel_jump' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatBoundaryKernel_jump
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatKernel_deriv_jump' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatKernel_deriv_jump
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_heat_displacement' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_heat_displacement
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_heatKernel_jump' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_heatKernel_jump
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_heatKernel_jump' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_heatKernel_jump
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_heatKernel_jump' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_heatKernel_jump

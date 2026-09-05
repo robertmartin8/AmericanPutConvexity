@@ -81,6 +81,11 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > bounds for `theta(x,t)/(x-b(t))` just to the right of exercise. Convergence
 > of that ratio is not yet proved. Theta has no two-sided spatial derivative
 > across contact; the remaining flux target is explicitly continuation-sided.
+> A heat normal-kernel jump formula is now proved for locally Lipschitz moving
+> graphs and specialized to the actual boundary, with heat/pricing time scaling
+> explicit. It uses an integrably dominated moving-boundary correction to the
+> flat kernel. Identification of theta with a suitable layer potential and
+> regularity of its density are still needed before this gives the actual flux.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

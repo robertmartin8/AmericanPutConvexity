@@ -2055,3 +2055,43 @@ force derivative zero, contradicting the right slope lower bound. Thus any
 subsequent Stefan flux must use a right-sided derivative or continuation-side
 limit, not Lean's ordinary totalized derivative at the contact point. The
 price itself remains jointly C1, as previously proved.
+
+## Moving-boundary heat normal-kernel jump
+
+The regularity bootstrap in Section 3.2 of
+[Chen, Cheng and Chadam's dividend-paying paper](https://sites.pitt.edu/~chadam/papers/LargeDNonConvex.pdf)
+requires boundary gradient regularity and the weak Stefan identity before
+deducing smoothness. Our proved local Lipschitz boundary motion meets its
+starting regularity threshold, but does not by itself supply either ingredient.
+
+`MovingHeatKernelBound.lean` proves a uniform spatial derivative bound for
+the diffusivity-1/2 boundary kernel `H(s,x)=x*heatKernel(s,x)/s`. The mean
+value theorem gives, for `|d(s)|<=L*s`,
+
+`|H(s,x+d(s))-H(s,x)| <= 3*L/(sqrt(2*pi)*sqrt(s))`.
+
+The right side is integrable on every finite positive-time window. In
+`MovingHeatJump.lean`, this gives continuity across `x=0` of the integrated
+correction for every bounded continuous density. The flat-kernel unit-mass
+trace then yields the exact right-sided jump
+
+`integral H(s,x+d(s))*g(s) -> g(0)+integral H(s,d(s))*g(s)`.
+
+The density is cut off beyond the chosen time window. The spatial derivative
+of the ordinary heat kernel is `-H`; a separate theorem checks the resulting
+negative sign in its integrated normal-kernel jump. No graph derivative is
+used, and the correction's integrability is proved rather than postulated.
+
+`ActualBoundaryHeatJump.lean` supplies a local window and the required
+displacement estimate for the actual boundary. Heat time is twice normalized
+pricing time, so its displacement is `b(t)-b(t-s/2)`, not `b(t)-b(t-s)`.
+The jump theorem applies to every bounded continuous density supported in that
+window, with explicit zero-dividend and Liu-range checkpoints.
+
+This is a **kernel jump theorem**, not yet a flux theorem for actual theta.
+Differentiating a layer potential in the interior, constructing/identifying
+the actual solution's layer representation with a suitably regular density,
+and establishing the Stefan velocity identity remain substantive obligations.
+Boundary differentiability and the literal everywhere second-derivative
+conclusions are still unproved. The already checked actual-boundary convexity
+theorems do not depend on those remaining obligations.
