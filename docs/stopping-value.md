@@ -540,8 +540,8 @@ threshold. These conclusions use neither boundary smoothness nor the PDE.
 
 Admissibility alone does not establish optimality. The later `ActualOptimality.lean`
 now identifies this rule's expected payoff with the stopping supremum, without
-a classical pair. The full dynamic programming principle, the corresponding
-stopped-martingale characterization, and the continuation PDE remain open.
+a classical pair. Its stopped-martingale characterization is now also proved
+below. The full dynamic programming principle and the continuation PDE remain open.
 
 ## Finite-grid approximation of the American supremum
 
@@ -707,8 +707,8 @@ times the existing `canonicalGap`, linking it to the actual first-contact rule.
 These proofs assume no classical solution, boundary, PDE, or continuous-time
 optimal rule. Supermartingality alone does not prove martingality up to first
 contact. First-contact optimality is now proved below without first establishing
-that full martingale characterization. The characterization and classical
-PDE/boundary regularity remain open.
+that full martingale characterization. The characterization is now proved in
+`ActualContactMartingale.lean`; classical PDE/boundary regularity remains open.
 
 ## Actual first-contact optimality without a classical solution
 
@@ -731,8 +731,8 @@ is strictly positive before `tau`, continuity and compactness imply
 `min(theta_(ns n),tau) -> tau` pathwise on that subsequence. Ordered optional
 sampling and dominated convergence give `E[U_tau]=E[U_0]`; payoff contact then
 gives `E[Z_tau]=E[U_0]`. This does not assert convergence of the untruncated
-stopping rules themselves, nor does it identify the stopped process as a
-martingale without a further argument.
+stopping rules themselves. A further event-pasting argument below now identifies
+the stopped process as a martingale.
 
 `ActualOptimality.lean` discharges every premise on the completed usual Brownian
 space. It uses the actual `canonicalDiscountedPrice`, the original discounted
@@ -744,5 +744,34 @@ nonnegative maturity. Strike is one and volatility is `sqrt(2)`, as in the
 canonical definition. This is actual continuous-time optimality, not merely
 optimality conditional on a PDE solution or on an assumed optimal rule.
 
-The full dynamic programming principle, stopped-martingale characterization,
-and classical PDE, smooth-fit and boundary-regularity obligations remain open.
+The stopped-martingale characterization is now proved below. The full dynamic
+programming principle and classical PDE, smooth-fit and boundary-regularity
+obligations remain open.
+
+## Actual stopped martingale and mean-value identity
+
+`OptimalStoppedMartingale.lean` proves a general result over a finite measure:
+if a bounded continuous supermartingale has the same expected value at a bounded
+rule `tau` as initially, its process stopped at `tau` is a martingale. Ordered
+optional sampling first gives expected-value preservation at every earlier rule.
+For any event `A` measurable at time `i<=j`, the rule choosing `i` on `A` and
+`j` otherwise is admissible; capping it at `tau` preserves the expected value.
+Splitting the resulting integral over `A` and its complement gives equality of
+the stopped process's set integrals at `i` and `j`. Adaptedness and the conditional
+expectation uniqueness criterion then prove the full martingale property.
+
+`ActualContactMartingale.lean` applies that theorem to the actual discounted
+canonical price and the already proved optimal first-contact rule. The payoff-gap
+identity converts optimal expected payoff to expected-price preservation.
+`brownianUsualActualContactRule_martingale` proves the resulting usual-filtration
+martingale without any PDE, smooth-fit or boundary-regularity hypothesis.
+
+`canonicalPrice_contact_meanValue` applies bounded optional sampling to it:
+at every admissible bounded observation rule `eta`, the expected discounted
+remaining-maturity price at `min(eta,tau)` equals the initial canonical price.
+This includes observation at deterministic times and bounded interior-exit rules
+once those rules have been constructed. The parameters are `k>=0`, arbitrary
+real `h,x`, and nonnegative maturity in the normalized strike-one, volatility
+`sqrt(2)` model. No independent increments at arbitrary stopping times or general
+restart identity is silently inferred from this fixed-start stopped mean-value
+statement. The continuation PDE and boundary regularity remain to be derived.

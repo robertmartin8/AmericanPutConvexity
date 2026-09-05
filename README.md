@@ -148,8 +148,12 @@ argument: nearly optimal rules have vanishing expected price/payoff gaps; an
 almost-sure subsequence, pathwise continuity and ordered optional sampling give
 equality of expected values at first contact. The already constructed optimal
 grid rules discharge the approximation hypothesis in the Brownian application.
-Full continuous-time dynamic programming, the stopped-martingale characterization,
-and PDE/boundary regularity remain unproved.
+`ActualContactMartingale.lean` now also proves the stopped-martingale
+characterization and the mean-value identity at any bounded observation rule
+capped at actual first contact. The general argument in
+`OptimalStoppedMartingale.lean` uses ordered optional sampling and rules choosing
+between two times on a past-measurable event. Full continuous-time dynamic
+programming and classical PDE/boundary regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -336,6 +340,8 @@ All files below are included in the project build.
 | [`Stopping/VanishingGap.lean`](AmericanConvexity/Stopping/VanishingGap.lean) | Almost-sure vanishing-gap subsequence and pathwise convergence of times capped at first contact |
 | [`Stopping/FirstContactOptimality.lean`](AmericanConvexity/Stopping/FirstContactOptimality.lean) | Expected-value preservation and first-contact optimality from a bounded supermartingale and nearly optimal rules |
 | [`Stopping/ActualOptimality.lean`](AmericanConvexity/Stopping/ActualOptimality.lean) | Actual usual-filtration first-contact rule attains the canonical American value without a classical solution |
+| [`Stopping/OptimalStoppedMartingale.lean`](AmericanConvexity/Stopping/OptimalStoppedMartingale.lean) | A bounded continuous supermartingale stopped at a value-preserving rule is a martingale, proved by event-pasted stopping rules |
+| [`Stopping/ActualContactMartingale.lean`](AmericanConvexity/Stopping/ActualContactMartingale.lean) | Actual-price martingale up to first contact and mean-value identity at every bounded observation rule capped at contact |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

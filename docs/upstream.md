@@ -238,3 +238,14 @@ actual usual-filtration price and the already verified optimal-grid rules,
 with no classical or continuous-optimality premise. The final actual contact
 optimality theorem and its key supporting chains have guarded three-standard-axiom
 audits. No unfinished upstream continuous submartingale sampling theorem is used.
+
+`OptimalStoppedMartingale.lean` derives stopped martingality from expected-value
+preservation using only the checked ordered optional-sampling result, explicit
+two-time event-pasted rules, continuous stopped adaptation, integral splitting,
+and uniqueness of conditional expectation. `ActualContactMartingale.lean` checks
+expected-price preservation from actual payoff optimality, obtains the actual
+usual-filtration stopped martingale, and applies bounded optional sampling for
+the stopped mean-value identity. Guarded audits of the generic and actual final
+chains allow only the three standard axioms. No PDE solution, strong Markov
+theorem at random times, or unfinished upstream optional-sampling result is used
+for these identities.

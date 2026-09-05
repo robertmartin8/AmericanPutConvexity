@@ -540,9 +540,10 @@ and strict stock curvature together. It does not assert strict log curvature.
    prove the deterministic waiting inequality and bounded continuous actual-price
    supermartingality on both filtrations. A vanishing-gap subsequence argument,
    compactness, and ordered optional sampling now prove actual first-contact
-   optimality using the optimal-grid rules. Full continuous-time dynamic programming,
-   the stopped-martingale characterization, and classical PDE/boundary regularity
-   remain open.
+   optimality using the optimal-grid rules. Event-pasted stopping rules now also
+   prove the stopped-martingale characterization and a mean-value identity at
+   every bounded observation rule capped at actual contact. Full continuous-time
+   dynamic programming and classical PDE/boundary regularity remain open.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

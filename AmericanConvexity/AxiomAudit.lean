@@ -39,6 +39,7 @@ import AmericanConvexity.Stopping.GridBellman
 import AmericanConvexity.Stopping.UsualGridMarkov
 import AmericanConvexity.Stopping.ActualSupermartingale
 import AmericanConvexity.Stopping.ActualOptimality
+import AmericanConvexity.Stopping.ActualContactMartingale
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1234,3 +1235,28 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.brownianUsualActualContactRule_optimal
+
+/-- info: 'AmericanConvexity.Stopping.expected_value_eq_before_optimal_rule' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expected_value_eq_before_optimal_rule
+
+/-- info: 'AmericanConvexity.Stopping.stopped_martingale_of_expected_value_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.stopped_martingale_of_expected_value_eq
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualActualContactRule_value_preserving' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualActualContactRule_value_preserving
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualActualContactRule_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualActualContactRule_martingale
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_contact_meanValue' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_contact_meanValue
