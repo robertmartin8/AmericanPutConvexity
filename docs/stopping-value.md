@@ -87,6 +87,45 @@ the endpoint convention, not continuity of the boundary as maturity tends to
 zero. Attainment of the contact-set supremum also does **not** mean that an
 optimal stopping time attaining the value supremum has been constructed.
 
+## Checked optional stopping and verification principle
+
+`GridSampling.lean` derives bounded continuous-path optional stopping from
+Mathlib's discrete-time theorem. The grid index is `ceil(theta/delta)` and is
+a stopping time for the filtration sampled at `i*delta`. Its deterministic
+bound is `ceil(T/delta)`. With `delta=1/(n+1)`, the sampled times converge to
+`theta`; path continuity and a uniform deterministic bound allow dominated
+convergence of expectations. The results are an expectation inequality for
+supermartingales and equality for martingales. They hold on finite measures
+and require neither right-continuity nor completion of the filtration.
+
+The stated process bound is global in time and outcome. Grid points may lie
+slightly beyond maturity; this is safe for the candidate below because it is
+frozen at maturity. No claim for arbitrary unbounded or discontinuous processes
+is made.
+
+`Verification.lean` applies these results to the actual American supremum:
+a bounded continuous-path supermartingale dominating the discounted reward
+bounds the value by its initial expectation. Equality follows if an admissible
+contact rule makes the stopped candidate a martingale. Neither optimality of
+the rule nor equality with the stopping value is assumed.
+
+`ClassicalCandidate.lean` defines the exact process, with `s=min(t,T)`:
+
+```text
+X_s = log(S/K) + (r-q-sigma^2/2)*s + sigma*W_s,
+U_t = exp(-r*s) * K*p(X_s, sigma^2/2*(T-s)).
+```
+
+For positive strike/spot and nonnegative discount rate, the classical contract
+proves `0<=U_t<=K`, continuity along continuous paths, reward domination through
+maturity, and payoff equality at maturity. Almost-sure `W_0=0` identifies its
+initial value. The checked conditional theorem now reduces price identification
+to supermartingality of this exact candidate, an admissible contact rule, and
+the stopped-candidate martingale property. Those stochastic properties are still
+unproved; the optional-stopping and verification results do not supply them.
+In particular, no global C2 regularity across the exercise boundary is assumed
+to justify an unqualified application of Ito's formula.
+
 ## Price identification suffices for boundary identification
 
 `DividendContact.lean` proves, for a classical dividend solution,

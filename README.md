@@ -29,6 +29,13 @@ and transfer curvature, but that stochastic/PDE identification remains open.
 See [`docs/stopping-value.md`](docs/stopping-value.md) for the exact filtration,
 terminal-boundary convention, and remaining obligations.
 
+Bounded continuous-path optional stopping is now proved by grid approximation
+from the discrete theorem, and a verification principle connects dominating
+supermartingales and contact martingales to the actual American supremum.
+The exact discounted classical-price candidate has checked continuity,
+boundedness, and payoff domination. Its supermartingale/contact-martingale
+properties still need to be derived from the PDE; identification remains open.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -153,6 +160,9 @@ All files below are included in the project build.
 | [`Stopping/ExerciseRegion.lean`](AmericanConvexity/Stopping/ExerciseRegion.lean) | Spot continuity; closed interval contact set; attained threshold, expiry convention, and maturity monotonicity |
 | [`Stopping/BrownianModel.lean`](AmericanConvexity/Stopping/BrownianModel.lean) | Constructed Brownian model, natural filtration, financial value, and contact threshold |
 | [`Stopping/ClassicalBridge.lean`](AmericanConvexity/Stopping/ClassicalBridge.lean) | Price identification implies boundary identification and transfers strict curvature; price identification remains an explicit open premise |
+| [`Stopping/GridSampling.lean`](AmericanConvexity/Stopping/GridSampling.lean) | Upward stopping-time grid approximation and bounded continuous-path optional stopping |
+| [`Stopping/Verification.lean`](AmericanConvexity/Stopping/Verification.lean) | Dominating-supermartingale upper bound and contact-martingale verification for the actual stopping-value supremum |
+| [`Stopping/ClassicalCandidate.lean`](AmericanConvexity/Stopping/ClassicalCandidate.lean) | Exact discounted classical-price process; continuity, bounds, reward domination, and conditional verification |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

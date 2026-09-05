@@ -19,6 +19,7 @@ import AmericanConvexity.Boundary.ObstacleComparison
 import AmericanConvexity.Boundary.ComparisonConclusion
 import AmericanConvexity.Boundary.StockConclusion
 import AmericanConvexity.Stopping.ClassicalBridge
+import AmericanConvexity.Stopping.ClassicalCandidate
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -669,3 +670,23 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.brownian_boundary_curvature_of_price_identification
+
+/-- info: 'AmericanConvexity.Stopping.expected_stoppedValue_le_initial' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expected_stoppedValue_le_initial
+
+/-- info: 'AmericanConvexity.Stopping.expected_stoppedValue_eq_initial' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expected_stoppedValue_eq_initial
+
+/-- info: 'AmericanConvexity.Stopping.value_eq_of_contact_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.value_eq_of_contact_martingale
+
+/-- info: 'AmericanConvexity.Stopping.classical_price_eq_value_of_verification' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.classical_price_eq_value_of_verification

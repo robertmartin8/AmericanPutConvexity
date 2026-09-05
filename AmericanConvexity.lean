@@ -10,6 +10,9 @@ import AmericanConvexity.Stopping.SpotShape
 import AmericanConvexity.Stopping.ExerciseRegion
 import AmericanConvexity.Stopping.BrownianModel
 import AmericanConvexity.Stopping.ClassicalBridge
+import AmericanConvexity.Stopping.GridSampling
+import AmericanConvexity.Stopping.Verification
+import AmericanConvexity.Stopping.ClassicalCandidate
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
