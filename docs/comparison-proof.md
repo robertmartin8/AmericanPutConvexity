@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE, tail/coefficient bounds and maximum principle checked; named specializations use the old CCJZ contract |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE, tail/coefficient bounds, maximum principle and terminal rectangle contradiction checked; named specializations use the old CCJZ contract |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE/tail/coefficient/maximum results apply |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, corner/boundary signs, tail/coefficient bounds and maximum principle checked |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE/tail/coefficient/maximum/terminal-barrier results apply |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, corner/boundary signs, tail/coefficient bounds, maximum principle and terminal rectangle contradiction checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -190,6 +190,35 @@ continuation region at every earlier time slice. In particular it supplies
 the claimed `x_1` at tangency once a later positive line value is supplied.
 Neither theorem assumes or proves the single-positive-interval invariant.
 
+### Step 5: terminal-time barrier and smooth-fit contradiction
+
+`ParabolicHopf.lean` proves a terminal boundary-point lemma using the stationary
+barrier `eta*(exp(lambda*y)-1)`. On a backward rectangle, positive bottom and
+right edges provide a positive barrier scale by compactness. The left edge is
+nonnegative. A lower bound on the drift allows a positive `lambda` for which
+the barrier is a subsolution. The proved weak maximum principle then bounds
+the solution below by the barrier, including at the terminal time. A slope
+limit gives the strictly positive RIGHT derivative. This does not require an
+extension past the terminal time or differentiability across the left boundary.
+
+`MovingLine.lean` checks the exact space-time chain rule for
+`w(y,t)=v(y+d-c*t,t)`: its drift is the original drift MINUS `c`.
+`ComparisonHopf.lean` applies it to the actual normalized price difference,
+obtaining `w_t=w_yy+(alpha-c+2f'/f)w_y`. The drift's lower bound is derived from
+the explicit profile's characteristic-root bounds.
+
+`lineDifference_fit` derives value zero and one-sided derivative zero at line
+contact directly from value matching and the pricing contract's RIGHT smooth
+fit. `lineDifference_no_positive_rectangle` then rules out a backward rectangle
+whose straight left edge is at or above the actual boundary, touches it at the
+terminal time, and has positive bottom and right edges. The nonnegative left
+edge follows automatically from payoff domination. A named zero-dividend
+version uses the original CCJZ solution contract.
+
+**This does not yet exclude concave tangencies.** The missing geometric assembly
+must construct the positive rectangle from such a tangency, the earlier-positive
+point lemma, continuity, and the still-unproved single-interval invariant.
+
 ## Analytic dependencies still to prove
 
 1. **Step 1.** Near-expiry `b(t)/t -> -infinity`, tangent-intercept selection,
@@ -203,9 +232,9 @@ Neither theorem assumes or proves the single-positive-interval invariant.
    and truncation bounds. The weak maximum principle is now proved. Pass from
    positive levels to the positivity set. Do not assume the desired invariant
    as a field of the pricing-solution contract.
-4. **Step 5.** The earlier-positive-point maximum-principle argument is checked.
-   Formalize the tangency geometry and the backward-strip comparison barrier
-   giving the smooth-fit contradiction.
+4. **Step 5.** The earlier-positive-point argument and terminal-rectangle
+   smooth-fit contradiction are checked. Formalize the geometric assembly of
+   that rectangle from a concave tangency and the single-interval invariant.
 5. **Financial applicability.** Establish the properties needed for the
    actual American value, including boundary regularity and monotonicity,
    rather than only proving a conditional theorem for an uninhabited contract.
@@ -219,7 +248,7 @@ boundary values, continuous boundary curves suffice. This avoids introducing
 `b'(0+)` through a coordinate change, but does not by itself initialize the
 zero count. **A literature citation is not an imported Lean theorem.**
 
-The suggested final barrier is in coordinates `y=x-ell(t)`:
+The now-checked terminal barrier is in coordinates `y=x-ell(t)`:
 
 ```text
 w_t = w_yy + beta(y) w_y,
@@ -228,10 +257,9 @@ psi(y) = exp(lambda*y)-1,
 psi''+beta psi' = lambda exp(lambda*y)(lambda+beta) > 0.
 ```
 
-On a small backward rectangle, a small multiple of `psi` is bounded above by
-`w` on its initial and lateral edges. Weak comparison would give a strictly
-positive right derivative at the terminal tangency, contradicting smooth fit.
-This is an audited informal route, not yet a checked lemma.
+On a backward rectangle satisfying the stated edge hypotheses, the checked
+comparison gives a strictly positive right derivative at terminal contact,
+contradicting smooth fit. Constructing that rectangle remains an open obligation.
 
 ## Verification boundaries
 

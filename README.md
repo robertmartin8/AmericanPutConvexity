@@ -29,6 +29,9 @@ and the normalized drift and its first space/time derivatives are bounded.
 The weak parabolic maximum principle is proved and applied to the actual
 comparison: nonpositive time slices stay nonpositive, and later positivity
 forces an earlier positive point as required in Step 5.
+An explicit terminal-time barrier now proves the positive right-derivative
+conclusion and the resulting smooth-fit contradiction on a suitable backward
+rectangle. Constructing that rectangle from a concave tangency remains open.
 The dividend solution contract specializes exactly to the old zero-dividend
 contract. These results do not yet prove the parabolic positive-interval
 invariant or boundary convexity in ANY of the parameter regimes.
@@ -122,6 +125,9 @@ All files below are included in the project build.
 | [`Boundary/ComparisonCoefficients.lean`](AmericanConvexity/Boundary/ComparisonCoefficients.lean) | Bounds on the logarithmic profile slope, normalized PDE drift, and its first spatial and temporal derivatives |
 | [`Boundary/ParabolicMaximum.lean`](AmericanConvexity/Boundary/ParabolicMaximum.lean) | Proved weak maximum principle on continuous moving strips, including terminal time and moving-domain compactness |
 | [`Boundary/ComparisonMaximum.lean`](AmericanConvexity/Boundary/ComparisonMaximum.lean) | No-positive-data branch and earlier-positive-point implication for the actual unbounded comparison; named zero-dividend specialization |
+| [`Boundary/ParabolicHopf.lean`](AmericanConvexity/Boundary/ParabolicHopf.lean) | Terminal-time positive right derivative proved using an explicit exponential barrier and weak comparison |
+| [`Boundary/MovingLine.lean`](AmericanConvexity/Boundary/MovingLine.lean) | Exact spatial translations and time chain rule; moving-line coordinates subtract the line speed from the drift |
+| [`Boundary/ComparisonHopf.lean`](AmericanConvexity/Boundary/ComparisonHopf.lean) | Actual moving-coordinate PDE and one-sided contact fit; contradiction for a positive backward rectangle, including zero dividends |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |

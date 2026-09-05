@@ -11,6 +11,7 @@ import AmericanConvexity.Boundary.GaugeTransform
 import AmericanConvexity.Boundary.ComparisonTail
 import AmericanConvexity.Boundary.ComparisonCoefficients
 import AmericanConvexity.Boundary.ComparisonMaximum
+import AmericanConvexity.Boundary.ComparisonHopf
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -246,3 +247,33 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_le_of_initial_le
+
+/-- info: 'AmericanConvexity.Boundary.terminal_hopf' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.terminal_hopf
+
+/-- info: 'AmericanConvexity.Boundary.movingLineTransform_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.movingLineTransform_equation
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.lineDifference_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.lineDifference_equation
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.lineDifference_fit' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.lineDifference_fit
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.lineDifference_no_positive_rectangle' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.lineDifference_no_positive_rectangle
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_no_positive_rectangle' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_no_positive_rectangle

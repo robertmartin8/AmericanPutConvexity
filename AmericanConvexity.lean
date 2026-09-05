@@ -15,6 +15,9 @@ import AmericanConvexity.Boundary.ComparisonTail
 import AmericanConvexity.Boundary.ComparisonCoefficients
 import AmericanConvexity.Boundary.ParabolicMaximum
 import AmericanConvexity.Boundary.ComparisonMaximum
+import AmericanConvexity.Boundary.ParabolicHopf
+import AmericanConvexity.Boundary.MovingLine
+import AmericanConvexity.Boundary.ComparisonHopf
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration
