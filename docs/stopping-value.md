@@ -2368,3 +2368,37 @@ PDE and jump formulas are now about the same function, not disconnected
 constructions. The remaining representation task is the free source
 potential's inhomogeneous heat PDE and application of uniqueness to
 `F-V/2`, followed by the actual flux/Stefan identity and boundary bootstrap.
+
+## Identified actual representation and positive pricing-theta flux
+
+The representation tasks in the preceding development history are now
+discharged by `LocalSourceEquation.lean`, `HeatRepresentationCandidate.lean`,
+`HeatRepresentationExterior.lean`, `HeatRepresentationIdentification.lean`,
+and `ActualHeatRepresentation.lean`. The source potential has its actual
+inhomogeneous PDE off the graph. Bounded exterior Neumann uniqueness and
+interior Dirichlet uniqueness identify `F-V/2` with localized actual heat
+theta. `ActualHeatFlux.lean` removes the cutoff near each contact and obtains
+a genuine right-sided spatial derivative, locally continuous in heat time.
+
+`ActualThetaFlux.lean` transfers this result back to pricing coordinates.
+Writing `alpha=k-h-1` and `A=k+alpha^2/4`, the exact identity is
+
+`theta(x,t)=exp(-alpha*x/2-A*t)*W(x,2*t)`.
+
+The product-rule term differentiating the gauge vanishes at contact because
+`W(b(t),2*t)=0`. Consequently the intrinsic right derivative
+
+`canonicalThetaRightFlux k h t = derivWithin (theta(.,t)) [b(t),infinity) b(t)`
+
+exists, is continuous for every positive pricing time, and is strictly
+positive. Positivity follows from the already proved positive lower bound
+for `theta(x,t)/(x-b(t))`, whose convergence to this derivative is now proved.
+The results require only `k>0` and `0<=h<=k`; explicit zero-dividend and
+Liu-range positive-flux checkpoints are retained. Eleven transitive axiom
+guards cover this stage.
+
+This is not the ordinary two-sided derivative of theta's zero exercise
+extension. Nor does continuity of the boundary derivative alone establish
+joint convergence of the interior spatial gradient to it. That stronger
+trace, the actual Stefan velocity identity, and the boundary regularity
+bootstrap remain unfinished.

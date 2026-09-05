@@ -96,6 +96,7 @@ import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.SourceHeatEquation
 import AmericanConvexity.Stopping.LocalSourceEquation
 import AmericanConvexity.Stopping.ActualHeatFlux
+import AmericanConvexity.Stopping.ActualThetaFlux
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -3832,3 +3833,58 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.bounded_dirichlet_heat_zero
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_eq_inverse_heat' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_eq_inverse_heat
+
+/-- info: 'AmericanConvexity.Stopping.inverseThetaHeatGauge_hasDeriv_space' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.inverseThetaHeatGauge_hasDeriv_space
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_hasDerivWithinAt_of_heat_flux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_hasDerivWithinAt_of_heat_flux
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalTheta_local_right_flux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalTheta_local_right_flux
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_hasDerivWithinAt_right_flux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_hasDerivWithinAt_right_flux
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaRightFlux_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaRightFlux_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaRightFlux_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaRightFlux_pos
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaRightFlux_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaRightFlux_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_contact_ratio_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_contact_ratio_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalThetaRightFlux_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalThetaRightFlux_pos
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalThetaRightFlux_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalThetaRightFlux_pos

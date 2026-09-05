@@ -143,6 +143,7 @@ import AmericanConvexity.Boundary.DirichletHalfLine
 import AmericanConvexity.Stopping.HeatRepresentationIdentification
 import AmericanConvexity.Stopping.ActualHeatRepresentation
 import AmericanConvexity.Stopping.ActualHeatFlux
+import AmericanConvexity.Stopping.ActualThetaFlux
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation

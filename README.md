@@ -14,6 +14,16 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > checkpoints are explicit. Exact price normalization follows from finite-grid
 > Bellman rescaling and convergence, without a classical-solution premise.
 >
+> **Latest regularity checkpoint:** `ActualThetaFlux.lean` proves that actual
+> pricing theta has a genuine right-sided spatial derivative at contact,
+> strictly positive and continuous in positive pricing time. Its contact
+> slope ratio converges to this derivative. This transfers the identified
+> heat-layer flux back through the inverse gauge; it assumes no boundary
+> differentiability. Joint convergence of the interior theta gradient to
+> this flux, the Stefan velocity identity, and boundary smoothness remain
+> unfinished. The development history below includes earlier intermediate
+> limitations that this checkpoint supersedes.
+>
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
 > only `k>0` and `0<=h<=k`. It assumes neither a classical solution nor boundary
@@ -144,6 +154,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > velocity identity and boundary smoothness are still unproved; this result does
 > not assert a two-sided contact derivative or joint continuity of the interior
 > gradient up to contact.
+> The inverse heat gauge now transfers this derivative to actual pricing
+> theta. Its derivative term vanishes at contact because heat theta is zero
+> there. The resulting intrinsic `canonicalThetaRightFlux` is continuous on
+> positive times and strictly positive by the proved contact slope lower
+> bound. The fixed-time ratio `theta(x,t)/(x-b(t))` converges to that flux.
+> No joint interior-gradient trace or Stefan velocity identity is inferred
+> merely from this one-sided derivative and its boundary-time continuity.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent
