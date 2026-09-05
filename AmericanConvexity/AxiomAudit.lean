@@ -24,6 +24,7 @@ import AmericanConvexity.Stopping.BrownianVerification
 import AmericanConvexity.Stopping.LocalPriceIto
 import AmericanConvexity.Stopping.BrownianLocalVerification
 import AmericanConvexity.Stopping.BrownianInteriorLocalization
+import AmericanConvexity.Stopping.ContactMartingale
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -784,3 +785,58 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.brownian_contact_martingale_of_interior_localMartingales
+
+/-- info: 'AmericanConvexity.Stopping.exists_compact_set_localization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_compact_set_localization
+
+/-- info: 'AmericanConvexity.Stopping.brownianPriceKernel_compact_localization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianPriceKernel_compact_localization
+
+/-- info: 'AmericanConvexity.Stopping.brownianInteriorRule_smooth_extension' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianInteriorRule_smooth_extension
+
+/-- info: 'AmericanConvexity.Stopping.ae_eq_through_positive_time' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.ae_eq_through_positive_time
+
+/-- info: 'AmericanConvexity.Stopping.brownianInteriorRule_ito_representation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianInteriorRule_ito_representation
+
+/-- info: 'AmericanConvexity.Stopping.localMartingale_stopped_indicator' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.localMartingale_stopped_indicator
+
+/-- info: 'AmericanConvexity.Stopping.brownianInteriorRule_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianInteriorRule_martingale
+
+/-- info: 'AmericanConvexity.Stopping.brownianClassicalContactRule_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianClassicalContactRule_martingale
+
+/-- info: 'AmericanConvexity.Stopping.brownian_boundary_curvature_of_supermartingales' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_boundary_curvature_of_supermartingales
+
+/-- info: 'AmericanConvexity.Stopping.brownianClassicalContactRule_expectedReward' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianClassicalContactRule_expectedReward
+
+/-- info: 'AmericanConvexity.Stopping.classicalPrice_le_brownianAmericanPut' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.classicalPrice_le_brownianAmericanPut

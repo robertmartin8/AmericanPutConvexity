@@ -123,8 +123,9 @@ proves `0<=U_t<=K`, continuity along continuous paths, reward domination through
 maturity, and payoff equality at maturity. Almost-sure `W_0=0` identifies its
 initial value. The checked conditional theorem now reduces price identification
 to supermartingality of this exact candidate, an admissible contact rule, and
-the stopped-candidate martingale property. Those stochastic properties are still
-unproved; the optional-stopping and verification results do not supply them.
+the stopped-candidate martingale property. The later `ContactMartingale.lean`
+development constructs the rule and proves the latter property from the PDE;
+the global supermartingale property remains open.
 In particular, no global C2 regularity across the exercise boundary is assumed
 to justify an unqualified application of Ito's formula.
 
@@ -159,10 +160,10 @@ and martingality of that candidate stopped at its constructed first contact.
 The final `brownian_boundary_curvature_of_martingales` transfers curvature when
 these properties hold for every positive initial spot and finite horizon.
 
-Those two stochastic properties and existence of a classical pair remain open.
-An admissible contact rule is now constructed, but its optimality is still
-conditional on the unproved martingale properties. It is not an independently
-verified optimal stopping rule yet.
+The contact martingale property is now discharged by `ContactMartingale.lean`.
+The global supermartingale property and existence of a classical pair remain
+open. The rule realizes the classical price as its expected payoff, but its
+optimality still needs the supermartingale upper bound on all other rules.
 
 ## Checked local PDE-to-Ito connection
 
@@ -195,12 +196,11 @@ G(t,W_t)-G(0,W_0) = M_t + integral_0^t (G_t+(1/2)*G_ww)(s,W_s) ds.
 ```
 
 The local-martingale filtration here is explicitly MathFin's **null-augmented**
-Brownian filtration. This is not yet a martingale statement for the original
-candidate on the raw filtration. We still need to assemble the local statements
-along the path up to first contact. Promotion of the bounded stopped process
-to a true martingale and transfer to the raw filtration are now proved as
-described below. The global candidate's supermartingale property across the
-exercise boundary is also still missing.
+Brownian filtration. The local statement alone does not assert martingality of
+the original candidate. The compact-region assembly, bounded promotion and
+raw-filtration transfer described below now prove martingality up to first
+contact. The global candidate's supermartingale property across the exercise
+boundary is still missing.
 
 The new import traverses upstream files containing unfinished declarations;
 the guarded axiom checks on `plane_ito_localMartingale` and `local_price_ito`
@@ -229,10 +229,10 @@ candidate stopped at any admissible bounded rule.
 The classical price bound gives `|U_(t min theta)|<=K`. Thus
 `brownian_stoppedCandidate_martingale_of_local` promotes an augmented local
 martingale for that precise process to a true martingale on the raw filtration.
-The revised price/curvature reductions now require only the global candidate
-supermartingale property and augmented local martingality up to the constructed
-first-contact rule, besides the classical contract. The latter local property
-is still open; smooth local Ito representations alone do not discharge it.
+The reductions in this module require the global candidate supermartingale
+property and augmented local martingality up to first contact. The later
+`ContactMartingale.lean` assembly supplies the needed raw true-martingale property
+directly, removing that stochastic premise from the final reductions.
 
 This transfers the particular adapted candidate process, not all admissible
 stopping rules or the value supremum. Equality of raw- and augmented-filtration
@@ -269,9 +269,41 @@ and raw-filtration transfer. Its theorem
 `brownian_contact_martingale_of_interior_localMartingales` requires local
 martingality of each exact interior-stopped candidate on the null augmentation,
 and proves true martingality at first contact on the raw filtration.
-**The interior local-martingale premises still need to be proved from Ito.**
-This is not yet the stochastic identification theorem. The global
+The interior martingale properties are now proved from Ito as described next.
+This is not yet the stochastic identification theorem: the global
 supermartingale property and existence of the classical solution remain open.
+
+## Checked contact martingality from the PDE
+
+`CompactLocalization.lean` constructs one globally C3 compactly supported
+extension around a whole compact subset of continuation, with zero generator
+on that set. `InteriorRegion.lean` proves that each trajectory up to a positive
+interior exit stays in an explicit compact time/driver region. One extension
+therefore works simultaneously for all such paths.
+
+`InteriorIto.lean` resolves the random-time quantifier issue: a fixed-time
+almost-sure Ito identity cannot simply be evaluated at a random time. A
+countable dense set, zero pre-exit drift and path continuity give one identity
+valid almost surely at every time through a positive exit. Immediate stopping
+has zero increment. The stopped price increment is thus indistinguishable from
+a stopped, indicated local martingale.
+
+`ContactMartingale.lean` combines stopping stability, transfer under pathwise
+almost-sure equality with explicitly adapted continuous targets, bounded
+promotion and raw-filtration transfer. The stopping-rule limit gives
+`brownianClassicalContactRule_martingale`, with no additional stochastic premise.
+The proved expected payoff of this contact rule equals the scaled classical
+price, yielding `classicalPrice_le_brownianAmericanPut` against the actual
+stopping supremum. Optimality still needs the opposite inequality.
+
+`brownian_price_identification_of_supermartingale` and
+`brownian_boundary_curvature_of_supermartingales` expose the sole remaining
+stochastic premise: the global supermartingale property. Existence of a pair
+satisfying the classical contract remains a separate obligation.
+
+Stopping stability uses the proved upstream **martingale** optional-sampling
+and uniform-integrability chain, not its unfinished submartingale counterparts.
+The final contact and conditional curvature axiom guards check this distinction.
 
 ## Price identification suffices for boundary identification
 

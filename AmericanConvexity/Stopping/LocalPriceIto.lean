@@ -5,9 +5,8 @@ import AmericanConvexity.Stopping.PlaneIto
 
 Every continuation point admits a compact C3 localization whose Brownian
 generator is zero nearby and whose compensated Brownian evaluation is a
-genuine local martingale. Gluing these local statements up to first contact,
-and transferring from the null augmentation to the raw filtration, remain
-separate obligations.
+genuine local martingale. Compact-region assembly and transfer to the raw
+filtration are proved subsequently in `InteriorIto` and `ContactMartingale`.
 -/
 
 namespace AmericanConvexity.Stopping

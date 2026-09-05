@@ -35,23 +35,25 @@ supermartingales and contact martingales to the actual American supremum.
 The exact discounted classical-price candidate has checked continuity,
 adaptation, boundedness, and payoff domination. Its first-contact stopping rule
 is now constructed, with proved contact and pre-contact continuation. Its
-supermartingale/contact-martingale properties still need to be derived from the
-PDE; identification remains open.
+contact-martingale property is now derived from the PDE. The global
+supermartingale property remains open, so identification is not yet complete.
 
 The stochastic bridge now proves the exact Brownian-coordinate heat equation
 inside continuation and constructs compact C3 localizations with zero drift
 near each interior point. MathFin's Ito theorem supplies their compensated
 local martingales on the explicitly null-augmented filtration. Assembly up to
-first contact and the global supermartingale property remain unproved.
-Once local martingality of the stopped candidate is established, its promotion
-to a true martingale and transfer to the raw filtration are now proved from
-boundedness and adaptation; neither remains an extra hypothesis.
+first contact, promotion to a true martingale, and transfer to the raw
+filtration are now proved. The global supermartingale property remains open.
 
 Explicit interior stopping rules now converge pathwise to first contact. Before
 each rule, the price/payoff gap and remaining maturity are bounded away from
 zero, and the Brownian coordinate is bounded. A checked bounded-martingale limit
-then reduces contact martingality to local martingality at these interior rules.
-Deriving the latter from the local Ito representations remains open.
+then transfers interior martingality to first contact. Compact-region smooth
+extensions and a countable-dense-time argument make the Ito representation valid
+simultaneously at random stopped times. Stopping stability and bounded promotion
+complete `brownianClassicalContactRule_martingale`, without an additional
+martingale premise. This also proves that the classical price is the expected
+payoff of this admissible rule, hence is no greater than the actual American value.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -186,12 +188,16 @@ All files below are included in the project build.
 | [`Stopping/CandidatePDE.lean`](AmericanConvexity/Stopping/CandidatePDE.lean) | Exact physical-time/Brownian-coordinate derivatives and zero generator inside continuation |
 | [`Stopping/SmoothLocalization.lean`](AmericanConvexity/Stopping/SmoothLocalization.lean) | Compact C3 functions agreeing with the actual price near continuation points |
 | [`Stopping/PlaneIto.lean`](AmericanConvexity/Stopping/PlaneIto.lean) | Joint C3 regularity supplies the partials required by MathFin's local-martingale Ito theorem |
-| [`Stopping/LocalPriceIto.lean`](AmericanConvexity/Stopping/LocalPriceIto.lean) | Zero-drift local price extensions with genuine compensated local martingales; global stopped assembly remains open |
+| [`Stopping/LocalPriceIto.lean`](AmericanConvexity/Stopping/LocalPriceIto.lean) | Zero-drift local price extensions with genuine compensated local martingales; assembled later in ContactMartingale |
 | [`Stopping/BoundedLocalMartingale.lean`](AmericanConvexity/Stopping/BoundedLocalMartingale.lean) | Deterministically bounded local martingales are true martingales, by localized set-integral limits; transfer to smaller filtrations |
 | [`Stopping/BrownianLocalVerification.lean`](AmericanConvexity/Stopping/BrownianLocalVerification.lean) | Stopped candidate is raw-adapted and bounded; augmented local martingality implies the raw true-martingale property needed for verification |
 | [`Stopping/LocalizationTimes.lean`](AmericanConvexity/Stopping/LocalizationTimes.lean) | Explicit interior stopping rules, strict pre-exit and closed positive-exit margins, and pathwise convergence to first contact |
 | [`Stopping/MartingaleLimits.lean`](AmericanConvexity/Stopping/MartingaleLimits.lean) | Bounded pointwise limits preserve martingality; continuous stopped candidates pass to limits of stopping rules |
 | [`Stopping/BrownianInteriorLocalization.lean`](AmericanConvexity/Stopping/BrownianInteriorLocalization.lean) | Brownian interior approximation and reduction of contact martingality to interior local martingales |
+| [`Stopping/CompactLocalization.lean`](AmericanConvexity/Stopping/CompactLocalization.lean) | One compactly supported C3 extension around a whole compact subset of continuation, with zero generator there |
+| [`Stopping/InteriorRegion.lean`](AmericanConvexity/Stopping/InteriorRegion.lean) | Explicit compact regions containing trajectories up to positive interior exits; one smooth extension works for all such paths |
+| [`Stopping/InteriorIto.lean`](AmericanConvexity/Stopping/InteriorIto.lean) | Simultaneous almost-sure stopped-time Ito representation, using dense times and continuity; includes immediate stopping |
+| [`Stopping/ContactMartingale.lean`](AmericanConvexity/Stopping/ContactMartingale.lean) | Contact martingality and realized contact payoff from the classical PDE; identification now requires only the global supermartingale property in addition to the classical contract |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

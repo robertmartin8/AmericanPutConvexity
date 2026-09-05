@@ -4,9 +4,9 @@ import AmericanConvexity.Stopping.MartingaleLimits
 /-!
 # Interior approximation of the constructed Brownian first-contact rule
 
-The sequence is explicit and converges pathwise. Martingale verification for
-each interior stopped candidate is still required; if supplied locally on the
-null augmentation, promotion, raw transfer and the contact-time limit are proved.
+The sequence is explicit and converges pathwise. This module reduces contact
+martingality to the interior local properties. `ContactMartingale` subsequently
+proves the interior martingale properties from the PDE and Ito's formula.
 -/
 
 namespace AmericanConvexity.Stopping

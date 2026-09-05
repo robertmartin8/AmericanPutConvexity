@@ -6,8 +6,8 @@ import AmericanConvexity.Stopping.CandidatePDE
 At each continuation point there is a globally C3, compactly supported function
 agreeing with the actual Brownian-coordinate price on a neighborhood. This
 justifies availability of global smooth test functions without pretending that
-the price is globally C2 across its free boundary. A local Ito/martingale
-assembly is still needed to use these functions along stopped trajectories.
+the price is globally C2 across its free boundary. `CompactLocalization`
+strengthens this to compact sets; `ContactMartingale` assembles stopped Ito.
 -/
 
 namespace AmericanConvexity.Stopping

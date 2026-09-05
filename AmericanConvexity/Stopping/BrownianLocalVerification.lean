@@ -6,9 +6,9 @@ import AmericanConvexity.Stopping.BrownianVerification
 
 The classical contract supplies the boundedness and raw adaptation needed to
 promote a stopped local martingale on the null augmentation and transfer it to
-our financial model's raw natural filtration. Local martingality of the actual
-stopped candidate is still an open hypothesis, not inferred merely from the
-existence of smooth local Ito representations.
+our financial model's raw natural filtration. The local hypothesis is explicit
+in this module; `ContactMartingale` later assembles the Ito representations and
+proves the raw contact-martingale property without that extra hypothesis.
 -/
 
 namespace AmericanConvexity.Stopping

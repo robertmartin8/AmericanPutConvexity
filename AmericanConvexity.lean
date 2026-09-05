@@ -25,6 +25,10 @@ import AmericanConvexity.Stopping.BrownianLocalVerification
 import AmericanConvexity.Stopping.LocalizationTimes
 import AmericanConvexity.Stopping.MartingaleLimits
 import AmericanConvexity.Stopping.BrownianInteriorLocalization
+import AmericanConvexity.Stopping.CompactLocalization
+import AmericanConvexity.Stopping.InteriorRegion
+import AmericanConvexity.Stopping.InteriorIto
+import AmericanConvexity.Stopping.ContactMartingale
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

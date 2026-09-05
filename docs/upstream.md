@@ -99,3 +99,12 @@ final local Ito conclusions check the transitive **proof** graph and permit
 only `propext`, `Classical.choice`, and `Quot.sound`; no imported unfinished
 declaration is accepted as part of those conclusions. Importing a file and
 depending on every theorem in it are different claims.
+
+`Stopping/ContactMartingale.lean` now also uses the upstream proved martingale
+stopping-stability chain (`isStable_martingale`, continuous-time martingale
+optional sampling, and martingale uniform integrability). Its submartingale
+counterparts are the unfinished declarations noted above and are not used.
+The contact-martingale and final conditional curvature guards also permit only
+the three standard axioms. Mathlib's smooth partition-of-unity construction is
+used to extend the price around compact interior regions; no global smoothness
+of the price across the free boundary is assumed.
