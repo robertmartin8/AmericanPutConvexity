@@ -67,4 +67,3 @@ theorem discounted_parabolic_maximum {u D : ℝ → ℝ → ℝ} {b : ℝ → �
   linarith
 
 end AmericanConvexity.Boundary
-
