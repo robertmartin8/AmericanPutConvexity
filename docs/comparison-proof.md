@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; expiry and monotonicity inputs checked on the old CCJZ contract; curvature follows from the still-unproved interval invariant |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Proved on the original normalized classical contract |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; physical condition, expiry and monotonicity checked; the log-curvature assembly has the interval invariant as its remaining input |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; log curvature now follows from the interval invariant alone; strict stock curvature additionally requires global strict speed |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Proved on the dividend classical contract; physical parameter correspondence checked |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; actual stopping-value identification remains open |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -51,9 +51,9 @@ invariant, or a maximum principle. The rate conditions are explicit.
 parameter inequalities; `liu_condition_normalization` proves that `h+1<=k`
 is equivalent to `q+sigma^2/2<=r`.
 
-The curvature targets are named **proposition definitions**, not asserted
-theorems. Their elementary specialization implications are proved, without
-asserting any of the open premises. Existence and identification with the
+The three weak curvature targets are named proposition definitions, now proved
+by the corresponding theorems in `ComparisonConclusion.lean`. The published
+strict log-curvature target remains open. Existence and identification with the
 continuous-time GBM stopping value are still separate, unproved obligations.
 
 ### Exercise-boundary calculus and obstacle comparison
@@ -144,7 +144,7 @@ The ratio-limit theorem depends only on `DividendPutSolution`, not negative
 boundary speed, convexity, a European asymptotic, or a new analytic axiom. The
 zero-dividend specialization uses the original normalized pricing contract.
 This proves the expiry input required by Step 1, not the sharp published
-near-expiry asymptotic and not the remaining curvature theorem.
+near-expiry asymptotic; it supplies one input to the completed curvature proof.
 
 ### Step 2: explicit comparison construction
 
@@ -250,8 +250,50 @@ derivative have a common bound on the entire space-time plane. No derivative
 of the exercise boundary is used, and the estimates include zero dividends.
 
 Derivative convergence near the initial roots and positive-time zero-count
-initialization/propagation remain open. An initial shape theorem does NOT
-assert that the evolution preserves the shape.
+initialization/propagation remain open in the retained Sturm route. They are
+not needed by the direct propagation proof below. An initial shape theorem
+alone does NOT assert that the evolution preserves the shape.
+
+### Step 4: completed direct three-point propagation
+
+`SmoothValley.lean` defines, for `delta>0`,
+
+```text
+phi(a) = (a + sqrt(a^2 + delta^2))/2,
+psi(a,c) = a - phi(a-c),
+V(a,b,c) = psi(a,c) - phi(b).
+```
+
+The derivative of `phi` lies strictly between zero and one. Consequently `V`
+is strictly increasing in its endpoint arguments and strictly decreasing in
+its middle argument. It approximates `min(a,c)-max(b,0)` from below, with
+error at most `delta`.
+
+`OrderedTriples.lean` proves compactness of the ordered equal-time triples in
+a compact moving strip. `ParabolicValley.lean` maximizes
+`V(U(x,t),U(y,t),U(z,t))-eta*t`, for `eta>0`, on those triples. The initial
+three-point bound and nonpositive boundary values exclude a positive maximum
+at the initial time, a spatial boundary, or a collision `x=y` or `y=z`.
+Strict monotonicity of `V` makes `U` attain spatial local maxima at `x,z` and
+a local minimum at `y`. The equation `U_t=U_xx+D*U_x` therefore gives
+nonpositive endpoint time derivatives and a nonnegative middle time derivative.
+The time derivative of `V-eta*t` is strictly negative, contradicting the
+one-sided time derivative inequality at a maximum. This includes a maximum
+at the terminal time.
+
+`ParabolicUnimodality.lean` removes both positive perturbations and concludes
+`min(U(x,t),U(z,t)) <= max(U(y,t),0)` whenever `x<=y<=z`. It requires continuity
+at initial time, not initial derivative traces. No zero-count theorem or
+bounded-drift assumption is used in this compact maximum argument.
+
+`ComparisonUnimodality.lean` supplies the actual comparison's PDE, regularity,
+boundary signs, fixed negative right truncation, and initial three-point bound
+from the initial superlevel geometry. It proves that every nonnegative strict
+superlevel is an interval, including the positive set needed for tangency.
+The named zero-dividend theorem uses the original normalized contract.
+
+The following root-count modules are retained as an alternative development;
+their open premises are not dependencies of the completed curvature theorem.
 
 ### Step 4: exact roots, confinement, and the initialization bridge
 
@@ -364,9 +406,10 @@ inclusion gives a positive value, hence an earlier positive point at contact.
 In moving coordinates, continuity keeps a fixed positive right endpoint positive
 near the contact time. The explicit interval hypothesis fills in the bottom edge
 between that endpoint and the positive line value. This contradicts the checked
-terminal-rectangle lemma. The interval hypothesis is still unproved.
+terminal-rectangle lemma. `ComparisonUnimodality.lean` now supplies the interval
+hypothesis for the actual comparison.
 
-### Step 1 and the conditional global curvature implication
+### Step 1 and the global curvature conclusion
 
 `TangentGeometry.lean` proves that negative second derivative gives strict
 inequality below the tangent in a punctured neighborhood. It uses local strict
@@ -380,7 +423,7 @@ argument applied to `exp(t)*d(t)` shows negative intercepts persist forward.
 Thus curvature control at negative-intercept tangents implies it everywhere.
 `NearExpiry.lean` now supplies the ratio limit for the actual pricing contract.
 
-`ComparisonAssembly.lean` proves the exact remaining implication:
+`ComparisonAssembly.lean` retains the modular implication:
 
 ```text
 DividendPutSolution k h p b
@@ -393,9 +436,17 @@ assembly no longer assumes global strict speed: it uses the proved speed result
 only at a hypothetical negative-curvature point. The strict stock-curvature
 consequence retains an additional global strict-speed premise, because that
 conclusion uses positivity of `b''+(b')^2`, not just nonnegativity.
-**This is a conditional assembly, not the completed theorem.** The interval
-invariant remains an explicit theorem premise, not a new contract field, axiom,
-or asserted result. It is precisely the main unresolved propagation claim.
+`ComparisonConclusion.lean` discharges that interval premise and proves:
+
+```text
+DividendPutSolution k h p b ==> forall t>0, b''(t)>=0.
+```
+
+`dividend_curvature_claim`, `zeroDividend_weak_curvature_claim`, and
+`liuRange_curvature_claim` inhabit the three named weak-curvature targets.
+No interval, speed, expiry, zero-count, or derivative-trace assumption was added
+to the pricing contract. The weaker parameter cases specialize this proof;
+they are not independent verifications of the published proofs.
 
 ## Analytic dependencies still to prove
 
@@ -404,33 +455,23 @@ or asserted result. It is precisely the main unresolved propagation claim.
    Price and boundary monotonicity, nonpositive speed, and negative speed at a
    hypothetical concave point are proved. Global strict speed is no longer
    needed as a premise for weak log curvature. The expiry limit is also proved.
-2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
-   exact two-simple-root characterization, corner/tail control, and compact
-   confinement are checked. The count-stability implication from initial
-   derivative traces is checked. Derive those traces from the pricing PDE
-   (for example by proving the required initial-time derivative convergence).
-3. **Step 4, propagation.** Prove the necessary parabolic zero-number result
-   and connect its exact hypotheses to the checked coefficient
-   and truncation bounds. The weak maximum principle, the spatial implication
-   from root counts to interval superlevels, and the positive-level to zero-level
-   passage are proved. Do not assume the desired invariant as a field of the
-   pricing-solution contract.
-4. **Step 5.** The earlier-positive-point argument, terminal-rectangle
-   smooth-fit contradiction, and geometric assembly are checked. Discharge
-   their single-interval premise through the missing Step 4 propagation proof.
-5. **Financial applicability.** Establish the properties needed for the
-   actual American value, including boundary regularity and monotonicity,
-   rather than only proving a conditional theorem for an uninhabited contract.
-6. **Conclusions.** Discharge the interval invariant to prove weak log curvature
-   and its parameter specializations. The strict stock transfer needs the
-   additional strictness input above. Retain the separate CCJZ route and its
-   stronger log-curvature target.
+2. **Financial applicability.** Establish existence and identify the classical
+   contract with the actual GBM American stopping value, including the required
+   boundary regularity and smooth fit. Monotonicity is already derived from
+   the contract; it is not a separate contract assumption.
+3. **Independent published proof and strictness.** Retain the separate CCJZ
+   route and its stronger strict log-curvature target. The three checked weak
+   claims do not prove that strict result or independently verify its proof.
+4. **Optional Sturm route.** Initial derivative traces and general positive-time
+   zero-count propagation remain unproved. These would complete the retained
+   root-count approach, but are not prerequisites of the direct proof.
 
-For the informal audit, [Lou's Theorem 1.2 and Lemma 2.1](https://arxiv.org/pdf/1809.00309)
+For the original informal Sturm audit, [Lou's Theorem 1.2 and Lemma 2.1](https://arxiv.org/pdf/1809.00309)
 provide an appropriate moving-boundary zero-number statement: with nonzero
 boundary values, continuous boundary curves suffice. This avoids introducing
 `b'(0+)` through a coordinate change, but does not by itself initialize the
-zero count. **A literature citation is not an imported Lean theorem.**
+zero count. This citation is not used by the direct three-point proof.
+**A literature citation is not an imported Lean theorem.**
 
 The now-checked terminal barrier is in coordinates `y=x-ell(t)`:
 
@@ -443,8 +484,8 @@ psi''+beta psi' = lambda exp(lambda*y)(lambda+beta) > 0.
 
 On a backward rectangle satisfying the stated edge hypotheses, the checked
 comparison gives a strictly positive right derivative at terminal contact,
-contradicting smooth fit. The rectangle construction is now checked conditional
-on the single-interval property; that property remains an open obligation.
+contradicting smooth fit. The rectangle construction and the single-interval
+property supplying its premise are now both checked.
 
 ## Verification boundaries
 

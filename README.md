@@ -7,10 +7,11 @@ independent published CCJZ proof development is retained. The project integrates
 [MathFin](https://github.com/formal-applied-math/formal-mathfin); the boundary
 proof modules currently use Mathlib and local results, not MathFin pricing results.
 
-> **Status: the main theorem is not yet formalized.** The environment is working,
-> the upstream library and source paper have been investigated, and several
-> supporting results are kernel-checked. The substantial free-boundary PDE proof
-> and its connection to the financial optimal-stopping problem remain outstanding.
+> **Status: normalized weak log-curvature is proved for the classical pricing
+> contract.** `DividendPutSolution k h p b` implies `b''(t)>=0` for every `t>0`.
+> No extra interval, speed, expiry, zero-count or derivative-trace premise remains.
+> Identification with the actual American stopping value, strict stock curvature
+> without an extra strictness premise, and the independent strict CCJZ proof remain open.
 
 ## Proposed extension and published checkpoints
 
@@ -19,32 +20,25 @@ The active target is `b''(t)>=0` for `t>0`, where
 The proposed proof and its exact verification frontier are tracked in
 [`docs/comparison-proof.md`](docs/comparison-proof.md).
 
-**New checked progress:** price time-monotonicity and a nonincreasing exercise
-boundary are now proved from the pricing contract. At a hypothetical point of
-negative curvature this gives strictly negative speed, which is enough for the
-log-curvature contradiction. Together with the proved expiry ratio limit, this
-leaves only the positive-interval invariant as an analytic premise of the
-log-curvature assembly. That invariant remains unproved, not a contract field.
-The strict stock-curvature consequence still requires a global strict-speed
-premise; this stronger first-order conclusion is not asserted as proved.
+**New checked progress:** a direct three-point maximum principle proves the
+positive-interval invariant. It uses continuous initial data and the normalized
+PDE, bypassing the full Sturm theorem and the initial derivative-trace argument.
+`ComparisonConclusion.lean` discharges the last premise of the log-curvature
+assembly and proves `DividendCurvatureClaim`, `ZeroDividendWeakCurvatureClaim`,
+and `LiuRangeCurvatureClaim` for their stated classical contracts.
 
 The checked chain includes the explicit comparison/PDE/smooth fit, payoff
 domination, initial shape, normalized PDE, tail/coefficient and boundary-sign
 bounds, moving-boundary maximum principle, terminal Hopf barrier, geometric
 rectangle construction, and negative-intercept reduction. The zero-dividend
-assembly uses the original CCJZ contract. **This conditional result does not
-yet prove boundary convexity in ANY parameter regime.**
+specialization uses the original CCJZ contract. **The weak zero-dividend result
+is a specialization of this proof, not an independent verification of the
+published strict-log-curvature proof.**
 
-Step 4 now also has an exact two-simple-initial-root theorem and unconditional
-small-time root confinement. An at-most-two-root initialization follows from an
-explicit initial derivative-trace premise; that regularity input and subsequent
-zero-count propagation remain unproved.
-
-The spatial conclusion of Step 4 is now checked too: at most two positive-level
-roots, together with the proved boundary signs and tail bound, force an interval
-superlevel set. Passing from all positive levels to the positive set is checked,
-with a named zero-dividend specialization. This does not prove propagation of
-the root count.
+The earlier zero-count route is retained: exact initial roots, confinement and
+conditional initialization are checked. Its derivative-trace and Sturm inputs
+remain unproved, but neither is used in the completed classical log-curvature
+proof. Strict stock curvature still has a global strict-speed premise.
 
 The pricing contract now also yields strict separation of the boundary from
 the strike, and a proved comparison theorem for smooth subsolutions on strips
@@ -133,7 +127,7 @@ All files below are included in the project build.
 | [`Boundary/Coordinates.lean`](AmericanConvexity/Boundary/Coordinates.lean) | Normalized time, reconstruction of the stock-price boundary, expiry convention, first and second derivatives, and transfer of convexity/positive curvature |
 | [`Boundary/Limits.lean`](AmericanConvexity/Boundary/Limits.lean) | Pointwise limits of convex real functions on a fixed convex domain are convex |
 | [`Boundary/Problem.lean`](AmericanConvexity/Boundary/Problem.lean) | Classical normalized solution predicate; payoff/contact correspondence in stock units; uniqueness of the threshold for a fixed price; explicit open analytic goals |
-| [`Boundary/DividendProblem.lean`](AmericanConvexity/Boundary/DividendProblem.lean) | Dividend solution contract; exact zero-dividend equivalence; physical parameter normalization; explicit open curvature milestones |
+| [`Boundary/DividendProblem.lean`](AmericanConvexity/Boundary/DividendProblem.lean) | Dividend solution contract; exact zero-dividend equivalence; physical parameter normalization; named weak curvature targets proved in ComparisonConclusion |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
@@ -150,6 +144,12 @@ All files below are included in the project build.
 | [`Boundary/TangentIntercept.lean`](AmericanConvexity/Boundary/TangentIntercept.lean) | Generic negative-intercept selection and global curvature reduction; its ratio-limit premise is now discharged for the pricing solution |
 | [`Boundary/Tangency.lean`](AmericanConvexity/Boundary/Tangency.lean) | Positive rectangle construction and exclusion of concave tangency, conditional on the interval invariant |
 | [`Boundary/ComparisonAssembly.lean`](AmericanConvexity/Boundary/ComparisonAssembly.lean) | Log-curvature implication conditional only on the interval invariant; strict stock curvature also requires strict speed; zero-dividend specialization |
+| [`Boundary/SmoothValley.lean`](AmericanConvexity/Boundary/SmoothValley.lean) | Smooth approximations to the positive part and minimum; strict monotonicity, derivatives, and error bounds |
+| [`Boundary/OrderedTriples.lean`](AmericanConvexity/Boundary/OrderedTriples.lean) | Compact ordered equal-time triples in a moving strip |
+| [`Boundary/ParabolicValley.lean`](AmericanConvexity/Boundary/ParabolicValley.lean) | Direct three-point maximum principle, including terminal-time maxima |
+| [`Boundary/ParabolicUnimodality.lean`](AmericanConvexity/Boundary/ParabolicUnimodality.lean) | Removal of smoothing and time perturbations; propagated three-point inequality |
+| [`Boundary/ComparisonUnimodality.lean`](AmericanConvexity/Boundary/ComparisonUnimodality.lean) | Actual comparison superlevels are intervals; no Sturm or initial derivative-trace premise |
+| [`Boundary/ComparisonConclusion.lean`](AmericanConvexity/Boundary/ComparisonConclusion.lean) | Weak normalized log curvature from the classical contract alone; zero-dividend and Liu-range milestones; strict stock curvature with strict speed |
 | [`Boundary/InitialRoots.lean`](AmericanConvexity/Boundary/InitialRoots.lean) | Exactly two simple initial roots below a higher positive initial value; identification of the actual spatial derivatives |
 | [`Boundary/RootConfinement.lean`](AmericanConvexity/Boundary/RootConfinement.lean) | Every small-time positive-level root lies near the initial roots, using only continuity, initial data and tail bounds |
 | [`Boundary/RootStability.lean`](AmericanConvexity/Boundary/RootStability.lean) | At-most-two-root initialization conditional on the still-open initial derivative traces; no-positive-data branch and zero-dividend specialization |
@@ -276,10 +276,12 @@ assertion claiming the main theorem is complete.
 ## Remaining work
 
 For the active straight-line proof, see the dependency list in
-[`docs/comparison-proof.md`](docs/comparison-proof.md). The zero-number
-initialization/propagation and the tangency contradiction remain unproved.
-The weaker parameter cases are tracked separately, with the distinction between
-specializing the new proof and independently verifying a published proof preserved.
+[`docs/comparison-proof.md`](docs/comparison-proof.md). Weak normalized log
+curvature, the interval invariant, and the tangency contradiction are proved.
+The direct three-point argument bypasses the unfinished zero-number route.
+Actual stopping-value identification and strict stock curvature without an extra
+strictness premise remain open. The proved weaker parameter cases are tracked
+separately from independent verification of the published proofs.
 
 The detailed dependency map is in [`docs/ccjz-audit.md`](docs/ccjz-audit.md).
 Following the supplied paper requires:

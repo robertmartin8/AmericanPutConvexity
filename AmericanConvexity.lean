@@ -37,6 +37,12 @@ import AmericanConvexity.Boundary.DelayedPrice
 import AmericanConvexity.Boundary.LocalizationBarrier
 import AmericanConvexity.Boundary.TimeMonotonicity
 import AmericanConvexity.Boundary.BoundaryMonotonicity
+import AmericanConvexity.Boundary.SmoothValley
+import AmericanConvexity.Boundary.OrderedTriples
+import AmericanConvexity.Boundary.ParabolicValley
+import AmericanConvexity.Boundary.ParabolicUnimodality
+import AmericanConvexity.Boundary.ComparisonUnimodality
+import AmericanConvexity.Boundary.ComparisonConclusion
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration

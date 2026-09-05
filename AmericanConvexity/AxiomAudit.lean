@@ -16,6 +16,7 @@ import AmericanConvexity.Boundary.ComparisonAssembly
 import AmericanConvexity.Boundary.RootStability
 import AmericanConvexity.Boundary.ComparisonIntervals
 import AmericanConvexity.Boundary.ObstacleComparison
+import AmericanConvexity.Boundary.ComparisonConclusion
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -501,3 +502,48 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.zeroDividend_boundary_antitoneOn
+
+/-- info: 'AmericanConvexity.Boundary.smoothValley_hasDeriv' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.smoothValley_hasDeriv
+
+/-- info: 'AmericanConvexity.Boundary.parabolic_smoothValley_nonpos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.parabolic_smoothValley_nonpos
+
+/-- info: 'AmericanConvexity.Boundary.parabolic_three_point_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.parabolic_three_point_bound
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_positive_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_positive_interval
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.dividend_log_curvature' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.dividend_log_curvature
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.dividend_curvature_claim' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.dividend_curvature_claim
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_weak_curvature_claim' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_weak_curvature_claim
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.liuRange_curvature_claim' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.liuRange_curvature_claim
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.stock_curvature_of_strict_speed' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.stock_curvature_of_strict_speed

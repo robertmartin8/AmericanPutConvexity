@@ -131,25 +131,27 @@ theorem dividendPutSolution_zero_iff {k : ℝ} {p : ℝ → ℝ → ℝ} {b : �
       gradient_trace := h.gradient_trace
       decay := h.decay }
 
-/-- OPEN target. This definition is not a proof of the proposed extension. -/
+/-- Classical-solution target, proved in `ComparisonConclusion.lean`.
+This definition alone is not a proof or an identification with a stopping value. -/
 def DividendCurvatureClaim : Prop :=
   ∀ (k h : ℝ) (p : ℝ → ℝ → ℝ) (b : ℝ → ℝ),
     DividendPutSolution k h p b → ∀ t, 0 < t → 0 ≤ deriv (deriv b) t
 
-/-- OPEN zero-dividend milestone for the proposed proof. The published CCJZ
+/-- Zero-dividend milestone, proved in `ComparisonConclusion.lean`. The published CCJZ
 target `NormalizedCurvatureClaim` is stronger: it requires STRICT positivity. -/
 def ZeroDividendWeakCurvatureClaim : Prop :=
   ∀ (k : ℝ) (p : ℝ → ℝ → ℝ) (b : ℝ → ℝ),
     NormalizedPutSolution k p b → ∀ t, 0 < t → 0 ≤ deriv (deriv b) t
 
-/-- OPEN specialization to Liu's parameter range, retaining the proposed
-logarithmic-curvature conclusion. -/
+/-- Specialization to Liu's parameter range, proved in `ComparisonConclusion.lean`,
+retaining the proposed weak logarithmic-curvature conclusion. -/
 def LiuRangeCurvatureClaim : Prop :=
   ∀ (k h : ℝ) (p : ℝ → ℝ → ℝ) (b : ℝ → ℝ),
     DividendPutSolution k h p b → h + 1 ≤ k →
       ∀ t, 0 < t → 0 ≤ deriv (deriv b) t
 
-/-- A reduction between OPEN claims, not an assertion of either one. -/
+/-- A reduction between the claims. Their proofs are supplied separately in
+`ComparisonConclusion.lean`. -/
 theorem dividendCurvature_specializations (hmain : DividendCurvatureClaim) :
     ZeroDividendWeakCurvatureClaim ∧ LiuRangeCurvatureClaim := by
   constructor
@@ -158,8 +160,9 @@ theorem dividendCurvature_specializations (hmain : DividendCurvatureClaim) :
   · intro k h p b hb _ t ht
     exact hmain k h p b hb t ht
 
-/-- The already specified published theorem would imply the weak zero-dividend
-milestone. Neither hypothesis nor conclusion has been proved yet. -/
+/-- The published strict theorem would imply the weak zero-dividend milestone.
+The strict hypothesis remains open; the weak claim is now proved by the
+alternative comparison route in `ComparisonConclusion.lean`. -/
 theorem publishedCurvature_implies_weak (hccjz : NormalizedCurvatureClaim) :
     ZeroDividendWeakCurvatureClaim := by
   intro k p b hb t ht
