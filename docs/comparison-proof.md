@@ -999,3 +999,26 @@ The reference term, new-source contribution and older sources outside the
 local Holder window are not included in that estimate. They still need to
 be assembled before the actual flux modulus can be improved beyond one-half.
 No C2 or classical second-derivative claim is made at this stage.
+
+### Complete local-history three-quarter estimate
+
+The frozen reference and new-source terms are now assembled with the
+common-past estimate. `HeatHistoryReference.lean` proves the reference
+integral's time difference by varying only its upper limit.
+`HeatRemainderRecent.lean` handles sources later than the frozen reference
+time, giving an O(delta) integrated remainder. The decomposition and every
+subtraction are justified with genuine integrability in
+`HeatHistoryFrozenDecomposition.lean`.
+
+`HeatHistoryThreeQuarter.lean` proves the complete local-history bound, and
+`HalfHolderHistory.lean` derives its comparison hypotheses from a C1,1/2 graph
+and one-half Holder density. `ActualHistoryThreeQuarter.lean` supplies the actual graph
+and removes a clamp placed strictly before the source window. Explicit
+zero-dividend and Liu checkpoints and sixteen transitive axiom guards are
+included.
+
+Older sources outside the local Holder window and the final density-equation
+application still remain. The new estimate's coefficient is explicit and
+requires staying away from the local source start for a uniform neighborhood
+bound. Thus the verified actual flux and velocity exponent is still one-half,
+not yet three-quarters; actual-boundary C2 remains unfinished.

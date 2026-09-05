@@ -41,9 +41,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > derivative, with source time and reference values fixed, now has a checked
 > inverse-elapsed-time bound, supplied by the actual graph. Combining near
 > and far bounds gives a genuinely integrable three-quarter time estimate
-> for the common-past frozen remainder. The reference term, recent-source
-> term and older-source contribution still need assembly before this improves
-> the actual flux modulus. Proving C2 remains unfinished.
+> for the common-past frozen remainder. The reference and recent-source terms
+> are now included, giving a complete local-history three-quarter estimate
+> from a C1,1/2 graph and one-half Holder density. The actual graph supplies the premises,
+> with explicit zero-dividend and Liu cases (`ActualHistoryThreeQuarter.lean`).
+> Older sources outside the local Holder window and the density-equation
+> application remain before upgrading the actual flux modulus. The actual
+> flux/velocity remains verified one-half Holder; C2 is unfinished.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming

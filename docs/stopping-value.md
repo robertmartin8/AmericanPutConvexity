@@ -2721,3 +2721,59 @@ for the complete actual history or flux. The reference integral, recent-source
 contribution, and older sources outside the local Holder window still need
 assembly. In particular, the already-verified actual flux/velocity modulus
 remains one-half at this checkpoint, and C2 remains unfinished.
+
+## Complete local history: reference and recent-source terms assembled
+
+`HeatHistoryReference.lean` proves integrability of
+`linearHeatHistoryIntegral(v,c,T)=integral_(0,T) H(u,v*u)*c`.
+For fixed v,c and 0<T1<=T2, its difference is bounded by
+
+`3*L*C/(sqrt(2*pi)*sqrt(T1))*(T2-T1)`
+
+when `|v|<=L` and `|c|<=C`. Only the upper elapsed-time limit changes. Both
+integrals and their split are proved integrable.
+
+For the new source interval, the frozen reference time precedes the source.
+`HeatRemainderRecent.lean` handles this explicitly: a uniform velocity error
+`A*sqrt(delta)` gives graph error `A*sqrt(delta)*u` by the mean-value
+inequality. With density error `D*sqrt(delta)`, the remainder is dominated
+by `3*(A*C+L*D)*sqrt(delta)/(sqrt(2*pi)*sqrt(u))`. Its integral over (0,delta)
+is genuinely integrable and bounded by
+
+`6*(A*C+L*D)/sqrt(2*pi)*delta`.
+
+`HeatHistoryFrozenDecomposition.lean` proves the exact identity splitting
+the full history difference into the common-past remainder, new-source
+remainder, and reference difference. Each reference and history subtraction
+has an integrability proof; the reference parameters are identical at both
+observations.
+
+`HeatHistoryThreeQuarter.lean` assembles these three bounds. For
+`a<t1<t2`, `t2-a<=1`, and the stated square-root comparison bounds, the
+complete history satisfies
+
+`|heatHistoryFrom(b,f,a,t2)-heatHistoryFrom(b,f,a,t1)|`
+` <= heatHistoryThreeQuarterConstant(A,L,C,D,t1-a)*(t2-t1)^(3/4)`.
+
+The constant includes the common-past coefficient, recent-source coefficient,
+and reference coefficient `3*L*C/(sqrt(2*pi)*sqrt(t1-a))`.
+`HalfHolderHistory.lean` derives every comparison premise from C1 graph
+regularity, a square-root modulus for its derivative, and a square-root
+modulus for the continuous bounded density on the source window. There is
+no density derivative or second graph derivative hypothesis.
+
+`ActualHistoryThreeQuarter.lean` supplies the graph hypotheses from the actual
+boundary. Around every positive heat time it constructs an interval and
+constants that work for every smaller closed source window of length at most
+one, and every bounded continuous density with a square-root modulus there.
+The graph is clamped strictly before this interval, preserving all source
+values and all derivatives used in the proof; exact integral equalities remove
+the clamp. The complete-history estimate is explicit in zero-dividend and
+Liu regimes as well. Sixteen new transitive axiom guards cover this stage.
+
+This is a complete estimate on a local source window, not yet the upgrade of
+the original density equation's full causal history. Older sources outside
+the local Holder window must be handled separately. The coefficient above
+also needs a uniform positive lower bound for t1-a when applying the estimate
+on an observation neighborhood. The actual density/flux/velocity exponent
+has not yet been upgraded beyond one-half, and C2 remains unfinished.
