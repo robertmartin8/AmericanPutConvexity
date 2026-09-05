@@ -10,6 +10,7 @@ import AmericanConvexity.Boundary.Comparison
 import AmericanConvexity.Boundary.GaugeTransform
 import AmericanConvexity.Boundary.ComparisonTail
 import AmericanConvexity.Boundary.ComparisonCoefficients
+import AmericanConvexity.Boundary.ComparisonMaximum
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -220,3 +221,28 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.normalizedDrift_bounded
+
+/-- info: 'AmericanConvexity.Boundary.movingStrip_isCompact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.movingStrip_isCompact
+
+/-- info: 'AmericanConvexity.Boundary.parabolic_maximum' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.parabolic_maximum
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_le_of_initial_le' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_le_of_initial_le
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_positive_at_earlier_time' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_positive_at_earlier_time
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_le_of_initial_le' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_le_of_initial_le

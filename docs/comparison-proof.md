@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE, tail and coefficient bounds checked; named initial-shape and tail theorems use the old CCJZ contract |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE, tail/coefficient bounds and maximum principle checked; named specializations use the old CCJZ contract |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE/tail/coefficient results apply |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, corner/boundary signs, tail and coefficient bounds checked |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE/tail/coefficient/maximum results apply |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, corner/boundary signs, tail/coefficient bounds and maximum principle checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -163,6 +163,33 @@ Derivative convergence near the initial roots and positive-time zero-count
 initialization/propagation remain open. An initial shape theorem does NOT
 assert that the evolution preserves the shape.
 
+### Steps 4 and 5: maximum principle and the earlier positive point
+
+`ParabolicMaximum.lean` proves the weak maximum principle for
+`u_t <= u_xx + D(x,t) u_x` on a compact moving strip, INCLUDING its terminal
+time. The strip is compact by a proved unit-interval parameterization; its left
+boundary need only be continuous. At a positive maximum, the spatial derivative
+vanishes, the second derivative is nonpositive, and the time derivative is
+nonnegative (using a left-hand time neighborhood). Subtracting
+`epsilon*(t-a+1)` reduces the weak inequality to a strict contradiction.
+No maximum-principle axiom or literature theorem is assumed. This elementary
+principle does not need coefficient bounds, since the drift term vanishes at
+the maximum; zero-number propagation is a separate, stronger theorem.
+
+`ComparisonMaximum.lean` applies it to the actual normalized difference on the
+unbounded moving continuation region, using the checked tail bound to truncate.
+`straightDifference_le_of_initial_le` says that an entire time slice bounded
+above by a nonnegative level remains so at all later times. Its starting time
+may be expiry. Thus the no-positive-data branch of Step 4 is proved without
+initial derivative convergence. There is a named zero-dividend specialization
+with the original CCJZ contract and the constant second profile.
+
+`straightDifference_positive_at_earlier_time` proves the contrapositive needed
+for Step 5: a positive value later forces a strictly positive point inside the
+continuation region at every earlier time slice. In particular it supplies
+the claimed `x_1` at tangency once a later positive line value is supplied.
+Neither theorem assumes or proves the single-positive-interval invariant.
+
 ## Analytic dependencies still to prove
 
 1. **Step 1.** Near-expiry `b(t)/t -> -infinity`, tangent-intercept selection,
@@ -171,12 +198,14 @@ assert that the evolution preserves the shape.
    simplicity at noncritical levels, the relative corner sign, and uniform
    tail control are checked. Prove derivative convergence near the simple
    initial zeros and stability of the count at small positive times.
-3. **Step 4, propagation.** Prove the necessary parabolic maximum/zero-number
-   results and connect their exact hypotheses to the checked coefficient and
-   truncation bounds. Pass from positive levels to the positivity set. Do not
-   assume the desired invariant as a field of the pricing-solution contract.
-4. **Step 5.** Formalize the existence of a positive point at tangency and the
-   backward-strip comparison barrier giving the smooth-fit contradiction.
+3. **Step 4, propagation.** Prove the necessary parabolic zero-number result
+   and connect its exact hypotheses to the checked coefficient
+   and truncation bounds. The weak maximum principle is now proved. Pass from
+   positive levels to the positivity set. Do not assume the desired invariant
+   as a field of the pricing-solution contract.
+4. **Step 5.** The earlier-positive-point maximum-principle argument is checked.
+   Formalize the tangency geometry and the backward-strip comparison barrier
+   giving the smooth-fit contradiction.
 5. **Financial applicability.** Establish the properties needed for the
    actual American value, including boundary regularity and monotonicity,
    rather than only proving a conditional theorem for an uninhabited contract.

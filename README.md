@@ -26,6 +26,9 @@ difference PDE with no zero-order term. Its epsilon-shift preserves the PDE,
 with strict negative signs at the moving boundary and near the initial corner.
 The far-right difference tends uniformly to `-1` over all nonnegative times,
 and the normalized drift and its first space/time derivatives are bounded.
+The weak parabolic maximum principle is proved and applied to the actual
+comparison: nonpositive time slices stay nonpositive, and later positivity
+forces an earlier positive point as required in Step 5.
 The dividend solution contract specializes exactly to the old zero-dividend
 contract. These results do not yet prove the parabolic positive-interval
 invariant or boundary convexity in ANY of the parameter regimes.
@@ -117,6 +120,8 @@ All files below are included in the project build.
 | [`Boundary/GaugeTransform.lean`](AmericanConvexity/Boundary/GaugeTransform.lean) | Local normalized-difference PDE, epsilon-shift invariance, and negative moving-boundary/initial-corner data |
 | [`Boundary/ComparisonTail.lean`](AmericanConvexity/Boundary/ComparisonTail.lean) | Explicit exponential tail estimate, uniform-in-time convergence to minus one, and a fixed negative right endpoint; includes a named zero-dividend specialization |
 | [`Boundary/ComparisonCoefficients.lean`](AmericanConvexity/Boundary/ComparisonCoefficients.lean) | Bounds on the logarithmic profile slope, normalized PDE drift, and its first spatial and temporal derivatives |
+| [`Boundary/ParabolicMaximum.lean`](AmericanConvexity/Boundary/ParabolicMaximum.lean) | Proved weak maximum principle on continuous moving strips, including terminal time and moving-domain compactness |
+| [`Boundary/ComparisonMaximum.lean`](AmericanConvexity/Boundary/ComparisonMaximum.lean) | No-positive-data branch and earlier-positive-point implication for the actual unbounded comparison; named zero-dividend specialization |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |
