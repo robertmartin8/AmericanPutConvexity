@@ -22,21 +22,21 @@ noncomputable def lineDifference (p : ℝ → ℝ → ℝ) (k h c d : ℝ) : ℝ
 
 variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
-theorem lineDifference_continuousOn (hp : DividendPutSolution k h p b) :
+theorem lineDifference_continuousOn (hp : ContinuousBoundaryPutSolution k h p b) :
     ContinuousOn (fun z : ℝ × ℝ => lineDifference p k h c d z.1 z.2) {z | 0 ≤ z.2} := by
   exact (normalizedDifference_continuousOn (d := d) hp
     (profile_data hp.rate_pos.le) (profile_data hp.dividend_nonneg)).comp
       (show ContinuousOn (fun z : ℝ × ℝ => (z.1 + (d - c * z.2),z.2)) {z | 0 ≤ z.2} by fun_prop)
       (fun _ hz => hz)
 
-theorem lineDifference_contDiffAt (hp : DividendPutSolution k h p b) {y t : ℝ}
+theorem lineDifference_contDiffAt (hp : ContinuousBoundaryPutSolution k h p b) {y t : ℝ}
     (ht : 0 < t) (hx : b t < y + (d - c * t)) :
     ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => lineDifference p k h c d z.1 z.2) (y,t) := by
   exact (normalizedDifference_contDiffAt hp (profile_data hp.rate_pos.le)
     (profile_data hp.dividend_nonneg) ht hx).comp (y,t)
       (show ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => (z.1 + (d - c * z.2),z.2)) (y,t) by fun_prop)
 
-theorem lineDifference_equation (hp : DividendPutSolution k h p b) {y t : ℝ}
+theorem lineDifference_equation (hp : ContinuousBoundaryPutSolution k h p b) {y t : ℝ}
     (ht : 0 < t) (hx : b t < y + (d - c * t)) :
     deriv (lineDifference p k h c d y) t =
       deriv (deriv (fun z => lineDifference p k h c d z t)) y +
@@ -58,7 +58,7 @@ theorem lineDifference_equation (hp : DividendPutSolution k h p b) {y t : ℝ}
 
 /-- Value matching and RIGHT smooth fit of the actual difference at a line
 contact. No spatial derivative of the price across its boundary is required. -/
-theorem lineDifference_fit (hp : DividendPutSolution k h p b) {T : ℝ} (hT : 0 < T)
+theorem lineDifference_fit (hp : ContinuousBoundaryPutSolution k h p b) {T : ℝ} (hT : 0 < T)
     (hcontact : b T = d - c * T) :
     lineDifference p k h c d 0 T = 0 ∧
       HasDerivWithinAt (fun y => lineDifference p k h c d y T) 0 (Ici 0) 0 := by
@@ -88,7 +88,7 @@ theorem lineDifference_fit (hp : DividendPutSolution k h p b) {T : ℝ} (hT : 0 
 /-- The comparison equals the intrinsic expression on its own line, whereas
 the American value dominates that expression. This needs no line/boundary
 ordering and supplies the left edge of the Hopf rectangle automatically. -/
-theorem lineDifference_on_line_nonneg (hp : DividendPutSolution k h p b) {t : ℝ}
+theorem lineDifference_on_line_nonneg (hp : ContinuousBoundaryPutSolution k h p b) {t : ℝ}
     (ht : 0 ≤ t) : 0 ≤ lineDifference p k h c d 0 t := by
   have hq := (straightPrice_fit hp.rate_pos hp.dividend_nonneg c d t).1
   have hpbound : 1 - Real.exp (d - c * t) ≤ p (d - c * t) t :=
@@ -102,7 +102,7 @@ theorem lineDifference_on_line_nonneg (hp : DividendPutSolution k h p b) {t : �
 contact and smooth fit. The comparison PDE, drift bound, left-edge sign, and
 zero right derivative are derived here, not assumed. The remaining task is to
 construct such a rectangle from a concave tangency and the interval invariant. -/
-theorem lineDifference_no_positive_rectangle (hp : DividendPutSolution k h p b)
+theorem lineDifference_no_positive_rectangle (hp : ContinuousBoundaryPutSolution k h p b)
     {L a T : ℝ} (hL : 0 < L) (ha : 0 < a) (haT : a ≤ T)
     (hline : ∀ t ∈ Icc a T, b t ≤ d - c * t)
     (hcontact : b T = d - c * T)
@@ -147,7 +147,7 @@ theorem zeroDividend_no_positive_rectangle {k c d : ℝ} {p : ℝ → ℝ → �
     (hline : ∀ t ∈ Icc a T, b t ≤ d - c * t) (hcontact : b T = d - c * T)
     (hbottom : ∀ y ∈ Icc 0 L, 0 < lineDifference p k 0 c d y a)
     (hright : ∀ t ∈ Icc a T, 0 < lineDifference p k 0 c d L t) : False :=
-  lineDifference_no_positive_rectangle (dividendPutSolution_zero_iff.mpr hp)
+  lineDifference_no_positive_rectangle (dividendPutSolution_zero_iff.mpr hp).toContinuousBoundaryPutSolution
     hL ha haT hline hcontact hbottom hright
 
 end AmericanConvexity.Boundary.Comparison

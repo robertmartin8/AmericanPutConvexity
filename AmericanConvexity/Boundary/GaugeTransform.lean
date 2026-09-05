@@ -116,7 +116,7 @@ theorem price_joint_smooth {h : ℝ} {g : ℝ → ℝ}
   fun_prop
 
 theorem normalizedDifference_contDiffAt {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b)
+    (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
     (hg : ProfileData (k - h - 1 + 2 - c) h g)
     {x t : ℝ} (ht : 0 < t) (hx : b t < x) :
@@ -130,7 +130,7 @@ theorem normalizedDifference_contDiffAt {h : ℝ} {p : ℝ → ℝ → ℝ} {b g
 
 /-- Continuity includes the initial kink; differentiability there is not needed. -/
 theorem normalizedDifference_continuousOn {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b)
+    (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
     (hg : ProfileData (k - h - 1 + 2 - c) h g) :
     ContinuousOn (fun z : ℝ × ℝ => normalizedDifference p f g c d z.1 z.2)
@@ -145,7 +145,7 @@ expiry corner. This supplies the corner-sign part of zero-count initialization,
 not the still-open positive-time count itself. -/
 theorem normalizedDifference_negative_near_corner {h ε : ℝ}
     {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b)
+    (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
     (hg : ProfileData (k - h - 1 + 2 - c) h g)
     (hc : 0 ≤ c) (hd : d ≤ 0) (hε : 0 < ε) :
@@ -168,7 +168,7 @@ theorem normalizedDifference_negative_near_corner {h ε : ℝ}
 point of the continuation region. No extra PDE premise or global regularity
 of the payoff-extended price is needed. -/
 theorem normalizedDifference_equation {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b)
+    (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
     (hg : ProfileData (k - h - 1 + 2 - c) h g)
     {x t : ℝ} (ht : 0 < t) (hx : b t < x) :
@@ -205,7 +205,7 @@ theorem normalizedDifference_equation {h : ℝ} {p : ℝ → ℝ → ℝ} {b g :
 
 theorem normalizedDifference_shifted_equation {h ε : ℝ}
     {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b)
+    (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
     (hg : ProfileData (k - h - 1 + 2 - c) h g)
     {x t : ℝ} (ht : 0 < t) (hx : b t < x) :
@@ -224,7 +224,7 @@ theorem normalizedDifference_shifted_equation {h ε : ℝ}
 
 /-- The strictly negative moving-boundary data needed after subtracting epsilon. -/
 theorem normalizedDifference_boundary_neg {h : ℝ} {p : ℝ → ℝ → ℝ} {b g : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b)
+    (hp : ContinuousBoundaryPutSolution k h p b)
     (hf : ProfileData (k - h - 1 - c) k f)
     (hg : ProfileData (k - h - 1 + 2 - c) h g)
     (hc : 0 ≤ c) (hd : d ≤ 0) {t ε : ℝ} (ht : 0 < t) (hε : 0 < ε) :

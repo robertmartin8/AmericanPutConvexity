@@ -124,13 +124,13 @@ theorem straightDifference_level_initialization {k h c d ε : ℝ}
       rw [hp.boundary_initial] at hx
       rcases eq_or_lt_of_le hx with he | he
       · subst x
-        have hv := straightDifference_boundary_nonpos hp hc.le hd (t := 0) le_rfl
+        have hv := straightDifference_boundary_nonpos hp.toContinuousBoundaryPutSolution hc.le hd (t := 0) le_rfl
         rw [hp.boundary_initial] at hv
         exact hv.trans hε.le
       · by_contra hn
         exact hhigher ⟨x,he,lt_of_not_ge hn⟩
     intro t ht x hx
-    exact straightDifference_le_of_initial_le hp hc hd le_rfl hε.le hinit ht hx.le
+    exact straightDifference_le_of_initial_le hp.toContinuousBoundaryPutSolution hc hd le_rfl hε.le hinit ht hx.le
 
 /-- Zero-dividend checkpoint with the original CCJZ solution contract.
 Derivative-trace regularity and subsequent zero-count propagation remain open. -/

@@ -28,13 +28,13 @@ theorem straightDifference_superlevel_of_two_roots
     (hroots : ∃ a z : ℝ,
       {x | b t < x ∧ straightDifference p k h c d x t = ε} ⊆ {a,z}) :
     OrdConnected {x | b t < x ∧ ε < straightDifference p k h c d x t} := by
-  obtain ⟨R,hR,htail⟩ := straightDifference_right_negative hp hc hd
+  obtain ⟨R,hR,htail⟩ := straightDifference_right_negative hp.toContinuousBoundaryPutSolution hc hd
   have hcont : Continuous (fun x => straightDifference p k h c d x t) := by
-    exact (normalizedDifference_continuousOn (c := c) (d := d) hp
+    exact (normalizedDifference_continuousOn (c := c) (d := d) hp.toContinuousBoundaryPutSolution
       (profile_data hp.rate_pos.le) (profile_data hp.dividend_nonneg)).comp_continuous
       (show Continuous (fun x : ℝ => (x,t)) by fun_prop) (fun _ => ht.le)
   have hleft : straightDifference p k h c d (b t) t < ε :=
-    (straightDifference_boundary_nonpos hp hc.le hd ht.le).trans_lt hε
+    (straightDifference_boundary_nonpos hp.toContinuousBoundaryPutSolution hc.le hd ht.le).trans_lt hε
   have hright : straightDifference p k h c d R t < ε :=
     (htail R le_rfl t ht.le).trans hε
   have htrunc : ∃ a z : ℝ,

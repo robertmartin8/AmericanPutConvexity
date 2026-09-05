@@ -122,7 +122,7 @@ noncomputable def straightDifference (p : ℝ → ℝ → ℝ) (k h c d : ℝ) :
     (profile (k - h - 1 + 2 - c) h) c d
 
 theorem straightDifference_tail_estimate {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0) :
+    (hp : ContinuousBoundaryPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0) :
     ∃ C lam δ : ℝ, 0 < C ∧ 0 < lam ∧ 0 < δ ∧
       ∀ x, 0 ≤ x → ∀ t, 0 ≤ t →
         |straightDifference p k h c d x t + 1| ≤
@@ -143,7 +143,7 @@ theorem straightDifference_tail_estimate {k h c d : ℝ} {p : ℝ → ℝ → �
 
 /-- Uniform-in-time version of (17), expressed without an interchange of limits. -/
 theorem straightDifference_uniform_tail {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0)
+    (hp : ContinuousBoundaryPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0)
     {ε : ℝ} (hε : 0 < ε) :
     ∃ X : ℝ, 0 < X ∧ ∀ x, X ≤ x → ∀ t, 0 ≤ t →
       |straightDifference p k h c d x t + 1| < ε := by
@@ -165,7 +165,7 @@ theorem straightDifference_uniform_tail {k h c d : ℝ} {p : ℝ → ℝ → ℝ
 /-- A single positive right endpoint works for every nonnegative time, even
 before any epsilon shift is applied. -/
 theorem straightDifference_right_negative {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0) :
+    (hp : ContinuousBoundaryPutSolution k h p b) (hc : 0 < c) (hd : d ≤ 0) :
     ∃ X : ℝ, 0 < X ∧ ∀ x, X ≤ x → ∀ t, 0 ≤ t → straightDifference p k h c d x t < 0 := by
   obtain ⟨X, hX, htail⟩ := straightDifference_uniform_tail hp hc hd (show (0 : ℝ) < 1 / 2 by norm_num)
   refine ⟨X, hX, ?_⟩
@@ -181,6 +181,6 @@ theorem zeroDividend_uniform_tail {k c d : ℝ} {p : ℝ → ℝ → ℝ} {b : �
     ∃ X : ℝ, 0 < X ∧ ∀ x, X ≤ x → ∀ t, 0 ≤ t →
       |normalizedDifference p (profile (k - 1 - c) k) (fun _ => 1) c d x t + 1| < ε := by
   simpa only [straightDifference, sub_zero, profile, ↓reduceIte] using
-    straightDifference_uniform_tail (dividendPutSolution_zero_iff.mpr hp) hc hd hε
+    straightDifference_uniform_tail (dividendPutSolution_zero_iff.mpr hp).toContinuousBoundaryPutSolution hc hd hε
 
 end AmericanConvexity.Boundary.Comparison

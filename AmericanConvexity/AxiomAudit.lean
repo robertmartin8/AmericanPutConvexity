@@ -64,6 +64,7 @@ import AmericanConvexity.Stopping.ActualBoundaryTemporalModulus
 import AmericanConvexity.Stopping.ActualExpiryUpperBound
 import AmericanConvexity.Stopping.ActualBoundaryQuarterBound
 import AmericanConvexity.Stopping.ActualBoundaryHalfBound
+import AmericanConvexity.Stopping.ActualLogConvexity
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2144,3 +2145,133 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_local_half_bound
+
+/-- info: 'AmericanConvexity.Boundary.exists_first_nonnegative_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.exists_first_nonnegative_contact
+
+/-- info: 'AmericanConvexity.Boundary.boundaryRatio_monotone_of_line_intervals' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.boundaryRatio_monotone_of_line_intervals
+
+/-- info: 'AmericanConvexity.Boundary.convexOn_of_ratio_monotone_and_line_intervals' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.convexOn_of_ratio_monotone_and_line_intervals
+
+/-- info: 'AmericanConvexity.Boundary.convexOn_of_negative_line_intervals' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.convexOn_of_negative_line_intervals
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_continuousBoundaryPutSolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_continuousBoundaryPutSolution
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_continuousBoundaryPutSolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_continuousBoundaryPutSolution
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_continuousBoundaryPutSolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_continuousBoundaryPutSolution
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStraightDifference_superlevel_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStraightDifference_superlevel_interval
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStraightDifference_positive_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStraightDifference_positive_interval
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_no_return_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_no_return_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_below_line_time_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_below_line_time_interval
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalStraightDifference_positive_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalStraightDifference_positive_interval
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalStraightDifference_positive_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalStraightDifference_positive_interval
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_below_line_time_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_below_line_time_interval
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_below_line_time_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_below_line_time_interval
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_spatial_test_in_exercise' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_spatial_test_in_exercise
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_no_positive_convex_lower_max' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_no_positive_convex_lower_max
+
+/-- info: 'AmericanConvexity.Stopping.convex_subsolution_le_canonicalPrice_on_strip' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.convex_subsolution_le_canonicalPrice_on_strip
+
+/-- info: 'AmericanConvexity.Stopping.expiryBarrier_le_canonicalPrice' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expiryBarrier_le_canonicalPrice
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_exists_expiryBarrier_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_exists_expiryBarrier_window
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_exists_sqrt_upper_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_exists_sqrt_upper_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_below_linear_eventually' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_below_linear_eventually
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_ratio_tendsto_atBot' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_ratio_tendsto_atBot
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_convexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_convexOn
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_convexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_convexOn
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_convexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_convexOn

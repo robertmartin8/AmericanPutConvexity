@@ -1,6 +1,6 @@
 import AmericanConvexity.Boundary.Comparison
 import AmericanConvexity.Boundary.SingleCrossing
-import AmericanConvexity.Boundary.DividendProblem
+import AmericanConvexity.Boundary.ContinuousBoundaryProblem
 
 /-!
 # Initial single-interval geometry for the straight-line comparison
@@ -181,7 +181,7 @@ noncomputable def normalizedDifference (p : ℝ → ℝ → ℝ) (f g : ℝ → 
 /-- Identification is restricted to the zero-payoff half-line; no assertion
 that the initial put payoff vanishes at negative log prices is made. -/
 theorem normalizedDifference_initial {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b) (hf : ProfileData (α - c) k f)
+    (hp : ContinuousBoundaryPutSolution k h p b) (hf : ProfileData (α - c) k f)
     (d : ℝ) {x : ℝ} (hx : 0 ≤ x) :
     normalizedDifference p f g c d x 0 = initialDifference f g d x := by
   have hp0 : p x 0 = 0 := by
@@ -191,7 +191,7 @@ theorem normalizedDifference_initial {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
   simp [normalizedDifference, hp0]
 
 theorem normalizedDifference_initial_superlevel {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
-    (hp : DividendPutSolution k h p b) (hc : 0 < c) {ε : ℝ} (hε : -1 < ε) (d : ℝ) :
+    (hp : ContinuousBoundaryPutSolution k h p b) (hc : 0 < c) {ε : ℝ} (hε : -1 < ε) (d : ℝ) :
     Set.OrdConnected {x | 0 < x ∧ ε < normalizedDifference p
       (profile (k - h - 1 - c) k) (profile (k - h - 1 + 2 - c) h) c d x 0} := by
   convert straight_initial_superlevel_ordConnected hp.rate_pos hp.dividend_nonneg hc hε d using 1
@@ -208,6 +208,6 @@ theorem zeroDividend_initial_superlevel {p : ℝ → ℝ → ℝ} {b : ℝ → �
     Set.OrdConnected {x | 0 < x ∧ ε < normalizedDifference p
       (profile (k - 1 - c) k) (fun _ => 1) c d x 0} := by
   simpa only [sub_zero, profile, ↓reduceIte] using
-    normalizedDifference_initial_superlevel (dividendPutSolution_zero_iff.mpr hp) hc hε d
+    normalizedDifference_initial_superlevel (dividendPutSolution_zero_iff.mpr hp).toContinuousBoundaryPutSolution hc hε d
 
 end AmericanConvexity.Boundary.Comparison

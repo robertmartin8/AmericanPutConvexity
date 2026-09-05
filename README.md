@@ -7,7 +7,13 @@ independent published CCJZ proof development is retained. The project integrates
 [MathFin](https://github.com/formal-applied-math/formal-mathfin); the boundary
 proof modules currently use Mathlib and local results, not MathFin pricing results.
 
-> **Status: weak log-curvature and strict stock curvature are proved for the
+> **Status: convexity of the actual normalized logarithmic boundary is proved.**
+> `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
+> constructed from the completed usual-filtration stopping value, assuming
+> only `k>0` and `0<=h<=k`. It assumes neither a classical solution nor boundary
+> smoothness. Zero-dividend and Liu-range specializations are explicit.
+>
+> Separately, weak log-curvature and strict stock curvature are proved for the
 > classical pricing contract.** `DividendPutSolution k h p b` implies `b''(t)>=0`,
 > `b'(t)<0`, and the reconstructed stock boundary satisfies `B''(tau)>0`.
 > No extra interval, speed, expiry, zero-count or derivative-trace premise remains.
@@ -36,6 +42,14 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > is locally Lipschitz in time, and the actual log boundary has a local
 > half-power continuity bound. Boundary smoothness remains open.
 
+The new actual-value proof uses the same straight-line comparator, interval
+invariant, and terminal Hopf argument. It replaces the second-derivative tangent
+selection with continuous first-contact and chord geometry. See
+[`ActualLogConvexity.lean`](AmericanConvexity/Stopping/ActualLogConvexity.lean)
+and [the derivative-free proof summary](docs/comparison-proof.md#actual-value-convexity-without-boundary-smoothness).
+The literal classical second-derivative statements and their full physical-unit
+actual-value assembly are not claimed complete by this convex-function theorem.
+
 ## Proposed extension and published checkpoints
 
 The active target is `b''(t)>=0` for `t>0`, where
@@ -50,6 +64,8 @@ and the in-the-money contact threshold are checked
 directly from that definition. Price identification now identifies the boundary
 and transfers weak log curvature and strict stock curvature to that threshold,
 conditional only on the classical solution contract and parameter assumptions.
+The new normalized actual-value convexity theorem bypasses that contract;
+the older differential and physical-unit transfers remain conditional on it.
 See [`docs/stopping-value.md`](docs/stopping-value.md) for the exact filtration,
 terminal-boundary convention, and remaining obligations.
 
@@ -150,6 +166,11 @@ log coordinates, proving the separate continuation-side derivative trace.
 Zero-dividend and Liu-range checkpoints are explicit. `ActualClassicalContract.lean`
 assembles the full actual-price contract with positive-time boundary smoothness
 as its sole remaining analytic hypothesis. That hypothesis is not yet proved.
+`ContinuousBoundaryProblem.lean` leaves the original contract unchanged and
+removes only that field in a separate weaker predicate. All fields of this
+weaker predicate are proved for the actual value in `ActualContinuousContract.lean`.
+The comparison, interval and Hopf lemmas are generalized to it; adding boundary
+smoothness recovers exactly the original classical contract.
 
 `ActualSpatialRegularity.lean` joins the exercise-side derivative to smooth fit,
 proving spatial differentiability at every positive maturity, including boundary
@@ -541,6 +562,14 @@ All files below are included in the project build.
 | [`Stopping/ActualTemporalDerivativeBound.lean`](AmericanConvexity/Stopping/ActualTemporalDerivativeBound.lean) | Dilation differentiated at scale one and uniform continuation time-derivative bounds away from expiry |
 | [`Stopping/ActualTemporalLipschitz.lean`](AmericanConvexity/Stopping/ActualTemporalLipschitz.lean) | Actual-price temporal Lipschitz bounds across exercise/continuation, with restricted checkpoints |
 | [`Stopping/ActualBoundaryHalfBound.lean`](AmericanConvexity/Stopping/ActualBoundaryHalfBound.lean) | Local square-root continuity of the actual log boundary, with restricted checkpoints |
+| [`Boundary/ContinuousBoundaryProblem.lean`](AmericanConvexity/Boundary/ContinuousBoundaryProblem.lean) | Pricing data without boundary smoothness; exact relation to the unchanged classical contract |
+| [`Boundary/ContinuousContact.lean`](AmericanConvexity/Boundary/ContinuousContact.lean) | First contact of a continuous scalar profile, with strict negativity beforehand |
+| [`Boundary/LineIntervalConvexity.lean`](AmericanConvexity/Boundary/LineIntervalConvexity.lean) | Derivative-free convexity from negative-intercept line intervals and the expiry condition |
+| [`Stopping/ActualContinuousContract.lean`](AmericanConvexity/Stopping/ActualContinuousContract.lean) | All continuous-boundary pricing fields proved for the actual stopping value |
+| [`Stopping/ActualComparisonIntervals.lean`](AmericanConvexity/Stopping/ActualComparisonIntervals.lean) | Actual spatial comparison invariant and time-interval geometry below admissible lines |
+| [`Stopping/ActualConvexLowerComparison.lean`](AmericanConvexity/Stopping/ActualConvexLowerComparison.lean) | Moving-strip comparison for spatially convex smooth subsolutions, without boundary derivatives |
+| [`Stopping/ActualNearExpiry.lean`](AmericanConvexity/Stopping/ActualNearExpiry.lean) | Actual square-root expiry lower barrier and the boundary ratio tending to minus infinity |
+| [`Stopping/ActualLogConvexity.lean`](AmericanConvexity/Stopping/ActualLogConvexity.lean) | Convexity of the actual normalized logarithmic boundary, with zero-dividend and Liu-range checkpoints |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

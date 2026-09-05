@@ -75,6 +75,14 @@ import AmericanConvexity.Stopping.ActualDilationComparison
 import AmericanConvexity.Stopping.ActualTemporalDerivativeBound
 import AmericanConvexity.Stopping.ActualTemporalLipschitz
 import AmericanConvexity.Stopping.ActualBoundaryHalfBound
+import AmericanConvexity.Boundary.ContinuousBoundaryProblem
+import AmericanConvexity.Boundary.ContinuousContact
+import AmericanConvexity.Boundary.LineIntervalConvexity
+import AmericanConvexity.Stopping.ActualContinuousContract
+import AmericanConvexity.Stopping.ActualComparisonIntervals
+import AmericanConvexity.Stopping.ActualConvexLowerComparison
+import AmericanConvexity.Stopping.ActualNearExpiry
+import AmericanConvexity.Stopping.ActualLogConvexity
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

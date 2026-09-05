@@ -58,12 +58,12 @@ theorem straightDifference_initial_simple_root (hp : DividendPutSolution k h p b
   have hg : ProfileData (k - h - 1 + 2 - c) h g := profile_data hp.dividend_nonneg
   have heq : (fun y => straightDifference p k h c d y 0) =ᶠ[nhds x] initialDifference f g d := by
     filter_upwards [Ioi_mem_nhds hx] with y hy
-    exact normalizedDifference_initial hp hf d hy.le
+    exact normalizedDifference_initial hp.toContinuousBoundaryPutSolution hf d hy.le
   rw [heq.deriv_eq]
   obtain ⟨y,hy,hyp⟩ := hhigher
   apply initialDifference_simple_level rfl hc hf hg
   refine ⟨y,?_⟩
-  rw [← normalizedDifference_initial hp hf d hx.le, ← normalizedDifference_initial hp hf d hy.le]
+  rw [← normalizedDifference_initial hp.toContinuousBoundaryPutSolution hf d hx.le, ← normalizedDifference_initial hp.toContinuousBoundaryPutSolution hf d hy.le]
   change straightDifference p k h c d x 0 < straightDifference p k h c d y 0
   rwa [hroot]
 
@@ -85,14 +85,14 @@ theorem initialDifference_exact_two_simple_roots (hp : DividendPutSolution k h p
   have hdF : Differentiable ℝ F := fun x => (initialDifference_hasDeriv hf hg d x).differentiableAt
   have hF : Continuous F := hdF.continuous
   have heq (x : ℝ) (hx : 0 ≤ x) : straightDifference p k h c d x 0 = F x :=
-    normalizedDifference_initial hp hf d hx
+    normalizedDifference_initial hp.toContinuousBoundaryPutSolution hf d hx
   have hzero : F 0 < ε := by
-    have hv := straightDifference_boundary_nonpos hp hc.le hd (t := 0) le_rfl
+    have hv := straightDifference_boundary_nonpos hp.toContinuousBoundaryPutSolution hc.le hd (t := 0) le_rfl
     rw [hp.boundary_initial, heq 0 le_rfl] at hv
     exact hv.trans_lt hε
   obtain ⟨m,hm,hmp⟩ := hhigher
   rw [heq m hm.le] at hmp
-  obtain ⟨X,hX,htail⟩ := straightDifference_right_negative hp hc hd
+  obtain ⟨X,hX,htail⟩ := straightDifference_right_negative hp.toContinuousBoundaryPutSolution hc hd
   let R := max X m + 1
   have hmR : m < R := by dsimp [R]; linarith [le_max_right X m]
   have hXR : X ≤ R := by dsimp [R]; linarith [le_max_left X m]
@@ -131,7 +131,7 @@ theorem straightDifference_initial_exact_two_roots (hp : DividendPutSolution k h
   by_cases hx : 0 < x
   · simp only [mem_setOf_eq, hx, true_and, mem_insert_iff, mem_singleton_iff]
     unfold straightDifference
-    rw [normalizedDifference_initial (c := c) hp (profile_data hp.rate_pos.le) d hx.le]
+    rw [normalizedDifference_initial (c := c) hp.toContinuousBoundaryPutSolution (profile_data hp.rate_pos.le) d hx.le]
     exact hchar
   · simp only [mem_setOf_eq, hx, false_and, mem_insert_iff, mem_singleton_iff]
     have hxa : x ≠ a := by intro he; subst x; exact hx ha

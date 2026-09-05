@@ -4,10 +4,12 @@ import AmericanConvexity.Boundary.TangentGeometry
 /-!
 # Geometric assembly of the terminal rectangle
 
-Step 5 is conditional on the still-open single-positive-interval property.
-That property is an explicit hypothesis here, never a field of the pricing
-solution. Later positivity, the earlier positive point, continuity, and order
-connectedness construct the rectangle prohibited by the checked Hopf argument.
+Step 5 uses the single-positive-interval property as an explicit modular
+hypothesis, never a field of the pricing solution. `ComparisonUnimodality`
+supplies it on the continuous-boundary contract. Later positivity, the earlier
+positive point, continuity, and order connectedness construct the rectangle
+prohibited by the checked Hopf argument. Only the final differential-curvature
+corollary uses the stronger classical contract.
 -/
 
 namespace AmericanConvexity.Boundary.Comparison
@@ -20,7 +22,7 @@ variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 /-- If the comparison line is strictly in continuation, its difference from
 the American price is positive. No restriction to below-strike points is
 needed: the actual payoff dominates the intrinsic expression everywhere. -/
-theorem lineDifference_on_line_pos (hp : DividendPutSolution k h p b) {t : ℝ}
+theorem lineDifference_on_line_pos (hp : ContinuousBoundaryPutSolution k h p b) {t : ℝ}
     (ht : 0 < t) (hline : b t < d - c * t) : 0 < lineDifference p k h c d 0 t := by
   have hq := (straightPrice_fit hp.rate_pos hp.dividend_nonneg c d t).1
   have hpbound : 1 - Real.exp (d - c * t) < p (d - c * t) t :=
@@ -33,7 +35,7 @@ theorem lineDifference_on_line_pos (hp : DividendPutSolution k h p b) {t : ℝ}
 /-- Construct the forbidden rectangle from positivity at the terminal slice,
 strict line inclusion just before contact, and the interval hypothesis. -/
 theorem no_contact_of_past_line_below_and_terminal_positive
-    (hp : DividendPutSolution k h p b) {A T x₁ : ℝ}
+    (hp : ContinuousBoundaryPutSolution k h p b) {A T x₁ : ℝ}
     (hA : 0 < A) (hAT : A < T) (hcontact : b T = d - c * T)
     (hline : ∀ t ∈ Ico A T, b t < d - c * t)
     (hx₁ : b T < x₁) (hpos : 0 < straightDifference p k h c d x₁ T)
@@ -78,10 +80,10 @@ theorem no_contact_of_past_line_below_and_terminal_positive
       ⟨by linarith [hy.1], by linarith [hy.2]⟩)
   exact hm.2
 
-/-- Step 5 with its one outstanding propagation premise explicit. A line
+/-- Step 5 with its propagation premise explicit. A line
 which touches from above at an isolated local contact is impossible if every
 positive continuation slice is an interval. -/
-theorem no_isolated_contact_of_positive_intervals (hp : DividendPutSolution k h p b)
+theorem no_isolated_contact_of_positive_intervals (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {T : ℝ} (hT : 0 < T)
     (hcontact : b T = d - c * T)
     (hbelow : ∀ᶠ t in 𝓝 T, t ≠ T → b t < d - c * t)
@@ -101,7 +103,7 @@ theorem no_isolated_contact_of_positive_intervals (hp : DividendPutSolution k h 
     (fun t ht => hnear ⟨hlA.trans_le ht.1,ht.2.trans hr⟩ ht.2.ne) hx₁ hpos hinterval
 
 /-- Local curvature conclusion for a decreasing tangent with nonpositive
-intercept. Its interval-invariance hypothesis is NOT yet proved. This theorem
+intercept. Its interval-invariance hypothesis is supplied separately. This theorem
 assembles the actual PDE comparison, maximum principle, geometry and Hopf
 contradiction; it does not assume an abstract no-tangency principle. -/
 theorem curvature_nonneg_of_tangent_intervals (hp : DividendPutSolution k h p b)

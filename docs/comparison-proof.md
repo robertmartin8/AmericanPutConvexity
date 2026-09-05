@@ -28,6 +28,7 @@ will not be described as an independent verification of a published proof.
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
 | Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Proved on the dividend classical contract; physical parameter correspondence checked |
 | Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; that contract is now identified with the actual raw-filtration stopping value |
+| Actual normalized log boundary | `ConvexOn` on positive maturities, for the entire parameter regime | Proved directly for the usual-filtration stopping boundary without a classical contract or boundary smoothness; zero-dividend and Liu-range checkpoints included |
 | Strict stock-boundary consequence | `B'' > 0` for the full regime, including zero dividends and Liu's range | Proved on the classical contracts, with no additional speed premise; both time conventions checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
@@ -57,6 +58,54 @@ by the corresponding theorems in `ComparisonConclusion.lean`. The published
 strict log-curvature target remains open. Identification with the constructed
 continuous-time GBM stopping value is now proved from the contract. Existence
 of a pair satisfying that contract remains unproved.
+
+### Actual-value convexity without boundary smoothness
+
+The stronger dependency audit in `ContinuousBoundaryProblem.lean` isolates a
+pricing contract with **no boundary-smoothness field**. The original classical
+contract is unchanged, and their equivalence after adding that field is proved.
+`ActualContinuousContract.lean` establishes every weaker field from the actual
+usual-filtration stopping value. The normalized comparison PDE, payoff
+domination, initial profile, tails, three-point interval invariant and terminal
+Hopf argument all work with the weaker contract.
+
+`ActualComparisonIntervals.lean` consequently proves the proposed single-spatial-
+interval invariant for the **actual** price. It also rules out a decreasing
+line of nonpositive intercept that lies strictly above the boundary on a past
+interval, reaches contact, and lies above it again at some later time. A
+continuous first-contact selection turns this into the statement that
+`{t>0 | b(t)<d-c*t}` is an interval whenever `c>0` and `d<=0`.
+
+The remaining expiry input is proved directly, not assumed. A convex spatial
+subsolution cannot have a maximum over the actual price in exercise: spatial
+smooth fit and the exercise-side test force its second derivative to be at most
+`-exp(x)`. In continuation the PDE excludes a positive space-time maximum.
+`ActualConvexLowerComparison.lean` therefore applies the existing shrinking
+square-root barrier to the actual price. `ActualNearExpiry.lean` proves
+`b(t)<-sqrt(t)/64` for sufficiently small positive time, and hence `b(t)/t -> -infinity`.
+
+`LineIntervalConvexity.lean` replaces the differentiable tangent reduction:
+
+1. The expiry condition and line-interval property force `b(t)/t` to be
+   nondecreasing. Otherwise a line through the origin would have a negative
+   value of `b(t)+c*t` both before and after a zero value, contradicting the
+   interval property at a slightly negative level.
+2. Monotonicity of that ratio makes every chord's intercept nonpositive.
+   Monotonicity of `b` makes its slope nonpositive.
+3. For a strictly decreasing chord with negative intercept, shift it slightly
+   upward. Its endpoints are in the strict line sublevel set, so every point
+   between them is too. This excludes a point above the original chord.
+   Zero-intercept chords follow from the ratio monotonicity, and horizontal
+   chords from boundary monotonicity.
+
+`canonicalLogBoundary_convexOn` in `ActualLogConvexity.lean` (namespace
+`AmericanConvexity.Stopping`) assembles these results. Its only hypotheses are
+`k>0`, `h>=0`, and `h<=k`. Named zero-dividend and Liu-range versions use the
+same actual stopping-value definition. The statement is convexity of the
+normalized log boundary as a function, not an assertion that classical second
+derivatives exist. The literal differential/strict-stock conclusions for the
+actual value and full physical-unit assembly remain separate obligations, as
+does the retained independent CCJZ proof track.
 
 ### Exercise-boundary calculus and obstacle comparison
 

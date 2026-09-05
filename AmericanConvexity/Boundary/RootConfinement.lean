@@ -61,7 +61,7 @@ theorem straightDifference_roots_eventually_in_open (hp : DividendPutSolution k 
     {U : Set ℝ} (hU : IsOpen U)
     (hroots : {x | 0 < x ∧ straightDifference p k h c d x 0 = ε} ⊆ U) :
     ∀ᶠ t in 𝓝[≥] 0, ∀ x, b t < x → straightDifference p k h c d x t = ε → x ∈ U := by
-  obtain ⟨R,_,htail⟩ := straightDifference_right_negative hp hc hd
+  obtain ⟨R,_,htail⟩ := straightDifference_right_negative hp.toContinuousBoundaryPutSolution hc hd
   let K := Icc (-1 : ℝ) R \ U
   have hK : IsCompact K := isCompact_Icc.diff hU
   have hzero : ∀ x ∈ K, straightDifference p k h c d x 0 ≠ ε := by
@@ -70,7 +70,7 @@ theorem straightDifference_roots_eventually_in_open (hp : DividendPutSolution k 
     · exact hx.2 (hroots ⟨hx0,heq⟩)
     · have := straightDifference_initial_nonpos_left hp hc.le hd (le_of_not_gt hx0)
       linarith
-  have hV := normalizedDifference_continuousOn (c := c) (d := d) hp
+  have hV := normalizedDifference_continuousOn (c := c) (d := d) hp.toContinuousBoundaryPutSolution
     (profile_data hp.rate_pos.le) (profile_data hp.dividend_nonneg)
   have havoid := eventually_avoid_level_on_compact hV hK hzero
   have hb : ∀ᶠ t in 𝓝[≥] 0, -1 < b t :=

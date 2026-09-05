@@ -1,8 +1,17 @@
 # Solution definitions and statement review
 
-Status: the solution predicates and supporting results below are implemented.
-The American-put curvature theorem, analytic existence/uniqueness, and stochastic
-verification remain unproved. A predicate is not a proof that a solution exists.
+Current status: the classical-contract curvature proof and stochastic
+identification are proved. Convexity of the actual normalized log boundary is
+now proved without the classical contract in `Stopping/ActualLogConvexity.lean`.
+Full positive-time boundary smoothness and the independent published strict-log
+proof remain open. The early statement review below records the original CCJZ
+track; historical frontier statements are superseded by the current README.
+A predicate alone is not a proof that a solution exists.
+
+`ContinuousBoundaryProblem.lean` adds a separate predicate deleting only
+`boundary_smooth` from `DividendPutSolution`; the latter is unchanged. Their
+exact equivalence after restoring that field is proved. The actual stopping
+price satisfies the weaker predicate without additional analytic hypotheses.
 
 ## Mathematical target and proof-route choice
 

@@ -16,7 +16,7 @@ open scoped Topology ContDiff
 
 variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
-theorem straightDifference_boundary_nonpos (hp : DividendPutSolution k h p b)
+theorem straightDifference_boundary_nonpos (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 ≤ c) (hd : d ≤ 0) {t : ℝ} (ht : 0 ≤ t) :
     straightDifference p k h c d (b t) t ≤ 0 := by
   have hb : b t ≤ 0 := by
@@ -36,7 +36,7 @@ theorem straightDifference_boundary_nonpos (hp : DividendPutSolution k h p b)
 
 /-- All nonnegative upper levels are preserved if they bound an entire time
 slice. This is the no-positive-data branch of Step 4, including `a=0`. -/
-theorem straightDifference_le_of_initial_le (hp : DividendPutSolution k h p b)
+theorem straightDifference_le_of_initial_le (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {a ε : ℝ} (ha : 0 ≤ a) (hε : 0 ≤ ε)
     (hinit : ∀ x, b a ≤ x → straightDifference p k h c d x a ≤ ε)
     {x T : ℝ} (haT : a ≤ T) (hx : b T ≤ x) :
@@ -83,7 +83,7 @@ theorem straightDifference_le_of_initial_le (hp : DividendPutSolution k h p b)
 
 /-- The positive point required in Step 5 exists at every earlier time slice
 if a positive continuation value exists later. No zero-count premise is used. -/
-theorem straightDifference_positive_at_earlier_time (hp : DividendPutSolution k h p b)
+theorem straightDifference_positive_at_earlier_time (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {a T x : ℝ} (ha : 0 ≤ a) (haT : a ≤ T)
     (hx : b T ≤ x) (hpos : 0 < straightDifference p k h c d x T) :
     ∃ y, b a < y ∧ 0 < straightDifference p k h c d y a := by
@@ -109,6 +109,6 @@ theorem zeroDividend_le_of_initial_le {k c d : ℝ} {p : ℝ → ℝ → ℝ} {b
   have hi : ∀ y, b a ≤ y → straightDifference p k 0 c d y a ≤ ε := by
     simpa only [straightDifference, sub_zero, profile, ↓reduceIte] using hinit
   simpa only [straightDifference, sub_zero, profile, ↓reduceIte] using
-    straightDifference_le_of_initial_le (dividendPutSolution_zero_iff.mpr hp) hc hd ha hε hi haT hx
+    straightDifference_le_of_initial_le (dividendPutSolution_zero_iff.mpr hp).toContinuousBoundaryPutSolution hc hd ha hε hi haT hx
 
 end AmericanConvexity.Boundary.Comparison

@@ -5,6 +5,13 @@ defines the financial value and now proves that any pair satisfying that
 classical contract equals the Brownian American stopping value on both the raw
 and completed usual filtrations. Classical-pair existence remains open.
 
+**New main result:** `ActualLogConvexity.lean` proves convexity of the actual
+normalized logarithmic boundary on all positive maturities from only `k>0`
+and `0<=h<=k`. This uses a continuous-boundary comparison and chord argument,
+not a classical-pair existence premise. The classical second-derivative and
+strict stock-curvature statements are still distinguished from this
+convex-function conclusion. See the final section below.
+
 **Current frontier:** `ActualInteriorRegularity.lean` proves joint
 all-order smoothness and the pricing PDE for the actual stopping price on its
 continuation region, without a classical-solution premise. The sections below
@@ -1691,3 +1698,49 @@ Liu-range checkpoints. Guarded transitive audits allow only `propext`,
 not consequences of an assumed classical pricing contract. They still do
 **not** prove the remaining positive-time boundary smoothness field or the
 full unconditional convexity theorem.
+
+## Actual normalized log-boundary convexity
+
+The previous regularity estimates are retained, but a derivative-free route
+now establishes the convex-function conclusion without first proving smoothness.
+`ContinuousBoundaryProblem.lean` removes only boundary smoothness in a separate
+pricing predicate, and proves exact equivalence with the original classical
+contract after restoring that field. `ActualContinuousContract.lean` proves
+the weaker predicate for the actual usual-filtration price and log boundary.
+
+Generalized comparison helpers now require only these weaker data. Their
+application in `ActualComparisonIntervals.lean` proves the spatial
+single-positive-interval invariant, the terminal contact obstruction, and
+connectedness in time of the boundary's strict sublevel set below every line
+`d-c*t` with `c>0` and `d<=0`. The terminal contact argument uses continuity
+and a first-contact selection, not `b'` or `b''`.
+
+`ActualConvexLowerComparison.lean` independently compares smooth spatially
+convex subsolutions to the actual price. In exercise a local maximum would
+force the test's second spatial derivative below `-exp(x)`, contradicting
+convexity. In continuation the pricing PDE rules out a positive maximum.
+`ActualNearExpiry.lean` applies the previously constructed shrinking expiry
+barrier, obtaining `b(t)<-sqrt(t)/64` near expiry and the required ratio limit.
+
+The scalar geometry in `LineIntervalConvexity.lean` first proves monotonicity
+of `b(t)/t`, then controls every chord using the line sublevel intervals. The
+assembled theorem is
+
+```lean
+theorem canonicalLogBoundary_convexOn {k h : ℝ}
+    (hk : 0 < k) (hh : 0 ≤ h) (hhk : h ≤ k) :
+    ConvexOn ℝ (Set.Ioi 0) (canonicalLogBoundary k h)
+```
+
+Zero-dividend and Liu-range theorems are explicit. The result uses the same
+actual stopping supremum, GBM model and completed usual filtration defined
+above; no alternative analytic price is substituted. Transitive audits cover
+the actual contract, interval/contact arguments, expiry input, scalar geometry
+and all three final convexity statements. No boundary smoothness, convexity,
+Sturm theorem, or classical-solution existence axiom is a premise.
+
+This proves the normalized convex-function statement. It does not by itself
+construct classical boundary second derivatives or establish their strict
+stock-boundary consequence in full physical units. Those remaining statements
+and the independent strict-log CCJZ development must not be conflated with the
+result above.

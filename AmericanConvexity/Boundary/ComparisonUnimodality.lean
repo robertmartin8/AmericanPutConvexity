@@ -17,7 +17,7 @@ open scoped ContDiff
 
 variable {k h c d : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
 
-theorem straightDifference_three_point_bound (hp : DividendPutSolution k h p b)
+theorem straightDifference_three_point_bound (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {x y z t : ℝ} (ht : 0 < t)
     (hx : b t ≤ x) (hxy : x ≤ y) (hyz : y ≤ z) :
     min (straightDifference p k h c d x t) (straightDifference p k h c d z t) ≤
@@ -63,7 +63,7 @@ theorem straightDifference_three_point_bound (hp : DividendPutSolution k h p b)
 
 /-- All nonnegative strict superlevel sets of the actual comparison are
 intervals. This is the propagation invariant, with no unproved analytic input. -/
-theorem straightDifference_superlevel_interval (hp : DividendPutSolution k h p b)
+theorem straightDifference_superlevel_interval (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {t ε : ℝ} (ht : 0 < t) (hε : 0 ≤ ε) :
     OrdConnected {x | b t < x ∧ ε < straightDifference p k h c d x t} := by
   rw [ordConnected_iff]
@@ -76,7 +76,7 @@ theorem straightDifference_superlevel_interval (hp : DividendPutSolution k h p b
   have hhi : max (straightDifference p k h c d y t) 0 ≤ ε := max_le hmid hε
   linarith
 
-theorem straightDifference_positive_interval (hp : DividendPutSolution k h p b)
+theorem straightDifference_positive_interval (hp : ContinuousBoundaryPutSolution k h p b)
     (hc : 0 < c) (hd : d ≤ 0) {t : ℝ} (ht : 0 < t) :
     OrdConnected {x | b t < x ∧ 0 < straightDifference p k h c d x t} :=
   straightDifference_superlevel_interval hp hc hd ht le_rfl
@@ -85,6 +85,6 @@ theorem straightDifference_positive_interval (hp : DividendPutSolution k h p b)
 theorem zeroDividend_positive_interval (hp : NormalizedPutSolution k p b)
     (hc : 0 < c) (hd : d ≤ 0) {t : ℝ} (ht : 0 < t) :
     OrdConnected {x | b t < x ∧ 0 < straightDifference p k 0 c d x t} :=
-  straightDifference_positive_interval (dividendPutSolution_zero_iff.mpr hp) hc hd ht
+  straightDifference_positive_interval (dividendPutSolution_zero_iff.mpr hp).toContinuousBoundaryPutSolution hc hd ht
 
 end AmericanConvexity.Boundary.Comparison
