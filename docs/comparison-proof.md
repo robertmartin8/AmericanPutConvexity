@@ -27,7 +27,7 @@ will not be described as an independent verification of a published proof.
 | New proof at zero dividends | `b'' >= 0`, with `h=0` | Proved on the original normalized classical contract |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
 | Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Proved on the dividend classical contract; physical parameter correspondence checked |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; actual stopping-value identification remains open |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; that contract is now identified with the actual raw-filtration stopping value |
 | Strict stock-boundary consequence | `B'' > 0` for the full regime, including zero dividends and Liu's range | Proved on the classical contracts, with no additional speed premise; both time conventions checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
@@ -54,8 +54,9 @@ is equivalent to `q+sigma^2/2<=r`.
 
 The three weak curvature targets are named proposition definitions, now proved
 by the corresponding theorems in `ComparisonConclusion.lean`. The published
-strict log-curvature target remains open. Existence and identification with the
-continuous-time GBM stopping value are still separate, unproved obligations.
+strict log-curvature target remains open. Identification with the constructed
+continuous-time GBM stopping value is now proved from the contract. Existence
+of a pair satisfying that contract remains unproved.
 
 ### Exercise-boundary calculus and obstacle comparison
 
@@ -503,16 +504,17 @@ and strict stock curvature together. It does not assert strict log curvature.
 
 ## Analytic dependencies still to prove
 
-1. **Financial applicability.** Establish existence and identify the classical
-   contract with the actual GBM American stopping value, including the required
-   boundary regularity and smooth fit. Monotonicity is already derived from
+1. **Financial applicability.** Establish existence of a pair satisfying the
+   classical contract, including the required boundary regularity and smooth
+   fit. Monotonicity is already derived from
    the contract; it is not a separate contract assumption.
    The stopping value is now defined on a constructed Brownian space with
    natural filtration, and its payoff bounds, spot shape, and contact threshold
-   are proved independently of the classical contract. A checked conditional
-   bridge reduces boundary identification to price identification. The latter,
-   classical existence/regularity, and the usual-filtration comparison remain
-   open; see [the financial verification frontier](stopping-value.md).
+   are proved independently of the classical contract. Contact martingality and
+   global supermartingality now prove price identification, boundary identification,
+   and both actual-boundary curvature conclusions from the contract. Classical
+   existence/regularity and the usual-filtration comparison remain open; see
+   [the financial verification frontier](stopping-value.md).
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

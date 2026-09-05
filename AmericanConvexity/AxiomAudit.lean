@@ -27,6 +27,7 @@ import AmericanConvexity.Stopping.BrownianInteriorLocalization
 import AmericanConvexity.Stopping.ContactMartingale
 import AmericanConvexity.Stopping.LinearPriceComparison
 import AmericanConvexity.Stopping.ClassicalHeatComparison
+import AmericanConvexity.Stopping.ClassicalSupermartingale
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -882,3 +883,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.classicalPrice_gaussian_comparison
+
+/-- info: 'AmericanConvexity.Stopping.condExp_independent_kernel' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.condExp_independent_kernel
+
+/-- info: 'AmericanConvexity.Stopping.brownian_condExp_transition' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_condExp_transition
+
+/-- info: 'AmericanConvexity.Stopping.brownianClassicalCandidate_supermartingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianClassicalCandidate_supermartingale
+
+/-- info: 'AmericanConvexity.Stopping.brownian_price_identification' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_price_identification
+
+/-- info: 'AmericanConvexity.Stopping.brownian_boundary_conclusions' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_boundary_conclusions
+
+/-- info: 'AmericanConvexity.Stopping.brownian_zeroDividend_boundary_conclusions' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_zeroDividend_boundary_conclusions
+
+/-- info: 'AmericanConvexity.Stopping.brownian_liuRange_boundary_conclusions' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_liuRange_boundary_conclusions

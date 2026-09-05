@@ -120,5 +120,15 @@ Mathlib's support-preserving smooth approximation supplies the approximants in
 `SmoothMinorants.lean`; the local construction makes them compact minorants with
 a uniform bound. Dominated convergence in `ClassicalHeatComparison.lean` then
 extends the inequality to the continuous price slice. Both final guarded proof
-chains use only the three standard axioms. The conditional-expectation step
-remains open.
+chains use only the three standard axioms.
+
+`IndependentKernel.lean` proves the conditional-expectation step from Mathlib's
+independent product laws, Fubini, and uniqueness of conditional expectation.
+`BrownianTransition.lean` uses the constructed Brownian increment law and its
+independence from the raw past, with Mathlib's Gaussian scaling theorem.
+`ClassicalTransition.lean` checks the physical normalization;
+`ClassicalSupermartingale.lean` then proves global supermartingality, price
+identification and the actual boundary curvature conclusions. These final
+proof chains, including the zero-dividend and Liu-range specializations, have
+guarded audits allowing only the three standard axioms. Classical-solution
+existence and the raw/usual-filtration value comparison remain unproved.

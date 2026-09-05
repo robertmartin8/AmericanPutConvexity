@@ -1,8 +1,9 @@
-# Continuous-time stopping value and the remaining classical identification
+# Continuous-time stopping value and checked classical identification
 
 The curvature proof is complete for `DividendPutSolution`. This development
-defines the financial value to which that contract must be connected. It does
-not assert that the connection is already proved.
+defines the financial value and now proves that any pair satisfying that
+classical contract equals the Brownian American stopping value. Classical-pair
+existence and the raw/usual-filtration comparison remain open.
 
 ## Exact financial definition
 
@@ -124,8 +125,9 @@ maturity, and payoff equality at maturity. Almost-sure `W_0=0` identifies its
 initial value. The checked conditional theorem now reduces price identification
 to supermartingality of this exact candidate, an admissible contact rule, and
 the stopped-candidate martingale property. The later `ContactMartingale.lean`
-development constructs the rule and proves the latter property from the PDE;
-the global supermartingale property remains open.
+development constructs the rule and proves the latter property from the PDE.
+`ClassicalSupermartingale.lean` proves the global supermartingale property and
+discharges the remaining stochastic premise.
 In particular, no global C2 regularity across the exercise boundary is assumed
 to justify an unqualified application of Ito's formula.
 
@@ -160,10 +162,11 @@ and martingality of that candidate stopped at its constructed first contact.
 The final `brownian_boundary_curvature_of_martingales` transfers curvature when
 these properties hold for every positive initial spot and finite horizon.
 
-The contact martingale property is now discharged by `ContactMartingale.lean`.
-The global supermartingale property and existence of a classical pair remain
-open. The rule realizes the classical price as its expected payoff, but its
-optimality still needs the supermartingale upper bound on all other rules.
+The contact martingale property is discharged by `ContactMartingale.lean`, and
+global supermartingality by `ClassicalSupermartingale.lean`. The rule realizes
+the classical price as its expected payoff; the supermartingale upper bound
+on all other rules proves its optimality. Existence of a classical pair remains
+open.
 
 ## Checked local PDE-to-Ito connection
 
@@ -199,8 +202,8 @@ The local-martingale filtration here is explicitly MathFin's **null-augmented**
 Brownian filtration. The local statement alone does not assert martingality of
 the original candidate. The compact-region assembly, bounded promotion and
 raw-filtration transfer described below now prove martingality up to first
-contact. The global candidate's supermartingale property across the exercise
-boundary is still missing.
+contact. The global supermartingale property is proved separately by Gaussian
+comparison, without differentiating the price twice across exercise.
 
 The new import traverses upstream files containing unfinished declarations;
 the guarded axiom checks on `plane_ito_localMartingale` and `local_price_ito`
@@ -232,7 +235,8 @@ martingale for that precise process to a true martingale on the raw filtration.
 The reductions in this module require the global candidate supermartingale
 property and augmented local martingality up to first contact. The later
 `ContactMartingale.lean` assembly supplies the needed raw true-martingale property
-directly, removing that stochastic premise from the final reductions.
+directly, removing that stochastic premise from the final reductions. The
+subsequent Gaussian comparison removes the global supermartingale premise too.
 
 This transfers the particular adapted candidate process, not all admissible
 stopping rules or the value supremum. Equality of raw- and augmented-filtration
@@ -270,8 +274,9 @@ and raw-filtration transfer. Its theorem
 martingality of each exact interior-stopped candidate on the null augmentation,
 and proves true martingality at first contact on the raw filtration.
 The interior martingale properties are now proved from Ito as described next.
-This is not yet the stochastic identification theorem: the global
-supermartingale property and existence of the classical solution remain open.
+This interior-localization theorem alone is not stochastic identification;
+the global comparison developed below now completes that identification.
+Classical-solution existence remains open.
 
 ## Checked contact martingality from the PDE
 
@@ -294,12 +299,12 @@ promotion and raw-filtration transfer. The stopping-rule limit gives
 `brownianClassicalContactRule_martingale`, with no additional stochastic premise.
 The proved expected payoff of this contact rule equals the scaled classical
 price, yielding `classicalPrice_le_brownianAmericanPut` against the actual
-stopping supremum. Optimality still needs the opposite inequality.
+stopping supremum. The opposite inequality, proved below, establishes optimality.
 
 `brownian_price_identification_of_supermartingale` and
-`brownian_boundary_curvature_of_supermartingales` expose the sole remaining
-stochastic premise: the global supermartingale property. Existence of a pair
-satisfying the classical contract remains a separate obligation.
+`brownian_boundary_curvature_of_supermartingales` isolate the global
+supermartingale premise. `ClassicalSupermartingale.lean` now discharges it.
+Existence of a pair satisfying the classical contract remains a separate obligation.
 
 Stopping stability uses the proved upstream **martingale** optional-sampling
 and uniform-integrability chain, not its unfinished submartingale counterparts.
@@ -348,10 +353,36 @@ proves the inequality for the actual price slice:
   => exp(-k*(t-a)) * E[p(x+(k-h-1)*(t-a)+W_(2*(t-a)),a)] <= p(x,t).
 ```
 
-This is an unconditional expectation comparison. It is **not yet** the
-supermartingale inequality for the actual price process: the Brownian
-conditional-expectation/Markov step in physical coordinates remains open.
-The classical existence obligation is unchanged.
+This is an unconditional expectation comparison. The next development promotes
+it to the conditional inequality for the actual price process.
+
+## Checked global supermartingality and actual-boundary curvature
+
+`IndependentKernel.lean` proves conditional averaging of `H(X,Y)` when `X` is
+measurable with respect to the past and `Y` is independent of the past. It uses
+the independent product law and Fubini to check integrals on every past-measurable
+set, then invokes uniqueness of conditional expectation. The integrand is
+bounded and measurable; no Markov axiom is added.
+
+`BrownianTransition.lean` applies this to the constructed Brownian motion. It
+checks that `sigma*(W_j-W_i)` has variance `sigma^2*(j-i)` and proves the raw
+natural-filtration conditional transition formula. `ClassicalTransition.lean`
+checks the normalized-to-physical time, drift and discount identities, giving
+`E[U_j | F_i] <= U_i` for `i<=j<=T`.
+
+`ClassicalSupermartingale.lean` handles times beyond maturity using the exact
+frozen-process definition. Adaptation and the uniform price bound supply
+integrability, completing `brownianClassicalCandidate_supermartingale`.
+Together with contact martingality this proves `brownian_price_identification`
+without any additional stochastic premise. The boundary is identified with
+`K*exp(b(sigma^2*tau/2))` at positive maturities.
+
+`brownian_boundary_conclusions` states weak log curvature and strictly positive
+stock-boundary curvature for the actual stopping-value threshold. Named
+zero-dividend and Liu-range versions specialize this theorem; they do not
+independently formalize the published proofs. All remain conditional on a pair
+satisfying the classical contract. Existence/regularity of that pair and equality
+of the raw- and usual-augmented-filtration American values are not proved.
 
 ## Price identification suffices for boundary identification
 
@@ -379,16 +410,16 @@ imply `B''(tau)>0` for the actual Brownian contact threshold. Eventual equality
 at positive time transfers derivatives, so no smoothness of the financially
 defined threshold is separately assumed in this transfer.
 
-**`hprice` and existence of such a classical pair remain unproved.** The
-conditional transfer is not a theorem asserting actual-boundary curvature
-without those premises.
+`ClassicalSupermartingale.lean` now proves `hprice` from `hp`, and its final
+curvature theorems therefore have no separate price-identification premise.
+**Existence of such a classical pair remains unproved.**
 
 ## Remaining verification obligations
 
-The substantive missing step is to connect optimal stopping to the classical
-free-boundary problem, either by verifying a constructed classical solution
-against the stopping value or by deriving the contract from the value. This
-includes the needed existence, continuation PDE, strict continuation,
+The substantive missing step is to construct a classical solution pair, or to
+derive the full classical contract directly from the stopping value. Verification
+of any such pair against the raw stopping value is now proved. The remaining
+construction includes the needed existence, continuation PDE, strict continuation,
 positive-time boundary regularity, smooth fit and gradient trace, joint price
 continuity, and tail behavior. No such facts follow merely from the supremum
 definition or the spot-convexity proof above.

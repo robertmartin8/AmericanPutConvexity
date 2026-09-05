@@ -11,8 +11,9 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > classical pricing contract.** `DividendPutSolution k h p b` implies `b''(t)>=0`,
 > `b'(t)<0`, and the reconstructed stock boundary satisfies `B''(tau)>0`.
 > No extra interval, speed, expiry, zero-count or derivative-trace premise remains.
-> Identification with the actual American stopping value and the independent
-> strict-log-curvature CCJZ proof remain open.
+> Identification with the actual Brownian American stopping value is now proved
+> from this contract, with no extra stochastic premise. Classical-solution
+> existence and the independent strict-log-curvature CCJZ proof remain open.
 
 ## Proposed extension and published checkpoints
 
@@ -24,8 +25,9 @@ The proposed proof and its exact verification frontier are tracked in
 The actual continuous-time stopping value is now defined on a constructed
 Brownian probability space. Payoff bounds, expiry payoff, maturity monotonicity,
 spot convexity/continuity, and the in-the-money contact threshold are checked
-directly from that definition. Price identification would identify the boundary
-and transfer curvature, but that stochastic/PDE identification remains open.
+directly from that definition. Price identification now identifies the boundary
+and transfers weak log curvature and strict stock curvature to that threshold,
+conditional only on the classical solution contract and parameter assumptions.
 See [`docs/stopping-value.md`](docs/stopping-value.md) for the exact filtration,
 terminal-boundary convention, and remaining obligations.
 
@@ -36,14 +38,15 @@ The exact discounted classical-price candidate has checked continuity,
 adaptation, boundedness, and payoff domination. Its first-contact stopping rule
 is now constructed, with proved contact and pre-contact continuation. Its
 contact-martingale property is now derived from the PDE. The global
-supermartingale property remains open, so identification is not yet complete.
+supermartingale property is also proved, completing identification from the contract.
 
 The stochastic bridge now proves the exact Brownian-coordinate heat equation
 inside continuation and constructs compact C3 localizations with zero drift
 near each interior point. MathFin's Ito theorem supplies their compensated
 local martingales on the explicitly null-augmented filtration. Assembly up to
 first contact, promotion to a true martingale, and transfer to the raw
-filtration are now proved. The global supermartingale property remains open.
+filtration are now proved. A separate Gaussian-comparison argument proves global
+supermartingality without applying Ito across the exercise boundary.
 
 Explicit interior stopping rules now converge pathwise to first contact. Before
 each rule, the price/payoff gap and remaining maturity are bounded away from
@@ -55,13 +58,18 @@ complete `brownianClassicalContactRule_martingale`, without an additional
 martingale premise. This also proves that the classical price is the expected
 payoff of this admissible rule, hence is no greater than the actual American value.
 
-For the remaining opposite bound, arbitrary-start obstacle comparison is now
+For the opposite bound, arbitrary-start obstacle comparison is now
 proved on the whole spatial line. The Brownian heat evolution of every smooth,
 compactly supported test payoff below an initial price slice stays below the
 classical price. Uniformly bounded smooth compact minorants and dominated
 convergence now extend this inequality to the actual continuous price slice.
-This does not yet establish the global supermartingale property: the Brownian
-conditional-expectation step in physical coordinates remains to be completed.
+The independent-increment conditional-expectation argument and physical-time
+normalization now give global supermartingality, including the process frozen
+at maturity. `ClassicalSupermartingale.lean` identifies the classical price with
+the stopping supremum and proves both curvature conclusions for the actual
+boundary. Zero-dividend and Liu-range financial specializations are explicit.
+Existence of the classical pair and equality with the usual-augmented-filtration
+American value are not asserted.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -186,7 +194,7 @@ All files below are included in the project build.
 | [`Stopping/SpotShape.lean`](AmericanConvexity/Stopping/SpotShape.lean) | Actual stopping value is decreasing and convex in initial spot |
 | [`Stopping/ExerciseRegion.lean`](AmericanConvexity/Stopping/ExerciseRegion.lean) | Spot continuity; closed interval contact set; attained threshold, expiry convention, and maturity monotonicity |
 | [`Stopping/BrownianModel.lean`](AmericanConvexity/Stopping/BrownianModel.lean) | Constructed Brownian model, natural filtration, financial value, and contact threshold |
-| [`Stopping/ClassicalBridge.lean`](AmericanConvexity/Stopping/ClassicalBridge.lean) | Price identification implies boundary identification and transfers strict curvature; price identification remains an explicit open premise |
+| [`Stopping/ClassicalBridge.lean`](AmericanConvexity/Stopping/ClassicalBridge.lean) | Price identification implies boundary identification and transfers strict curvature; its explicit price premise is discharged in ClassicalSupermartingale |
 | [`Stopping/GridSampling.lean`](AmericanConvexity/Stopping/GridSampling.lean) | Upward stopping-time grid approximation and bounded continuous-path optional stopping |
 | [`Stopping/Verification.lean`](AmericanConvexity/Stopping/Verification.lean) | Dominating-supermartingale upper bound and contact-martingale verification for the actual stopping-value supremum |
 | [`Stopping/ClassicalCandidate.lean`](AmericanConvexity/Stopping/ClassicalCandidate.lean) | Exact discounted classical-price process; continuity, bounds, reward domination, and conditional verification |
@@ -212,6 +220,10 @@ All files below are included in the project build.
 | [`Stopping/LinearPriceComparison.lean`](AmericanConvexity/Stopping/LinearPriceComparison.lean) | The test-payoff Gaussian pricing evolution satisfies the normalized PDE and stays below the classical price from any nonnegative initial time |
 | [`Stopping/SmoothMinorants.lean`](AmericanConvexity/Stopping/SmoothMinorants.lean) | Uniformly bounded C2 compact minorants converge pointwise to any continuous function valued in [0,1] |
 | [`Stopping/ClassicalHeatComparison.lean`](AmericanConvexity/Stopping/ClassicalHeatComparison.lean) | Dominated convergence extends the Gaussian pricing inequality to the actual continuous classical price slice |
+| [`Stopping/IndependentKernel.lean`](AmericanConvexity/Stopping/IndependentKernel.lean) | Conditional averaging with a past-measurable state and an independent increment, proved by product laws and Fubini |
+| [`Stopping/BrownianTransition.lean`](AmericanConvexity/Stopping/BrownianTransition.lean) | The raw-filtration conditional Brownian transition, with exact scaled-increment variance |
+| [`Stopping/ClassicalTransition.lean`](AmericanConvexity/Stopping/ClassicalTransition.lean) | Physical-time discount/drift normalization and the conditional price inequality before maturity |
+| [`Stopping/ClassicalSupermartingale.lean`](AmericanConvexity/Stopping/ClassicalSupermartingale.lean) | Global supermartingality, price and boundary identification, and actual-boundary curvature from the classical contract; includes zero-dividend and Liu-range milestones |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
@@ -274,8 +286,9 @@ S_f''(T) = (σ⁴/4) E exp(s(t)) [s''(t) + (s'(t))²].
 ```
 
 Its differentiability assumptions are explicit. The positive-curvature corollary
-**assumes** positive log-boundary curvature; proving that hypothesis for the actual
-exercise boundary is still the central task. These generic coordinate lemmas do
+**assumes** positive log-boundary curvature; that stronger hypothesis remains open.
+The new proof instead uses weak log curvature and strictly negative speed.
+These generic coordinate lemmas do
 not identify an arbitrary input function with the financial exercise boundary.
 
 The limit lemma proves only **ordinary convexity**. Strict convexity or strictly
@@ -284,9 +297,9 @@ positive second derivatives do not follow just by taking limits.
 The solution definitions now specify the PDE, payoff, continuation/exercise regions,
 regularity and one-sided smooth fit without assuming convexity. Lean verifies that
 their contact condition translates to the usual monetary put payoff and stock-price
-threshold. Existence and identification with the GBM stopping value remain open;
-the threshold geometry is part of the analytic solution predicate and still needs
-to be established for the financial value. [Statement review and current proof
+threshold. Identification with the raw Brownian stopping value and its threshold
+is now proved from the contract. Existence of such a classical solution remains
+open. [Statement review and current proof
 obligations](docs/solution-contract.md).
 
 The initial-data construction of **Lemma 3.4 is now verified**: the explicit family
@@ -372,7 +385,8 @@ For the active straight-line proof, see the dependency list in
 curvature, the interval invariant, and the tangency contradiction are proved.
 The direct three-point argument bypasses the unfinished zero-number route.
 Strict stock curvature is also proved with no extra strictness premise.
-Actual stopping-value identification remains open. The proved weaker parameter cases are tracked
+Actual stopping-value identification is now proved from the classical contract;
+existence and the usual-filtration comparison remain open. The weaker parameter cases are tracked
 separately from independent verification of the published proofs.
 The financial value and its in-the-money contact threshold are now constructed;
 their checked properties and precise remaining PDE/filtration gaps are in

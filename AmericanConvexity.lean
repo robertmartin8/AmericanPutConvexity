@@ -33,6 +33,7 @@ import AmericanConvexity.Stopping.CompactHeatFlow
 import AmericanConvexity.Stopping.BrownianHeatFlow
 import AmericanConvexity.Stopping.LinearPriceComparison
 import AmericanConvexity.Stopping.ClassicalHeatComparison
+import AmericanConvexity.Stopping.ClassicalSupermartingale
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
