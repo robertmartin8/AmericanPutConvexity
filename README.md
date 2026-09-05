@@ -132,9 +132,18 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > handles the separated remainder without differentiating it. Fubini and a
 > causal change of variables identify that integral with the original potential.
 > Spatial C2 regularity and time differentiability are checked on both sides of
-> the graph, with zero-dividend and Liu-range PDE checkpoints. Assembling and
-> identifying the represented candidate remain open; actual boundary flux and
-> smoothness are not yet established.
+> the graph, with zero-dividend and Liu-range PDE checkpoints. The represented
+> candidate `F-V/2` is now assembled and identified with localized actual heat
+> theta: exterior Neumann uniqueness supplies its zero boundary value, and
+> continuation-side Dirichlet uniqueness supplies identification. Both uniqueness
+> arguments use boundedness, not an assumed decay at infinity or boundary speed.
+> The constructed density is consequently a genuine right-sided spatial
+> derivative of actual heat theta, locally continuous as a function of boundary
+> time. Its existence is unconditional in the full `0<=h<=k`, `k>0` regime,
+> with explicit zero-dividend and Liu-range specializations. The actual Stefan
+> velocity identity and boundary smoothness are still unproved; this result does
+> not assert a two-sided contact derivative or joint continuity of the interior
+> gradient up to contact.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

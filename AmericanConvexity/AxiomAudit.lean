@@ -95,6 +95,7 @@ import AmericanConvexity.Stopping.ActualHeatSource
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.SourceHeatEquation
 import AmericanConvexity.Stopping.LocalSourceEquation
+import AmericanConvexity.Stopping.ActualHeatFlux
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -3716,3 +3717,118 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_actualHeatSourcePotential_equation
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_causal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_causal
+
+/-- info: 'AmericanConvexity.Stopping.heat_deriv2_sub_at' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heat_deriv2_sub_at
+
+/-- info: 'AmericanConvexity.Stopping.heat_deriv2_const_mul_at' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heat_deriv2_const_mul_at
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_regular' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_regular
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_shifted_traces' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_shifted_traces
+
+/-- info: 'AmericanConvexity.Stopping.unshift_hasDerivWithinAt_Iic' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.unshift_hasDerivWithinAt_Iic
+
+/-- info: 'AmericanConvexity.Stopping.unshift_hasDerivWithinAt_Ici' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.unshift_hasDerivWithinAt_Ici
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_normal_traces' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_normal_traces
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_zero_exterior' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_zero_exterior
+
+/-- info: 'AmericanConvexity.Stopping.bounded_inhomogeneous_heat_unique' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.bounded_inhomogeneous_heat_unique
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_identification' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_identification
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentation_transfer_right_trace' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentation_transfer_right_trace
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatGraph_clamp_window_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatGraph_clamp_window_bound
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatTheta_localized_representation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatTheta_localized_representation
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatTheta_continuous_right_flux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatTheta_continuous_right_flux
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatTheta_has_right_flux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatTheta_has_right_flux
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatTheta_continuous_right_flux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatTheta_continuous_right_flux
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_exists_canonicalHeatTheta_continuous_right_flux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_exists_canonicalHeatTheta_continuous_right_flux
+
+/-- info: 'AmericanConvexity.Boundary.strict_dirichlet_heat_maximum' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.strict_dirichlet_heat_maximum
+
+/-- info: 'AmericanConvexity.Boundary.bounded_dirichlet_heat_maximum' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.bounded_dirichlet_heat_maximum
+
+/-- info: 'AmericanConvexity.Boundary.bounded_dirichlet_heat_zero' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.bounded_dirichlet_heat_zero

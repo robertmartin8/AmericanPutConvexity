@@ -885,9 +885,42 @@ spatial C2 regularity, time differentiability, and `F_t = F_xx/2 + Q` for the
 actual source off the exercise graph at positive times strictly before `a+D`.
 The cutoff hypotheses are precisely those already constructed for actual theta;
 no source smoothness across contact is assumed. Zero-dividend and Liu-range
-PDE specializations are explicit. The subsequent assembly and uniqueness
-identification with localized actual theta, the actual one-sided flux, and
-boundary smoothness still remain unproved.
+PDE specializations are explicit.
+
+### Actual heat-theta representation and continuous one-sided derivative
+
+`HeatRepresentationCandidate.lean` assembles `U=F-V/2`, proves continuity,
+boundedness, causal initial data and the source PDE, and computes both shifted
+normal derivatives. The density equation makes the left derivative zero and
+the right derivative equal to the density. `HeatRepresentationExterior.lean`
+transfers these statements to the original spatial coordinate and applies the
+proved exterior Neumann uniqueness theorem, giving `U=0` on the exercise side,
+including the moving boundary.
+
+`Boundary/DirichletHalfLine.lean` proves bounded Dirichlet uniqueness on a
+continuous moving half-line, including terminal time. A quadratic barrier
+justifies truncation without a decay hypothesis. No boundary velocity is used.
+`HeatRepresentationIdentification.lean` applies this to solutions with the
+same source, initial data, and boundary values, and transfers the candidate's
+right derivative to the identified solution.
+
+`ActualHeatRepresentation.lean` discharges these premises for localized actual
+heat theta. Compact-window Lipschitz bounds for the clamped actual graph follow
+from the already-proved local Lipschitz property; the density history is shown
+to be the actual-graph history throughout the causal window.
+`ActualHeatFlux.lean` supplies the previously constructed cutoff and density,
+then removes the cutoff near contact. The result is a continuous function `F`
+such that, for every heat time `s` in a neighborhood of any positive contact,
+
+`HasDerivWithinAt (fun x => canonicalHeatTheta k h (x,s)) (F s)`
+`  (Ici (canonicalLogBoundary k h (s/2))) (canonicalLogBoundary k h (s/2))`.
+
+Only `k>0` and `0<=h<=k` are assumed. The zero-dividend and Liu-range local
+continuous-flux results are explicit, as is existence at every positive heat
+time. This is a boundary one-sided derivative, not a two-sided derivative or
+an assertion of joint continuity of the interior gradient up to the boundary.
+The actual Stefan velocity identity, subsequent regularity bootstrap, and
+classical boundary-curvature conclusions remain unfinished.
 
 All new proof modules use Mathlib, not MathFin's pricing theorems. No `sorry`,
 new axiom, numerical output, or purported review is used as a proof premise.
