@@ -1,5 +1,44 @@
 # Solution definitions and statement review
 
+**Current update:** `PhysicalBoundaryCurvature.lean` now proves C2 regularity,
+weak logarithmic curvature and strict stock curvature for the actual Brownian
+American stopping boundary, with only positive strike, rate, volatility and
+`0<=q<=r`. The all-order `DividendPutSolution` contract is not assumed in this
+result. C2 does not by itself construct that contract's all-order boundary
+smoothness field. Older regularity limitations below are historical; independent
+statement review and the independent published CCJZ proof remain unfinished.
+
+### Targeted statement check for the actual curvature theorem
+
+The following is a local author-side check, not independent validation:
+
+- `brownianUsualBoundary_classical_curvature` in `PhysicalBoundaryCurvature.lean`
+  (namespace `AmericanConvexity.Stopping`) quantifies over arbitrary real
+  `K,r,q,sigma` with exactly the five admissibility inequalities stated above.
+  Both conclusions range over every strictly positive real maturity.
+- Its boundary is `brownianUsualExerciseBoundary`, defined in
+  `UsualBrownianValue.lean` from `exerciseThreshold`, not a caller-provided
+  function. The filtration is null-augmented and right-continuous on the
+  completed Brownian probability space.
+- `ExerciseRegion.lean` defines the threshold as the supremum of spots in
+  `[0,K]` where the American stopping value equals `K-S`. The interval
+  restriction preserves the expiry convention and is not a convexity premise.
+- `AmericanValue.lean` defines that value as the supremum of expected discounted
+  payoffs over `BoundedRule`. `Rules.lean` uses arbitrary stopping times bounded
+  by maturity, not merely deterministic or finite-grid exercise times.
+- `Reward.lean` discounts by `exp(-r*theta)` and uses
+  `MathFin.gbmValue S (r-q) sigma theta W_theta`. At the pinned MathFin revision,
+  `gbmValue` is exactly `S*exp((mu-sigma^2/2)*theta+sigma*W_theta)`.
+- The normalized boundary is identified with the physical threshold by
+  `ActualBoundaryNormalization.lean`; its identification does not assume a
+  classical pricing solution. C2 regularity is explicitly included in the
+  aggregate theorem, so its second derivatives are not default values assigned
+  by Lean at nondifferentiability points.
+
+The full build and new transitive axiom guards passed for these conclusions.
+This targeted check does not replace a broader independent review of the
+Brownian construction, completion/filtration bridges, or analytic proof chain.
+
 Current status: the classical-contract curvature proof and stochastic
 identification are proved. Convexity of the actual normalized log boundary is
 now proved without the classical contract in `Stopping/ActualLogConvexity.lean`.

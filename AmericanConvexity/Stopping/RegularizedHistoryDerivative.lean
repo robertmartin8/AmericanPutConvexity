@@ -26,7 +26,8 @@ theorem regularizedHistoryDerivative_eq_frozen_deriv {b f : ℝ → ℝ} {t u : 
   simp only [sub_sub_cancel,regularizedHistoryDerivative]
 
 theorem heatBoundaryMotionDerivative_continuousAt_varying
-    {U X W : ℝ → ℝ} {t : ℝ} (hU : ContinuousAt U t) (hX : ContinuousAt X t)
+    {α : Type*} [TopologicalSpace α] {U X W : α → ℝ} {t : α}
+    (hU : ContinuousAt U t) (hX : ContinuousAt X t)
     (hW : ContinuousAt W t) (hu : 0 < U t) :
     ContinuousAt (fun z => heatBoundaryMotionDerivative (U z) (X z) (W z)) t := by
   have hpair := hU.prodMk hX

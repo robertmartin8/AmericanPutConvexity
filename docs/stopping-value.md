@@ -1,5 +1,22 @@
 # Continuous-time stopping value and checked classical identification
 
+## Current result
+
+`PhysicalBoundaryCurvature.lean` proves C2 regularity and the classical
+inequalities `d²/dτ² log(B(τ)/K) >= 0` and `B''(τ) > 0` for the actual
+completed-usual-filtration Brownian American-put boundary, assuming only
+`K>0`, `r>0`, `sigma>0`, and `0<=q<=r`. The aggregate theorem is
+`brownianUsualBoundary_classical_curvature`. No classical solution or
+boundary-smoothness premise remains in this theorem. Explicit zero-dividend
+and Liu stock-curvature specializations are included.
+
+This supersedes the historical C2 and classical-curvature limitations below.
+All-order boundary smoothness, construction of the all-order classical
+contract, the independent CCJZ proof, and independent statement/proof review
+remain separate unfinished work. See the final section for the new proof chain.
+
+## Earlier milestones
+
 The curvature proof is complete for `DividendPutSolution`. This development
 defines the financial value and now proves that any pair satisfying that
 classical contract equals the Brownian American stopping value on both the raw
@@ -2950,3 +2967,52 @@ The two constructions may choose different source starts. A rate-comparison
 identity across starts and neighborhood-wide identification are still
 required to establish continuity of the intrinsic derivative. Ten new
 guarded transitive axiom checks cover these results. C2 remains unfinished.
+
+## Original-start rate continuity, C2 boundary, and actual classical curvature
+
+This checkpoint closes the preceding regularity gaps.
+
+`HistoryRateIntegrability.lean` proves genuine integrability of the regularized
+derivative on the full elapsed-time interval. The near-diagonal part uses the
+proved inverse-three-quarter bound; the part separated from the diagonal uses
+continuity on a compact interval. The linear reference motion derivative
+integrates to the difference of its endpoint kernels.
+
+`HistoryRateStartComparison.lean` uses this identity to prove that changing
+the causal start adds exactly the older-source motion-rate integral. The
+reference integral cancels the change in the explicit endpoint term.
+`HistoryRateIdentification.lean` then identifies the rate with the intrinsic
+history right derivative at every positive start, including throughout a
+neighborhood. `CompactIntervalIntegralContinuity.lean` and
+`OlderHistoryRateContinuity.lean` establish continuity of the separated old
+part; `FullHistoryRateContinuity.lean` combines the pieces. The previously
+different local starts are no longer an obstruction.
+
+`ContinuousRightDerivative.lean` proves a general real-variable lemma: a
+continuous function with a continuous prescribed right derivative on an open
+set is C1 there. On a small closed interval it agrees with the integral of
+the derivative, by uniqueness for right derivatives. Equality on a neighborhood
+then gives its ordinary derivative. This is not an assumption that one-sided
+differentiability alone implies ordinary differentiability.
+
+`ActualDensityC1.lean` applies that lemma to the density equation and the
+continuous original-start rate. `ActualHeatFluxC1.lean` transfers density C1
+regularity to the intrinsic spatial flux by local equality from the actual
+layer representation. `ActualBoundaryC2.lean` transfers C1 through the pricing
+gauge and the positive Stefan denominator, making the actual velocity C1 and
+the actual boundary C2. Zero-dividend and Liu regularity cases are explicit.
+
+`ActualBoundaryCurvature.lean` combines actual convexity with genuine second
+derivative existence. Strictly negative speed and the exponential coordinate
+formula then give strict stock curvature. `PhysicalBoundaryCurvature.lean`
+identifies these with the completed-usual-filtration boundary using the
+already proved exact stopping-value normalization. Local equality transfers
+both ordinary derivatives; `toNNReal` causes no kink at positive maturities.
+The aggregate theorem includes C2 for both boundaries as well as both
+curvature inequalities. It has no classical-solution or regularity premise.
+
+Verification: `lake build` succeeded with 9,086 jobs, including 38 new
+transitive axiom guards permitting only `propext`, `Classical.choice`, and
+`Quot.sound`. Replayed upstream unfinished-proof warnings do not enter these
+guarded results. Independent review, all-order boundary smoothness, and the
+independent strict-log-curvature CCJZ proof are not claimed complete.

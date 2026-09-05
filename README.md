@@ -7,14 +7,39 @@ independent published CCJZ proof development is retained. The project integrates
 [MathFin](https://github.com/formal-applied-math/formal-mathfin); the boundary
 proof modules currently use Mathlib and local results, not MathFin pricing results.
 
-> **Status: actual log-boundary convexity and strict stock-boundary convexity
+## Current result: classical curvature of the actual stopping boundary
+
+`Stopping/PhysicalBoundaryCurvature.lean` now proves, for the completed
+usual-filtration Brownian American-put exercise boundary and only
+`K>0`, `r>0`, `sigma>0`, `0<=q<=r`:
+
+- The logarithmic boundary and stock boundary are C2 on positive maturities.
+- `d²/dτ² log(B(τ)/K) >= 0` and `B''(τ) > 0` for every `τ>0`.
+- Zero-dividend and Liu-range stock-curvature checkpoints are explicit.
+
+`brownianUsualBoundary_classical_curvature` packages the regularity and both
+inequalities. It assumes neither a classical pricing solution nor boundary
+smoothness. The C2 proof closes the earlier regularity gap: the original-start
+history rate is continuous, a continuous right derivative is an ordinary
+derivative, the actual density and heat flux are C1, and the Stefan identity
+makes the boundary velocity C1. New transitive axiom guards cover this chain.
+
+This does not assert strict **logarithmic** curvature, all-order boundary
+smoothness, a completed independent audit, or established publication priority.
+The independent CCJZ proof development remains unfinished. The historical
+milestones below retain their then-current limitations; statements there that
+C2 or actual classical curvature is unfinished are superseded by this result.
+
+## Historical development checkpoints
+
+> **Earlier status: actual log-boundary convexity and strict stock-boundary convexity
 > are proved in physical units.** `PhysicalBoundaryConvexity.lean` gives these
 > function-level results for the completed usual-filtration exercise threshold
 > under only `K>0`, `r>0`, `sigma>0`, and `0<=q<=r`. Zero-dividend and Liu-range
 > checkpoints are explicit. Exact price normalization follows from finite-grid
 > Bellman rescaling and convergence, without a classical-solution premise.
 >
-> **Latest regularity checkpoint:** `ActualStefanVelocity.lean` proves that
+> **Earlier regularity checkpoint:** `ActualStefanVelocity.lean` proves that
 > the actual log boundary is C1 on positive times, with strictly negative
 > derivative and the exact Stefan identity
 > `b'(t)=-canonicalThetaRightFlux(t)/(k-h*exp(b(t)))`.
