@@ -45,9 +45,14 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > are now included, giving a complete local-history three-quarter estimate
 > from a C1,1/2 graph and one-half Holder density. The actual graph supplies the premises,
 > with explicit zero-dividend and Liu cases (`ActualHistoryThreeQuarter.lean`).
-> Older sources outside the local Holder window and the density-equation
-> application remain before upgrading the actual flux modulus. The actual
-> flux/velocity remains verified one-half Holder; C2 is unfinished.
+> Older sources outside the local Holder window now have a Lipschitz bound.
+> Splitting the original causal history and keeping observation times away
+> from the local start gives a uniform three-quarter bound for the full
+> history (`ActualFullHistoryThreeQuarter.lean`). The density equation and
+> actual layer representation transfer it to the intrinsic heat flux, then
+> the gauge and Stefan identity transfer it to pricing flux and velocity
+> (`ActualVelocityThreeQuarter.lean`). Thus the actual boundary is locally
+> C1,3/4, with explicit zero-dividend and Liu cases. C2 is still unfinished.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming

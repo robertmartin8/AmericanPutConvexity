@@ -2771,9 +2771,41 @@ values and all derivatives used in the proof; exact integral equalities remove
 the clamp. The complete-history estimate is explicit in zero-dividend and
 Liu regimes as well. Sixteen new transitive axiom guards cover this stage.
 
-This is a complete estimate on a local source window, not yet the upgrade of
-the original density equation's full causal history. Older sources outside
-the local Holder window must be handled separately. The coefficient above
-also needs a uniform positive lower bound for t1-a when applying the estimate
-on an observation neighborhood. The actual density/flux/velocity exponent
-has not yet been upgraded beyond one-half, and C2 remains unfinished.
+At this checkpoint the estimate covered a local source window only. The
+following step extends it to the original causal history.
+
+## Full-history bootstrap to actual C1,3/4 boundary regularity
+
+`ActualOlderHistory.lean` proves source-time integrability for the actual
+graph and the exact split at a new local start a. The old portion over
+(a0,a) is Lipschitz for observations t1<=t2 with a+e<=t1, e>0:
+
+`|oldHistory(t2)-oldHistory(t1)|`
+` <= 8*L*C*(a-a0)/(e*sqrt(2*pi*e))*(t2-t1)`.
+
+Here L is a proved actual-graph bound on a compact positive-time window and
+C bounds the continuous density. No regularity of the density at old source
+times beyond continuity is needed. `ActualFullHistoryThreeQuarter.lean`
+chooses a closed source window inside the local half-Holder neighborhood
+and a smaller observation neighborhood. Its fixed gap from a bounds the
+recent-history coefficient uniformly. Adding the old Lipschitz part gives
+`LocalThreeQuarterHolderAt` for the full original history.
+
+`ActualDensityThreeQuarter.lean` first obtains the existing half-Holder
+density estimate, then uses the full-history improvement in the same
+equation f=forcing+history. The forcing is C1. The density is consequently
+three-quarter Holder without assuming any density derivative.
+
+`ActualHeatFluxThreeQuarter.lean` transfers this bound via the actual layer
+representation and uniqueness of the right derivative. Finally
+`ActualVelocityThreeQuarter.lean` gives, for k>0 and 0<=h<=k, at every t>0:
+
+- `LocalThreeQuarterHolderAt (canonicalThetaRightFlux k h) t`;
+- `LocalThreeQuarterHolderAt (deriv (canonicalLogBoundary k h)) t`;
+- the corresponding three-quarter bound for the heat-coordinate graph speed.
+
+Zero-dividend and Liu checkpoints are explicit. Twenty-two new guarded
+transitive axiom checks cover the analytic split, full-history estimate,
+density, intrinsic flux identification, transfer rules and actual velocity.
+No second derivative is assumed or concluded. C2 and the actual classical
+curvature contract remain unfinished.

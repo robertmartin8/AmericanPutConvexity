@@ -106,6 +106,7 @@ import AmericanConvexity.Stopping.ActualGraphRemainder
 import AmericanConvexity.Stopping.ActualRemainderTime
 import AmericanConvexity.Stopping.HeatRemainderOverlap
 import AmericanConvexity.Stopping.ActualHistoryThreeQuarter
+import AmericanConvexity.Stopping.ActualVelocityThreeQuarter
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -4622,3 +4623,113 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_exists_canonicalHeatHistory_threeQuarter_control
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatHistory_source_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatHistory_source_integrable
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatHistory_split' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatHistory_split
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalOlderHistory_time_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalOlderHistory_time_bound
+
+/-- info: 'AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.congr' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.congr
+
+/-- info: 'AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.add_contDiffAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.add_contDiffAt
+
+/-- info: 'AmericanConvexity.Stopping.exists_short_closed_window' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_short_closed_window
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryThreeQuarterConstant_le_uniform' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryThreeQuarterConstant_le_uniform
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatHistory_local_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatHistory_local_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatDensity_threeQuarter_of_C1_forcing' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatDensity_threeQuarter_of_C1_forcing
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatSource_density_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatSource_density_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatThetaRightFlux_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatThetaRightFlux_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalHeatThetaRightFlux_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalHeatThetaRightFlux_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalHeatThetaRightFlux_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalHeatThetaRightFlux_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.positive_rescale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.positive_rescale
+
+/-- info: 'AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.mul_contDiffAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.LocalThreeQuarterHolderAt.mul_contDiffAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaRightFlux_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaRightFlux_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_deriv_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_deriv_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatGraph_deriv_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatGraph_deriv_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalThetaRightFlux_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalThetaRightFlux_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalThetaRightFlux_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalThetaRightFlux_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_deriv_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_deriv_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_deriv_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_deriv_threeQuarter

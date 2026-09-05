@@ -1017,8 +1017,28 @@ and removes a clamp placed strictly before the source window. Explicit
 zero-dividend and Liu checkpoints and sixteen transitive axiom guards are
 included.
 
-Older sources outside the local Holder window and the final density-equation
-application still remain. The new estimate's coefficient is explicit and
-requires staying away from the local source start for a uniform neighborhood
-bound. Thus the verified actual flux and velocity exponent is still one-half,
-not yet three-quarters; actual-boundary C2 remains unfinished.
+At this checkpoint, older sources and the final density-equation application
+were still missing. The following update supplies both.
+
+### Actual density, heat/pricing flux and velocity are three-quarter Holder
+
+`ActualOlderHistory.lean` proves genuine source-time integrability, the exact
+split of the original causal history, and a Lipschitz bound for its older
+source portion. `ActualFullHistoryThreeQuarter.lean` chooses a local source
+window inside the density's one-half Holder neighborhood, and a smaller
+observation window separated from its start by a fixed positive gap. The
+explicit local-history coefficient is then uniformly bounded. Combining
+the old and recent parts gives a three-quarter bound for the original history.
+
+`ActualDensityThreeQuarter.lean` applies this to the constructed density
+equation, using the already proved C1 forcing and one-half density estimate.
+`ActualHeatFluxThreeQuarter.lean` identifies the density with the actual
+one-sided spatial derivative where the cutoff is one.
+`ActualVelocityThreeQuarter.lean` transfers the improved modulus through
+positive time rescaling, the C1 inverse gauge, and the positive C1 Stefan
+denominator. Hence the actual boundary is locally C1,3/4. Zero-dividend and
+Liu specializations and 22 new transitive axiom guards cover this stage.
+
+This still does not assert a second boundary derivative. Differentiating the
+boundary integral with the improved modulus, and then establishing C2,
+remains unfinished.
