@@ -5,12 +5,14 @@ defines the financial value and now proves that any pair satisfying that
 classical contract equals the Brownian American stopping value on both the raw
 and completed usual filtrations. Classical-pair existence remains open.
 
-**Current interior frontier:** `ActualInteriorRegularity.lean` proves joint
+**Current frontier:** `ActualInteriorRegularity.lean` proves joint
 all-order smoothness and the pricing PDE for the actual stopping price on its
 continuation region, without a classical-solution premise. The sections below
 record successive checkpoints; older references to an open interior-PDE step
-are superseded by the final section. Positive threshold, full boundary
-continuity, smooth fit, gradient trace and boundary smoothness remain open.
+are superseded by the later construction. `PositiveExerciseBoundary.lean` now
+proves a uniform positive lower bound on the threshold and constructs the actual
+logarithmic boundary. Full boundary continuity, smooth fit, gradient trace and
+boundary smoothness remain open.
 
 ## Exact financial definition
 
@@ -487,10 +489,9 @@ time, with no classical-solution premise or optimal-rule assumption.
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
 of any such pair against both raw and usual stopping values is now proved. The remaining
-construction includes the needed existence, continuation PDE, positivity of the
-stock threshold, boundary continuity and positive-time regularity, smooth fit
-and gradient trace.
-No such facts follow merely from the supremum
+construction still requires boundary continuity and positive-time regularity,
+smooth fit and gradient trace. Interior PDE regularity and positivity of the
+threshold are now proved below; neither follows merely from the supremum
 definition or the spot-convexity proof above.
 
 The identification and resulting boundary properties remain conditional on
@@ -520,8 +521,9 @@ threshold at strike one and volatility `sqrt(2)`. It starts at one and lies in
 `[0,1)` at positive time. `canonicalPrice_contact_iff` and
 `canonicalPrice_strict_continuation_iff` characterize its regions in log-spot
 coordinates using `exp(x)`. Joint price continuity proves the actual
-`canonicalContinuationRegion` is open. None of this asserts `B(T)>0`; a finite
-logarithmic boundary and its regularity still need to be established.
+`canonicalContinuationRegion` is open. This price-positivity checkpoint alone
+does not assert `B(T)>0`. The positive threshold and finite logarithmic boundary
+are now established in the final section; boundary regularity remains open.
 
 ## One-sided boundary continuity and actual first contact
 
@@ -1115,7 +1117,51 @@ or boundary regularity. Guarded transitive axiom audits cover the transformation
 both constructed existence results, local identification, smoothness and PDE.
 They allow only `propext`, `Classical.choice` and `Quot.sound`.
 
-This closes **interior** regularity, not classical-pair existence. Strict
-positivity of the stock threshold, full boundary continuity, smooth fit and its
+This closes **interior** regularity, not classical-pair existence. Positivity of
+the stock threshold is proved next. Full boundary continuity, smooth fit and its
 gradient trace, and positive-time boundary smoothness remain to be established.
 The independent published CCJZ strict-log-curvature proof also remains separate.
+
+## Positive exercise threshold and actual logarithmic boundary
+
+For `k>0` and `0<=h<=k`, `StationaryPutCap.lean` constructs `m>0` and `d<0` with
+
+```text
+exp(d)=m/(1+m),
+k+(k-h-1)*m-m^2 >= 0.
+```
+
+The stationary comparator is `1-exp(x)` for `x<=d` and
+`(1-exp(d))*exp(-m*(x-d))` for `x>d`. The two branches match in value and slope.
+The exponential branch dominates the intrinsic value everywhere: the two
+inequalities `exp(-m*s)>=1-m*s` and `m*exp(s)>=m+m*s` prove the required bound.
+Both branches have nonnegative pricing operator on their respective sides.
+
+The second derivative may jump at `d`. `UpperSupportComparison.lean` therefore
+does not assume a globally smooth comparator. At a hypothetical positive
+maximum of actual price minus comparator, payoff domination puts the price in
+continuation, where it has the proved interior derivatives. A smooth function
+touching the comparator from above gives the spatial maximum and one-sided
+terminal-time derivative inequalities. The strictly positive rate contradicts
+the PDE. At the join, the exponential branch supplies this upper support.
+
+`PositiveExerciseBoundary.lean` adds `epsilon>0`, truncates spatially, and applies
+this checked comparison. On the left, `p<=1` and `exp(L)<=epsilon` suffice; on
+the right, the proved uniform price decay suffices. Letting epsilon decrease to
+zero proves the global stationary price bound for all nonnegative maturities.
+Since the bound equals the payoff below `d`, those points must be in exercise.
+Consequently `exp(d)<=canonicalStockBoundary(k,h,t)` uniformly in `t>=0`.
+
+The final checked conclusions include:
+
+- `canonicalStockBoundary_uniform_pos`, with a constructed positive lower bound;
+- a named zero-dividend positivity specialization;
+- `canonicalLogBoundary=log(canonicalStockBoundary)` with a proved positive argument;
+- its zero initial value, negative positive-time values, and exact exponential recovery;
+- actual-price value matching and continuation exactly above this log boundary.
+
+No classical pricing contract, smooth fit, boundary continuity, or optimal
+perpetual-option formula is assumed. This comparator is only a proved upper
+bound; it is not asserted to be the perpetual option value. Guarded audits allow
+only the three standard axioms. Full boundary continuity, smooth fit, gradient
+trace and boundary smoothness remain open.

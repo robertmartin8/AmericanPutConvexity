@@ -18,6 +18,8 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > The actual stopping price is now proved smooth and satisfies the pricing PDE
 > inside continuation, without a classical-solution premise. Smooth fit and
 > free-boundary regularity remain open.
+> Its exercise threshold also has a proved positive lower bound, uniform over
+> maturities, so the actual logarithmic boundary is now constructed.
 
 ## Proposed extension and published checkpoints
 
@@ -95,8 +97,12 @@ rate. Hence both raw and usual American prices are strictly positive, without a
 classical-solution premise. `StrictExerciseGeometry.lean` proves that the
 normalized stock threshold is in `[0,1)` at positive maturity, and that contact
 and strict continuation occur exactly below/at and above this threshold. The
-continuation region is open. Strict positivity of the threshold itself, needed
-for a finite logarithmic boundary, remains unproved.
+continuation region is open. `PositiveExerciseBoundary.lean` now proves a
+strictly positive lower bound for the threshold, uniform over nonnegative
+maturities when `0<=h<=k` and `k>0`. It constructs `canonicalLogBoundary`, proves
+value matching, and identifies continuation exactly as `x>canonicalLogBoundary(t)`.
+This uses the actual interior PDE and a constructed stationary upper barrier,
+not smooth fit or a classical pricing contract.
 
 `BoundarySemicontinuity.lean` proves upper semicontinuity of the financial
 threshold and continuity from shorter maturities. It does not prove continuity
@@ -410,6 +416,9 @@ All files below are included in the project build.
 | [`Stopping/PricingBoundaryCorrection.lean`](AmericanConvexity/Stopping/PricingBoundaryCorrection.lean) | Constructed pricing correction matching continuous causal lateral data and zero initial trace |
 | [`Stopping/PricingDirichlet.lean`](AmericanConvexity/Stopping/PricingDirichlet.lean) | Constructed smooth pricing solution matching all three parabolic sides supplied by a continuous function |
 | [`Stopping/ActualInteriorRegularity.lean`](AmericanConvexity/Stopping/ActualInteriorRegularity.lean) | Actual stopping price is jointly smooth and satisfies the pricing PDE throughout continuation; no classical-solution premise |
+| [`Stopping/UpperSupportComparison.lean`](AmericanConvexity/Stopping/UpperSupportComparison.lean) | Actual-price comparison with smooth upper supports, allowing a comparator's second derivative to jump at its join |
+| [`Stopping/StationaryPutCap.lean`](AmericanConvexity/Stopping/StationaryPutCap.lean) | Constructed payoff-matching stationary supersolution, explicit exponential branch and checked supports |
+| [`Stopping/PositiveExerciseBoundary.lean`](AmericanConvexity/Stopping/PositiveExerciseBoundary.lean) | Uniformly positive actual exercise threshold, finite logarithmic boundary, value matching and exact continuation geometry; named zero-dividend checkpoint |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

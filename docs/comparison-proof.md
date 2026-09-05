@@ -521,8 +521,11 @@ and strict stock curvature together. It does not assert strict log curvature.
    [the financial verification frontier](stopping-value.md).
    Strict price positivity, separation of the stock threshold from strike, and
    exact contact/strict-continuation characterization are also now proved from
-   the stopping value. The resulting continuation domain is open. Positivity
-   of the stock threshold itself and regularity of its logarithm remain open.
+   the stopping value. The resulting continuation domain is open. Its interior
+   smoothness and pricing PDE are now proved without a classical premise.
+   A constructed stationary supersolution also proves a uniform positive lower
+   bound on the stock threshold and supplies a finite actual logarithmic
+   boundary with value matching. Smooth fit and boundary regularity remain open.
    Upper semicontinuity and continuity from shorter maturities are proved, but
    continuity from longer maturities remains open. An actual-price first-contact
    rule is now constructed with attained contact and pre-contact continuation;

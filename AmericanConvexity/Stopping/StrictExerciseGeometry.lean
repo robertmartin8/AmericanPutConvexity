@@ -5,7 +5,8 @@ import AmericanConvexity.Stopping.PricePositivity
 Price positivity excludes all out-of-the-money exercise at positive maturity.
 The previously constructed in-the-money threshold therefore describes the
 entire nonnegative-spot contact set. Its strict positivity is not assumed or
-proved here; that remains a separate free-boundary existence obligation.
+proved here; the later `PositiveExerciseBoundary` module derives it from the
+actual interior PDE and a stationary upper barrier.
 -/
 
 namespace AmericanConvexity.Stopping

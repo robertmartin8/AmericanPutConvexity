@@ -350,3 +350,16 @@ and the pricing PDE to the actual stopping value. No external interior-regularit
 or classical-existence theorem is used. Guarded audits of the transformation,
 existence, identification, smoothness and final PDE chains allow only the three
 standard axioms. Smooth fit and free-boundary regularity remain open.
+
+`UpperSupportComparison.lean` uses the newly established actual interior PDE
+and the checked spatial/one-sided temporal maximum lemmas. It permits comparators
+with locally smooth upper supports, rather than importing a nonsmooth comparison
+theorem. `StationaryPutCap.lean` constructs an elementary payoff-matching
+exponential supersolution and checks its supports, including the join.
+`PositiveExerciseBoundary.lean` combines this with the actual strike bound and
+uniform large-spot decay to prove the global upper bound and uniformly positive
+exercise threshold. It constructs the actual logarithmic boundary and proves
+value matching and exact continuation geometry. Guarded audits of comparison,
+barrier, parameter existence, positivity and logarithmic-boundary conclusions
+permit only `propext`, `Classical.choice` and `Quot.sound`. No perpetual-price,
+smooth-fit, or boundary-regularity theorem is imported or assumed.

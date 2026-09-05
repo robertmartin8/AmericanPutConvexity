@@ -49,6 +49,7 @@ import AmericanConvexity.Stopping.HeatBoundaryExtension
 import AmericanConvexity.Stopping.HeatBoundaryEquation
 import AmericanConvexity.Stopping.IntervalHeatBoundary
 import AmericanConvexity.Stopping.ActualInteriorRegularity
+import AmericanConvexity.Stopping.PositiveExerciseBoundary
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1609,3 +1610,48 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalPrice_continuation_pde
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_le_of_upper_supports' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_le_of_upper_supports
+
+/-- info: 'AmericanConvexity.Stopping.stationaryPutCap_upper_support' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.stationaryPutCap_upper_support
+
+/-- info: 'AmericanConvexity.Stopping.exists_stationaryPutCap_parameters' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_stationaryPutCap_parameters
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_le_stationaryPutCap' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_le_stationaryPutCap
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockBoundary_uniform_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockBoundary_uniform_pos
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalStockBoundary_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalStockBoundary_pos
+
+/-- info: 'AmericanConvexity.Stopping.exp_canonicalLogBoundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exp_canonicalLogBoundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_value_matching' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_value_matching
+
+/-- info: 'AmericanConvexity.Stopping.canonicalContinuationRegion_eq_logBoundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalContinuationRegion_eq_logBoundary
