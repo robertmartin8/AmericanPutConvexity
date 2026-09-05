@@ -1608,3 +1608,86 @@ standard axioms. This strengthens continuity to a quantitative local modulus;
 it does **not** prove boundary differentiability, higher regularity, or the full
 unconditional classical pricing contract. Positive-time boundary smoothness
 remains the outstanding contract obligation.
+
+## Parabolic dilation, temporal Lipschitz bounds, and half-power boundary continuity
+
+The actual intrinsic premium is `u(x,t)=p(x,t)-(1-exp(x))`. Without boundary
+derivatives, the development proves `0<=u<=exp(x)` and, at every positive
+maturity, `0<=u_x<=exp(x)`. In exercise `u=u_x=0`; in continuation `u_x>0`.
+Its exact continuation equation is
+
+```text
+u_t = u_xx + alpha*u_x - k*u - k + h*exp(x),  alpha=k-h-1.
+```
+
+`ActualPremiumDilation.lean` defines
+`W_rho(x,t)=u(rho*x,rho^2*t)-u(x,t)`. When both evaluation points are in
+continuation, its pricing-operator source is exactly
+
+```text
+alpha*rho*(rho-1)*u_x(rho*x,rho^2*t)
+  - k*(rho^2-1)*u(rho*x,rho^2*t)
+  + k*(1-rho^2) + h*(rho^2*exp(rho*x)-exp(x)).
+```
+
+For `1<=rho<=2`, `DilationWeight.lean` and `ActualDilationComparison.lean`
+bound this source and the expiry error using
+
+```text
+w(x) = exp(3*x)+exp(-3*x)
+D = (2*abs(alpha)+4*h+1)*(rho-1)
+E(x,t) = D*exp((10+3*abs(alpha))*t)*w(x).
+```
+
+The barrier has nonpositive spatial derivative below strike and pricing
+operator at least `D*w(x)` for nonnegative time. At a positive maximum of
+`W_rho-E`, the scaled point cannot be in exercise because its premium would
+be zero. The unscaled point cannot be in exercise either: the corrected
+spatial derivative would then be strictly positive. Both points therefore
+lie in continuation, where the PDE rules out the maximum. Explicit far-left
+and far-right bounds justify the finite-rectangle truncation. This proves
+`W_rho<=E` on the whole line for every nonnegative maturity.
+
+`ActualTemporalDerivativeBound.lean` differentiates the proved inequality at
+`rho=1`, giving
+
+```text
+x*u_x(x,t)+2*t*u_t(x,t)
+  <= (2*abs(alpha)+4*h+1)*exp((10+3*abs(alpha))*t)*w(x).
+```
+
+For `0<a<=t<=T`, the continuation price time derivative is bounded above by
+
+```text
+M(x,a,T) = ((2*abs(alpha)+4*h+1)*exp((10+3*abs(alpha))*T)*w(x)
+             + abs(x)*exp(x))/(2*a).
+```
+
+`ActualTemporalLipschitz.lean` proves that this bound controls **all** price
+increments on `[a,T]`, not only those whose intermediate points are in
+continuation:
+
+```text
+abs(p(x,t)-p(x,s)) <= M(x,a,T)*abs(t-s).
+```
+
+Its maximum argument differentiates only where the premium is strictly
+positive. It assumes neither a boundary time derivative nor a price time
+derivative at exercise/continuation contacts.
+
+Finally `ActualBoundaryHalfBound.lean` uses continuity to make `M(b(s),a,T)`
+uniformly bounded near a fixed positive maturity. Together with the proved
+quadratic separation, this gives `A/4*(b(s)-b(v))^2<=H*(v-s)` for nearby ordered
+maturities, where `A=k-h*exp(b(t0))>0` and `H>0`. Taking square roots proves
+
+```text
+dist(b(s),b(v)) <= C*sqrt(dist(s,v))
+```
+
+for every pair in a positive-time neighborhood. The dilation, temporal
+Lipschitz, and half-power boundary estimates have named zero-dividend and
+Liu-range checkpoints. Guarded transitive audits allow only `propext`,
+`Classical.choice`, and `Quot.sound`. These are actual stopping-price results,
+not consequences of an assumed classical pricing contract. They still do
+**not** prove the remaining positive-time boundary smoothness field or the
+full unconditional convexity theorem.

@@ -69,6 +69,12 @@ import AmericanConvexity.Stopping.ActualTemporalModulus
 import AmericanConvexity.Stopping.ActualBoundaryTemporalModulus
 import AmericanConvexity.Stopping.ActualExpiryUpperBound
 import AmericanConvexity.Stopping.ActualBoundaryQuarterBound
+import AmericanConvexity.Stopping.ActualPremiumDilation
+import AmericanConvexity.Stopping.DilationWeight
+import AmericanConvexity.Stopping.ActualDilationComparison
+import AmericanConvexity.Stopping.ActualTemporalDerivativeBound
+import AmericanConvexity.Stopping.ActualTemporalLipschitz
+import AmericanConvexity.Stopping.ActualBoundaryHalfBound
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

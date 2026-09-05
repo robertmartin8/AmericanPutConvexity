@@ -538,7 +538,11 @@ and strict stock curvature together. It does not assert strict log curvature.
    actual temporal comparison now controls all price increments by the at-strike
    short-maturity price. An explicit expiry supersolution now supplies a
    square-root temporal price bound and a local quarter-power boundary bound.
-   The stronger regularity needed to complete boundary smoothness remains open.
+   A subsequent parabolic-dilation comparison proves local temporal Lipschitz
+   regularity of the actual price away from expiry and upgrades the local
+   boundary modulus to a half power. Each has explicit zero-dividend and
+   Liu-range specializations. The stronger regularity needed to complete
+   boundary smoothness remains open.
    Full continuity of the normalized stock and log boundaries, including expiry,
    is now proved: the interior PDE and maturity monotonicity exclude downward
    jumps, complementing the earlier upper semicontinuity. An actual-price first-contact

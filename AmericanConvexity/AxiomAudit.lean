@@ -63,6 +63,7 @@ import AmericanConvexity.Stopping.ActualTemporalModulus
 import AmericanConvexity.Stopping.ActualBoundaryTemporalModulus
 import AmericanConvexity.Stopping.ActualExpiryUpperBound
 import AmericanConvexity.Stopping.ActualBoundaryQuarterBound
+import AmericanConvexity.Stopping.ActualBoundaryHalfBound
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2038,3 +2039,108 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_local_quarter_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv_bounds
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumDilation_positive_max_continuation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumDilation_positive_max_continuation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumDilation_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumDilation_equation
+
+/-- info: 'AmericanConvexity.Stopping.dilationBarrier_supersolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.dilationBarrier_supersolution
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumDilation_source_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumDilation_source_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumDilation_no_positive_corrected_max' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumDilation_no_positive_corrected_max
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumDilation_le_on_rectangle' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumDilation_le_on_rectangle
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPremiumDilation_le_barrier' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPremiumDilation_le_barrier
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPremiumDilation_le_barrier' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPremiumDilation_le_barrier
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPremiumDilation_le_barrier' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPremiumDilation_le_barrier
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_dilation_differential_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_dilation_differential_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_time_deriv_le_dilationBound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_time_deriv_le_dilationBound
+
+/-- info: 'AmericanConvexity.Stopping.increment_le_of_deriv_bound_on_positive' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.increment_le_of_deriv_bound_on_positive
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_temporal_lipschitz_on_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_temporal_lipschitz_on_interval
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_temporal_lipschitz_on_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_temporal_lipschitz_on_interval
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_temporal_lipschitz_on_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_temporal_lipschitz_on_interval
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_squared_increment_linear_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_squared_increment_linear_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_local_half_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_local_half_bound
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_local_half_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_local_half_bound
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_local_half_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_local_half_bound

@@ -32,6 +32,9 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > at-strike short-maturity price, which also controls squared boundary displacement.
 > An explicit expiry cap now gives a square-root temporal price bound and a
 > local quarter-power continuity bound for the actual logarithmic boundary.
+> Parabolic dilation now strengthens this away from expiry: the actual price
+> is locally Lipschitz in time, and the actual log boundary has a local
+> half-power continuity bound. Boundary smoothness remains open.
 
 ## Proposed extension and published checkpoints
 
@@ -186,6 +189,20 @@ price increment with `t` replaced by the maturity difference.
 prove a local quarter-power continuity bound for the actual log boundary.
 Zero-dividend and Liu-range checkpoints are explicit. Stronger regularity
 sufficient for boundary smoothness is still needed.
+
+`ActualPremiumDilation.lean` and `ActualDilationComparison.lean` compare the
+intrinsic premium at `(rho*x,rho^2*t)` and `(x,t)`, with an explicit error
+linear in `rho-1` for `1<=rho<=2`. `DilationWeight.lean` supplies a growing
+exponential barrier. A positive corrected maximum cannot involve exercise,
+so the proof uses only the already-proved interior PDE and spatial smooth fit.
+`ActualTemporalDerivativeBound.lean` differentiates this inequality at scale
+one; `ActualTemporalLipschitz.lean` proves Lipschitz temporal increments on
+every compact positive-time interval, including increments crossing the
+exercise/continuation interface. `ActualBoundaryHalfBound.lean` combines that
+estimate with quadratic separation to prove local half-power boundary
+continuity. All three restricted-parameter checkpoints (dilation, temporal
+Lipschitz, and boundary half-power bounds) are explicit and axiom-audited.
+These results do not establish boundary differentiability or smoothness.
 
 `BermudanConvergence.lean` now proves that restricting exercise to finite grids
 converges to the actual American stopping value, without changing the underlying
@@ -518,6 +535,12 @@ All files below are included in the project build.
 | [`Stopping/ExpiryUpperCap.lean`](AmericanConvexity/Stopping/ExpiryUpperCap.lean) | Explicit square-root payoff majorant and pricing supersolution |
 | [`Stopping/ActualExpiryUpperBound.lean`](AmericanConvexity/Stopping/ActualExpiryUpperBound.lean) | Actual expiry and uniform temporal square-root bounds |
 | [`Stopping/ActualBoundaryQuarterBound.lean`](AmericanConvexity/Stopping/ActualBoundaryQuarterBound.lean) | Genuine local quarter-power continuity of the actual log boundary, with restricted parameter checkpoints |
+| [`Stopping/ActualPremiumDilation.lean`](AmericanConvexity/Stopping/ActualPremiumDilation.lean) | Exact actual-premium dilation PDE and exclusion of exercise at positive corrected maxima |
+| [`Stopping/DilationWeight.lean`](AmericanConvexity/Stopping/DilationWeight.lean) | Explicit exponential weight and supersolution for dilation errors and spatial truncation |
+| [`Stopping/ActualDilationComparison.lean`](AmericanConvexity/Stopping/ActualDilationComparison.lean) | Actual-premium dilation bound linear in scale increment, including expiry and restricted checkpoints |
+| [`Stopping/ActualTemporalDerivativeBound.lean`](AmericanConvexity/Stopping/ActualTemporalDerivativeBound.lean) | Dilation differentiated at scale one and uniform continuation time-derivative bounds away from expiry |
+| [`Stopping/ActualTemporalLipschitz.lean`](AmericanConvexity/Stopping/ActualTemporalLipschitz.lean) | Actual-price temporal Lipschitz bounds across exercise/continuation, with restricted checkpoints |
+| [`Stopping/ActualBoundaryHalfBound.lean`](AmericanConvexity/Stopping/ActualBoundaryHalfBound.lean) | Local square-root continuity of the actual log boundary, with restricted checkpoints |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
