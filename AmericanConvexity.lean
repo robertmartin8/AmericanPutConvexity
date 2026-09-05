@@ -144,6 +144,10 @@ import AmericanConvexity.Stopping.HeatRepresentationIdentification
 import AmericanConvexity.Stopping.ActualHeatRepresentation
 import AmericanConvexity.Stopping.ActualHeatFlux
 import AmericanConvexity.Stopping.ActualThetaFlux
+import AmericanConvexity.Stopping.HeatLayerGradientExtension
+import AmericanConvexity.Stopping.HeatRepresentationGradient
+import AmericanConvexity.Stopping.ActualHeatGradientTrace
+import AmericanConvexity.Stopping.ActualThetaGradientTrace
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation

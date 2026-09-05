@@ -97,6 +97,7 @@ import AmericanConvexity.Stopping.SourceHeatEquation
 import AmericanConvexity.Stopping.LocalSourceEquation
 import AmericanConvexity.Stopping.ActualHeatFlux
 import AmericanConvexity.Stopping.ActualThetaFlux
+import AmericanConvexity.Stopping.ActualThetaGradientTrace
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -3888,3 +3889,98 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalThetaRightFlux_pos
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatNormalExtension_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatNormalExtension_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatNormalExtension_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatNormalExtension_boundary
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatNormalExtension_eq_integral' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatNormalExtension_eq_integral
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayer_hasDerivAt_normalExtension' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayer_hasDerivAt_normalExtension
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayerRightGradient_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayerRightGradient_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.causalMovingHeatLayerRightGradient_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.causalMovingHeatLayerRightGradient_boundary
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationRightGradient_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationRightGradient_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationCandidate_hasDerivAt_rightGradient' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationCandidate_hasDerivAt_rightGradient
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentationRightGradient_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentationRightGradient_boundary
+
+/-- info: 'AmericanConvexity.Stopping.heatRepresentation_transfer_interior_gradient' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatRepresentation_transfer_interior_gradient
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatTheta_local_rightGradient' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatTheta_local_rightGradient
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatTheta_gradient_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatTheta_gradient_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalHeatTheta_gradient_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalHeatTheta_gradient_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalHeatTheta_gradient_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalHeatTheta_gradient_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_hasDerivAt_of_heat_gradient' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_hasDerivAt_of_heat_gradient
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalTheta_local_rightGradient' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalTheta_local_rightGradient
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_gradient_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_gradient_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalTheta_gradient_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalTheta_gradient_tendsto_contact
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalTheta_gradient_tendsto_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalTheta_gradient_tendsto_contact

@@ -14,15 +14,15 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > checkpoints are explicit. Exact price normalization follows from finite-grid
 > Bellman rescaling and convergence, without a classical-solution premise.
 >
-> **Latest regularity checkpoint:** `ActualThetaFlux.lean` proves that actual
-> pricing theta has a genuine right-sided spatial derivative at contact,
-> strictly positive and continuous in positive pricing time. Its contact
-> slope ratio converges to this derivative. This transfers the identified
-> heat-layer flux back through the inverse gauge; it assumes no boundary
-> differentiability. Joint convergence of the interior theta gradient to
-> this flux, the Stefan velocity identity, and boundary smoothness remain
-> unfinished. The development history below includes earlier intermediate
-> limitations that this checkpoint supersedes.
+> **Latest regularity checkpoint:** `ActualThetaGradientTrace.lean` proves
+> joint convergence of actual pricing theta's interior spatial derivative
+> to its genuine right-sided boundary derivative, which is strictly positive
+> and continuous in positive time. Space and time may approach contact
+> together at unrelated rates. A continuous gradient extension is constructed
+> from the identified heat layer and transferred through the inverse gauge;
+> no boundary differentiability is assumed. The Stefan velocity identity
+> and boundary smoothness remain unfinished. The development history below
+> includes earlier intermediate limitations that this checkpoint supersedes.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
@@ -161,6 +161,16 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > bound. The fixed-time ratio `theta(x,t)/(x-b(t))` converges to that flux.
 > No joint interior-gradient trace or Stefan velocity identity is inferred
 > merely from this one-sided derivative and its boundary-time continuity.
+> That stronger joint trace is now proved separately. The flat normal kernel
+> is split from the moving-graph correction, whose inverse-square-root bound
+> is integrable uniformly in space and time. This constructs a jointly
+> continuous right-gradient extension for the heat layer and then `F-V/2`.
+> Actual representation and cutoff removal identify the interior derivative
+> and its contact value. The inverse pricing gauge retains its derivative
+> term inside continuation; that term vanishes at contact. Thus actual
+> `theta_x` tends jointly to `canonicalThetaRightFlux` through continuation,
+> with explicit zero-dividend and Liu-range results. The actual Stefan
+> identity and boundary regularity bootstrap remain unfinished.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

@@ -2402,3 +2402,46 @@ extension. Nor does continuity of the boundary derivative alone establish
 joint convergence of the interior spatial gradient to it. That stronger
 trace, the actual Stefan velocity identity, and the boundary regularity
 bootstrap remain unfinished.
+
+## Joint interior-gradient convergence to the actual boundary flux
+
+`HeatLayerGradientExtension.lean` fills in the right jump of the normal
+kernel using the flat boundary extension and the moving-graph correction:
+
+`N(x,t)=heatBoundaryExtension(f,x,t)`
+`       + integral_{0<u<D} [H(u,x+b(t)-b(t-u))-H(u,x)]*f(t-u)`.
+
+Here x is distance from the current graph. The correction is dominated by
+`(3*L*C/sqrt(2*pi))/sqrt(u)` uniformly in x and t on the time window.
+Dominated convergence therefore gives joint continuity, including x=0.
+Causality identifies N with the normal-kernel integral for x>0, so -N is
+the genuine interior spatial derivative of the heat layer. At contact its
+value is `-(f(t)+heatHistory(b,D,f,t))`.
+
+`HeatRepresentationGradient.lean` combines this extension with the source
+potential's continuous spatial derivative. The density equation gives
+boundary value f(t) for the represented candidate's gradient. Identification
+on the closed continuation strip transfers its genuine interior derivative.
+
+`ActualHeatGradientTrace.lean` supplies the actual clamped-graph displacement
+bounds and constructed density, then removes the cutoff on a space-time
+neighborhood. The resulting local gradient extension is continuous at the
+actual contact, equals a genuine right-sided derivative there, and agrees
+with the ordinary spatial derivative throughout nearby continuation.
+
+`ActualThetaGradientTrace.lean` transfers this through the inverse heat gauge.
+The interior derivative is
+
+`theta_x = -(alpha/2)*theta + inverseThetaHeatGauge*W_x`.
+
+The first term vanishes at contact. The limit of the second is the already
+identified `canonicalThetaRightFlux`. Thus `canonicalTheta_gradient_tendsto_contact`
+proves joint convergence through continuation as both space and pricing
+time tend to any positive-time contact. No relation between their approach
+rates is required. Zero-dividend and Liu-range checkpoints are explicit;
+nineteen guarded transitive axiom checks cover this stage.
+
+The joint-gradient trace is now complete. The actual Stefan velocity identity
+and the boundary differentiability/smoothness bootstrap are still separate
+unfinished obligations. In particular this result does not differentiate
+smooth fit along a boundary already assumed differentiable.
