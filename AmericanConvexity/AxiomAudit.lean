@@ -43,6 +43,7 @@ import AmericanConvexity.Stopping.ActualContactMartingale
 import AmericanConvexity.Stopping.ActualLocalMeanValue
 import AmericanConvexity.Stopping.ActualTestFunctions
 import AmericanConvexity.Stopping.PricingTests
+import AmericanConvexity.Stopping.ActualSmoothComparison
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1358,3 +1359,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalPrice_lower_pricing_test
+
+/-- info: 'AmericanConvexity.Stopping.pricingOperator_barrier' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.pricingOperator_barrier
+
+/-- info: 'AmericanConvexity.Stopping.smoothPricingSubsolution_le' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.smoothPricingSubsolution_le
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_smooth_subsolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_smooth_subsolution
+
+/-- info: 'AmericanConvexity.Stopping.neg_canonicalPrice_smooth_subsolution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.neg_canonicalPrice_smooth_subsolution
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_le_smooth_on_cylinder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_le_smooth_on_cylinder
+
+/-- info: 'AmericanConvexity.Stopping.smooth_le_canonicalPrice_on_cylinder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.smooth_le_canonicalPrice_on_cylinder
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_eq_smooth_on_cylinder' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_eq_smooth_on_cylinder

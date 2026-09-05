@@ -874,3 +874,35 @@ matter: pointwise tests do not assert that the actual price itself has any of
 the displayed derivatives. Interior regularity and the free-boundary/smooth-fit
 obligations still separate the current actual-price results from the full
 classical contract used in the curvature theorem.
+
+## Local smooth comparison from the test formulation
+
+`SmoothPricingComparison.lean` defines the normalized operator
+`P(F)=F_t-F_xx-(k-h-1)*F_x+k*F` and a smooth-test subsolution predicate. It proves
+comparison on a closed cylinder `[L,R] x [a,T]` for `k>=0` and `a<T`: a continuous
+test-subsolution `u` is below a comparator `F` if `F` is continuous on the closed
+cylinder, jointly `C3` in its open interior, satisfies `P(F)>=0` there, and bounds
+`u` on the initial and two lateral sides. No terminal boundary bound is assumed.
+
+The proof maximizes `(T-t)*(u-F)` on the compact cylinder. A positive maximum
+must lie strictly inside in both space and time: the weight vanishes at `T`,
+and the other three sides have nonpositive difference. If its value is `M>0`,
+then `F+M/(T-t)` touches `u` from above locally. A compact smooth extension around
+that point supplies an admissible global test, without requiring the comparator
+to be smooth at the cylinder boundary. The operator gains
+`M/(T-t)^2+k*M/(T-t)>0`, contradicting the subsolution test. Continuity and closure
+then extend comparison from `t<T` to the terminal slice. This explicitly avoids
+using a two-sided local touching test at a merely one-sided terminal maximum.
+
+`ActualSmoothComparison.lean` proves that the actual price and its negative satisfy
+the required smooth-test predicates on continuation. Operator linearity gives
+both upper and lower comparison. The resulting
+`canonicalPrice_eq_smooth_on_cylinder` identifies the actual price with a supplied
+continuous, interior-C3 solution of `P(F)=0` matching its initial/lateral values.
+Only the open interior of the cylinder needs to lie in continuation.
+
+This is a checked local identification theorem, **not** a construction or
+existence theorem for `F`. The remaining interior-regularity route is to construct
+smooth solutions for the actual continuous parabolic boundary data and apply
+this comparison result. No price differentiability, smooth fit, or exercise-boundary
+regularity was added as an assumption on the actual price in the comparison proof.

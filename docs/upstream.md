@@ -278,3 +278,14 @@ option solution. Guarded audits of both final normalized pricing-test chains,
 their coordinate identity and their key stochastic/geometry supports allow only
 the three standard axioms. No interior-regularity theorem is assumed or imported
 as a premise of the actual-price test conditions.
+
+`SmoothPricingComparison.lean` derives comparison directly from the smooth-test
+predicate using compact maximum attainment, a localized reciprocal-time barrier,
+and continuity on the closure. It uses the checked compact smooth extension
+around an interior singleton; no boundary smoothness or terminal test is presumed.
+`ActualSmoothComparison.lean` discharges the actual and negative-price test
+predicates from `PricingTests.lean`, then obtains both comparisons and local
+identification. Guarded audits cover the barrier algebra, generic comparison,
+actual predicates and final identification; they permit only the three standard
+axioms. Local Dirichlet-solution existence remains an explicit missing step, not
+an imported or hidden hypothesis asserting regularity of the actual price.

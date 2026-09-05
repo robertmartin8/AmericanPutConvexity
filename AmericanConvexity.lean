@@ -49,6 +49,7 @@ import AmericanConvexity.Stopping.ActualContactMartingale
 import AmericanConvexity.Stopping.ActualLocalMeanValue
 import AmericanConvexity.Stopping.ActualTestFunctions
 import AmericanConvexity.Stopping.PricingTests
+import AmericanConvexity.Stopping.ActualSmoothComparison
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

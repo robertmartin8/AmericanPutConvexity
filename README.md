@@ -166,8 +166,13 @@ into pointwise generator conditions using strict drift and shrinking rectangles,
 and removes compact support of the tests by a smooth cutoff. `PricingTests.lean`
 translates them to the normalized pricing operator: a jointly `C3` upper test
 satisfies `phi_t <= phi_xx+(k-h-1)*phi_x-k*phi`, and a lower test satisfies the
-reverse inequality, at any actual continuation point. Full continuous-time
-dynamic programming and classical PDE/boundary regularity remain unproved.
+reverse inequality, at any actual continuation point. `SmoothPricingComparison.lean`
+now derives parabolic comparison from these tests, with only continuity of the
+subsolution and interior smoothness of the comparator. `ActualSmoothComparison.lean`
+identifies the actual price with any continuous, interior-C3 PDE solution having
+its initial/lateral data on a continuation cylinder, including terminal time.
+Constructing such local smooth solutions, full continuous-time dynamic programming
+and classical PDE/boundary regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -364,6 +369,8 @@ All files below are included in the project build.
 | [`Stopping/StrictDrift.lean`](AmericanConvexity/Stopping/StrictDrift.lean) | Strict generator sign gives strict sign of the expected integral up to positive rectangle exit |
 | [`Stopping/PointwiseTests.lean`](AmericanConvexity/Stopping/PointwiseTests.lean) | Arbitrarily small continuation rectangles and pointwise generator inequalities for upper/lower C3 tests, without a compact-support requirement |
 | [`Stopping/PricingTests.lean`](AmericanConvexity/Stopping/PricingTests.lean) | Exact transformation to upper/lower test inequalities for the normalized pricing equation |
+| [`Stopping/SmoothPricingComparison.lean`](AmericanConvexity/Stopping/SmoothPricingComparison.lean) | Parabolic comparison from smooth tests for continuous functions, with terminal-time recovery and only interior-C3 comparator regularity |
+| [`Stopping/ActualSmoothComparison.lean`](AmericanConvexity/Stopping/ActualSmoothComparison.lean) | Actual-price upper/lower local comparison and identification with a supplied smooth Dirichlet solution; existence remains separate |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
