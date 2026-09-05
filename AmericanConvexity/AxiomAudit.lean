@@ -13,6 +13,7 @@ import AmericanConvexity.Boundary.ComparisonCoefficients
 import AmericanConvexity.Boundary.ComparisonMaximum
 import AmericanConvexity.Boundary.ComparisonHopf
 import AmericanConvexity.Boundary.ComparisonAssembly
+import AmericanConvexity.Boundary.RootStability
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -318,3 +319,33 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.stock_curvature_of_comparison_inputs
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.initialDifference_exact_two_simple_roots' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.initialDifference_exact_two_simple_roots
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_initial_simple_root' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_initial_simple_root
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_two_root_confinement' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_two_root_confinement
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_initialization_of_derivative_traces' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_initialization_of_derivative_traces
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_level_initialization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_level_initialization
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_level_initialization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_level_initialization

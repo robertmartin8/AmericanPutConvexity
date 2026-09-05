@@ -163,6 +163,38 @@ Derivative convergence near the initial roots and positive-time zero-count
 initialization/propagation remain open. An initial shape theorem does NOT
 assert that the evolution preserves the shape.
 
+### Step 4: exact roots, confinement, and the initialization bridge
+
+`InitialRoots.lean` proves more than an initial interval shape: for each positive
+level below some initial continuation value there are exactly two roots, both
+strictly inside `x>0`, and both are simple. The intermediate value theorem
+supplies them, the initial two-point cover excludes others, and the previously
+proved simple-level result applies. Equality with the algebraic initial profile
+on a neighborhood identifies the actual initial spatial derivatives as nonzero.
+
+`RootConfinement.lean` proves, from the pricing contract alone, that every
+small-positive-time root lies in any chosen open neighborhood of those two
+initial roots. The uniform tail provides a fixed right truncation. Continuity
+of `b` at expiry gives a fixed left truncation. Below strike, the actual initial
+difference is nonpositive by payoff domination; the proof does not use the
+zero-payoff formula there. Relative joint continuity and compactness exclude
+roots on the rest of the truncated interval, including the expiry corner.
+
+`RootStability.lean` proves the precise remaining initialization implication:
+if the spatial derivative of the actual normalized difference extends
+continuously from `t>=0` to each initial root, its nonzero value gives a small
+spatial interval on which every sufficiently early time slice is injective.
+Confinement to two such intervals then gives an at-most-two-root cover.
+Overlapping neighborhoods and empty root subsets are allowed. If no initial
+value exceeds the level, the proved maximum principle instead keeps the entire
+evolution below it; critical peak levels need no simple-root argument.
+
+The combined level-initialization split has a named zero-dividend specialization
+using the original CCJZ contract. **The derivative-trace premise is still open.**
+It was not added to the solution contract or proved by the compactness argument.
+This checkpoint neither asserts that confinement bounds the number of roots
+inside a neighborhood nor propagates a count to arbitrary later times.
+
 ### Steps 4 and 5: maximum principle and the earlier positive point
 
 `ParabolicMaximum.lean` proves the weak maximum principle for
@@ -260,9 +292,10 @@ unresolved propagation claim, not something proved merely by this assembly.
    near-expiry `b(t)/t -> -infinity` from the pricing problem. Intercept selection
    and the negative-curvature tangent geometry are now checked conditionally.
 2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
-   simplicity at noncritical levels, the relative corner sign, and uniform
-   tail control are checked. Prove derivative convergence near the simple
-   initial zeros and stability of the count at small positive times.
+   exact two-simple-root characterization, corner/tail control, and compact
+   confinement are checked. The count-stability implication from initial
+   derivative traces is checked. Derive those traces from the pricing PDE
+   (for example by proving the required initial-time derivative convergence).
 3. **Step 4, propagation.** Prove the necessary parabolic zero-number result
    and connect its exact hypotheses to the checked coefficient
    and truncation bounds. The weak maximum principle is now proved. Pass from

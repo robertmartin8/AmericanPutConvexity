@@ -32,6 +32,11 @@ rectangle construction, and negative-intercept reduction. The zero-dividend
 assembly uses the original CCJZ contract. **This conditional result does not
 yet prove boundary convexity in ANY parameter regime.**
 
+Step 4 now also has an exact two-simple-initial-root theorem and unconditional
+small-time root confinement. An at-most-two-root initialization follows from an
+explicit initial derivative-trace premise; that regularity input and subsequent
+zero-count propagation remain unproved.
+
 The published zero-dividend checkpoint is:
 
 X. Chen, J. Chadam, L. Jiang, and W. Zheng, **Convexity of the Exercise Boundary
@@ -128,6 +133,9 @@ All files below are included in the project build.
 | [`Boundary/TangentIntercept.lean`](AmericanConvexity/Boundary/TangentIntercept.lean) | Negative-intercept selection and global curvature reduction, conditional on the near-expiry ratio limit |
 | [`Boundary/Tangency.lean`](AmericanConvexity/Boundary/Tangency.lean) | Positive rectangle construction and exclusion of concave tangency, conditional on the interval invariant |
 | [`Boundary/ComparisonAssembly.lean`](AmericanConvexity/Boundary/ComparisonAssembly.lean) | Global log and strict stock curvature implications with all three unproved analytic inputs explicit; zero-dividend specialization |
+| [`Boundary/InitialRoots.lean`](AmericanConvexity/Boundary/InitialRoots.lean) | Exactly two simple initial roots below a higher positive initial value; identification of the actual spatial derivatives |
+| [`Boundary/RootConfinement.lean`](AmericanConvexity/Boundary/RootConfinement.lean) | Every small-time positive-level root lies near the initial roots, using only continuity, initial data and tail bounds |
+| [`Boundary/RootStability.lean`](AmericanConvexity/Boundary/RootStability.lean) | At-most-two-root initialization conditional on the still-open initial derivative traces; no-positive-data branch and zero-dividend specialization |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |
