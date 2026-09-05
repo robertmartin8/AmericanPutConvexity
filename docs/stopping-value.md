@@ -26,6 +26,8 @@ They also prove spatial differentiability and joint gradient continuity across
 the actual boundary, then a locally uniform positive lower bound for the
 intrinsic premium's second spatial derivative near that boundary. Boundary
 smoothness itself remains open.
+The latest quantitative step integrates this bound and controls boundary
+displacement by price and gradient increments at the earlier exercise spot.
 
 ## Exact financial definition
 
@@ -1428,3 +1430,47 @@ This does not prove a second-derivative trace, differentiability of the boundary
 or boundary curvature in time. It supplies quantitative spatial nondegeneracy
 for the remaining boundary-regularity problem; the unconditional classical
 contract is still unfinished.
+
+## Uniform quadratic separation and quantitative boundary increments
+
+`QuadraticSeparation.lean` proves an elementary integration lemma. Suppose
+`f(b)=f'(b)=0`, both `f` and `f'` are continuous on `[b,R]`, and `f''>=C`
+in its interior. The mean value theorem first gives `f'(x)>=C*(x-b)`.
+Applying derivative monotonicity to `f(x)-C/2*(x-b)^2` gives
+`f(x)>=C/2*(x-b)^2`. A second derivative at the endpoints is not assumed.
+
+`ActualQuadraticSeparation.lean` applies this to the actual intrinsic premium
+`u=p-(1-exp(x))`. Fix `t>0` and set `A=k-h*exp(b(t))>0`. Joint gradient
+continuity, boundary continuity and the proved local second-derivative bound
+give a radius `delta>0` such that, for every nearby maturity `s`,
+
+```text
+b(s) <= x <= b(s)+delta  implies
+  u_x(x,s) >= A/2*(x-b(s)),
+  u(x,s)   >= A/4*(x-b(s))^2.
+```
+
+The same radius works uniformly for `abs(s-t)<delta`, and these maturities
+are positive. The proof explicitly confines every intermediate spatial point
+to the neighborhood where the second-derivative bound holds.
+
+`ActualBoundaryIncrement.lean` then shrinks the maturity neighborhood so that
+both boundaries lie within the same separation interval. For nearby `s<=v`,
+write `D=b(s)-b(v)>=0`. Evaluation at the earlier exercise spot `x=b(s)` gives
+
+```text
+A/2*D   <= p_x(b(s),v)-p_x(b(s),s),
+A/4*D^2 <= p(b(s),v)-p(b(s),s).
+```
+
+Value matching and the proved two-sided spatial smooth fit identify the earlier
+price and gradient; boundary monotonicity supplies the sign of `D`. These are
+actual stopping-price results, without a classical-pair or boundary-smoothness
+premise. Named zero-dividend results use constants `k/2` and `k/4`; Liu-range
+results are also explicit. Guarded transitive audits allow only the three
+standard axioms throughout.
+
+These estimates transfer quantitative temporal control of the price or its
+spatial gradient to control of boundary increments. They do not by themselves
+prove a temporal Lipschitz/Hölder estimate, differentiability of the boundary,
+or the outstanding positive-time boundary smoothness. Those steps remain open.

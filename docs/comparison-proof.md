@@ -533,6 +533,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    Toward that remaining obligation, joint spatial-gradient continuity across
    the actual boundary and a locally uniform positive second-spatial-derivative
    lower bound for the intrinsic premium in continuation are now proved.
+   This now yields uniform quadratic separation from contact and quantitative
+   control of boundary increments by price/gradient time increments. The
+   temporal regularity estimates needed to complete boundary smoothness remain open.
    Full continuity of the normalized stock and log boundaries, including expiry,
    is now proved: the interior PDE and maturity monotonicity exclude downward
    jumps, complementing the earlier upper semicontinuity. An actual-price first-contact

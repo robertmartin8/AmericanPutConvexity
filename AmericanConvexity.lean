@@ -63,6 +63,8 @@ import AmericanConvexity.Stopping.ActualGradientTrace
 import AmericanConvexity.Stopping.ActualClassicalContract
 import AmericanConvexity.Stopping.ActualSpatialRegularity
 import AmericanConvexity.Stopping.ActualBoundaryNondegeneracy
+import AmericanConvexity.Stopping.ActualQuadraticSeparation
+import AmericanConvexity.Stopping.ActualBoundaryIncrement
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

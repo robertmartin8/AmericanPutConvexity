@@ -57,6 +57,8 @@ import AmericanConvexity.Stopping.ActualGradientTrace
 import AmericanConvexity.Stopping.ActualClassicalContract
 import AmericanConvexity.Stopping.ActualSpatialRegularity
 import AmericanConvexity.Stopping.ActualBoundaryNondegeneracy
+import AmericanConvexity.Stopping.ActualQuadraticSeparation
+import AmericanConvexity.Stopping.ActualBoundaryIncrement
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1887,3 +1889,33 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_deriv2_lower_near_boundary
+
+/-- info: 'AmericanConvexity.Stopping.quadratic_separation_of_deriv2_lower' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.quadratic_separation_of_deriv2_lower
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_separation_of_deriv2_lower' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_separation_of_deriv2_lower
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_separation_near_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_separation_near_boundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_increment_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_increment_bounds
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_increment_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_increment_bounds
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_increment_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_increment_bounds

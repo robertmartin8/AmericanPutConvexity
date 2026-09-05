@@ -26,6 +26,8 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > Toward that step, the actual spatial gradient is jointly continuous across
 > the boundary, and the intrinsic premium has a locally uniform positive
 > second-spatial-derivative lower bound on the continuation side.
+> Quantitative linear-gradient and quadratic-premium separation now follow,
+> yielding local bounds on boundary displacement by price/gradient increments.
 
 ## Proposed extension and published checkpoints
 
@@ -154,6 +156,15 @@ the intrinsic premium `u=p-(1-exp(x))` satisfies
 `u_xx >= (k-h*exp(b(t)))/2 > 0` in continuation. Zero-dividend and Liu-range
 checkpoints are explicit. These are ingredients toward boundary regularity,
 not a proof of boundary smoothness or time-convexity of the boundary.
+
+`QuadraticSeparation.lean` integrates the second-derivative bound without
+requiring a second derivative at contact. `ActualQuadraticSeparation.lean`
+gives linear growth of the intrinsic premium's gradient and quadratic growth
+of its value above the actual boundary, uniformly over nearby maturities.
+`ActualBoundaryIncrement.lean` then bounds the displacement between two nearby
+exercise boundaries using price and gradient increments at the earlier exercise
+spot. Both restricted parameter checkpoints are explicit. Temporal estimates
+strong enough to obtain boundary smoothness are still needed.
 
 `BermudanConvergence.lean` now proves that restricting exercise to finite grids
 converges to the actual American stopping value, without changing the underlying
@@ -475,6 +486,9 @@ All files below are included in the project build.
 | [`Stopping/ConvexSliceGradient.lean`](AmericanConvexity/Stopping/ConvexSliceGradient.lean) | Joint gradient continuity from continuous values and differentiable convex slices |
 | [`Stopping/ActualSpatialRegularity.lean`](AmericanConvexity/Stopping/ActualSpatialRegularity.lean) | Actual spatial differentiability and joint gradient continuity across the exercise boundary |
 | [`Stopping/ActualBoundaryNondegeneracy.lean`](AmericanConvexity/Stopping/ActualBoundaryNondegeneracy.lean) | Locally uniform positive lower bound for the intrinsic premium's second spatial derivative near the boundary |
+| [`Stopping/QuadraticSeparation.lean`](AmericanConvexity/Stopping/QuadraticSeparation.lean) | Linear gradient and quadratic value separation from a flat contact point |
+| [`Stopping/ActualQuadraticSeparation.lean`](AmericanConvexity/Stopping/ActualQuadraticSeparation.lean) | Actual-premium separation, uniformly over nearby maturities |
+| [`Stopping/ActualBoundaryIncrement.lean`](AmericanConvexity/Stopping/ActualBoundaryIncrement.lean) | Actual boundary displacement controlled by price/gradient time increments; zero-dividend and Liu-range checkpoints |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
