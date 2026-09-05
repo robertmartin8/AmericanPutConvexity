@@ -152,8 +152,12 @@ grid rules discharge the approximation hypothesis in the Brownian application.
 characterization and the mean-value identity at any bounded observation rule
 capped at actual first contact. The general argument in
 `OptimalStoppedMartingale.lean` uses ordered optional sampling and rules choosing
-between two times on a past-measurable event. Full continuous-time dynamic
-programming and classical PDE/boundary regularity remain unproved.
+between two times on a past-measurable event. `ActualLocalMeanValue.lean` now
+constructs exits from backward space-time rectangles contained in continuation,
+proves they precede contact, and obtains the exact discounted exit representation.
+Such rectangles exist around every continuation point. This uses no PDE or
+smooth-fit premise. Full continuous-time dynamic programming and classical
+PDE/boundary regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -342,6 +346,9 @@ All files below are included in the project build.
 | [`Stopping/ActualOptimality.lean`](AmericanConvexity/Stopping/ActualOptimality.lean) | Actual usual-filtration first-contact rule attains the canonical American value without a classical solution |
 | [`Stopping/OptimalStoppedMartingale.lean`](AmericanConvexity/Stopping/OptimalStoppedMartingale.lean) | A bounded continuous supermartingale stopped at a value-preserving rule is a martingale, proved by event-pasted stopping rules |
 | [`Stopping/ActualContactMartingale.lean`](AmericanConvexity/Stopping/ActualContactMartingale.lean) | Actual-price martingale up to first contact and mean-value identity at every bounded observation rule capped at contact |
+| [`Stopping/RectangleExit.lean`](AmericanConvexity/Stopping/RectangleExit.lean) | Constructed bounded rectangle exit, pre-exit inequalities and attained parabolic boundary |
+| [`Stopping/ContinuationRectangles.lean`](AmericanConvexity/Stopping/ContinuationRectangles.lean) | Closed backward rectangles inside the actual continuation region around every continuation point |
+| [`Stopping/ActualLocalMeanValue.lean`](AmericanConvexity/Stopping/ActualLocalMeanValue.lean) | Actual rectangle exit precedes exercise contact; exact discounted local exit representation without a PDE premise |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

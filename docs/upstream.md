@@ -249,3 +249,11 @@ the stopped mean-value identity. Guarded audits of the generic and actual final
 chains allow only the three standard axioms. No PDE solution, strong Markov
 theorem at random times, or unfinished upstream optional-sampling result is used
 for these identities.
+
+`RectangleExit.lean` constructs bounded exits from continuous adapted paths using
+the checked first-contact machinery. `ContinuationRectangles.lean` supplies
+interior rectangles by openness. `ActualLocalMeanValue.lean` proves their exits
+precede actual contact and specializes the stopped mean-value identity to an
+exact local exit representation. Guarded audits of rectangle existence, actual
+exit geometry, contact ordering and the final identity admit only the three
+standard axioms. This adds no PDE regularity or random-time restart assumption.

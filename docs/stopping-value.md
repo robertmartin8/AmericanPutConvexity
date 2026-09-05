@@ -775,3 +775,29 @@ real `h,x`, and nonnegative maturity in the normalized strike-one, volatility
 `sqrt(2)` model. No independent increments at arbitrary stopping times or general
 restart identity is silently inferred from this fixed-start stopped mean-value
 statement. The continuation PDE and boundary regularity remain to be derived.
+
+## Local rectangular exit representation
+
+`ContinuationRectangles.lean` uses openness of the actual continuation region:
+for every continuation point `(x,T)`, it constructs `R>0` and `0<delta<T` such
+that all `(y,T-s)` with `|y-x|<=R` and `0<=s<=delta` remain in continuation.
+No exercise-boundary continuity or positive threshold is assumed.
+
+`RectangleExit.lean` constructs the exit as first contact of the nonnegative
+continuous adapted margin `max(0,min(R-|X_s-x|,delta-s))`. Before exit, both
+inequalities are strict. For paths starting strictly inside and `delta>0`, exit
+is positive and attained either on a spatial side or at elapsed time `delta`;
+the spatial displacement at exit is at most `R`.
+
+`ActualLocalMeanValue.lean` applies this rule to the normalized Brownian log-price.
+The exit geometry holds almost surely, using Brownian motion's initial value.
+For a rectangle contained in continuation, exit precedes actual exercise contact
+pathwise: earlier exercise contact would have a strictly positive payoff gap.
+`canonicalPrice_rectangle_meanValue` therefore removes the contact cap from the
+stopped mean-value identity. The canonical price at `(x,T)` equals the expected
+discounted canonical price on this rectangle's parabolic boundary.
+
+The representation assumes only `k>=0`, rectangle containment and `delta<=T`;
+the existence theorem supplies positive interior rectangles. It does **not** yet
+prove differentiability, the continuation PDE, smooth fit or boundary regularity.
+No general random-time restart or strong Markov theorem is assumed or inferred.

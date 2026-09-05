@@ -40,6 +40,7 @@ import AmericanConvexity.Stopping.UsualGridMarkov
 import AmericanConvexity.Stopping.ActualSupermartingale
 import AmericanConvexity.Stopping.ActualOptimality
 import AmericanConvexity.Stopping.ActualContactMartingale
+import AmericanConvexity.Stopping.ActualLocalMeanValue
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1260,3 +1261,23 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalPrice_contact_meanValue
+
+/-- info: 'AmericanConvexity.Stopping.exists_continuationRectangle' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_continuationRectangle
+
+/-- info: 'AmericanConvexity.Stopping.actualRectangleExit_boundary_ae' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualRectangleExit_boundary_ae
+
+/-- info: 'AmericanConvexity.Stopping.actualRectangleExit_le_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualRectangleExit_le_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_rectangle_meanValue' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_rectangle_meanValue

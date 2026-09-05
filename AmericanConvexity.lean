@@ -46,6 +46,7 @@ import AmericanConvexity.Stopping.UsualGridMarkov
 import AmericanConvexity.Stopping.ActualSupermartingale
 import AmericanConvexity.Stopping.ActualOptimality
 import AmericanConvexity.Stopping.ActualContactMartingale
+import AmericanConvexity.Stopping.ActualLocalMeanValue
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
