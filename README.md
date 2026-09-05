@@ -21,6 +21,14 @@ The active target is `b''(t)>=0` for `t>0`, where
 The proposed proof and its exact verification frontier are tracked in
 [`docs/comparison-proof.md`](docs/comparison-proof.md).
 
+The actual continuous-time stopping value is now defined on a constructed
+Brownian probability space. Payoff bounds, expiry payoff, maturity monotonicity,
+spot convexity/continuity, and the in-the-money contact threshold are checked
+directly from that definition. Price identification would identify the boundary
+and transfer curvature, but that stochastic/PDE identification remains open.
+See [`docs/stopping-value.md`](docs/stopping-value.md) for the exact filtration,
+terminal-boundary convention, and remaining obligations.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -137,6 +145,14 @@ All files below are included in the project build.
 | [`Boundary/Limits.lean`](AmericanConvexity/Boundary/Limits.lean) | Pointwise limits of convex real functions on a fixed convex domain are convex |
 | [`Boundary/Problem.lean`](AmericanConvexity/Boundary/Problem.lean) | Classical normalized solution predicate; payoff/contact correspondence in stock units; uniqueness of the threshold for a fixed price; explicit open analytic goals |
 | [`Boundary/DividendProblem.lean`](AmericanConvexity/Boundary/DividendProblem.lean) | Dividend solution contract; exact zero-dividend equivalence; physical parameter normalization; named weak curvature targets proved in ComparisonConclusion |
+| [`Boundary/DividendContact.lean`](AmericanConvexity/Boundary/DividendContact.lean) | Classical dividend price/payoff contact characterizes the boundary in log and stock units |
+| [`Stopping/Rules.lean`](AmericanConvexity/Stopping/Rules.lean) | Bounded finite-horizon stopping rules; derived measurability; equivalent representation of bounded WithTop stopping times |
+| [`Stopping/Reward.lean`](AmericanConvexity/Stopping/Reward.lean) | Dividend GBM stopped reward, measurability, integrability, and pointwise bounds |
+| [`Stopping/AmericanValue.lean`](AmericanConvexity/Stopping/AmericanValue.lean) | Nonempty bounded stopping-value supremum; payoff/European bounds; expiry and maturity monotonicity |
+| [`Stopping/SpotShape.lean`](AmericanConvexity/Stopping/SpotShape.lean) | Actual stopping value is decreasing and convex in initial spot |
+| [`Stopping/ExerciseRegion.lean`](AmericanConvexity/Stopping/ExerciseRegion.lean) | Spot continuity; closed interval contact set; attained threshold, expiry convention, and maturity monotonicity |
+| [`Stopping/BrownianModel.lean`](AmericanConvexity/Stopping/BrownianModel.lean) | Constructed Brownian model, natural filtration, financial value, and contact threshold |
+| [`Stopping/ClassicalBridge.lean`](AmericanConvexity/Stopping/ClassicalBridge.lean) | Price identification implies boundary identification and transfers strict curvature; price identification remains an explicit open premise |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
@@ -299,6 +315,9 @@ The direct three-point argument bypasses the unfinished zero-number route.
 Strict stock curvature is also proved with no extra strictness premise.
 Actual stopping-value identification remains open. The proved weaker parameter cases are tracked
 separately from independent verification of the published proofs.
+The financial value and its in-the-money contact threshold are now constructed;
+their checked properties and precise remaining PDE/filtration gaps are in
+[`docs/stopping-value.md`](docs/stopping-value.md).
 
 The detailed dependency map is in [`docs/ccjz-audit.md`](docs/ccjz-audit.md).
 Following the supplied paper requires:

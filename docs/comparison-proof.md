@@ -507,6 +507,12 @@ and strict stock curvature together. It does not assert strict log curvature.
    contract with the actual GBM American stopping value, including the required
    boundary regularity and smooth fit. Monotonicity is already derived from
    the contract; it is not a separate contract assumption.
+   The stopping value is now defined on a constructed Brownian space with
+   natural filtration, and its payoff bounds, spot shape, and contact threshold
+   are proved independently of the classical contract. A checked conditional
+   bridge reduces boundary identification to price identification. The latter,
+   classical existence/regularity, and the usual-filtration comparison remain
+   open; see [the financial verification frontier](stopping-value.md).
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

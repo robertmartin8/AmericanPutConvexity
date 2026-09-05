@@ -18,6 +18,7 @@ import AmericanConvexity.Boundary.ComparisonIntervals
 import AmericanConvexity.Boundary.ObstacleComparison
 import AmericanConvexity.Boundary.ComparisonConclusion
 import AmericanConvexity.Boundary.StockConclusion
+import AmericanConvexity.Stopping.ClassicalBridge
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -613,3 +614,58 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.dividend_boundary_conclusions
+
+/-- info: 'AmericanConvexity.Stopping.putReward_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.putReward_integrable
+
+/-- info: 'AmericanConvexity.Stopping.value_at_expiry' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.value_at_expiry
+
+/-- info: 'AmericanConvexity.Stopping.value_mono_horizon' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.value_mono_horizon
+
+/-- info: 'AmericanConvexity.Stopping.value_convexOn_spot' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.value_convexOn_spot
+
+/-- info: 'AmericanConvexity.Stopping.exerciseSet_eq_interval' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exerciseSet_eq_interval
+
+/-- info: 'AmericanConvexity.Stopping.brownian_filtered' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_filtered
+
+/-- info: 'AmericanConvexity.Stopping.brownianAmericanPut_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianAmericanPut_bounds
+
+/-- info: 'AmericanConvexity.Stopping.brownianExerciseBoundary_contact_set' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianExerciseBoundary_contact_set
+
+/-- info: 'AmericanConvexity.Stopping.brownianExerciseBoundary_antitone' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianExerciseBoundary_antitone
+
+/-- info: 'AmericanConvexity.Stopping.threshold_eq_of_price_identification' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.threshold_eq_of_price_identification
+
+/-- info: 'AmericanConvexity.Stopping.brownian_boundary_curvature_of_price_identification' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_boundary_curvature_of_price_identification

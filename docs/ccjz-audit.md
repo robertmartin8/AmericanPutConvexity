@@ -57,10 +57,13 @@ U(S, τ) = sup over stopping times 0 ≤ θ ≤ τ
           E[exp(-r θ) · max(E - S exp((r - σ²/2)θ + σ W_θ), 0)].
 ```
 
-This is a target specification in prose, not yet an implemented Lean definition.
-The probability space, Brownian filtration, admissible stopping times,
-measurability, integrability, nonempty/bounded value set, and the verification
-link to the obstacle solution all still need to be supplied.
+This target now has an implemented dividend-capable counterpart in `Stopping/`.
+The constructed Brownian probability space, natural filtration, admissible
+bounded stopping times, reward measurability/integrability, and nonempty/bounded
+value set are checked. The in-the-money contact threshold is also constructed.
+The verification link to a classical obstacle solution, its existence and
+regularity, and the usual-filtration comparison remain open. See
+[the exact financial definition and verification frontier](stopping-value.md).
 
 Before expiry, the exercise set must be proved to be an interval of stock prices,
 with a genuine threshold `S_f(T)`, not defined to have the properties we want.

@@ -2,6 +2,14 @@
 -- Import modules here that should be built as part of the library.
 import AmericanConvexity.Basic
 import AmericanConvexity.Finance
+import AmericanConvexity.Boundary.DividendContact
+import AmericanConvexity.Stopping.Rules
+import AmericanConvexity.Stopping.Reward
+import AmericanConvexity.Stopping.AmericanValue
+import AmericanConvexity.Stopping.SpotShape
+import AmericanConvexity.Stopping.ExerciseRegion
+import AmericanConvexity.Stopping.BrownianModel
+import AmericanConvexity.Stopping.ClassicalBridge
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
