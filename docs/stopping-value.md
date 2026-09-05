@@ -2445,3 +2445,46 @@ The joint-gradient trace is now complete. The actual Stefan velocity identity
 and the boundary differentiability/smoothness bootstrap are still separate
 unfinished obligations. In particular this result does not differentiate
 smooth fit along a boundary already assumed differentiable.
+
+## Actual C1 boundary and Stefan velocity identity
+
+`ActualPremiumGradientDifferential.lean` defines `g=u_x`, the actual
+intrinsic-premium gradient. In continuation it is smooth and its full
+derivative has coefficients `(u_xx,theta_x)`. Commutation of the price's
+mixed derivatives is used only inside the smooth continuation region.
+The already proved joint traces give the limiting differential at contact:
+
+`Dg(b(t),t) = (k-h*exp(b(t)))*dx + canonicalThetaRightFlux(t)*dt`.
+
+`ActualStefanVelocity.lean` proves continuation is a convex epigraph using
+the earlier derivative-free convexity theorem. Intersecting with times
+greater than t/2 produces a convex open domain whose closure stays away
+from expiry. The function g is continuous on this closure, so Mathlib's
+derivative-extension theorem gives a genuine relative full derivative at
+contact with precisely the coefficients above.
+
+`Boundary/LipschitzImplicitBoundary.lean` supplies the implicit step without
+assuming differentiability of b. Compose the relative first-order remainder
+with the zero graph, use its local Lipschitz bound to control the space-time
+increment by the time increment, and divide by the nonzero spatial
+coefficient. Applied to `g(b(s),s)=0`, this proves
+
+`b'(t)=-canonicalThetaRightFlux(t)/(k-h*exp(b(t)))`.
+
+The denominator and flux are strictly positive. Both are continuous in
+positive time. Thus the actual boundary has a continuous strictly negative
+derivative and is genuinely `ContDiffOn` of order one. Its previously
+constructed left and right speeds are now proved equal. The equivalent
+Stefan identity is
+
+`canonicalThetaRightFlux(t)=-(k-h*exp(b(t)))*b'(t)`.
+
+Only `k>0` and `0<=h<=k` are assumed. Explicit zero-dividend and Liu-range
+velocity checkpoints are included. Twenty-one transitive axiom guards
+cover the implicit lemma, differential, geometry, and final results.
+
+This use of convexity is not circular: the function-level actual convexity
+theorem was proved without boundary differentiability. This stage does
+not establish C2 or higher regularity, so it does not yet complete the
+classical second-derivative formulation or the independent strict-log-curvature
+CCJZ development.

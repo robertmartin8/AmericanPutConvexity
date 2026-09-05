@@ -14,15 +14,15 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > checkpoints are explicit. Exact price normalization follows from finite-grid
 > Bellman rescaling and convergence, without a classical-solution premise.
 >
-> **Latest regularity checkpoint:** `ActualThetaGradientTrace.lean` proves
-> joint convergence of actual pricing theta's interior spatial derivative
-> to its genuine right-sided boundary derivative, which is strictly positive
-> and continuous in positive time. Space and time may approach contact
-> together at unrelated rates. A continuous gradient extension is constructed
-> from the identified heat layer and transferred through the inverse gauge;
-> no boundary differentiability is assumed. The Stefan velocity identity
-> and boundary smoothness remain unfinished. The development history below
-> includes earlier intermediate limitations that this checkpoint supersedes.
+> **Latest regularity checkpoint:** `ActualStefanVelocity.lean` proves that
+> the actual log boundary is C1 on positive times, with strictly negative
+> derivative and the exact Stefan identity
+> `b'(t)=-canonicalThetaRightFlux(t)/(k-h*exp(b(t)))`.
+> The left and right speeds are proved equal. This follows from the joint
+> gradient trace and a one-sided implicit-boundary argument, not an assumed
+> differentiability of the graph. Higher boundary regularity, including C2,
+> remains unfinished. The development history below includes earlier
+> intermediate limitations that this checkpoint supersedes.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
@@ -171,6 +171,15 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > `theta_x` tends jointly to `canonicalThetaRightFlux` through continuation,
 > with explicit zero-dividend and Liu-range results. The actual Stefan
 > identity and boundary regularity bootstrap remain unfinished.
+> The first boundary-regularity step is now complete. The premium gradient
+> has full limiting differential `(k-h*exp(b(t)), thetaRightFlux(t))`.
+> Convexity makes continuation a convex epigraph; differentiability extends
+> to its closure away from expiry. A new Lipschitz zero-graph lemma proves
+> boundary differentiability from that relative differential and the positive
+> spatial coefficient. It gives the actual Stefan velocity identity, a
+> continuous strictly negative boundary derivative, and genuine C1 regularity.
+> Zero-dividend and Liu velocity checkpoints are explicit. The remaining
+> regularity target starts at C2, not at first differentiability.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent
