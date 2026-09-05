@@ -23,6 +23,11 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > differentiability of the graph. Higher boundary regularity, including C2,
 > remains unfinished. The development history below includes earlier
 > intermediate limitations that this checkpoint supersedes.
+> Toward higher regularity, observation-time estimates for the boundary
+> history kernel and an integrated square-root bound for its common-past
+> difference are now proved and specialized to the actual C1 heat graph.
+> These do not yet establish a Holder bound for the actual flux: the recent
+> source interval and regularity of the forcing still need to be assembled.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
@@ -180,6 +185,15 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > continuous strictly negative boundary derivative, and genuine C1 regularity.
 > Zero-dividend and Liu velocity checkpoints are explicit. The remaining
 > regularity target starts at C2, not at first differentiability.
+> The next bootstrap has begun in original source time. The history kernel
+> `H(t-s,b(t)-b(s))` has size bounded by `3L/sqrt(2*pi*(t-s))`
+> and observation-time derivative bounded by
+> `8L/((t-s)*sqrt(2*pi*(t-s)))` on C1 graph windows. Splitting the
+> common-past integral at the time increment yields a bound
+> `28*L*C/sqrt(2*pi)*sqrt(delta)` for densities bounded by C.
+> The actual heat graph supplies these hypotheses on every compact positive
+> time window. This is a history estimate, not yet a regularity theorem
+> for the actual flux or a second derivative of the boundary.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

@@ -99,6 +99,7 @@ import AmericanConvexity.Stopping.ActualHeatFlux
 import AmericanConvexity.Stopping.ActualThetaFlux
 import AmericanConvexity.Stopping.ActualThetaGradientTrace
 import AmericanConvexity.Stopping.ActualStefanVelocity
+import AmericanConvexity.Stopping.ActualHistoryTimeBounds
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -4090,3 +4091,113 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_hasDerivAt_velocity
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_scaling_derivative' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_scaling_derivative
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_motion_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_motion_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_time_deriv_motion_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_time_deriv_motion_bound
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_deriv_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_deriv_bound
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_time_sub_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_time_sub_bound
+
+/-- info: 'AmericanConvexity.Stopping.inverse_mul_sqrt_eq_rpow' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.inverse_mul_sqrt_eq_rpow
+
+/-- info: 'AmericanConvexity.Stopping.integrableOn_inverse_mul_sqrt_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integrableOn_inverse_mul_sqrt_tail
+
+/-- info: 'AmericanConvexity.Stopping.integral_inverse_mul_sqrt_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integral_inverse_mul_sqrt_tail
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryTimeMajorant_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryTimeMajorant_integrable
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryTimeMajorant_nonneg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryTimeMajorant_nonneg
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryTimeMajorant_integral' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryTimeMajorant_integral
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryTimeMajorant_near' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryTimeMajorant_near
+
+/-- info: 'AmericanConvexity.Stopping.heatHistoryTimeMajorant_far' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatHistoryTimeMajorant_far
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_time_majorant' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_time_majorant
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_overlap_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_overlap_bound
+
+/-- info: 'AmericanConvexity.Stopping.exists_C1_window_motion_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_C1_window_motion_bound
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatGraph_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatGraph_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatGraph_deriv_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatGraph_deriv_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatGraph_C1_window_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatGraph_C1_window_bound
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatHistory_time_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatHistory_time_bounds
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatHistory_overlap_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatHistory_overlap_bound

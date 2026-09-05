@@ -2488,3 +2488,51 @@ theorem was proved without boundary differentiability. This stage does
 not establish C2 or higher regularity, so it does not yet complete the
 classical second-derivative formulation or the independent strict-log-curvature
 CCJZ development.
+
+## Observation-time regularization estimates for the history operator
+
+`HeatHistoryTimeKernel.lean` uses original source time:
+
+`K_b(t,s)=H(t-s,b(t)-b(s))`.
+
+For fixed s, differentiation in observation time t differentiates b(t),
+but not b(s) and not the density f(s). If the graph speed and its
+displacement quotient are bounded by L, the checked estimates are
+
+`|K_b(t,s)| <= 3L/sqrt(2*pi*(t-s))`,
+`|partial_t K_b(t,s)| <= 8L/((t-s)*sqrt(2*pi*(t-s)))`.
+
+The time derivative follows from the kernel's exact parabolic scaling
+identity and its spatial derivative bound. The mean-value inequality
+controls observation-time increments away from source time. No second
+derivative of the graph or first derivative of the density is assumed.
+
+`HeatHistoryTimeMajorant.lean` splits the common-past difference at
+`u=delta=t2-t1`, where `u=t1-s`. It uses twice the size bound for `u<delta`
+and the time-derivative bound times delta for `u>delta`. After taking out
+`L/sqrt(2*pi)`, the nonnegative integrable majorant is
+
+`6/sqrt(u)` on `(0,delta)`, and
+`8*delta/(u*sqrt(u))` on `(delta,infinity)`.
+
+Its integral is exactly `28*sqrt(delta)`. The splitting point is excluded
+only as a null singleton. Consequently the common-past kernel difference
+against density bounded by C has norm at most
+`28*L*C/sqrt(2*pi)*sqrt(delta)`. This estimate is stated for Lean's total
+Bochner integral; it does not itself supply integrability or continuity
+of an arbitrary bounded density. The eventual application uses the
+already constructed continuous density, and integral splitting must retain
+its integrability obligations.
+
+`ActualHistoryTimeBounds.lean` supplies the graph hypotheses without new
+assumptions. The actual heat graph `s -> b(s/2)` is C1; its continuous
+derivative is bounded on compact positive-time intervals. The mean-value
+inequality gives a common displacement bound. Both pointwise kernel
+estimates and the common-past integral estimate are specialized to this
+actual graph for the full `k>0,0<=h<=k` regime. Twenty-two transitive axiom
+guards cover this stage.
+
+This is preparation for the higher-regularity bootstrap. The recent-source
+contribution, source forcing regularity, and the assembly into a Holder
+bound for the actual flux remain to be proved. No C2 boundary claim follows
+from this stage alone.
