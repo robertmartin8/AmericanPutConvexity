@@ -123,8 +123,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > with the elapsed-time layer, joining the PDE to the checked normal traces.
 > Joint continuity across the graph, uniform bounds, and zero initial values
 > are proved for continuous bounded causal densities. The free source
-> potential's inhomogeneous heat PDE and the candidate's identification remain
-> open; actual boundary flux and smoothness are not yet established.
+> potential now has a proved inhomogeneous heat PDE for smooth compact sources,
+> including the exact finite-window endpoint term and its disappearance under
+> causality. Spatial derivatives of every finite order and time differentiation
+> commute with the potential in this smooth-source case. Extending this PDE to
+> the actual source, which is only locally smooth off the graph, and identifying
+> the candidate remain open; actual boundary flux and smoothness are not yet
+> established.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

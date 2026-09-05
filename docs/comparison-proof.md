@@ -848,6 +848,29 @@ property supplying its premise are now both checked.
 
 ## Verification boundaries
 
+### Smooth-source heat potential
+
+`SmoothHeatSource.lean` proves that derivatives of a smooth compact space-time
+source commute with Gaussian averaging and the finite elapsed-time potential.
+It also gives spatial regularity of every finite order. `SourceHeatEquation.lean`
+then proves, in (space, heat-time) coordinates,
+
+`F_t = F_xx/2 + Q - heatSourceAverage Q D`.
+
+The proof differentiates the rescaled Gaussian average in elapsed time, uses
+uniqueness of its two already-proved spatial derivative formulas to identify
+the first Gaussian moment, and applies the fundamental theorem of calculus.
+The Gaussian average at elapsed time zero is exactly `Q`. If `Q` vanishes at
+source times at most `a` and the evaluation time is at most `a+D`, the other
+endpoint term is zero, giving `F_t = F_xx/2 + Q`.
+
+This theorem currently requires a globally smooth compact source. The actual
+localized theta source is continuous globally and smooth only off the exercise
+graph. A local decomposition into a smooth compact source and a source vanishing
+near the evaluation point is still required before applying the representation
+and uniqueness argument to actual theta. No boundary smoothness or actual flux
+conclusion follows from the smooth-source theorem alone.
+
 All new proof modules use Mathlib, not MathFin's pricing theorems. No `sorry`,
 new axiom, numerical output, or purported review is used as a proof premise.
 Selected new declarations have build-enforced axiom guards.

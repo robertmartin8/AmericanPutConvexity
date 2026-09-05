@@ -130,6 +130,8 @@ import AmericanConvexity.Stopping.ActualHeatSource
 import AmericanConvexity.Stopping.HeatSourceMoments
 import AmericanConvexity.Stopping.HeatSourceDerivative
 import AmericanConvexity.Stopping.HeatSourcePotential
+import AmericanConvexity.Stopping.SmoothHeatSource
+import AmericanConvexity.Stopping.SourceHeatEquation
 import AmericanConvexity.Stopping.ActualHeatForcing
 import AmericanConvexity.Stopping.CausalHeatKernel
 import AmericanConvexity.Stopping.MovingHeatLayerEquation
