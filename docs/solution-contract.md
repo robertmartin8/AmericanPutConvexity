@@ -3,6 +3,9 @@
 Current status: the classical-contract curvature proof and stochastic
 identification are proved. Convexity of the actual normalized log boundary is
 now proved without the classical contract in `Stopping/ActualLogConvexity.lean`.
+`Stopping/ActualStockConvexity.lean` also proves actual strict decrease, strict
+stock-boundary convexity, and local Lipschitz continuity at positive times.
+These are function-level conclusions, not existence of classical derivatives.
 Full positive-time boundary smoothness and the independent published strict-log
 proof remain open. The early statement review below records the original CCJZ
 track; historical frontier statements are superseded by the current README.

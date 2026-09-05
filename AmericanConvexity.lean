@@ -83,6 +83,10 @@ import AmericanConvexity.Stopping.ActualComparisonIntervals
 import AmericanConvexity.Stopping.ActualConvexLowerComparison
 import AmericanConvexity.Stopping.ActualNearExpiry
 import AmericanConvexity.Stopping.ActualLogConvexity
+import AmericanConvexity.Stopping.ActualIncrementPositivity
+import AmericanConvexity.Stopping.ActualNoFlatTail
+import AmericanConvexity.Boundary.ConvexStrictMonotonicity
+import AmericanConvexity.Stopping.ActualStockConvexity
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

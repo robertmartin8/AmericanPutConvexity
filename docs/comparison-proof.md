@@ -29,6 +29,7 @@ will not be described as an independent verification of a published proof.
 | Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Proved on the dividend classical contract; physical parameter correspondence checked |
 | Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Proved on the dividend classical contract; that contract is now identified with the actual raw-filtration stopping value |
 | Actual normalized log boundary | `ConvexOn` on positive maturities, for the entire parameter regime | Proved directly for the usual-filtration stopping boundary without a classical contract or boundary smoothness; zero-dividend and Liu-range checkpoints included |
+| Actual normalized stock boundary | Strict decrease and `StrictConvexOn` on positive maturities | Proved without boundary smoothness, with zero-dividend and Liu-range checkpoints; both actual boundaries are locally Lipschitz away from expiry |
 | Strict stock-boundary consequence | `B'' > 0` for the full regime, including zero dividends and Liu's range | Proved on the classical contracts, with no additional speed premise; both time conventions checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
@@ -103,9 +104,33 @@ square-root barrier to the actual price. `ActualNearExpiry.lean` proves
 `k>0`, `h>=0`, and `h<=k`. Named zero-dividend and Liu-range versions use the
 same actual stopping-value definition. The statement is convexity of the
 normalized log boundary as a function, not an assertion that classical second
-derivatives exist. The literal differential/strict-stock conclusions for the
+derivatives exist. The literal differential conclusions for the
 actual value and full physical-unit assembly remain separate obligations, as
 does the retained independent CCJZ proof track.
+
+### Actual strict decrease and strict stock convexity
+
+`ActualIncrementPositivity.lean` normalizes the actual-price time increment
+`p(x,t+delta)-p(x,t)` by the positive stationary profile. The normalized
+increment solves a zero-order-free parabolic equation, is nonnegative by the
+stopping value's time monotonicity, and is strictly positive above strike.
+On a hypothetical flat boundary tail, the proved positive-propagation barrier
+makes it strictly positive throughout continuation. At the shared exercise
+boundary both its value and spatial derivative vanish by actual smooth fit.
+`ActualNoFlatTail.lean` applies the terminal Hopf barrier in a slanted backward
+strip to contradict those vanishing data. It never differentiates the boundary
+in time.
+
+`ConvexStrictMonotonicity.lean` supplies two derivative-free scalar facts:
+a nonincreasing convex function without flat tails is strictly decreasing;
+the exponential of an injective convex function is strictly convex.
+`ActualStockConvexity.lean` therefore proves `StrictAntiOn` for both actual
+boundaries and `StrictConvexOn` for the actual normalized stock boundary.
+Zero-dividend and Liu-range checkpoints are explicit. Mathlib's convex-function
+regularity also gives local Lipschitz continuity of both boundaries on `t>0`,
+improving the preceding half-power bound. All these results have guarded
+transitive axiom audits. Strict convexity as a function is not the stronger
+assertion that a classical second derivative exists and is everywhere positive.
 
 ### Exercise-boundary calculus and obstacle comparison
 
@@ -590,7 +615,8 @@ and strict stock curvature together. It does not assert strict log curvature.
    A subsequent parabolic-dilation comparison proves local temporal Lipschitz
    regularity of the actual price away from expiry and upgrades the local
    boundary modulus to a half power. Each has explicit zero-dividend and
-   Liu-range specializations. The stronger regularity needed to complete
+   Liu-range specializations. Convexity now further upgrades both actual
+   boundaries to local Lipschitz continuity away from expiry. The stronger regularity needed to complete
    boundary smoothness remains open.
    Full continuity of the normalized stock and log boundaries, including expiry,
    is now proved: the interior PDE and maturity monotonicity exclude downward

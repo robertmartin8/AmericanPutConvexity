@@ -1744,3 +1744,42 @@ construct classical boundary second derivatives or establish their strict
 stock-boundary consequence in full physical units. Those remaining statements
 and the independent strict-log CCJZ development must not be conflated with the
 result above.
+
+## Actual strict boundary decrease and strict stock convexity
+
+`ActualIncrementPositivity.lean` proves continuity, the pricing gauge equation,
+nonnegativity, and positive propagation for the actual time increment divided
+by the positive stationary profile. Its input is the already constructed
+stopping value, including proved time monotonicity and continuation regularity.
+If the two time slices have the same boundary, actual spatial smooth fit gives
+zero value and zero spatial derivative of their normalized difference there.
+
+On a hypothetical flat boundary tail, the normalized increment is positive at
+every continuation point at each strictly later time. `ActualNoFlatTail.lean`
+constructs a backward strip with a slanted left edge ending at the fixed
+exercise boundary. The terminal Hopf barrier contradicts the zero spatial
+derivative, excluding every flat tail without boundary time derivatives.
+
+A convex nonincreasing function that takes the same value at two distinct
+positive times must be constant thereafter, by the adjacent-secant inequality.
+`Boundary/ConvexStrictMonotonicity.lean` proves this implication and the strict
+convexity of `exp` composed with an injective convex profile. Assembly in
+`ActualStockConvexity.lean` gives, under only `k>0`, `0<=h<=k`:
+
+- `canonicalLogBoundary_strictAntiOn` and `canonicalStockBoundary_strictAntiOn`;
+- `canonicalStockBoundary_strictConvexOn`;
+- `canonicalLogBoundary_locallyLipschitzOn` and
+  `canonicalStockBoundary_locallyLipschitzOn` on positive times.
+
+Strict decrease and strict stock convexity have named zero-dividend and
+Liu-range checkpoints. Sixteen new guarded transitive axiom checks cover the
+increment PDE/positivity/smooth-fit arguments, no-flat-tail contradiction,
+scalar geometry, and assembled conclusions, allowing only `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+The local Lipschitz result improves the preceding half-power boundary modulus.
+It does not imply classical differentiability everywhere. Neither strict
+convexity nor local Lipschitz continuity supplies the still-missing classical
+boundary smoothness field. Literal `b''>=0`, strict classical stock curvature,
+and full physical-unit identification remain separate from these unconditional
+normalized function-level results.

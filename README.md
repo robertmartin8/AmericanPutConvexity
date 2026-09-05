@@ -12,9 +12,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > constructed from the completed usual-filtration stopping value, assuming
 > only `k>0` and `0<=h<=k`. It assumes neither a classical solution nor boundary
 > smoothness. Zero-dividend and Liu-range specializations are explicit.
+> The actual normalized log and stock boundaries are also strictly decreasing,
+> the stock boundary is strictly convex, and both boundaries are locally
+> Lipschitz at positive times (`ActualStockConvexity.lean`). These function-level
+> conclusions still do not assert existence of classical second derivatives.
 >
 > Separately, weak log-curvature and strict stock curvature are proved for the
-> classical pricing contract.** `DividendPutSolution k h p b` implies `b''(t)>=0`,
+> classical pricing contract. `DividendPutSolution k h p b` implies `b''(t)>=0`,
 > `b'(t)<0`, and the reconstructed stock boundary satisfies `B''(tau)>0`.
 > No extra interval, speed, expiry, zero-count or derivative-trace premise remains.
 > Identification with the actual Brownian American stopping value is now proved
@@ -40,13 +44,17 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > local quarter-power continuity bound for the actual logarithmic boundary.
 > Parabolic dilation now strengthens this away from expiry: the actual price
 > is locally Lipschitz in time, and the actual log boundary has a local
-> half-power continuity bound. Boundary smoothness remains open.
+> half-power continuity bound; the new convexity proof strengthens boundary
+> regularity to local Lipschitz continuity. Boundary smoothness remains open.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent
 selection with continuous first-contact and chord geometry. See
 [`ActualLogConvexity.lean`](AmericanConvexity/Stopping/ActualLogConvexity.lean)
 and [the derivative-free proof summary](docs/comparison-proof.md#actual-value-convexity-without-boundary-smoothness).
+The subsequent [strict stock-convexity proof](AmericanConvexity/Stopping/ActualStockConvexity.lean)
+excludes flat boundary tails using actual-price time increments and the terminal
+Hopf barrier, then applies convex-function geometry and strict convexity of `exp`.
 The literal classical second-derivative statements and their full physical-unit
 actual-value assembly are not claimed complete by this convex-function theorem.
 

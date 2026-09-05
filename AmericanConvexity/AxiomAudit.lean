@@ -65,6 +65,7 @@ import AmericanConvexity.Stopping.ActualExpiryUpperBound
 import AmericanConvexity.Stopping.ActualBoundaryQuarterBound
 import AmericanConvexity.Stopping.ActualBoundaryHalfBound
 import AmericanConvexity.Stopping.ActualLogConvexity
+import AmericanConvexity.Stopping.ActualStockConvexity
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2275,3 +2276,83 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_convexOn
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIncrementGauge_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIncrementGauge_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIncrementGauge_pos_above_strike' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIncrementGauge_pos_above_strike
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIncrementGauge_pos_on_flat_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIncrementGauge_pos_on_flat_tail
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIncrementGauge_fit_of_same_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIncrementGauge_fit_of_same_boundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_no_flat_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_no_flat_tail
+
+/-- info: 'AmericanConvexity.Boundary.strictAntiOn_of_convex_antitone_no_flat_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.strictAntiOn_of_convex_antitone_no_flat_tail
+
+/-- info: 'AmericanConvexity.Boundary.strictConvexOn_exp_of_convex_injective' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.strictConvexOn_exp_of_convex_injective
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_strictAntiOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_strictAntiOn
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockBoundary_strictAntiOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockBoundary_strictAntiOn
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockBoundary_strictConvexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockBoundary_strictConvexOn
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_locallyLipschitzOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_locallyLipschitzOn
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockBoundary_locallyLipschitzOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockBoundary_locallyLipschitzOn
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_strictAntiOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_strictAntiOn
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_strictAntiOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_strictAntiOn
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalStockBoundary_strictConvexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalStockBoundary_strictConvexOn
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalStockBoundary_strictConvexOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalStockBoundary_strictConvexOn
