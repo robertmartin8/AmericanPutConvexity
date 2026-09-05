@@ -6,8 +6,8 @@ The fixed-density formula includes the boundary x=0 without a singular integral.
 For x>0 it agrees with integration against the heat boundary kernel in elapsed
 time. This file proves continuity, the exact boundary trace, and causality for
 bounded continuous data. `HeatBoundaryEquation` proves interior smoothness and
-the PDE for compact continuous data. The finite-interval lateral correction
-remains a separate obligation.
+the PDE for compact continuous data. `IntervalHeatBoundary` constructs the
+finite-interval heat correction; assembly in pricing coordinates is separate.
 -/
 
 namespace AmericanConvexity.Stopping

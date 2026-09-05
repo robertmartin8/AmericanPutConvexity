@@ -174,8 +174,9 @@ its initial/lateral data on a continuation cylinder, including terminal time.
 `ContinuousHeatSmoothing.lean` now proves all-order positive-time smoothing from
 merely continuous compact data. `ContinuousPriceEvolution.lean` constructs a
 smooth pricing-equation solution matching the actual price's initial trace on
-any finite spatial interval. The missing lateral-boundary correction still
-prevents using it as the full local Dirichlet solution. Full continuous-time
+any finite spatial interval. A two-sided heat-equation boundary correction is
+now constructed, but its pricing-coordinate transformation and assembly with
+the initial contribution remain open. Full continuous-time
 dynamic programming and classical PDE/boundary regularity remain unproved.
 
 The lateral-data construction now has a checked half-line boundary kernel:
@@ -185,8 +186,10 @@ extension of bounded continuous boundary data is jointly continuous, has the
 exact boundary trace, preserves the uniform bound, and is zero before the data
 starts. For continuous compact boundary data, the integral's interior smoothness
 and heat equation are now proved, including a constructed half-line solution
-with zero initial data and the exact lateral trace. Matching both ends of a
-finite interval remains open, so actual-price regularity is not yet established.
+with zero initial data and the exact lateral trace. A strict finite-time
+cross-boundary contraction now constructs the correction matching both ends of
+a finite interval for continuous causal data. The pricing-coordinate assembly
+and actual-price regularity remain open.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -393,6 +396,9 @@ All files below are included in the project build.
 | [`Stopping/HeatBoundarySmoothing.lean`](AmericanConvexity/Stopping/HeatBoundarySmoothing.lean) | All-order interior smoothing for continuous compact boundary data, via the causal kernel; no derivatives of the datum |
 | [`Stopping/CompactKernelDerivative.lean`](AmericanConvexity/Stopping/CompactKernelDerivative.lean) | Derivative-under-the-integral theorem with explicit local compact domination of kernel derivatives |
 | [`Stopping/HeatBoundaryEquation.lean`](AmericanConvexity/Stopping/HeatBoundaryEquation.lean) | Boundary integral heat equation and constructed half-line solution with continuous compact boundary data and zero initial data |
+| [`Stopping/HeatBoundaryContraction.lean`](AmericanConvexity/Stopping/HeatBoundaryContraction.lean) | Strict finite-time kernel mass bound, complete space of causal boundary data and cross-boundary Lipschitz estimate |
+| [`Stopping/CoupledHeatBoundary.lean`](AmericanConvexity/Stopping/CoupledHeatBoundary.lean) | Fixed-point construction of the two coupled boundary inputs; compactness follows from compact cutoff and data |
+| [`Stopping/IntervalHeatBoundary.lean`](AmericanConvexity/Stopping/IntervalHeatBoundary.lean) | Constructed two-sided interval heat correction for continuous causal data, exact endpoint traces, zero initial data, interior smoothness and PDE |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

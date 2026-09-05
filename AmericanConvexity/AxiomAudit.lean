@@ -47,6 +47,7 @@ import AmericanConvexity.Stopping.ActualSmoothComparison
 import AmericanConvexity.Stopping.ContinuousPriceEvolution
 import AmericanConvexity.Stopping.HeatBoundaryExtension
 import AmericanConvexity.Stopping.HeatBoundaryEquation
+import AmericanConvexity.Stopping.IntervalHeatBoundary
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1527,3 +1528,53 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.exists_halfLine_heat_boundary_solution
+
+/-- info: 'AmericanConvexity.Stopping.boundaryArrivalMass_lt_one' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.boundaryArrivalMass_lt_one
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_finite_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_finite_bound
+
+/-- info: 'AmericanConvexity.Stopping.crossBoundaryCausal_lipschitz' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.crossBoundaryCausal_lipschitz
+
+/-- info: 'AmericanConvexity.Stopping.coupledBoundaryStep_contracting' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.coupledBoundaryStep_contracting
+
+/-- info: 'AmericanConvexity.Stopping.exists_coupled_boundary_inputs' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_coupled_boundary_inputs
+
+/-- info: 'AmericanConvexity.Stopping.exists_coupled_compact_boundary_inputs' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_coupled_compact_boundary_inputs
+
+/-- info: 'AmericanConvexity.Stopping.exists_boundary_time_cutoff' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_boundary_time_cutoff
+
+/-- info: 'AmericanConvexity.Stopping.intervalHeatCorrection_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.intervalHeatCorrection_equation
+
+/-- info: 'AmericanConvexity.Stopping.exists_interval_heat_boundary_solution' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_interval_heat_boundary_solution
+
+/-- info: 'AmericanConvexity.Stopping.exists_interval_heat_boundary_solution_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_interval_heat_boundary_solution_continuous

@@ -53,6 +53,7 @@ import AmericanConvexity.Stopping.ActualSmoothComparison
 import AmericanConvexity.Stopping.ContinuousPriceEvolution
 import AmericanConvexity.Stopping.HeatBoundaryExtension
 import AmericanConvexity.Stopping.HeatBoundaryEquation
+import AmericanConvexity.Stopping.IntervalHeatBoundary
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

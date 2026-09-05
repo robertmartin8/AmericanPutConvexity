@@ -934,8 +934,9 @@ solution with exactly that initial trace, rather than assuming its existence.
 
 This is only the initial-data contribution to the cylinder Dirichlet problem.
 Its lateral values at `L` and `R` are generally not the actual price's values.
-Constructing a correction with zero initial data and the required lateral traces
-remains open. Consequently this construction alone does not satisfy the earlier
+The corresponding two-sided heat correction is now constructed below; its
+pricing-coordinate transformation and combination with the initial contribution
+remain open. Consequently this construction alone does not satisfy the earlier
 local-identification theorem's full hypotheses or prove interior regularity of
 the actual price. Smooth fit and free-boundary regularity also remain open.
 
@@ -970,8 +971,8 @@ substitution identifies this formula with the usual boundary integral
 `integral over s>0 of H(s,x)*g(t-s)`.
 
 The extension's interior smoothness and PDE are now proved for continuous
-compact boundary data, as described next. Constructing a correction matching
-both ends of a finite interval remains open. Neither interior regularity of the
+compact boundary data, as described next. The two-sided interval heat correction
+is now constructed in the subsequent section. Neither interior regularity of the
 actual price nor the full classical pricing contract follows from this
 half-line checkpoint alone.
 
@@ -1017,7 +1018,53 @@ compact `g` vanishing for `t<=a`, with all of these conclusions:
 - all-order interior smoothness for `x>0`;
 - the heat equation `V_t=V_xx/2` for `x>0`.
 
-This is a half-line construction, not the two-sided interval correction needed
-by actual-price local identification. The finite-interval problem and its
-pricing-coordinate transformation remain the next construction steps. Actual
-interior regularity, smooth fit and free-boundary regularity remain open.
+This half-line result is now used in the two-sided construction below. The
+pricing-coordinate transformation and assembly remain open. Actual interior
+regularity, smooth fit and free-boundary regularity remain open.
+
+## Constructed two-sided interval heat correction
+
+`HeatBoundaryContraction.lean` proves that for every positive interval width `L`
+and finite nonnegative duration `D`,
+
+```
+0 <= c(L,D) = integral over 0<s<=D of H(s,L) < 1.
+```
+
+The strict inequality follows from the strictly positive kernel mass after `D`
+and the proved total mass of one. For a datum vanishing before `a`, propagation
+to the opposite boundary before `a+D` therefore has norm at most `c(L,D)` times
+the datum's uniform norm.
+
+The causal bounded continuous functions form a checked closed, complete metric
+space. With a compact time cutoff `chi`, bounded by one and zero after `a+D`,
+`CoupledHeatBoundary.lean` applies the contraction theorem to the coupled map
+
+```
+(f0,f1) -> (g0 - chi*V_f1(L,.), g1 - chi*V_f0(L,.)).
+```
+
+The fixed point is constructed, not assumed. Its inputs satisfy both boundary
+equations exactly; they are compactly supported when the supplied data and
+cutoff are compact. This permits reuse of the proved half-line smoothness/PDE
+without differentiating a convergent series.
+
+`IntervalHeatBoundary.lean` constructs the cutoff equal to one on `[a,T]` and
+sets `V(x,t)=V_f0(x,t)+V_f1(L-x,t)`. Reflection preserves the second spatial
+derivative, and the two fixed-point equations give the exact endpoint traces.
+The final `exists_interval_heat_boundary_solution_continuous` theorem assumes
+only globally continuous data `g0,g1` vanishing for `t<=a` and `L>0`; compact
+support is supplied by a cutoff preserving both data on `[a,T]`. It constructs:
+
+- a jointly continuous `V`;
+- `V(x,t)=0` for `t<=a`;
+- `V(0,t)=g0(t)` and `V(L,t)=g1(t)` for `a<=t<=T`;
+- all-order interior smoothness for `0<x<L`;
+- `V_t=V_xx/2` throughout that spatial interior.
+
+This closes the zero-initial-data **heat** boundary correction. Still required
+for the actual price: extend its finite-time residual boundary data compatibly
+by zero before the initial time, transform this heat correction into the pricing
+equation's drift/discount coordinates, add the existing initial-data solution,
+and apply local identification. Actual-price interior and free-boundary
+regularity are not conclusions of this checkpoint alone.

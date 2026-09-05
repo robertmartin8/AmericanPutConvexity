@@ -320,6 +320,17 @@ local domination hypotheses of Mathlib's differentiation-under-the-integral
 theorem from compactness and joint continuity of kernel derivatives.
 `HeatBoundaryEquation.lean` then proves the boundary integral's PDE and assembles
 a constructed half-line heat solution. Guarded audits cover these steps and
-the final existence theorem, with only the three standard axioms. Neither
-finite-interval Dirichlet existence nor actual-price regularity is imported or
-assumed by this construction.
+the final existence theorem, with only the three standard axioms. Actual-price
+regularity is not imported or assumed by this construction.
+
+`HeatBoundaryContraction.lean` uses the proved unit-mass kernel and strictly
+positive tail integral to obtain a strict finite-time propagation bound. It
+proves completeness of the causal bounded-continuous function space via
+closedness. `CoupledHeatBoundary.lean` applies Mathlib's contraction fixed-point
+theorem on the product of that space; no boundary-input existence premise is
+introduced. `IntervalHeatBoundary.lean` constructs the time cutoff, proves the
+reflected PDE and assembles the interval correction. Guarded audits cover the
+strict mass estimate, operator bound, fixed-point equations, compactness,
+reflection, and both interval existence results. All selected chains use only
+`propext`, `Classical.choice`, and `Quot.sound`. Pricing-coordinate assembly and
+actual-price regularity remain separate obligations.
