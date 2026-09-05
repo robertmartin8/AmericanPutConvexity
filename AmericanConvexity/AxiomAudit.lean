@@ -37,6 +37,7 @@ import AmericanConvexity.Stopping.BermudanConvergence
 import AmericanConvexity.Stopping.DiscreteStoppingValue
 import AmericanConvexity.Stopping.GridBellman
 import AmericanConvexity.Stopping.UsualGridMarkov
+import AmericanConvexity.Stopping.ActualSupermartingale
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1172,3 +1173,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.brownianGridPrice_tendsto_canonical
+
+/-- info: 'AmericanConvexity.Stopping.delayedGrid_bellman_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.delayedGrid_bellman_eq
+
+/-- info: 'AmericanConvexity.Stopping.delayedGridPrice_le_american' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.delayedGridPrice_le_american
+
+/-- info: 'AmericanConvexity.Stopping.brownianAmericanPut_wait' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianAmericanPut_wait
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_wait' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_wait
+
+/-- info: 'AmericanConvexity.Stopping.canonicalDiscountedPrice_gap' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalDiscountedPrice_gap
+
+/-- info: 'AmericanConvexity.Stopping.canonicalDiscountedPrice_supermartingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalDiscountedPrice_supermartingale
+
+/-- info: 'AmericanConvexity.Stopping.canonicalDiscountedPrice_usual_supermartingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalDiscountedPrice_usual_supermartingale

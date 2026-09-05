@@ -130,8 +130,16 @@ martingale. `UsualGridMarkov.lean` identifies both filtrations' grid values with
 this one recursion, whose prices converge to `canonicalPrice`. Consequently,
 raw and usual American values agree at positive spot for `K>=0` and `r>=0`,
 without a classical-solution premise or any restriction on dividend or volatility.
-Continuous-time dynamic programming, first-contact optimality and PDE regularity
-remain unproved.
+The deterministic waiting inequality is now proved in `AmericanWaiting.lean`:
+waiting for any fixed duration and then valuing the remaining American right
+cannot increase the initial value. `DelayedGrid.lean` derives it from optimal
+exercise on grids starting after the wait, followed by dominated convergence.
+`ActualSupermartingale.lean` consequently proves that the actual discounted
+normalized price, frozen at maturity, is a bounded continuous supermartingale
+on both raw and usual filtrations. Its initial value and exact payoff-gap
+identity are checked, without a classical solution. Full continuous-time dynamic
+programming, martingality up to actual first contact, first-contact optimality,
+and PDE regularity remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -310,6 +318,10 @@ All files below are included in the project build.
 | [`Stopping/BrownianBellman.lean`](AmericanConvexity/Stopping/BrownianBellman.lean) | Continuous bounded Gaussian Markov recursion, raw-grid price identification, and convergence to the raw American value |
 | [`Stopping/BrownianUsualTransition.lean`](AmericanConvexity/Stopping/BrownianUsualTransition.lean) | Bounded continuous terminal-value martingale and exact Gaussian log-state transition on the completed usual filtration |
 | [`Stopping/UsualGridMarkov.lean`](AmericanConvexity/Stopping/UsualGridMarkov.lean) | Usual-grid Gaussian price identification, convergence to canonical price, and raw/usual value equality without a classical solution |
+| [`Stopping/SampledRules.lean`](AmericanConvexity/Stopping/SampledRules.lean) | Admissible physical-time rules from arbitrary increasing sampled schedules; Bellman homogeneity |
+| [`Stopping/DelayedGrid.lean`](AmericanConvexity/Stopping/DelayedGrid.lean) | Bellman identification on grids starting after a fixed wait, and domination by the American value |
+| [`Stopping/AmericanWaiting.lean`](AmericanConvexity/Stopping/AmericanWaiting.lean) | Deterministic waiting inequality for the actual raw and normalized usual prices via delayed-grid convergence |
+| [`Stopping/ActualSupermartingale.lean`](AmericanConvexity/Stopping/ActualSupermartingale.lean) | Bounded continuous actual discounted price is a raw/usual supermartingale; initial price and exact payoff-gap identity |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

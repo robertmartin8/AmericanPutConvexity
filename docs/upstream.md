@@ -216,3 +216,14 @@ canonical price, and removes the classical-solution premise from positive-spot
 raw/usual American-value equality. All final new chains have guarded audits
 allowing only the three standard axioms. No continuous-time dynamic-programming
 or PDE-existence theorem is imported or assumed by this development.
+
+`SampledRules.lean` proves stopping-time admissibility on increasing deterministic
+schedules directly from a countable union of stopping events. `DelayedGrid.lean`
+uses local finite Bellman attainment for schedules starting after a fixed wait.
+`AmericanWaiting.lean` uses bounded dominated convergence to derive the actual
+American waiting inequality. The resulting `ActualSupermartingale.lean` proofs
+combine this inequality with the proved Brownian conditional transition, then
+lift through completion and usual augmentation. Guarded audits of the waiting
+inequality and both final supermartingales allow only the three standard axioms.
+No classical-price verification or continuous-time optimal-stopping theorem is
+used to establish this actual-price supermartingale property.

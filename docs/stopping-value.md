@@ -625,7 +625,8 @@ convergence to the actual `canonicalPrice`, without a classical-solution premise
 This is convergence of expected payoffs, not convergence of stopping times,
 and does not prove that the continuous-time first-contact rule is optimal.
 Identification with a Brownian Markov pricing recursion is now proved below.
-Continuous-time dynamic programming and PDE regularity remain open.
+The deterministic waiting inequality and actual-price supermartingality are now
+proved below. Full continuous-time dynamic programming and PDE regularity remain open.
 
 ## Gaussian Markov grid prices and unconditional filtration comparison
 
@@ -663,6 +664,47 @@ normalized model. Uniqueness of the limit gives
 arbitrary real `q` and `sigma`, including maturity zero. This removes the
 classical-solution premise from positive-spot raw/usual value equality.
 
-These are exact finite-grid dynamic-programming results and value convergence.
-They do not yet prove the continuous-time dynamic-programming principle,
-optimality of the actual first-contact rule, or classical PDE/boundary regularity.
+These exact finite-grid dynamic-programming results and value convergence now
+also give the waiting inequality and supermartingality below. Full continuous-time
+dynamic programming, optimality of the actual first-contact rule, and classical
+PDE/boundary regularity remain open.
+
+## Waiting inequality and actual-price supermartingality
+
+`SampledRules.lean` sends bounded discrete stopping rules to physical stopping
+rules for any increasing deterministic schedule. The schedule need not start
+at zero; admissibility follows by a countable union of discrete stopping events.
+`DelayedGrid.lean` applies this to `u+min(i*delta,T)`. Its conditional Bellman
+value at the first index is the discounted Gaussian grid price at the random
+log spot reached at time `u`. An optimal rule on this schedule is an admissible
+rule for the original American problem with maturity `u+T`.
+
+`AmericanWaiting.lean` passes its expected payoff to the limit by dominated
+convergence, using the common strike bound. The result is the actual-price
+inequality
+
+```text
+exp(-r*u) * E[V(exp(x + (r-q-sigma^2/2)*u + sigma*W_u), T)]
+  <= V(exp(x), u+T).
+```
+
+`brownianAmericanPut_wait` gives the exact Gaussian heat-flow version for
+`K>=0`, `r>=0`, positive spot, and arbitrary real `q,sigma`. The normalized
+usual-filtration counterpart is `canonicalPrice_wait`, derived using the
+unconditional raw/usual value equality. Waiting durations and remaining
+maturities may both be zero. This is an inequality, not the complete dynamic
+programming equality for stopping before or after an intermediate time.
+
+`ActualSupermartingale.lean` applies the Brownian conditional transition to
+the actual remaining-maturity price and this waiting inequality. It proves
+`canonicalDiscountedPrice_supermartingale` on the raw filtration and
+`canonicalDiscountedPrice_usual_supermartingale` on the completed usual
+filtration. The process is discounted until maturity and then frozen. Its
+continuity, uniform unit bound, initial value, and exact difference from the
+discounted payoff are proved. That difference is the positive discount factor
+times the existing `canonicalGap`, linking it to the actual first-contact rule.
+
+These proofs assume no classical solution, boundary, PDE, or continuous-time
+optimal rule. Supermartingality alone does not prove martingality up to first
+contact; proving that property and optimality remains the next stopping-theory
+obligation before classical PDE/boundary regularity.

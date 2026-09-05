@@ -535,8 +535,10 @@ and strict stock curvature together. It does not assert strict log curvature.
    payoffs converging to the American price. Both filtrations' conditional
    grid Bellman values are now identified with the same deterministic Gaussian
    log-spot recursion; its convergence proves raw/usual value equality without
-   a classical solution. Continuous-time dynamic programming and first-contact
-   optimality remain open.
+   a classical solution. Delayed-grid optimality and dominated convergence now
+   prove the deterministic waiting inequality and bounded continuous actual-price
+   supermartingality on both filtrations. Full continuous-time dynamic programming,
+   martingality up to actual first contact, and first-contact optimality remain open.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.
