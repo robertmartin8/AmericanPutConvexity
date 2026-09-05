@@ -19,7 +19,10 @@ boundary smoothness. `ActualPriceC1.lean` now gives joint C1 price regularity on
 all positive-time space-time, and `ActualCurvatureExtension.lean` gives a
 continuous continuation-curvature extension and a genuine right-sided
 derivative of the premium gradient at contact. The mixed derivative/flux at
-contact is not yet established. `ActualBoundaryOneSided.lean` isolates the remaining first-order
+contact is not yet established. `ActualTheta.lean` and `ActualThetaPositivity.lean`
+now prove that `p_t` is a smooth, strictly positive pricing-equation solution
+in continuation, with continuous zero exercise data. Its contact spatial-flux
+limit remains open. `ActualBoundaryOneSided.lean` isolates the remaining first-order
 boundary issue as equality of its finite, negative one-sided speeds.
 Full positive-time boundary smoothness and the independent published strict-log
 proof remain open. The early statement review below records the original CCJZ

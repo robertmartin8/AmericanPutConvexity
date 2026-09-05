@@ -1993,3 +1993,35 @@ checks cover this addition. Boundary differentiability still requires control
 of the contact mixed derivative/flux or another corner-exclusion argument.
 These results alone do not establish that the gradient has a joint C1 extension
 across contact, so the implicit-function theorem cannot yet be applied to it.
+
+## Positive theta equation without boundary smoothness
+
+`PlanePricingDerivative.lean` establishes the calculus needed to differentiate
+the pricing equation. Smooth directional derivatives commute, including the
+third-order interchange `D_t D_x D_x = D_x D_x D_t`. Differentiation respects
+the constant-coefficient pricing combination. These identities are proved
+from Mathlib's Fréchet derivative symmetry theorem.
+
+`ActualTheta.lean` defines `canonicalTheta k h x t = deriv (canonicalPrice k h x) t`.
+This is the derivative in time remaining, not calendar-time theta. On positive
+times it is jointly continuous, nonnegative, and zero in exercise. Inside
+continuation it is jointly smooth and solves
+
+`theta_t = theta_xx+(k-h-1)*theta_x-k*theta`.
+
+The PDE is obtained by differentiating the proved actual-price PDE on an open
+continuation neighborhood. The same calculus proves the interior mixed
+derivative identity `p_xt=theta_x`. No derivative at contact is used.
+
+`ActualThetaPositivity.lean` strengthens nonnegativity to strict positivity in
+continuation. The strict premium over initial payoff and the mean value theorem
+give an earlier time `a` at the same spot with positive theta. Zero theta in
+exercise puts this source strictly above `b(a)`. The stationary positive profile
+removes discounting, leaving the previously bounded drift. The explicit
+parabolic positivity barrier carries the source to the later target on the
+half-line `x>b(a)`, which stays inside continuation by boundary antitonicity.
+
+The theta PDE and positivity have zero-dividend and Liu-range checkpoints.
+Twenty-two guarded transitive axiom checks cover this addition. The existence
+and continuity of the contact limit of `theta_x` are still **unproved**; neither
+interior smoothness nor the zero Dirichlet trace alone supplies that limit.

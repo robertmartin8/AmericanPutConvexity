@@ -107,6 +107,9 @@ import AmericanConvexity.Stopping.ActualTimeDerivativeContinuity
 import AmericanConvexity.Stopping.ActualSpatialSecondTrace
 import AmericanConvexity.Stopping.ActualPriceC1
 import AmericanConvexity.Stopping.ActualCurvatureExtension
+import AmericanConvexity.Stopping.PlanePricingDerivative
+import AmericanConvexity.Stopping.ActualTheta
+import AmericanConvexity.Stopping.ActualThetaPositivity
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

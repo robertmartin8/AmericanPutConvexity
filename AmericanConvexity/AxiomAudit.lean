@@ -81,6 +81,9 @@ import AmericanConvexity.Stopping.ActualTimeDerivativeContinuity
 import AmericanConvexity.Stopping.ActualSpatialSecondTrace
 import AmericanConvexity.Stopping.ActualPriceC1
 import AmericanConvexity.Stopping.ActualCurvatureExtension
+import AmericanConvexity.Stopping.PlanePricingDerivative
+import AmericanConvexity.Stopping.ActualTheta
+import AmericanConvexity.Stopping.ActualThetaPositivity
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2826,3 +2829,113 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_gradient_hasDerivWithinAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.heatPartial_comm' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatPartial_comm
+
+/-- info: 'AmericanConvexity.Stopping.heatPartial_comm_third' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatPartial_comm_third
+
+/-- info: 'AmericanConvexity.Stopping.heatPartial_pricing_combination' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatPartial_pricing_combination
+
+/-- info: 'AmericanConvexity.Stopping.heatPartial_spatial_second' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatPartial_spatial_second
+
+/-- info: 'AmericanConvexity.Stopping.heatPartial_pricing_equation_derivative' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatPartial_pricing_equation_derivative
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_nonneg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_nonneg
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_exercise_zero' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_exercise_zero
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_contDiffAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_contDiffAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_partial_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_partial_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_mixed_derivs_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_mixed_derivs_eq
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalTheta_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalTheta_equation
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalTheta_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalTheta_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaGauge_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaGauge_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaGauge_contDiffAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaGauge_contDiffAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaGauge_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaGauge_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalThetaGauge_nonneg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalThetaGauge_nonneg
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_positive_earlier' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_positive_earlier
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_pos
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalTheta_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalTheta_pos
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalTheta_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalTheta_pos

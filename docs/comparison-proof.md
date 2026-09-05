@@ -246,6 +246,31 @@ still needed to deduce boundary differentiability; joint C1 price regularity
 and a nonzero normal derivative do not alone justify an implicit-function
 argument for the gradient's zero set.
 
+### The actual time derivative as a positive Dirichlet solution
+
+`PlanePricingDerivative.lean` proves directional-derivative commutation and
+the third-order interchange needed to differentiate a constant-coefficient
+pricing equation in time. It uses smooth Fréchet calculus, not a formal
+interchange assumption. `ActualTheta.lean` defines `theta=p_t` from the actual
+stopping price and proves that it is smooth and solves
+`theta_t=theta_xx+(k-h-1)*theta_x-k*theta` inside continuation. It also records
+joint continuity, nonnegativity, zero exercise values, and the interior
+identity `p_xt=theta_x`. The maturity variable is time remaining.
+
+`ActualThetaPositivity.lean` proves strict positivity throughout continuation.
+Since `p(x,t)>p(x,0)` there, the mean value theorem gives a positive theta at
+an earlier time `a`. This point must already be in continuation. Dividing
+theta by the positive stationary profile removes the discount term, and the
+existing explicit positivity barrier propagates the source to the target
+time on the half-line above `b(a)`. Boundary antitonicity keeps this half-line
+inside continuation; no boundary velocity is assumed.
+
+The theta PDE and strict positivity have explicit zero-dividend and Liu-range
+checkpoints. Twenty-two new guarded transitive checks cover this stage.
+Existence and continuity of `theta_x` at contact remain open. Thus this is the
+positive Dirichlet input for the boundary-flux argument, not a proof of that
+flux or of boundary smoothness.
+
 ### Exercise-boundary calculus and obstacle comparison
 
 `ExerciseGeometry.lean` proves ordinary spatial differentiability at contact

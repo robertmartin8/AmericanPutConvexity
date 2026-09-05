@@ -71,6 +71,12 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > has value `k-h*exp(b(t))` at contact. The gradient has this value as a proved
 > right-sided derivative there (`ActualCurvatureExtension.lean`). The mixed
 > derivative/flux at contact and boundary differentiability remain separate.
+> `ActualTheta.lean` now proves that `theta=p_t` is smooth in continuation
+> and satisfies the same pricing equation, with its proved continuous zero
+> exercise values. `ActualThetaPositivity.lean` proves `theta>0` throughout
+> continuation by a mean-value source and explicit parabolic propagation.
+> This supplies the positive Dirichlet solution for the remaining contact-flux
+> argument; the existence/continuity of `theta_x` at contact is not yet proved.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent
