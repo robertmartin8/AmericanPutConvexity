@@ -33,6 +33,7 @@ import AmericanConvexity.Stopping.CanonicalPrice
 import AmericanConvexity.Stopping.StrictExerciseGeometry
 import AmericanConvexity.Stopping.BoundarySemicontinuity
 import AmericanConvexity.Stopping.ActualContact
+import AmericanConvexity.Stopping.BermudanConvergence
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1048,3 +1049,28 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalContactRule_exercise_before_expiry
+
+/-- info: 'AmericanConvexity.Stopping.rounded_time_stopping' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.rounded_time_stopping
+
+/-- info: 'AmericanConvexity.Stopping.expectedReward_roundUp_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.expectedReward_roundUp_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.gridValue_tendsto_americanValue' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.gridValue_tendsto_americanValue
+
+/-- info: 'AmericanConvexity.Stopping.americanValue_eq_sup_gridValues' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.americanValue_eq_sup_gridValues
+
+/-- info: 'AmericanConvexity.Stopping.canonicalGridPrice_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalGridPrice_tendsto

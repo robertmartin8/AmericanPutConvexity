@@ -538,3 +538,30 @@ expected payoff with the stopping supremum. Dynamic programming, the correspondi
 martingale characterization, and the continuation PDE remain to be proved for
 the actual price. The previously proved optimality results for a given classical
 pair do not discharge these existence-side obligations.
+
+## Finite-grid approximation of the American supremum
+
+`FiniteExerciseGrid.lean` defines the finite exercise set
+`{min(i*delta,T) : i=0,...,ceil(T/delta)}`. It contains zero and, for positive
+mesh, maturity. Rounding a bounded stopping rule upward to the next mesh point
+and capping at `T` produces a stopping rule for the same filtration, valued in
+this set and no earlier than the original rule. The stopping-event proof uses
+the original rule at `floor(t/delta)*delta`; it needs no usual-filtration
+assumption. For `delta_n=1/(n+1)`, rounded times converge pathwise to the original
+time, and continuous bounded put rewards converge in expectation.
+
+`BermudanConvergence.lean` defines `GridRule` as all admissible bounded rules
+whose times lie in this finite set, not merely one rounded candidate.
+`gridAmericanPutValue` is the supremum of their expected payoffs in the original
+model. It is bounded above by the American value and below by immediate payoff
+and the European maturity expectation. Rounding a nearly optimal American rule
+proves `gridValue_tendsto_americanValue`; the American value also equals the
+supremum of these grid values. The meshes are not nested, so monotone convergence
+is not asserted. The normalized usual-filtration specialization is
+`canonicalGridPrice_tendsto`.
+
+This gives an approximation route toward dynamic programming and actual-rule
+optimality. It does not yet prove that a grid supremum is attained, identify it
+with a backward Bellman recursion, or yield a quantitative convergence rate.
+The stock dynamics remain continuous-time Brownian dynamics; no binomial tree
+or change of model is introduced.

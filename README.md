@@ -102,6 +102,15 @@ rule directly from the actual price/payoff gap on the completed usual Brownian
 space. Contact and pre-contact continuation are proved without a classical pair;
 optimality of this rule and the dynamic programming principle remain open.
 
+`BermudanConvergence.lean` now proves that restricting exercise to finite grids
+converges to the actual American stopping value, without changing the underlying
+process or filtration. Upward rounding capped at maturity is admissible and its
+expected payoff converges for every fixed rule. This yields convergence of the
+grid-value suprema, including `canonicalGridPrice_tendsto` on the usual Brownian
+space. Grid optimality and a Bellman recursion are still to be established; this
+is an approximation theorem, not a binomial-model identification or numerical
+error estimate.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -268,6 +277,8 @@ All files below are included in the project build.
 | [`Stopping/StrictExerciseGeometry.lean`](AmericanConvexity/Stopping/StrictExerciseGeometry.lean) | Threshold strictly below strike, full contact/continuation characterization, and an open continuation domain, without a PDE premise |
 | [`Stopping/BoundarySemicontinuity.lean`](AmericanConvexity/Stopping/BoundarySemicontinuity.lean) | Upper semicontinuity and shorter-maturity-side continuity of the financial threshold, without a PDE premise |
 | [`Stopping/ActualContact.lean`](AmericanConvexity/Stopping/ActualContact.lean) | Actual-price first-contact rule, GBM normalization, attained contact and pre-contact continuation; optimality not yet proved |
+| [`Stopping/FiniteExerciseGrid.lean`](AmericanConvexity/Stopping/FiniteExerciseGrid.lean) | Finite exercise grids, admissible upward rounding capped at maturity, and expected-payoff convergence |
+| [`Stopping/BermudanConvergence.lean`](AmericanConvexity/Stopping/BermudanConvergence.lean) | Genuine finite-grid stopping suprema converge to the American value in the same model; payoff and European bounds |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

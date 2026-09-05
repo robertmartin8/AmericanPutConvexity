@@ -527,6 +527,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    continuity from longer maturities remains open. An actual-price first-contact
    rule is now constructed with attained contact and pre-contact continuation;
    its optimality and the dynamic programming principle are not yet proved.
+   Finite exercise-grid stopping suprema now converge to the actual American
+   value in the same model, providing a checked approximation step toward those
+   obligations. Grid optimality and Bellman identification remain open.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

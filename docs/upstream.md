@@ -175,3 +175,12 @@ stopping price rather than a postulated classical pair. It checks the normalized
 path against MathFin's `gbmValue` definition. Neither module imports an optimality
 or dynamic-programming axiom; the new stopping-rule and geometry proof chains
 have guarded three-standard-axiom audits.
+
+`FiniteExerciseGrid.lean` extends the local grid-rounding work with capping at
+maturity, using Mathlib's floor/ceiling order identities to prove stopping-time
+admissibility. Dominated convergence handles payoff limits. `BermudanConvergence.lean`
+uses real-supremum order properties and nearly optimal rules to prove convergence
+of finite-grid values in the original process and filtration. MathFin's binomial
+Snell/Bermudan modules are not used for this result: their tree dynamics and
+recursions are not an identification with these Brownian stopping suprema.
+The final grid-convergence chains have guarded three-standard-axiom audits.
