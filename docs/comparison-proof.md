@@ -158,6 +158,25 @@ local Lipschitz continuity of both profiles. Only `K>0`, `r>0`, `sigma>0`, and
 26 guarded transitive axiom checks cover the new chain. Boundary smoothness and
 the literal everywhere second-derivative conclusions remain unfinished.
 
+### First differentiability at actual contact
+
+`LipschitzContactDifferentiability.lean` proves a general estimate: a function
+vanishing on a locally Lipschitz graph has zero full derivative at a contact
+point if its spatial derivative is continuous and zero there. The proof uses
+the spatial mean-value inequality and the graph's displacement bound; it never
+differentiates the graph. `ActualContactDifferentiability.lean` applies this to
+the intrinsic premium `u=p-(1-exp(x))`. At contact `Du=0`, hence the actual
+price has spatial derivative `-exp(b(t))` and time derivative zero. Together
+with the exercise and continuation regions, the actual price is jointly
+differentiable at every positive-time point. Continuity of its time derivative
+and higher boundary regularity are not inferred from this first derivative.
+
+`ActualBoundaryOneSided.lean` gives finite left/right speeds with
+`b'_-(t)<=b'_+(t)<0`, monotonicity of both one-sided speed functions, and the
+exact equivalence between boundary differentiability and equality of the two
+speeds. It does not prove that equality. Explicit zero-dividend and Liu-range
+checkpoints and seventeen guarded transitive audits cover these new results.
+
 ### Exercise-boundary calculus and obstacle comparison
 
 `ExerciseGeometry.lean` proves ordinary spatial differentiability at contact

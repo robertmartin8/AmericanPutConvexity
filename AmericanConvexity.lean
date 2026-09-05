@@ -92,6 +92,9 @@ import AmericanConvexity.Stopping.GridNormalization
 import AmericanConvexity.Stopping.ActualNormalization
 import AmericanConvexity.Stopping.ActualBoundaryNormalization
 import AmericanConvexity.Stopping.PhysicalBoundaryConvexity
+import AmericanConvexity.Boundary.LipschitzContactDifferentiability
+import AmericanConvexity.Stopping.ActualContactDifferentiability
+import AmericanConvexity.Stopping.ActualBoundaryOneSided
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

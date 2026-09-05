@@ -67,6 +67,8 @@ import AmericanConvexity.Stopping.ActualBoundaryHalfBound
 import AmericanConvexity.Stopping.ActualLogConvexity
 import AmericanConvexity.Stopping.ActualStockConvexity
 import AmericanConvexity.Stopping.PhysicalBoundaryConvexity
+import AmericanConvexity.Stopping.ActualContactDifferentiability
+import AmericanConvexity.Stopping.ActualBoundaryOneSided
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2487,3 +2489,88 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_brownianUsualStockBoundary_strictConvexOn
+
+/-- info: 'AmericanConvexity.Boundary.hasFDerivAt_zero_of_flat_lipschitz_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.hasFDerivAt_zero_of_flat_lipschitz_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_local_pointwise_lipschitz' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_local_pointwise_lipschitz
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_hasFDerivAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_hasFDerivAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_hasDerivAt_time_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_hasDerivAt_time_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_hasDerivAt_time_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_hasDerivAt_time_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_time_deriv_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_time_deriv_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_hasFDerivAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_hasFDerivAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_joint_differentiableAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_joint_differentiableAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_differentiableAt_time' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_differentiableAt_time
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_hasFDerivAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_hasFDerivAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_hasFDerivAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_hasFDerivAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_oneSidedDerivs' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_oneSidedDerivs
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_oneSidedDerivs_monotone' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_oneSidedDerivs_monotone
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_differentiableAt_iff_oneSided_eq' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_differentiableAt_iff_oneSided_eq
+
+/-- info: 'AmericanConvexity.Stopping.canonicalLogBoundary_deriv_neg_of_differentiableAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalLogBoundary_deriv_neg_of_differentiableAt
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_oneSided_speed' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalLogBoundary_oneSided_speed
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_oneSided_speed' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalLogBoundary_oneSided_speed

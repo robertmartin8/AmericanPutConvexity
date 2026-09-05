@@ -1834,3 +1834,48 @@ finish physical-unit transfer for the convex-function conclusions. They do not
 prove classical boundary second-derivative existence or strict positivity of
 the classical stock second derivative; boundary regularity remains the next
 substantive obligation.
+
+## Joint price differentiability at contact and one-sided boundary speeds
+
+`Boundary/LipschitzContactDifferentiability.lean` proves a general contact
+lemma without assuming the boundary graph is differentiable. Suppose
+`U(b(s),s)=0` near `t`, the graph has a local Lipschitz displacement bound, and
+the spatial derivative of `U` is continuous and zero at `(b(t),t)`. The spatial
+mean-value inequality bounds `|U(x,s)|` by an arbitrarily small gradient bound
+times `|x-b(s)|`. Lipschitz boundary motion controls the latter by a fixed
+multiple of the space-time displacement. Thus `U` has zero full first derivative
+at contact.
+
+`ActualContactDifferentiability.lean` applies this to the actual intrinsic
+premium `u(x,t)=p(x,t)-(1-exp(x))`, using already proved smooth fit, joint
+spatial-gradient continuity, and local Lipschitz boundary motion. It proves:
+
+- `canonicalIntrinsicPremium_hasFDerivAt_contact`: `Du=0` at contact;
+- `canonicalPrice_hasFDerivAt_contact`: the price differential there is
+  `(dx,dt) -> -exp(b(t))*dx`;
+- `canonicalPrice_hasDerivAt_time_contact`: the actual time derivative exists
+  at the contact point and is zero;
+- `canonicalPrice_joint_differentiableAt`: joint first differentiability at
+  every positive-time point, using the existing smooth formulas off contact;
+- `canonicalPrice_differentiableAt_time`: time differentiability at every
+  fixed log spot and positive maturity.
+
+These statements assert genuine `HasFDerivAt`/`HasDerivAt`, not merely a value
+of Lean's totalized derivative operator. They do **not** assert continuity of
+the time derivative or second derivatives across contact.
+
+`ActualBoundaryOneSided.lean` applies convex-function calculus to the actual
+log boundary. The left and right derivatives exist finitely at every positive
+time, are nondecreasing as functions of time, and satisfy
+`b'_-(t)<=b'_+(t)<0`. The strict sign follows from strict boundary decrease and
+the upper bound on a convex right derivative by any future secant slope.
+Boundary differentiability is proved equivalent to equality of the one-sided
+speeds. Their equality remains **unproved**. If differentiability is supplied
+at a point, the full derivative is consequently strictly negative there.
+
+The contact-price differential and one-sided boundary-speed statements have
+explicit zero-dividend and Liu-range checkpoints. Seventeen new guarded
+transitive audits allow only `propext`, `Classical.choice`, and `Quot.sound`.
+The next regularity obligations include control of derivative traces and
+elimination of possible corners in the boundary; neither first price
+differentiability nor convexity alone completes the classical contract.

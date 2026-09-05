@@ -52,6 +52,11 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > is locally Lipschitz in time, and the actual log boundary has a local
 > half-power continuity bound; the new convexity proof strengthens boundary
 > regularity to local Lipschitz continuity. Boundary smoothness remains open.
+> A further contact argument now proves that the actual price is jointly
+> differentiable in space and time at every positive maturity, including the
+> exercise boundary. Its time derivative at contact is zero. Continuity of
+> that time derivative is not yet proved. The boundary's finite one-sided
+> speeds are proved negative and ordered; their equality remains open.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent
