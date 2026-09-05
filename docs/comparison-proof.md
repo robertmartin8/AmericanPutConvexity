@@ -516,7 +516,7 @@ and strict stock curvature together. It does not assert strict log curvature.
    and both actual-boundary curvature conclusions from the contract. Equality
    with the completed usual-filtration value and its boundary curvature are
    also proved. A normalized candidate is now defined directly from the usual
-   stopping value, with joint continuity, initial payoff and bounds proved
+   stopping value, with joint continuity, initial payoff, bounds and tail decay proved
    without a classical-solution premise. Classical existence/regularity remains open; see
    [the financial verification frontier](stopping-value.md).
 2. **Independent published proof and strictness.** Retain the separate CCJZ

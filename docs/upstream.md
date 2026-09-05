@@ -150,3 +150,10 @@ uses `ConvexOn.lipschitzOnWith_of_abs_le` to obtain a spot bound uniform in
 maturity. The resulting normalized `canonicalPrice` has checked joint continuity,
 initial payoff and bounds without assuming a classical PDE solution. These new
 proof chains also have guarded audits allowing only the three standard axioms.
+
+`SpotDecay.lean` uses the compact minimum theorem for the positive stock
+multiplier along each continuous path, then bounded dominated convergence for
+varying stopping rules. Nearly optimal rules transfer the limit to the actual
+supremum. No maximal inequality, optimal stopping existence theorem, or PDE
+solution is assumed. The general decay result and its normalized fixed-time and
+uniform finite-maturity versions have guarded three-standard-axiom audits.

@@ -1,4 +1,5 @@
 import AmericanConvexity.Stopping.JointPriceContinuity
+import AmericanConvexity.Stopping.SpotDecay
 
 /-! # An actual stopping-value candidate for the normalized classical price
 
@@ -56,5 +57,28 @@ theorem canonicalPrice_bounds {k h : ℝ} (hk : 0 ≤ k) (x t : ℝ) :
 theorem canonicalPrice_normalization (k : ℝ) : normalizedRate k (Real.sqrt 2) = k := by
   simp only [normalizedRate,Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num)]
   ring
+
+theorem canonicalPrice_decay {k h : ℝ} (hk : 0 ≤ k) (t : ℝ) :
+    Tendsto (fun x => canonicalPrice k h x t) atTop (𝓝 0) := by
+  let μ := completedMeasure gaussianLimit
+  letI : MeasurableSpace (ℝ≥0 → ℝ) := completedMeasurableSpace gaussianLimit
+  have hd := americanPutValue_spot_decay (P := μ) (𝓕 := brownianUsualFiltration)
+    (q := h) (σ := Real.sqrt 2) (T := t.toNNReal)
+    brownian_completed_measurable continuous_brownian (show (0 : ℝ) ≤ 1 by norm_num) hk
+  have hh := hd.comp Real.tendsto_exp_atTop
+  convert! hh using 1
+
+theorem canonicalPrice_decay_uniform {k h : ℝ} (hk : 0 ≤ k) (T : ℝ)
+    {ε : ℝ} (hε : 0 < ε) :
+    ∀ᶠ x in atTop, ∀ t : ℝ, t ≤ T →
+      0 ≤ canonicalPrice k h x t ∧ canonicalPrice k h x t < ε := by
+  let μ := completedMeasure gaussianLimit
+  letI : MeasurableSpace (ℝ≥0 → ℝ) := completedMeasurableSpace gaussianLimit
+  have hd := americanPutValue_spot_decay_uniform (P := μ) (𝓕 := brownianUsualFiltration)
+    (q := h) (σ := Real.sqrt 2) brownian_completed_measurable continuous_brownian
+    (show (0 : ℝ) ≤ 1 by norm_num) hk T.toNNReal hε
+  filter_upwards [Real.tendsto_exp_atTop.eventually hd] with x hx
+  intro t ht
+  exact hx t.toNNReal (Real.toNNReal_mono ht)
 
 end AmericanConvexity.Stopping

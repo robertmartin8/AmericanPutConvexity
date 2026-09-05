@@ -975,3 +975,18 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalPrice_bounds
+
+/-- info: 'AmericanConvexity.Stopping.americanPutValue_spot_decay' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.americanPutValue_spot_decay
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_decay' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_decay
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_decay_uniform' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_decay_uniform

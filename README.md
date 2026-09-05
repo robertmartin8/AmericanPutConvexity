@@ -77,10 +77,13 @@ classical pair is still not asserted.
 
 `CanonicalPrice.lean` now defines a concrete normalized candidate directly from
 the usual-filtration stopping supremum, using strike one and volatility `sqrt(2)`.
-Its joint continuity, initial payoff and payoff/strike bounds are proved without
+Its joint continuity, initial payoff, payoff/strike bounds and large-spot decay are proved without
 a classical-solution premise. Maturity continuity uses truncation of nearly
 optimal rules; joint continuity follows from a spot Lipschitz bound uniform in
-maturity. Continuation PDE regularity, boundary regularity and smooth fit remain
+maturity. Decay is uniform on every bounded maturity interval: continuous paths
+have a positive minimum stock multiplier, so varying nearly optimal rules have
+vanishing rewards at large spot; dominated convergence passes to expectations.
+Continuation PDE regularity, boundary regularity and smooth fit remain
 to be established for this candidate.
 
 **New checked progress:** the classical contract now also implies globally
@@ -243,7 +246,8 @@ All files below are included in the project build.
 | [`Stopping/MaturityTruncation.lean`](AmericanConvexity/Stopping/MaturityTruncation.lean) | Admissible rule truncation and convergence of expected rewards under changing maturities |
 | [`Stopping/MaturityContinuity.lean`](AmericanConvexity/Stopping/MaturityContinuity.lean) | Maturity continuity of the stopping supremum without an optimal-rule or classical-solution premise |
 | [`Stopping/JointPriceContinuity.lean`](AmericanConvexity/Stopping/JointPriceContinuity.lean) | Uniform local spot Lipschitz bound and joint spot/maturity continuity at positive spot |
-| [`Stopping/CanonicalPrice.lean`](AmericanConvexity/Stopping/CanonicalPrice.lean) | Concrete normalized usual-filtration stopping price, joint continuity, initial payoff and bounds |
+| [`Stopping/CanonicalPrice.lean`](AmericanConvexity/Stopping/CanonicalPrice.lean) | Concrete normalized usual-filtration stopping price, joint continuity, initial payoff, bounds and uniform finite-maturity tail decay |
+| [`Stopping/SpotDecay.lean`](AmericanConvexity/Stopping/SpotDecay.lean) | Large-spot decay of the stopping supremum from pathwise compactness and nearly optimal rules, uniform over bounded maturities |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

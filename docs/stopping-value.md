@@ -461,12 +461,23 @@ payoff and bounds `putPayoff x <= p(x,t) <= 1` are checked with no PDE premise.
 Clamping negative time only makes the definition total; the classical contract
 uses nonnegative times.
 
+The tail condition is also now proved directly, in `SpotDecay.lean`. Each
+continuous path has a strictly positive minimum GBM multiplier on `[0,T]`.
+For any sequence of spots tending to infinity and any sequence of rules bounded
+by `T`, the pathwise put payoff is eventually zero. The strike bound permits
+dominated convergence of expected rewards. Applying this to nearly optimal
+rules proves decay of the supremum itself; spot monotonicity extends the
+sequence argument to the real large-spot limit. Maturity monotonicity makes
+the bound uniform over `[0,T]`. `canonicalPrice_decay` and
+`canonicalPrice_decay_uniform` transfer these results to log spot and normalized
+time, with no classical-solution premise or optimal-rule assumption.
+
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
 of any such pair against both raw and usual stopping values is now proved. The remaining
 construction includes the needed existence, continuation PDE, strict continuation,
-positive-time boundary regularity, smooth fit and gradient trace,
-and tail behavior. No such facts follow merely from the supremum
+positive-time boundary regularity, smooth fit and gradient trace.
+No such facts follow merely from the supremum
 definition or the spot-convexity proof above.
 
 The identification and resulting boundary properties remain conditional on

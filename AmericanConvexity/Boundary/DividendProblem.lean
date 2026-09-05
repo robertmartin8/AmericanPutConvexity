@@ -5,7 +5,8 @@ import AmericanConvexity.Boundary.Problem
 
 This is the classical solution contract for the proposed theorem. No boundary
 monotonicity, curvature, zero-count invariant, or comparison principle is assumed.
-The existence and stochastic identification of this solution remain obligations.
+Existence remains an obligation; stochastic identification from this contract
+is proved in `Stopping/ClassicalSupermartingale` and `Stopping/UsualBrownianValue`.
 At zero dividends the contract is equivalent to the existing CCJZ contract.
 -/
 
