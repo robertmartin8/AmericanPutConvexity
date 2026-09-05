@@ -23,6 +23,9 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > smooth fit and the continuation-side gradient trace are now proved.
 > Positive-time boundary smoothness is the sole remaining field needed to
 > construct the classical pricing contract for this actual pair.
+> Toward that step, the actual spatial gradient is jointly continuous across
+> the boundary, and the intrinsic premium has a locally uniform positive
+> second-spatial-derivative lower bound on the continuation side.
 
 ## Proposed extension and published checkpoints
 
@@ -138,6 +141,19 @@ log coordinates, proving the separate continuation-side derivative trace.
 Zero-dividend and Liu-range checkpoints are explicit. `ActualClassicalContract.lean`
 assembles the full actual-price contract with positive-time boundary smoothness
 as its sole remaining analytic hypothesis. That hypothesis is not yet proved.
+
+`ActualSpatialRegularity.lean` joins the exercise-side derivative to smooth fit,
+proving spatial differentiability at every positive maturity, including boundary
+points. `ConvexSliceGradient.lean` uses fixed-endpoint secants to prove joint
+gradient continuity for differentiable convex spatial slices. Applied in stock
+coordinates and transformed back, this gives joint continuity of the actual
+log-price gradient across the exercise boundary, stronger than the fixed-time
+trace. `ActualBoundaryNondegeneracy.lean` combines that continuity with the
+interior PDE and maturity monotonicity: near each positive-time boundary point,
+the intrinsic premium `u=p-(1-exp(x))` satisfies
+`u_xx >= (k-h*exp(b(t)))/2 > 0` in continuation. Zero-dividend and Liu-range
+checkpoints are explicit. These are ingredients toward boundary regularity,
+not a proof of boundary smoothness or time-convexity of the boundary.
 
 `BermudanConvergence.lean` now proves that restricting exercise to finite grids
 converges to the actual American stopping value, without changing the underlying
@@ -456,6 +472,9 @@ All files below are included in the project build.
 | [`Stopping/ConvexDerivativeTrace.lean`](AmericanConvexity/Stopping/ConvexDerivativeTrace.lean) | General right derivative trace from convexity, boundary smooth fit and interior differentiability |
 | [`Stopping/ActualGradientTrace.lean`](AmericanConvexity/Stopping/ActualGradientTrace.lean) | Actual stock/log gradient traces; explicit zero-dividend and Liu-range checkpoints |
 | [`Stopping/ActualClassicalContract.lean`](AmericanConvexity/Stopping/ActualClassicalContract.lean) | Full actual-price contract conditional only on positive-time boundary smoothness |
+| [`Stopping/ConvexSliceGradient.lean`](AmericanConvexity/Stopping/ConvexSliceGradient.lean) | Joint gradient continuity from continuous values and differentiable convex slices |
+| [`Stopping/ActualSpatialRegularity.lean`](AmericanConvexity/Stopping/ActualSpatialRegularity.lean) | Actual spatial differentiability and joint gradient continuity across the exercise boundary |
+| [`Stopping/ActualBoundaryNondegeneracy.lean`](AmericanConvexity/Stopping/ActualBoundaryNondegeneracy.lean) | Locally uniform positive lower bound for the intrinsic premium's second spatial derivative near the boundary |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

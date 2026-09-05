@@ -22,6 +22,10 @@ The final sections prove almost-sure convergence of actual optimal contact times
 to zero at exercise, bounded convergence of the resulting payoff quotients, and
 smooth fit by comparison with the actual price quotient, and the gradient trace
 using convexity in stock price.
+They also prove spatial differentiability and joint gradient continuity across
+the actual boundary, then a locally uniform positive lower bound for the
+intrinsic premium's second spatial derivative near that boundary. Boundary
+smoothness itself remains open.
 
 ## Exact financial definition
 
@@ -1367,3 +1371,60 @@ Positive-time boundary smoothness is **not yet proved**. Consequently the full
 unconditional classical contract and unconditional curvature theorem are still
 unfinished. The separate full dynamic programming and independent CCJZ proof
 tracks also remain open.
+
+## Joint spatial-gradient continuity across the actual boundary
+
+`ActualSpatialRegularity.lean` first joins the left exercise derivative to the
+proved right smooth fit. Hence `canonicalPrice` is differentiable in log spot
+at every positive maturity, including exercise and boundary points, without any
+boundary differentiability premise. The logarithmic change of coordinates
+gives the same fact for `canonicalStockPrice` at all positive stock spots.
+
+`ConvexSliceGradient.lean` proves a general parameter-dependent convexity
+lemma. For a jointly continuous family with differentiable convex spatial
+slices, the spatial derivatives are jointly continuous. At a reference point
+`(S,t)`, choose `L<S<R` whose secants approximate the derivative there.
+Convexity bounds the derivative at nearby `(S',t')` between the secants with
+fixed endpoints `L` and `R`. Both secants are continuous in `(S',t')`, so the
+bounds prove joint continuity by the order characterization of limits.
+
+Applying this lemma in stock coordinates, then using the exponential chain
+rule, proves `canonicalPrice_gradient_continuousAt` at every `(x,t)` with
+`t>0`. Unlike the preceding fixed-time trace, both spot and maturity may vary
+and the approximating points may cross the exercise boundary. The theorem does
+not assert joint differentiability of the price in time and space. Named
+zero-dividend and Liu-range specializations are checked.
+
+## Locally uniform nondegeneracy on the continuation side
+
+Let `u(x,t)=p(x,t)-(1-exp(x))`, the intrinsic premium (used here below strike).
+`ActualBoundaryNondegeneracy.lean` proves that its spatial gradient is jointly
+continuous and that `u=u_x=0` at the actual boundary. The previously proved
+interior PDE and time monotonicity give
+
+```text
+u_xx >= F(x,s),
+F(x,s) = k-h*exp(x) - (k-h-1)*u_x(x,s) + k*u(x,s).
+```
+
+The new gradient result makes `F` jointly continuous near every positive-time
+boundary point `(b(t),t)`. At that point,
+`F(b(t),t)=k-h*exp(b(t))>0`, since `k>0`, `h<=k` and `b(t)<0`.
+Consequently, throughout some neighborhood of that point, all continuation
+points satisfy
+
+```text
+u_xx(x,s) >= (k-h*exp(b(t)))/2 > 0.
+```
+
+`canonicalIntrinsicPremium_deriv2_lower_near_boundary` proves this exact
+locally uniform statement. Its zero-dividend specialization has lower bound
+`k/2`; a Liu-range checkpoint is also explicit. Guarded transitive axiom audits
+cover the convex-slice lemma, actual cross-boundary differentiability, joint
+gradients and the nondegeneracy results, allowing only `propext`,
+`Classical.choice` and `Quot.sound`.
+
+This does not prove a second-derivative trace, differentiability of the boundary,
+or boundary curvature in time. It supplies quantitative spatial nondegeneracy
+for the remaining boundary-regularity problem; the unconditional classical
+contract is still unfinished.

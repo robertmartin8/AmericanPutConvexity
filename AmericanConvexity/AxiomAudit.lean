@@ -55,6 +55,8 @@ import AmericanConvexity.Stopping.ContactTimeBoundary
 import AmericanConvexity.Stopping.ActualSmoothFit
 import AmericanConvexity.Stopping.ActualGradientTrace
 import AmericanConvexity.Stopping.ActualClassicalContract
+import AmericanConvexity.Stopping.ActualSpatialRegularity
+import AmericanConvexity.Stopping.ActualBoundaryNondegeneracy
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1825,3 +1827,63 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_solution_of_boundary_smooth
+
+/-- info: 'AmericanConvexity.Stopping.continuousAt_deriv_convex_slices' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.continuousAt_deriv_convex_slices
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_hasDerivAt_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_hasDerivAt_boundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_differentiableAt_spatial' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_differentiableAt_spatial
+
+/-- info: 'AmericanConvexity.Stopping.canonicalStockPrice_gradient_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalStockPrice_gradient_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_gradient_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_gradient_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalPrice_gradient_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalPrice_gradient_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalPrice_gradient_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalPrice_gradient_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_gradient_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_gradient_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalBoundary_forcing_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalBoundary_forcing_pos
+
+/-- info: 'AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_lower_near_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalIntrinsicPremium_deriv2_lower_near_boundary
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalIntrinsicPremium_deriv2_lower_near_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalIntrinsicPremium_deriv2_lower_near_boundary
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_deriv2_lower_near_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalIntrinsicPremium_deriv2_lower_near_boundary

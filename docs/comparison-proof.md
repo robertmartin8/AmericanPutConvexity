@@ -530,6 +530,9 @@ and strict stock curvature together. It does not assert strict log curvature.
    The continuation-side gradient trace is now proved using stock convexity and
    a secant squeeze. Assembly of the actual classical contract now needs only
    positive-time boundary smoothness, which remains open.
+   Toward that remaining obligation, joint spatial-gradient continuity across
+   the actual boundary and a locally uniform positive second-spatial-derivative
+   lower bound for the intrinsic premium in continuation are now proved.
    Full continuity of the normalized stock and log boundaries, including expiry,
    is now proved: the interior PDE and maturity monotonicity exclude downward
    jumps, complementing the earlier upper semicontinuity. An actual-price first-contact
