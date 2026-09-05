@@ -91,6 +91,7 @@ import AmericanConvexity.Stopping.ActualBoundaryHeatLayer
 import AmericanConvexity.Stopping.ActualHeatDensity
 import AmericanConvexity.Boundary.NeumannExterior
 import AmericanConvexity.Stopping.HeatLayerMatching
+import AmericanConvexity.Stopping.ActualHeatSource
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -3216,3 +3217,78 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.heatDensity_flux_matching
+
+/-- info: 'AmericanConvexity.Stopping.heatFromPrice_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatFromPrice_equation
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatTheta_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatTheta_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalHeatTheta_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalHeatTheta_equation
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalHeatTheta_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalHeatTheta_equation
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalHeatTheta_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalHeatTheta_equation
+
+/-- info: 'AmericanConvexity.Stopping.heatLocalizationSource_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatLocalizationSource_equation
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatLocalizationSource_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatLocalizationSource_continuous
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatLocalizationSource_bounded' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatLocalizationSource_bounded
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatLocalizationSource_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatLocalizationSource_equation
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatLocalizationSource_exercise_zero' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatLocalizationSource_exercise_zero
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatTheta_localization_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatTheta_localization_continuous
+
+/-- info: 'AmericanConvexity.Stopping.actualHeatTheta_localization_bounded' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.actualHeatTheta_localization_bounded
+
+/-- info: 'AmericanConvexity.Stopping.exists_graph_heat_cutoff_after' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_graph_heat_cutoff_after
+
+/-- info: 'AmericanConvexity.Stopping.exists_actualHeatTheta_source_after' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_actualHeatTheta_source_after
+
+/-- info: 'AmericanConvexity.Stopping.exists_actualHeatTheta_source' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_actualHeatTheta_source

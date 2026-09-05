@@ -2177,8 +2177,9 @@ Liu-range checkpoints and fifteen guarded transitive axiom checks cover it.
 
 The forcing contract is important: this is **not** a solution of arbitrary
 singular expiry data, nor an identification of the constructed density with
-actual theta's flux. The remaining representation argument must localize
-the actual equation, construct the appropriate causal forcing, and show
+actual theta's flux. The actual equation's compact causal localization is
+now constructed below. The remaining representation argument must construct
+the appropriate boundary forcing from its free heat potential and show
 that the resulting layer potential represents the actual solution. The
 Stefan velocity identity and boundary regularity bootstrap remain open.
 
@@ -2216,8 +2217,8 @@ This establishes the analytic boundary-condition mechanism for the candidate
 representation. It does **not** yet assert that the candidate solves the
 required PDE or equals actual theta. The remaining route is:
 
-1. Localize and gauge the actual theta equation, obtaining a bounded causal
-   source without presuming boundary derivatives.
+1. **Proved below:** localize and gauge the actual theta equation, obtaining
+   a bounded causal source without presuming boundary derivatives.
 2. Construct its free heat source potential F and the continuous causal forcing
    `g=2*F_x` on the local graph.
 3. Verify the layer candidate's PDE, boundedness and initial values. The proved
@@ -2227,3 +2228,48 @@ required PDE or equals actual theta. The remaining route is:
 
 These are remaining proof obligations, not hypotheses silently added to the
 actual-boundary convexity theorem or claims of completed smoothness.
+
+## Constructing the actual compact heat source
+
+`ActualHeatTheta.lean` uses heat time `s=2*t` and the fixed-space transform
+
+`W(x,s)=exp(alpha*x/2+(k+alpha^2/4)*s/2)*theta(x,s/2)`,
+
+where `alpha=k-h-1`. The inverse gauge identity is exact. The actual W is
+continuous at every positive heat time, zero in exercise, and smoothly solves
+`W_s=W_xx/2` in continuation. Explicit zero-dividend and Liu-range heat
+equations are included.
+
+`HeatLocalizationSource.lean` checks the source for a smooth cutoff chi:
+
+`Q=(chi_s-chi_xx/2)*W-chi_x*W_x`.
+
+The localized heat residual equals Q in continuation. Spatial derivatives
+of W are only used on the support of chi_x. If that support avoids the
+contact graph, Q is continuous across contact; outside the positive-time
+cutoff support it is identically zero. Its support is contained in that of
+chi, so compact support gives a global bound. Q also vanishes on the entire
+exercise side: W vanishes there, and at contact chi_x is locally zero.
+The localized W itself is proved globally continuous and bounded.
+
+`ActualHeatSource.lean` constructs the required cutoff, not just a
+conditional source theorem. A spatial bump is one on a collar of the
+target boundary value. Continuity of the graph gives a time window on
+which every contact stays in that collar. A separate time bump localizes
+to this window. The product is one near the target contact and its
+spatial derivative has support disjoint from the graph.
+
+For every actual positive pricing time t, and every prescribed heat start
+`0<=a<2*t`, `exists_actualHeatTheta_source_after` constructs chi and
+proves that Q is bounded, continuous, compactly supported, and zero at
+and before a. Allowing a prescribed start lets this source fit the already
+constructed short Volterra window. Fifteen guarded transitive axiom checks
+cover the transform, localized equation, support/continuity estimates, and
+actual source construction.
+
+This completes the source-localization step, not the free-potential or
+representation step. Next construct the Duhamel potential F of Q, prove its
+continuous spatial derivative, and supply the boundary forcing
+`g(s)=2*F_x(b(s/2),s)` to the density equation. The candidate's PDE and
+identification with localized W, the actual Stefan flux identity, and the
+boundary smoothness bootstrap remain unproved.

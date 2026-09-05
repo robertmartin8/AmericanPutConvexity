@@ -124,6 +124,9 @@ import AmericanConvexity.Boundary.NeumannMaximum
 import AmericanConvexity.Boundary.NeumannHalfLine
 import AmericanConvexity.Boundary.NeumannExterior
 import AmericanConvexity.Stopping.HeatLayerMatching
+import AmericanConvexity.Stopping.ActualHeatTheta
+import AmericanConvexity.Stopping.HeatLocalizationSource
+import AmericanConvexity.Stopping.ActualHeatSource
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
