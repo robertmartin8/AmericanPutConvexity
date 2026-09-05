@@ -1064,3 +1064,32 @@ are explicit; fifteen new transitive axiom guards cover these steps.
 
 This does not yet justify exchanging differentiation and the full
 moving-endpoint history integral. That limit argument and C2 remain open.
+
+### Vanishing new-source term and common-past right differentiation
+
+`ThreeQuarterRecent.lean` gives an order-5/4 integral bound for the new-source
+remainder, assuming only continuous source data and the three-quarter
+comparison bounds. Its quotient by the time increment tends to zero.
+`ActualRecentRemainder.lean` supplies these bounds from the actual graph's
+derivative modulus and the density modulus. The result specializes to the
+intrinsic actual heat flux, with zero-dividend and Liu checkpoints.
+
+`RightIntegralDerivative.lean` proves a one-sided dominated-slope
+differentiation rule. Unlike a two-sided neighborhood theorem, it permits
+the source interval to end at the observation time. Integrability of the
+original functions explicitly justifies subtracting their integrals.
+`FrozenCommonPastDerivative.lean` supplies an integrable slope bound of
+order `u^(-3/4)` by the mean-value inequality and the frozen-reference
+derivative estimate. Dominated convergence then gives the right derivative
+of the common-past integral.
+
+`ActualCommonPastDerivative.lean` instantiates the graph hypotheses for the
+actual boundary on a short positive-time window. The density is continuous
+and bounded with a local three-quarter modulus, as already proved for the
+constructed causal density. Source-time reflection and the actual history
+integrability theorem justify the remaining integration premises. Twelve
+new transitive axiom guards cover these steps.
+
+The full original-history derivative still needs assembly with the
+straight-line reference and older sources. Continuity of that derivative,
+two-sided differentiability and C2 remain unfinished.

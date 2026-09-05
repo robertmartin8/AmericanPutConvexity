@@ -2841,3 +2841,39 @@ are included, with fifteen new guarded transitive axiom checks.
 
 The full moving-endpoint differentiation and continuity of its derivative
 are not yet proved. Consequently this checkpoint does not conclude C2.
+
+## New-source quotient and common-past right derivative
+
+`ThreeQuarterRecent.lean` upgrades the new-source remainder estimate:
+
+`|integral_0^delta R(t+delta,t+delta-u) du|`
+` <= (6*(A*C+L*D)/sqrt(2*pi))*delta^(5/4)`.
+
+The reference slope and value are frozen at t. The graph error is bounded
+by `A*delta^(3/4)*u` and the density error by `D*delta^(3/4)`. Genuine
+integrability follows from an inverse-square-root majorant. Division by
+delta leaves a quarter-power bound, proving the quotient tends to zero.
+`ActualRecentRemainder.lean` supplies these conditions for the actual graph
+and any positive-time continuous locally three-quarter density. The
+intrinsic actual heat flux and both restricted parameter regimes are
+explicit specializations.
+
+`RightIntegralDerivative.lean` proves right differentiation under an
+integral from an integrable slope majorant and pointwise derivatives.
+The proof applies dominated convergence to the difference quotients and
+uses genuine integrability for the difference-of-integrals identity.
+`FrozenCommonPastDerivative.lean` obtains the slope majorant by bounding
+the derivative at all intermediate observations to the right of t.
+Elapsed time there exceeds its initial value u, so the `u^(-3/4)` bound
+is uniform and integrable on the fixed source interval.
+
+`ActualCommonPastDerivative.lean` proves existence of a short T>0, T<t,
+for which the actual graph satisfies the right-derivative theorem. Its
+density assumptions are global bounded continuity and the already proved
+local three-quarter modulus. These are suitable for the constructed causal
+density. Both reference values and the source endpoint are fixed during
+this derivative. Twelve new axiom guards check the transitive dependencies.
+
+The derivative of the full original history is not yet assembled. The
+straight-line reference and older-source derivatives must be included,
+and continuity/two-sided differentiability established before claiming C2.

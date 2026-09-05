@@ -60,6 +60,14 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > `M*delta^(1/4)` (`ActualFrozenDerivative.lean`). This is integrability of the
 > differentiated remainder, not yet differentiation of the full history with
 > its moving endpoint; the latter step and C2 remain unfinished.
+> The next two pieces are now checked. The actual new-source remainder is
+> `O(delta^(5/4))`, so its contribution to the difference quotient vanishes
+> (`ActualRecentRemainder.lean`). Dominated convergence now gives the right
+> derivative of the frozen common-past integral; the actual graph supplies
+> its hypotheses for a continuous bounded density with the proved local
+> three-quarter modulus (`ActualCommonPastDerivative.lean`). Assembly with
+> the reference integral and older sources, continuity of the derivative,
+> and the full C2 conclusion remain unfinished.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
