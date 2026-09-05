@@ -976,3 +976,26 @@ Twenty-one new transitive axiom guards cover this stage. The bounded remainder
 does not by itself establish its time regularity. Improving the time modulus
 beyond one-half, then obtaining C2 and the literal classical curvature
 formulation for the actual boundary, remain unfinished.
+
+### Frozen-remainder time estimate and improved common-past modulus
+
+The bounded linearization remainder now has a checked time estimate.
+`HeatHistoryRemainderDerivative.lean` holds source time and reference slope
+fixed and bounds its observation-time derivative by a constant divided by
+elapsed time. `HeatHistoryRemainderTime.lean` includes a frozen density value
+without differentiating the density, then proves the time-increment bound.
+`ActualRemainderTime.lean` supplies the actual graph hypotheses, with explicit
+zero-dividend and Liu-range results.
+
+Near the source diagonal the remainder difference is bounded; away from it
+the increment is bounded by a constant times `delta/u`. The elementary
+majorant `(delta/u)^(3/4)` is integrable at zero. Its exact integral and
+genuine integrability are checked in `HeatRemainderInterpolation.lean`.
+`HeatRemainderOverlap.lean` assembles these bounds into a three-quarter time
+estimate for the common-past frozen remainder. Eighteen new transitive axiom
+guards cover this stage.
+
+The reference term, new-source contribution and older sources outside the
+local Holder window are not included in that estimate. They still need to
+be assembled before the actual flux modulus can be improved beyond one-half.
+No C2 or classical second-derivative claim is made at this stage.

@@ -103,6 +103,8 @@ import AmericanConvexity.Stopping.ActualHistoryTimeBounds
 import AmericanConvexity.Stopping.ActualHistoryHolder
 import AmericanConvexity.Stopping.ActualHeatFluxHolder
 import AmericanConvexity.Stopping.ActualGraphRemainder
+import AmericanConvexity.Stopping.ActualRemainderTime
+import AmericanConvexity.Stopping.HeatRemainderOverlap
 import AmericanConvexity.Stopping.MovingHeatLayerBridge
 
 /-!
@@ -4449,3 +4451,93 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.exists_canonicalHeatGraph_linear_kernel_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_second_deriv_motion_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_second_deriv_motion_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_gradient_sub_motion_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_gradient_sub_motion_bound
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatHistoryKernel_hasDerivAt_motion' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatHistoryKernel_hasDerivAt_motion
+
+/-- info: 'AmericanConvexity.Stopping.linearHeatHistoryKernel_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.linearHeatHistoryKernel_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryMotionDerivative_sub_linear' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryMotionDerivative_sub_linear
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryMotionDerivative_linear_remainder_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryMotionDerivative_linear_remainder_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryMotionDerivative_linear_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryMotionDerivative_linear_bound
+
+/-- info: 'AmericanConvexity.Stopping.frozenHeatHistoryRemainder_hasDerivAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.frozenHeatHistoryRemainder_hasDerivAt
+
+/-- info: 'AmericanConvexity.Stopping.frozenHeatHistoryRemainder_deriv_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.frozenHeatHistoryRemainder_deriv_bound
+
+/-- info: 'AmericanConvexity.Stopping.frozenHeatHistoryRemainder_time_sub_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.frozenHeatHistoryRemainder_time_sub_bound
+
+/-- info: 'AmericanConvexity.Stopping.frozenHeatHistoryRemainder_source_continuousOn' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.frozenHeatHistoryRemainder_source_continuousOn
+
+/-- info: 'AmericanConvexity.Stopping.exists_canonicalHeatGraph_remainder_time_control' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_canonicalHeatGraph_remainder_time_control
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatGraph_remainder_time_control' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_exists_canonicalHeatGraph_remainder_time_control
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_exists_canonicalHeatGraph_remainder_time_control' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_exists_canonicalHeatGraph_remainder_time_control
+
+/-- info: 'AmericanConvexity.Stopping.integral_inverse_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integral_inverse_threeQuarter
+
+/-- info: 'AmericanConvexity.Stopping.near_far_threeQuarter_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.near_far_threeQuarter_bound
+
+/-- info: 'AmericanConvexity.Stopping.integrable_and_integral_threeQuarter_of_near_far' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.integrable_and_integral_threeQuarter_of_near_far
+
+/-- info: 'AmericanConvexity.Stopping.frozenHeatHistoryRemainder_overlap_threeQuarter' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.frozenHeatHistoryRemainder_overlap_threeQuarter

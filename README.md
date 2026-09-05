@@ -37,8 +37,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > (`ActualVelocityHolder.lean`). Thus the actual boundary is locally C1,1/2.
 > Its first-order remainder is bounded by `A*(t-s)*sqrt(t-s)`, uniformly
 > for derivative anchors between the endpoints. Subtracting the associated
-> straight-line history kernel leaves a bounded remainder. Improving the
-> time modulus beyond one-half and proving C2 remain unfinished.
+> straight-line history kernel leaves a bounded remainder. Its time
+> derivative, with source time and reference values fixed, now has a checked
+> inverse-elapsed-time bound, supplied by the actual graph. Combining near
+> and far bounds gives a genuinely integrable three-quarter time estimate
+> for the common-past frozen remainder. The reference term, recent-source
+> term and older-source contribution still need assembly before this improves
+> the actual flux modulus. Proving C2 remains unfinished.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming

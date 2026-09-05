@@ -2664,3 +2664,60 @@ Twenty-one new transitive axiom guards cover this stage. A bounded remainder
 alone is not a bound for its time derivative or increments. The next analytic
 step is to improve the history time modulus beyond exponent one-half; the
 higher bootstrap and actual-boundary C2 result remain unfinished.
+
+## Frozen-remainder time derivative and three-quarter common-past bound
+
+`HeatKernelGradientMotion.lean` uses the heat equation to obtain the second
+spatial kernel derivative bound from the existing time-derivative estimate.
+The mean-value inequality then controls changes of the spatial kernel gradient
+on the displacement interval `|x|<=L*u`.
+
+`HeatHistoryRemainderDerivative.lean` writes the observation-time derivative as
+
+`D(u,x,w)=-H(u,x)/u+(w-x/(2*u))*H_x(u,x)`.
+
+For a fixed reference slope v, `|x-v*u|<=A*u*sqrt(u)` and
+`|w-v|<=A*sqrt(u)`, with `|x|<=L*u`, `|v|<=L` and `0<u<=1`, it proves
+
+`|D(u,x,w)-D(u,v*u,v)| <= (8+5*L^2)*A/(sqrt(2*pi)*u)`.
+
+The reference slope is held fixed during differentiation, even when it was
+chosen from an actual earlier boundary velocity. No b'' is used.
+
+`HeatHistoryRemainderTime.lean` handles the weighted remainder
+
+`R(t,s)=H(t-s,b(t)-b(s))*f(s)-H(t-s,v*(t-s))*c`.
+
+Here s, v and c are all fixed while t varies. If `|f(s)|<=C` and
+`|f(s)-c|<=D*sqrt(t-s)`, the derivative bound is
+
+`|R_t(t,s)| <= ((8+5*L^2)*A*C+8*L*D)/(sqrt(2*pi)*(t-s))`.
+
+The mean-value inequality gives a corresponding increment estimate with
+denominator `t1-s`. Source-time continuity is proved from continuity of b and
+f on the source interval. `ActualRemainderTime.lean` supplies every graph
+hypothesis from the actual C1,1/2 boundary, choosing v=b'(t1). Zero-dividend
+and Liu-range controls are explicit; only the indicated density-value bounds
+remain inputs to this reusable estimate.
+
+`HeatRemainderInterpolation.lean` proves the elementary near/far inequality
+`min(1,delta/u)<=(delta/u)^(3/4)`. The majorant u^(-3/4) is integrable on
+(0,T), with integral `4*T^(1/4)`. Measurability plus domination establishes
+genuine integrability, not just a bound on Lean's total integral.
+
+`HeatRemainderOverlap.lean` combines the bounded remainder and the new time
+estimate. With source time s=t1-u and the same v,c at both observations, the
+common-past remainder difference is integrable and its integral has bound
+
+`4*max(B_near,C_far)*T^(1/4)*(t2-t1)^(3/4)`,
+
+where `B_near=6*(A*C+L*D)/sqrt(2*pi)` and
+`C_far=((8+5*L^2)*A*C+8*L*D)/sqrt(2*pi)`. The graph and density hypotheses
+are explicit in the theorem. Eighteen new transitive axiom guards cover this
+stage.
+
+This is a three-quarter bound for the common-past frozen remainder, not yet
+for the complete actual history or flux. The reference integral, recent-source
+contribution, and older sources outside the local Holder window still need
+assembly. In particular, the already-verified actual flux/velocity modulus
+remains one-half at this checkpoint, and C2 remains unfinished.
