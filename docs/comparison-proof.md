@@ -56,6 +56,45 @@ theorems. Their elementary specialization implications are proved, without
 asserting any of the open premises. Existence and identification with the
 continuous-time GBM stopping value are still separate, unproved obligations.
 
+### Exercise-boundary calculus and obstacle comparison
+
+`ExerciseGeometry.lean` proves ordinary spatial differentiability at contact
+by joining the exercise payoff's left derivative to right-sided smooth fit.
+It then proves `b(t)<0` for every positive time: otherwise the nonnegative
+price would attain zero at the strike with derivative minus one. Consequently
+`k-h*exp(b(t))>0`, including when `h=k`. These conclusions do not assume
+negative boundary speed or convexity. In the open exercise region, local
+equality to the payoff gives smoothness and the classical supersolution
+inequality; the continuation PDE gives the same inequality on the other side.
+
+`OneSidedContact.lean` proves that a stationary maximum on the left gives a
+nonpositive second derivative. Applying it to a smooth test minus the exercise
+payoff shows that at a spatial maximum of test minus price, the test's first
+derivative is `-exp(b(t))` and its second derivative is at most `-exp(b(t))`.
+No second price derivative across the boundary is asserted.
+
+`BoundaryTest.lean` differentiates the test minus payoff along the moving
+boundary at a backward contact maximum. Smooth fit cancels the boundary-speed
+term, leaving a nonnegative test time derivative. The strict forcing above
+then rules out a nonnegative contact maximum for a pricing subsolution.
+
+`ObstacleComparison.lean` assembles a comparison theorem on compact strips
+with two continuous moving endpoints, which may coincide at expiry. A positive
+maximum is excluded separately in the continuation region, exercise interior,
+and on the free boundary. The first two use classical derivatives; the third
+uses the proved boundary test. Compactness is proved by a unit-interval
+parameterization, including zero-width slices. There is a named zero-dividend
+specialization on the original normalized pricing contract.
+
+This supplies a possible direct route to Step 1 without a European-price
+formula. **The following barrier application is not yet formalized:** on
+`|x|<=sqrt(t)`, consider `U(x,t)=(sqrt(t)-x)^2/(16*sqrt(t))` for `t>0`.
+The intended next checks are its pricing subsolution inequality at sufficiently
+small times, payoff bounds on both lateral edges, continuity at the collapsing
+initial slice, and comparison at `x=-M*t`. The target is a square-root lower
+bound large enough to exceed intrinsic value there and hence prove the still
+open ratio limit. The obstacle comparison alone does not establish that limit.
+
 ### Step 2: explicit comparison construction
 
 `Comparison.lean` constructs the elementary ODE profiles explicitly. At positive
@@ -313,6 +352,8 @@ unresolved propagation claim, not something proved merely by this assembly.
 1. **First-order and expiry inputs.** Prove negative boundary speed and
    near-expiry `b(t)/t -> -infinity` from the pricing problem. Intercept selection
    and the negative-curvature tangent geometry are now checked conditionally.
+   Strict boundary negativity and obstacle subsolution comparison are now
+   proved; the proposed square-root barrier application remains unchecked.
 2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
    exact two-simple-root characterization, corner/tail control, and compact
    confinement are checked. The count-stability implication from initial

@@ -27,6 +27,10 @@ import AmericanConvexity.Boundary.RootConfinement
 import AmericanConvexity.Boundary.RootStability
 import AmericanConvexity.Boundary.ZeroCountGeometry
 import AmericanConvexity.Boundary.ComparisonIntervals
+import AmericanConvexity.Boundary.ExerciseGeometry
+import AmericanConvexity.Boundary.OneSidedContact
+import AmericanConvexity.Boundary.BoundaryTest
+import AmericanConvexity.Boundary.ObstacleComparison
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration

@@ -43,6 +43,13 @@ superlevel set. Passing from all positive levels to the positive set is checked,
 with a named zero-dividend specialization. This does not prove propagation of
 the root count.
 
+The pricing contract now also yields strict separation of the boundary from
+the strike, and a proved comparison theorem for smooth subsolutions on strips
+that cross the exercise region. The free-boundary contact case uses smooth fit
+and a one-sided test-function calculation, not an assumed PDE or second price
+derivative at the boundary. A zero-dividend specialization is checked. Applying
+this comparison to obtain the near-expiry ratio limit is still pending.
+
 The published zero-dividend checkpoint is:
 
 X. Chen, J. Chadam, L. Jiang, and W. Zheng, **Convexity of the Exercise Boundary
@@ -144,6 +151,10 @@ All files below are included in the project build.
 | [`Boundary/RootStability.lean`](AmericanConvexity/Boundary/RootStability.lean) | At-most-two-root initialization conditional on the still-open initial derivative traces; no-positive-data branch and zero-dividend specialization |
 | [`Boundary/ZeroCountGeometry.lean`](AmericanConvexity/Boundary/ZeroCountGeometry.lean) | Spatial two-root bound plus negative endpoint data implies interval superlevels; positive-level to zero-level passage |
 | [`Boundary/ComparisonIntervals.lean`](AmericanConvexity/Boundary/ComparisonIntervals.lean) | Actual comparison's interval consequence conditional on root counts, with boundary/truncation hypotheses discharged and a zero-dividend specialization |
+| [`Boundary/ExerciseGeometry.lean`](AmericanConvexity/Boundary/ExerciseGeometry.lean) | Ordinary spatial derivative at contact, strictly negative boundary, positive boundary forcing, and classical supersolution property off the boundary |
+| [`Boundary/OneSidedContact.lean`](AmericanConvexity/Boundary/OneSidedContact.lean) | One-sided stationary second-derivative test and spatial test-function bounds at exercise contact |
+| [`Boundary/BoundaryTest.lean`](AmericanConvexity/Boundary/BoundaryTest.lean) | Differentiation along the moving boundary; cancellation by smooth fit; exclusion of subsolution contact maxima |
+| [`Boundary/ObstacleComparison.lean`](AmericanConvexity/Boundary/ObstacleComparison.lean) | Proved subsolution comparison across the exercise obstacle on compact two-sided moving strips, including zero dividends and strips collapsing at expiry |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |

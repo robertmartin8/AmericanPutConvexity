@@ -15,6 +15,7 @@ import AmericanConvexity.Boundary.ComparisonHopf
 import AmericanConvexity.Boundary.ComparisonAssembly
 import AmericanConvexity.Boundary.RootStability
 import AmericanConvexity.Boundary.ComparisonIntervals
+import AmericanConvexity.Boundary.ObstacleComparison
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -375,3 +376,53 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_positive_interval_of_level_counts
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.price_hasDerivAt_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.price_hasDerivAt_boundary
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_neg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_neg
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_forcing_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_forcing_pos
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.price_supersolution_off_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.price_supersolution_off_boundary
+
+/-- info: 'AmericanConvexity.Boundary.second_deriv_nonpos_at_left_stationary_max' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.second_deriv_nonpos_at_left_stationary_max
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.spatial_test_at_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.spatial_test_at_boundary
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.boundary_test_residual_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.boundary_test_residual_pos
+
+/-- info: 'AmericanConvexity.Boundary.twoSidedStrip_isCompact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.twoSidedStrip_isCompact
+
+/-- info: 'AmericanConvexity.Boundary.DividendPutSolution.obstacle_comparison' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.DividendPutSolution.obstacle_comparison
+
+/-- info: 'AmericanConvexity.Boundary.zeroDividend_obstacle_comparison' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.zeroDividend_obstacle_comparison
