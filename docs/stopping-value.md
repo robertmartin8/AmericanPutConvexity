@@ -331,12 +331,27 @@ payoff. `LinearPriceComparison.lean` checks drift and discount factors and prove
 ```
 
 The time variable here is normalized time remaining; `W` is standard Brownian
-motion, so the variance is exactly `2*(t-a)`. This is an unconditional expectation
-comparison for smooth test payoffs. It is **not yet** the supermartingale
-inequality for the actual price process. The remaining steps on this route are
-approximation of the continuous price slice by suitable smooth compact tests,
-passage through the expectation, and the Brownian conditional-expectation/Markov
-step in physical coordinates. The classical existence obligation is unchanged.
+motion, so the variance is exactly `2*(t-a)`.
+
+`SmoothMinorants.lean` constructs C2 compactly supported minorants of any
+continuous function valued in [0,1]. An expanding inner bump truncates the data;
+support-preserving smooth approximation and subtraction of a small outer bump
+keep the result below the original function everywhere. The minorants have
+absolute value at most 2 and converge pointwise. They need not be nonnegative
+or monotone in their sequence index.
+
+`ClassicalHeatComparison.lean` uses this bound for dominated convergence and
+proves the inequality for the actual price slice:
+
+```text
+0 <= a <= t
+  => exp(-k*(t-a)) * E[p(x+(k-h-1)*(t-a)+W_(2*(t-a)),a)] <= p(x,t).
+```
+
+This is an unconditional expectation comparison. It is **not yet** the
+supermartingale inequality for the actual price process: the Brownian
+conditional-expectation/Markov step in physical coordinates remains open.
+The classical existence obligation is unchanged.
 
 ## Price identification suffices for boundary identification
 

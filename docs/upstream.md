@@ -116,5 +116,9 @@ Gaussian-law integral transfer, not merely its algebraic kernel PDE identity.
 scaling arbitrary compact data to the upstream exponential-growth hypothesis.
 Mathlib's parameter-dependent convolution supplies joint regularity.
 `LinearPriceComparison.lean` then combines this with our obstacle comparison.
-Its final guarded proof chain uses only the three standard axioms; the price
-slice approximation and conditional-expectation steps remain open.
+Mathlib's support-preserving smooth approximation supplies the approximants in
+`SmoothMinorants.lean`; the local construction makes them compact minorants with
+a uniform bound. Dominated convergence in `ClassicalHeatComparison.lean` then
+extends the inequality to the continuous price slice. Both final guarded proof
+chains use only the three standard axioms. The conditional-expectation step
+remains open.

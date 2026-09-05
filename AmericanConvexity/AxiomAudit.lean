@@ -26,6 +26,7 @@ import AmericanConvexity.Stopping.BrownianLocalVerification
 import AmericanConvexity.Stopping.BrownianInteriorLocalization
 import AmericanConvexity.Stopping.ContactMartingale
 import AmericanConvexity.Stopping.LinearPriceComparison
+import AmericanConvexity.Stopping.ClassicalHeatComparison
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -871,3 +872,13 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.linearPriceEvolution_le_classical
+
+/-- info: 'AmericanConvexity.Stopping.exists_smooth_compact_minorant_sequence' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.exists_smooth_compact_minorant_sequence
+
+/-- info: 'AmericanConvexity.Stopping.classicalPrice_gaussian_comparison' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.classicalPrice_gaussian_comparison

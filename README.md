@@ -58,9 +58,10 @@ payoff of this admissible rule, hence is no greater than the actual American val
 For the remaining opposite bound, arbitrary-start obstacle comparison is now
 proved on the whole spatial line. The Brownian heat evolution of every smooth,
 compactly supported test payoff below an initial price slice stays below the
-classical price. This does not yet establish the global supermartingale
-property: approximation of the price slice and the conditional-expectation
-step remain to be completed.
+classical price. Uniformly bounded smooth compact minorants and dominated
+convergence now extend this inequality to the actual continuous price slice.
+This does not yet establish the global supermartingale property: the Brownian
+conditional-expectation step in physical coordinates remains to be completed.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -209,6 +210,8 @@ All files below are included in the project build.
 | [`Stopping/CompactHeatFlow.lean`](AmericanConvexity/Stopping/CompactHeatFlow.lean) | Joint smoothness and the heat equation for compactly supported smooth test data; extends MathFin's kernel differentiation by scaling |
 | [`Stopping/BrownianHeatFlow.lean`](AmericanConvexity/Stopping/BrownianHeatFlow.lean) | Heat flow as an actual Brownian expectation, with continuity at time zero, initial payoff and uniform bounds; discounted drifted pricing evolution |
 | [`Stopping/LinearPriceComparison.lean`](AmericanConvexity/Stopping/LinearPriceComparison.lean) | The test-payoff Gaussian pricing evolution satisfies the normalized PDE and stays below the classical price from any nonnegative initial time |
+| [`Stopping/SmoothMinorants.lean`](AmericanConvexity/Stopping/SmoothMinorants.lean) | Uniformly bounded C2 compact minorants converge pointwise to any continuous function valued in [0,1] |
+| [`Stopping/ClassicalHeatComparison.lean`](AmericanConvexity/Stopping/ClassicalHeatComparison.lean) | Dominated convergence extends the Gaussian pricing inequality to the actual continuous classical price slice |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
