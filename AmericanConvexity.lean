@@ -20,6 +20,8 @@ import AmericanConvexity.Stopping.CandidatePDE
 import AmericanConvexity.Stopping.SmoothLocalization
 import AmericanConvexity.Stopping.PlaneIto
 import AmericanConvexity.Stopping.LocalPriceIto
+import AmericanConvexity.Stopping.BoundedLocalMartingale
+import AmericanConvexity.Stopping.BrownianLocalVerification
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

@@ -197,15 +197,46 @@ G(t,W_t)-G(0,W_0) = M_t + integral_0^t (G_t+(1/2)*G_ww)(s,W_s) ds.
 The local-martingale filtration here is explicitly MathFin's **null-augmented**
 Brownian filtration. This is not yet a martingale statement for the original
 candidate on the raw filtration. We still need to assemble the local statements
-along the path up to first contact, promote the bounded stopped process to a
-true martingale, and transfer to the raw filtration. The global candidate's
-supermartingale property across the exercise boundary is also still missing.
+along the path up to first contact. Promotion of the bounded stopped process
+to a true martingale and transfer to the raw filtration are now proved as
+described below. The global candidate's supermartingale property across the
+exercise boundary is also still missing.
 
 The new import traverses upstream files containing unfinished declarations;
 the guarded axiom checks on `plane_ito_localMartingale` and `local_price_ito`
 verify their actual proof chains contain only `propext`, `Classical.choice`,
 and `Quot.sound`, not `sorryAx`. This is a dependency-specific check, not a
 claim that all imported declarations are complete.
+
+## Checked bounded promotion and raw-filtration transfer
+
+`BoundedLocalMartingale.lean` proves that an explicitly adapted local martingale
+with a deterministic uniform bound on each finite time interval is a true
+martingale. It uses the stopped-and-indicated martingales supplied by the
+localizing sequence. At each fixed time they eventually agree with the process
+almost surely. Dominated convergence preserves their integrals over every
+event measurable at an earlier time, giving the required conditional expectation
+identity. This proof does not invoke the unfinished upstream submartingale
+uniform-integrability or stopping-stability declarations. The bounds must be
+deterministic and uniform in outcomes, not merely pathwise random bounds.
+
+The same module proves transfer of a true martingale to any smaller filtration
+to which it is explicitly strongly adapted. `BrownianLocalVerification.lean`
+checks that our raw natural Brownian filtration is contained in MathFin's exact
+null augmentation. It also proves raw adaptation of the continuous classical
+candidate stopped at any admissible bounded rule.
+
+The classical price bound gives `|U_(t min theta)|<=K`. Thus
+`brownian_stoppedCandidate_martingale_of_local` promotes an augmented local
+martingale for that precise process to a true martingale on the raw filtration.
+The revised price/curvature reductions now require only the global candidate
+supermartingale property and augmented local martingality up to the constructed
+first-contact rule, besides the classical contract. The latter local property
+is still open; smooth local Ito representations alone do not discharge it.
+
+This transfers the particular adapted candidate process, not all admissible
+stopping rules or the value supremum. Equality of raw- and augmented-filtration
+American values is still not claimed.
 
 ## Price identification suffices for boundary identification
 

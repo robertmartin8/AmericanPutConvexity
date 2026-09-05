@@ -43,6 +43,9 @@ inside continuation and constructs compact C3 localizations with zero drift
 near each interior point. MathFin's Ito theorem supplies their compensated
 local martingales on the explicitly null-augmented filtration. Assembly up to
 first contact and the global supermartingale property remain unproved.
+Once local martingality of the stopped candidate is established, its promotion
+to a true martingale and transfer to the raw filtration are now proved from
+boundedness and adaptation; neither remains an extra hypothesis.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -178,6 +181,8 @@ All files below are included in the project build.
 | [`Stopping/SmoothLocalization.lean`](AmericanConvexity/Stopping/SmoothLocalization.lean) | Compact C3 functions agreeing with the actual price near continuation points |
 | [`Stopping/PlaneIto.lean`](AmericanConvexity/Stopping/PlaneIto.lean) | Joint C3 regularity supplies the partials required by MathFin's local-martingale Ito theorem |
 | [`Stopping/LocalPriceIto.lean`](AmericanConvexity/Stopping/LocalPriceIto.lean) | Zero-drift local price extensions with genuine compensated local martingales; global stopped assembly remains open |
+| [`Stopping/BoundedLocalMartingale.lean`](AmericanConvexity/Stopping/BoundedLocalMartingale.lean) | Deterministically bounded local martingales are true martingales, by localized set-integral limits; transfer to smaller filtrations |
+| [`Stopping/BrownianLocalVerification.lean`](AmericanConvexity/Stopping/BrownianLocalVerification.lean) | Stopped candidate is raw-adapted and bounded; augmented local martingality implies the raw true-martingale property needed for verification |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

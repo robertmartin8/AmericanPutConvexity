@@ -22,6 +22,7 @@ import AmericanConvexity.Stopping.ClassicalBridge
 import AmericanConvexity.Stopping.ClassicalCandidate
 import AmericanConvexity.Stopping.BrownianVerification
 import AmericanConvexity.Stopping.LocalPriceIto
+import AmericanConvexity.Stopping.BrownianLocalVerification
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -737,3 +738,23 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.local_price_ito
+
+/-- info: 'AmericanConvexity.Stopping.locally_bounded_localMartingale_is_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.locally_bounded_localMartingale_is_martingale
+
+/-- info: 'AmericanConvexity.Stopping.martingale_smaller_filtration' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.martingale_smaller_filtration
+
+/-- info: 'AmericanConvexity.Stopping.brownian_stoppedCandidate_martingale_of_local' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_stoppedCandidate_martingale_of_local
+
+/-- info: 'AmericanConvexity.Stopping.brownian_boundary_curvature_of_localMartingales' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownian_boundary_curvature_of_localMartingales
