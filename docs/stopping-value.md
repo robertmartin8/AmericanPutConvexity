@@ -443,12 +443,30 @@ curvature theorems therefore have no separate price-identification premise.
 
 ## Remaining verification obligations
 
+Joint price continuity is now proved independently of a classical solution.
+`MaturityTruncation.lean` caps any admissible rule at a new deterministic
+horizon. Pathwise continuity and the bounded put reward give convergence of
+expected rewards by dominated convergence, even for a varying sequence of
+rules. `MaturityContinuity.lean` uses nearly optimal rules on both sides of
+the supremum to prove maturity continuity, including at zero. No optimal rule
+is assumed. `JointPriceContinuity.lean` combines this with convexity and the
+strike bound: on a neighborhood of any positive spot, all maturity slices
+share one Lipschitz constant. This proves joint continuity at positive spot.
+
+`CanonicalPrice.lean` defines `canonicalPrice k h x t` as the completed
+usual-filtration value with strike one, rate `k`, dividend `h`, volatility
+`sqrt(2)`, spot `exp(x)` and horizon `t.toNNReal`. For nonnegative time these
+are exactly normalized coordinates. For `k>=0` its joint continuity, expiry
+payoff and bounds `putPayoff x <= p(x,t) <= 1` are checked with no PDE premise.
+Clamping negative time only makes the definition total; the classical contract
+uses nonnegative times.
+
 The substantive missing step is to construct a classical solution pair, or to
 derive the full classical contract directly from the stopping value. Verification
 of any such pair against both raw and usual stopping values is now proved. The remaining
 construction includes the needed existence, continuation PDE, strict continuation,
-positive-time boundary regularity, smooth fit and gradient trace, joint price
-continuity, and tail behavior. No such facts follow merely from the supremum
+positive-time boundary regularity, smooth fit and gradient trace,
+and tail behavior. No such facts follow merely from the supremum
 definition or the spot-convexity proof above.
 
 The identification and resulting boundary properties remain conditional on

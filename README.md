@@ -25,7 +25,8 @@ The proposed proof and its exact verification frontier are tracked in
 
 The actual continuous-time stopping value is now defined on a constructed
 Brownian probability space. Payoff bounds, expiry payoff, maturity monotonicity,
-spot convexity/continuity, and the in-the-money contact threshold are checked
+spot convexity, joint spot/maturity continuity at positive spot (including expiry),
+and the in-the-money contact threshold are checked
 directly from that definition. Price identification now identifies the boundary
 and transfers weak log curvature and strict stock curvature to that threshold,
 conditional only on the classical solution contract and parameter assumptions.
@@ -73,6 +74,14 @@ boundary. Zero-dividend and Liu-range financial specializations are explicit.
 American value and transfers both boundary-curvature conclusions to it. Its
 filtration has checked completeness and right-continuity. Existence of the
 classical pair is still not asserted.
+
+`CanonicalPrice.lean` now defines a concrete normalized candidate directly from
+the usual-filtration stopping supremum, using strike one and volatility `sqrt(2)`.
+Its joint continuity, initial payoff and payoff/strike bounds are proved without
+a classical-solution premise. Maturity continuity uses truncation of nearly
+optimal rules; joint continuity follows from a spot Lipschitz bound uniform in
+maturity. Continuation PDE regularity, boundary regularity and smooth fit remain
+to be established for this candidate.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -231,6 +240,10 @@ All files below are included in the project build.
 | [`Stopping/AugmentedValue.lean`](AmericanConvexity/Stopping/AugmentedValue.lean) | Equality of raw and right-continuous ambient-null-augmented stopping values from the classical contract |
 | [`Stopping/CompletedSpace.lean`](AmericanConvexity/Stopping/CompletedSpace.lean) | Full ambient completion preserves original measurable integrals and bounded supermartingales |
 | [`Stopping/UsualBrownianValue.lean`](AmericanConvexity/Stopping/UsualBrownianValue.lean) | Complete right-continuous Brownian filtration, equality with the raw stopping value, and usual-filtration boundary curvature from the classical contract |
+| [`Stopping/MaturityTruncation.lean`](AmericanConvexity/Stopping/MaturityTruncation.lean) | Admissible rule truncation and convergence of expected rewards under changing maturities |
+| [`Stopping/MaturityContinuity.lean`](AmericanConvexity/Stopping/MaturityContinuity.lean) | Maturity continuity of the stopping supremum without an optimal-rule or classical-solution premise |
+| [`Stopping/JointPriceContinuity.lean`](AmericanConvexity/Stopping/JointPriceContinuity.lean) | Uniform local spot Lipschitz bound and joint spot/maturity continuity at positive spot |
+| [`Stopping/CanonicalPrice.lean`](AmericanConvexity/Stopping/CanonicalPrice.lean) | Concrete normalized usual-filtration stopping price, joint continuity, initial payoff and bounds |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

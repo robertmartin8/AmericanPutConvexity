@@ -142,3 +142,11 @@ uses Mathlib's actual measure completion and integral-trimming theorem to move
 to the complete ambient space. The completed filtration in `UsualBrownianValue.lean`
 has proved `IsComplete` and `IsRightContinuous` instances. Its value equality
 and final boundary conclusions are guarded against any nonstandard axiom.
+
+`MaturityTruncation.lean` and `MaturityContinuity.lean` use Mathlib's dominated
+convergence and order properties of the real supremum to prove maturity
+continuity directly from admissible stopping rules. `JointPriceContinuity.lean`
+uses `ConvexOn.lipschitzOnWith_of_abs_le` to obtain a spot bound uniform in
+maturity. The resulting normalized `canonicalPrice` has checked joint continuity,
+initial payoff and bounds without assuming a classical PDE solution. These new
+proof chains also have guarded audits allowing only the three standard axioms.

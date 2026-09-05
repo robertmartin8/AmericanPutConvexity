@@ -29,6 +29,7 @@ import AmericanConvexity.Stopping.LinearPriceComparison
 import AmericanConvexity.Stopping.ClassicalHeatComparison
 import AmericanConvexity.Stopping.ClassicalSupermartingale
 import AmericanConvexity.Stopping.UsualBrownianValue
+import AmericanConvexity.Stopping.CanonicalPrice
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -949,3 +950,28 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.brownianUsual_boundary_conclusions
+
+/-- info: 'AmericanConvexity.Stopping.americanPutValue_continuous_horizon' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.americanPutValue_continuous_horizon
+
+/-- info: 'AmericanConvexity.Stopping.americanPutValue_joint_continuousAt' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.americanPutValue_joint_continuousAt
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_continuous
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_initial' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_initial
+
+/-- info: 'AmericanConvexity.Stopping.canonicalPrice_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalPrice_bounds
