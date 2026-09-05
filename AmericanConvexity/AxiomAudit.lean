@@ -5,6 +5,8 @@ import AmericanConvexity.Boundary.InitialProfileCheck
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration
 import AmericanConvexity.Boundary.ProfileOperator
+import AmericanConvexity.Boundary.DividendProblem
+import AmericanConvexity.Boundary.Comparison
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -100,3 +102,43 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.operator_quotient_deriv_neg
+
+/-- info: 'AmericanConvexity.Boundary.dividendPutSolution_zero_iff' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.dividendPutSolution_zero_iff
+
+/-- info: 'AmericanConvexity.Boundary.liu_condition_normalization' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.liu_condition_normalization
+
+/-- info: 'AmericanConvexity.Boundary.ode_nonneg_of_factored_forcing' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.ode_nonneg_of_factored_forcing
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightPrice_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightPrice_equation
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightPrice_fit' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightPrice_fit
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightPrice_dominates' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightPrice_dominates
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.slope_gap_crosses_up' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.slope_gap_crosses_up
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.positive_root_gap' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.positive_root_gap

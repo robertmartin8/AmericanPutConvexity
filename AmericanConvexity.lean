@@ -5,6 +5,9 @@ import AmericanConvexity.Finance
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem
+import AmericanConvexity.Boundary.DividendProblem
+import AmericanConvexity.Boundary.ODEComparison
+import AmericanConvexity.Boundary.Comparison
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration

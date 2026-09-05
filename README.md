@@ -1,15 +1,32 @@
 # AmericanConvexity
 
-A Lean 4 project working toward a formal proof that the optimal exercise boundary
-of an American put on a non-dividend-paying asset is convex. We build on
-[MathFin](https://github.com/formal-applied-math/formal-mathfin) and Mathlib.
+A Lean 4 project verifying a proposed straight-line comparison proof that the
+logarithmic American-put exercise boundary is convex for `0 <= q <= r`, `r>0`.
+The zero-dividend and Liu parameter regimes are explicit milestones, and the
+independent published CCJZ proof development is retained. The project integrates
+[MathFin](https://github.com/formal-applied-math/formal-mathfin); the boundary
+proof modules currently use Mathlib and local results, not MathFin pricing results.
 
 > **Status: the main theorem is not yet formalized.** The environment is working,
 > the upstream library and source paper have been investigated, and several
 > supporting results are kernel-checked. The substantial free-boundary PDE proof
 > and its connection to the financial optimal-stopping problem remain outstanding.
 
-## Target theorem
+## Proposed extension and published checkpoints
+
+The active target is `b''(t)>=0` for `t>0`, where
+`b(t)=log(B(t/a)/K)`, `a=sigma^2/2`, and `0<=q<=r`, `r>0`, `sigma>0`, `K>0`.
+The proposed proof and its exact verification frontier are tracked in
+[`docs/comparison-proof.md`](docs/comparison-proof.md).
+
+**New checked progress:** explicit comparison profiles, their pricing equation
+and smooth fit, payoff domination on both sides of the comparison line,
+the identity `J'=c` at zeros, and the characteristic-root growth separation.
+The dividend solution contract specializes exactly to the old zero-dividend
+contract. These results do not yet prove the parabolic positive-interval
+invariant or boundary convexity in ANY of the parameter regimes.
+
+The published zero-dividend checkpoint is:
 
 X. Chen, J. Chadam, L. Jiang, and W. Zheng, **Convexity of the Exercise Boundary
 of the American Put Option on a Zero Dividend Asset**, *Mathematical Finance*
@@ -88,6 +105,9 @@ All files below are included in the project build.
 | [`Boundary/Coordinates.lean`](AmericanConvexity/Boundary/Coordinates.lean) | Normalized time, reconstruction of the stock-price boundary, expiry convention, first and second derivatives, and transfer of convexity/positive curvature |
 | [`Boundary/Limits.lean`](AmericanConvexity/Boundary/Limits.lean) | Pointwise limits of convex real functions on a fixed convex domain are convex |
 | [`Boundary/Problem.lean`](AmericanConvexity/Boundary/Problem.lean) | Classical normalized solution predicate; payoff/contact correspondence in stock units; uniqueness of the threshold for a fixed price; explicit open analytic goals |
+| [`Boundary/DividendProblem.lean`](AmericanConvexity/Boundary/DividendProblem.lean) | Dividend solution contract; exact zero-dividend equivalence; physical parameter normalization; explicit open curvature milestones |
+| [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
+| [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |
@@ -197,6 +217,12 @@ faithfully captures the intended financial question. There is no placeholder
 assertion claiming the main theorem is complete.
 
 ## Remaining work
+
+For the active straight-line proof, see the dependency list in
+[`docs/comparison-proof.md`](docs/comparison-proof.md). The zero-number
+initialization/propagation and the tangency contradiction remain unproved.
+The weaker parameter cases are tracked separately, with the distinction between
+specializing the new proof and independently verifying a published proof preserved.
 
 The detailed dependency map is in [`docs/ccjz-audit.md`](docs/ccjz-audit.md).
 Following the supplied paper requires:
