@@ -99,6 +99,12 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > surrounding any positive target maturity, with zero-dividend/Liu checkpoints.
 > Identifying the forcing and the represented solution with localized actual
 > theta remains open; this is not yet the actual Stefan flux identity.
+> Both one-sided layer derivatives are now checked. The density equation makes
+> `F-V/2` have zero exterior flux and interior flux equal to the density,
+> provided its forcing is twice the free term's derivative. A new bounded
+> Neumann uniqueness theorem works on either side of a continuous moving graph,
+> with no boundary velocity or decay assumption. Constructing the free source
+> term and checking/identifying the candidate PDE solution still remain.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent

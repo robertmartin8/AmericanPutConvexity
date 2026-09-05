@@ -120,6 +120,10 @@ import AmericanConvexity.Stopping.ActualBoundaryHeatLayer
 import AmericanConvexity.Stopping.HeatHistoryOperator
 import AmericanConvexity.Stopping.HeatDensityEquation
 import AmericanConvexity.Stopping.ActualHeatDensity
+import AmericanConvexity.Boundary.NeumannMaximum
+import AmericanConvexity.Boundary.NeumannHalfLine
+import AmericanConvexity.Boundary.NeumannExterior
+import AmericanConvexity.Stopping.HeatLayerMatching
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

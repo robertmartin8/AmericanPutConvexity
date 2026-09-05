@@ -2181,3 +2181,49 @@ actual theta's flux. The remaining representation argument must localize
 the actual equation, construct the appropriate causal forcing, and show
 that the resulting layer potential represents the actual solution. The
 Stefan velocity identity and boundary regularity bootstrap remain open.
+
+## Exterior uniqueness and exact two-sided flux matching
+
+`Boundary/NeumannMaximum.lean` proves the strict parabolic maximum principle
+with a strictly positive one-sided derivative into the moving spatial domain.
+The boundary curve is only continuous. At a boundary maximum, right difference
+quotients are nonpositive, contradicting that derivative; an interior maximum
+is excluded by the differential inequality, including at terminal time.
+
+`Boundary/NeumannHalfLine.lean` removes both the strictness and the finite
+right endpoint for the heat equation. A growing quadratic barrier has a
+strict heat inequality and strictly positive perturbed inward derivative.
+Boundedness supplies a sufficiently distant truncation point; no decay at
+infinity is assumed. Applying the maximum principle to both signs proves
+that a bounded solution with zero initial values and zero one-sided Neumann
+data is identically zero. `NeumannExterior.lean` checks the reflection to the
+left exterior `x<=b(t)`. Neither theorem requires a boundary velocity.
+
+`HeatLayerMatching.lean` checks reflection of the heat layer and obtains
+its genuine left-sided contact derivative. With
+`I=integral H(s,d(s))*f(t-s)`, the two derivatives of the layer V are
+
+`V_x(0-) = f(t)-I`, and `V_x(0+) = -f(t)-I`.
+
+Consequently the already solved density equation `f(t)=g(t)+I` makes
+`U=F-V/2` satisfy `U_x(0-)=0` and `U_x(0+)=f(t)`, when
+`F_x(0)=g(t)/2`. The sign and the factor 1/2 are both checked in Lean;
+the diffusivity of this heat kernel is 1/2. Causality supplies the density's
+elapsed-time cutoff on the first window. Eight guarded transitive axiom
+checks cover these results.
+
+This establishes the analytic boundary-condition mechanism for the candidate
+representation. It does **not** yet assert that the candidate solves the
+required PDE or equals actual theta. The remaining route is:
+
+1. Localize and gauge the actual theta equation, obtaining a bounded causal
+   source without presuming boundary derivatives.
+2. Construct its free heat source potential F and the continuous causal forcing
+   `g=2*F_x` on the local graph.
+3. Verify the layer candidate's PDE, boundedness and initial values. The proved
+   exterior Neumann uniqueness then supplies its zero exterior values.
+4. Identify the candidate with localized theta by Dirichlet uniqueness, obtain
+   the actual normal flux, and establish the Stefan identity and bootstrap.
+
+These are remaining proof obligations, not hypotheses silently added to the
+actual-boundary convexity theorem or claims of completed smoothness.

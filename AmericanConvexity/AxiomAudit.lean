@@ -89,6 +89,8 @@ import AmericanConvexity.Stopping.ActualThetaContactGrowth
 import AmericanConvexity.Stopping.ActualBoundaryHeatJump
 import AmericanConvexity.Stopping.ActualBoundaryHeatLayer
 import AmericanConvexity.Stopping.ActualHeatDensity
+import AmericanConvexity.Boundary.NeumannExterior
+import AmericanConvexity.Stopping.HeatLayerMatching
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -3174,3 +3176,43 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_exists_canonicalLogBoundary_heat_density
+
+/-- info: 'AmericanConvexity.Boundary.right_deriv_nonpos_at_max' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.right_deriv_nonpos_at_max
+
+/-- info: 'AmericanConvexity.Boundary.strict_neumann_parabolic_maximum' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.strict_neumann_parabolic_maximum
+
+/-- info: 'AmericanConvexity.Boundary.bounded_neumann_heat_maximum' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.bounded_neumann_heat_maximum
+
+/-- info: 'AmericanConvexity.Boundary.bounded_neumann_heat_zero' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.bounded_neumann_heat_zero
+
+/-- info: 'AmericanConvexity.Boundary.bounded_neumann_heat_zero_left' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.bounded_neumann_heat_zero_left
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatLayer_reflect' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatLayer_reflect
+
+/-- info: 'AmericanConvexity.Stopping.movingHeatLayer_hasDerivWithinAt_contact_left' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.movingHeatLayer_hasDerivWithinAt_contact_left
+
+/-- info: 'AmericanConvexity.Stopping.heatDensity_flux_matching' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatDensity_flux_matching
