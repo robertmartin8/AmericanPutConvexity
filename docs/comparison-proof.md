@@ -1042,3 +1042,25 @@ Liu specializations and 22 new transitive axiom guards cover this stage.
 This still does not assert a second boundary derivative. Differentiating the
 boundary integral with the improved modulus, and then establishing C2,
 remains unfinished.
+
+### Integrable derivative remainder on the actual graph
+
+`ThreeQuarterRemainder.lean` upgrades the graph's first-order remainder to
+order 7/4, uniformly over reference anchors between the endpoints.
+`ThreeQuarterRemainderDerivative.lean` substitutes the improved graph and
+density moduli into the already proved frozen-reference derivative formula.
+The resulting derivative bound is a constant times elapsed time to the
+power -3/4, rather than the nonintegrable inverse-time bound.
+
+`FrozenDerivativeIntegrability.lean` proves continuity of this derivative
+away from the source/observation diagonal and genuine integrability at the
+diagonal. `ActualFrozenDerivative.lean` supplies the graph premises and
+specializes to the intrinsic actual heat flux. At every positive observation
+time, a positive window and nonnegative M exist such that each shorter
+tail of length delta is integrable and its integral norm is at most
+`M*delta^(1/4)`. The slope and density reference remain fixed at that
+observation time when taking the derivative. Zero-dividend and Liu cases
+are explicit; fifteen new transitive axiom guards cover these steps.
+
+This does not yet justify exchanging differentiation and the full
+moving-endpoint history integral. That limit argument and C2 remain open.

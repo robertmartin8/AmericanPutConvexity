@@ -2809,3 +2809,35 @@ transitive axiom checks cover the analytic split, full-history estimate,
 density, intrinsic flux identification, transfer rules and actual velocity.
 No second derivative is assumed or concluded. C2 and the actual classical
 curvature contract remain unfinished.
+
+## Integrable frozen-history derivative at the actual boundary
+
+The actual C1,3/4 graph gives the checked remainder
+
+`|b(t)-b(s)-b'(r)*(t-s)| <= A*(t-s)*(t-s)^(3/4)`
+
+for every anchor r between s and t in a positive-time window.
+`ThreeQuarterRemainderDerivative.lean` uses the previous half-Holder
+derivative estimate with effective constants `A*u^(1/4)` and `D*u^(1/4)`.
+For a frozen reference slope v and density value c the result is
+
+`|d/dr [K_b(r,s)*f(s)-H(r-s,v*(r-s))*c] at r=t|`
+` <= (((8+5*L^2)*A*C+8*L*D)/sqrt(2*pi))*(t-s)^(-3/4)`.
+
+Here the graph and velocity errors relative to v have orders 7/4 and 3/4,
+the density error relative to c has order 3/4, and t-s<=1. Reference values
+and source time are held fixed. Neither b'' nor f' is assumed.
+
+`FrozenDerivativeIntegrability.lean` proves source continuity away from the
+diagonal using the explicit smooth kernel derivative. The integrable
+majorant gives both genuine integrability and a norm bound for the integral.
+`ActualFrozenDerivative.lean` supplies the actual graph conditions and, for
+the actual heat flux, chooses a local window T and M>=0 such that every
+0<delta<=T has an integrable frozen derivative with integral norm at most
+`M*delta^(1/4)`. Constants can depend on the fixed positive observation time.
+The same conclusion holds for any continuous positive-time density with a
+local three-quarter modulus there. Zero-dividend and Liu specializations
+are included, with fifteen new guarded transitive axiom checks.
+
+The full moving-endpoint differentiation and continuity of its derivative
+are not yet proved. Consequently this checkpoint does not conclude C2.

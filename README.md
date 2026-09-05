@@ -53,6 +53,13 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > the gauge and Stefan identity transfer it to pricing flux and velocity
 > (`ActualVelocityThreeQuarter.lean`). Thus the actual boundary is locally
 > C1,3/4, with explicit zero-dividend and Liu cases. C2 is still unfinished.
+> The improved derivative modulus now gives an order-7/4 graph remainder.
+> After freezing the reference slope and density value, the history's time
+> derivative has an integrable `u^(-3/4)` bound. On the actual graph and with
+> the actual heat flux, every shorter near-diagonal integral has norm at most
+> `M*delta^(1/4)` (`ActualFrozenDerivative.lean`). This is integrability of the
+> differentiated remainder, not yet differentiation of the full history with
+> its moving endpoint; the latter step and C2 remain unfinished.
 >
 > `canonicalLogBoundary_convexOn` proves `ConvexOn ℝ (Ioi 0)` for the boundary
 > constructed from the completed usual-filtration stopping value, assuming
