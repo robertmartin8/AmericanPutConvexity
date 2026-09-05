@@ -18,6 +18,10 @@ import AmericanConvexity.Boundary.ComparisonMaximum
 import AmericanConvexity.Boundary.ParabolicHopf
 import AmericanConvexity.Boundary.MovingLine
 import AmericanConvexity.Boundary.ComparisonHopf
+import AmericanConvexity.Boundary.TangentGeometry
+import AmericanConvexity.Boundary.TangentIntercept
+import AmericanConvexity.Boundary.Tangency
+import AmericanConvexity.Boundary.ComparisonAssembly
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration

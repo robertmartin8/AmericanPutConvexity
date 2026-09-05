@@ -12,6 +12,7 @@ import AmericanConvexity.Boundary.ComparisonTail
 import AmericanConvexity.Boundary.ComparisonCoefficients
 import AmericanConvexity.Boundary.ComparisonMaximum
 import AmericanConvexity.Boundary.ComparisonHopf
+import AmericanConvexity.Boundary.ComparisonAssembly
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -277,3 +278,43 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_no_positive_rectangle
+
+/-- info: 'AmericanConvexity.Boundary.eventually_lt_tangent_of_second_deriv_neg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.eventually_lt_tangent_of_second_deriv_neg
+
+/-- info: 'AmericanConvexity.Boundary.curvature_nonneg_of_negative_intercepts' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.curvature_nonneg_of_negative_intercepts
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.no_isolated_contact_of_positive_intervals' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.no_isolated_contact_of_positive_intervals
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.curvature_nonneg_of_tangent_intervals' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.curvature_nonneg_of_tangent_intervals
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.dividend_curvature_of_comparison_inputs' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.dividend_curvature_of_comparison_inputs
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_curvature_of_comparison_inputs' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_curvature_of_comparison_inputs
+
+/-- info: 'AmericanConvexity.Boundary.deriv2_stockBoundary_pos_of_nonneg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.deriv2_stockBoundary_pos_of_nonneg
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.stock_curvature_of_comparison_inputs' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.stock_curvature_of_comparison_inputs

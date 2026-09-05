@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE, tail/coefficient bounds, maximum principle and terminal rectangle contradiction checked; named specializations use the old CCJZ contract |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; full implication from three analytic inputs checked using the old CCJZ contract; those inputs remain unproved |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE/tail/coefficient/maximum/terminal-barrier results apply |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, corner/boundary signs, tail/coefficient bounds, maximum principle and terminal rectangle contradiction checked |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; physical condition checked; the full conditional assembly applies, but its three analytic inputs remain unproved |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; full implication from three analytic inputs, including strict stock-curvature consequence, checked; those inputs remain unproved |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -215,14 +215,50 @@ terminal time, and has positive bottom and right edges. The nonnegative left
 edge follows automatically from payoff domination. A named zero-dividend
 version uses the original CCJZ solution contract.
 
-**This does not yet exclude concave tangencies.** The missing geometric assembly
-must construct the positive rectangle from such a tangency, the earlier-positive
-point lemma, continuity, and the still-unproved single-interval invariant.
+`Tangency.lean` now constructs the rectangle. A future point of strict line
+inclusion gives a positive value, hence an earlier positive point at contact.
+In moving coordinates, continuity keeps a fixed positive right endpoint positive
+near the contact time. The explicit interval hypothesis fills in the bottom edge
+between that endpoint and the positive line value. This contradicts the checked
+terminal-rectangle lemma. The interval hypothesis is still unproved.
+
+### Step 1 and the conditional global curvature implication
+
+`TangentGeometry.lean` proves that negative second derivative gives strict
+inequality below the tangent in a punctured neighborhood. It uses local strict
+concavity and secant-slope inequalities, with positive-time smoothness only.
+
+`TangentIntercept.lean` verifies the derivatives of `d(t)=b(t)-t*b'(t)` and
+`b(t)/t`. Given the near-expiry ratio limit, the mean value theorem gives a
+negative intercept before every positive time. If curvature is nonnegative at
+negative-intercept tangents, then `d'<=0` wherever `d<0`. A proved scalar fencing
+argument applied to `exp(t)*d(t)` shows negative intercepts persist forward.
+Thus curvature control at negative-intercept tangents implies it everywhere.
+The near-expiry ratio limit itself has not been proved for the pricing solution.
+
+`ComparisonAssembly.lean` proves the exact remaining implication:
+
+```text
+DividendPutSolution k h p b
++ b'(t)<0 for every t>0
++ b(t)/t -> -infinity as t -> 0+
++ for every c>0,d<0,t>0, the positive continuation set of v is an interval
+  ==> b''(t)>=0 for every t>0.
+```
+
+The zero-dividend version uses the original CCJZ contract. The strict
+stock-curvature consequence is also checked: weak log curvature plus nonzero
+log speed makes `b''+(b')^2` strictly positive under the exact coordinate map.
+**This is a conditional assembly, not the completed theorem.** The three inputs
+are explicit theorem premises, not new fields of the pricing-solution contract,
+not axioms, and not asserted results. The interval input is precisely the main
+unresolved propagation claim, not something proved merely by this assembly.
 
 ## Analytic dependencies still to prove
 
-1. **Step 1.** Near-expiry `b(t)/t -> -infinity`, tangent-intercept selection,
-   and the geometric consequences of a strictly negative second derivative.
+1. **First-order and expiry inputs.** Prove negative boundary speed and
+   near-expiry `b(t)/t -> -infinity` from the pricing problem. Intercept selection
+   and the negative-curvature tangent geometry are now checked conditionally.
 2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
    simplicity at noncritical levels, the relative corner sign, and uniform
    tail control are checked. Prove derivative convergence near the simple
@@ -232,15 +268,15 @@ point lemma, continuity, and the still-unproved single-interval invariant.
    and truncation bounds. The weak maximum principle is now proved. Pass from
    positive levels to the positivity set. Do not assume the desired invariant
    as a field of the pricing-solution contract.
-4. **Step 5.** The earlier-positive-point argument and terminal-rectangle
-   smooth-fit contradiction are checked. Formalize the geometric assembly of
-   that rectangle from a concave tangency and the single-interval invariant.
+4. **Step 5.** The earlier-positive-point argument, terminal-rectangle
+   smooth-fit contradiction, and geometric assembly are checked. Discharge
+   their single-interval premise through the missing Step 4 propagation proof.
 5. **Financial applicability.** Establish the properties needed for the
    actual American value, including boundary regularity and monotonicity,
    rather than only proving a conditional theorem for an uninhabited contract.
-6. **Conclusions.** Prove the curvature claims and their parameter specializations;
-   transfer to stock units. Preserve the distinction between weak and strict
-   logarithmic curvature. Retain the separate CCJZ route and its stronger target.
+6. **Conclusions.** Discharge the three inputs of the checked global assembly
+   to prove the curvature claims and their parameter specializations. Stock
+   transfer is checked. Retain the separate CCJZ route and its stronger target.
 
 For the informal audit, [Lou's Theorem 1.2 and Lemma 2.1](https://arxiv.org/pdf/1809.00309)
 provide an appropriate moving-boundary zero-number statement: with nonzero
@@ -259,7 +295,8 @@ psi''+beta psi' = lambda exp(lambda*y)(lambda+beta) > 0.
 
 On a backward rectangle satisfying the stated edge hypotheses, the checked
 comparison gives a strictly positive right derivative at terminal contact,
-contradicting smooth fit. Constructing that rectangle remains an open obligation.
+contradicting smooth fit. The rectangle construction is now checked conditional
+on the single-interval property; that property remains an open obligation.
 
 ## Verification boundaries
 

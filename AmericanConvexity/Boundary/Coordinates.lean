@@ -80,6 +80,20 @@ theorem deriv2_stockBoundary_pos {E σ expiry T dds : ℝ} {s ds : ℝ → ℝ}
   rw [deriv2_stockBoundary E σ expiry hσ hT hs hds]
   positivity
 
+/-- Weak log curvature plus nonzero log-boundary speed gives STRICT stock
+curvature. This is the coordinate implication used by the proposed extension;
+it does not strengthen weak log curvature to strict log curvature. -/
+theorem deriv2_stockBoundary_pos_of_nonneg {E σ expiry T dds : ℝ} {s ds : ℝ → ℝ}
+    (hE : 0 < E) (hσ : 0 < σ) (hT : T < expiry)
+    (hs : ∀ t, 0 < t → HasDerivAt s (ds t) t)
+    (hds : HasDerivAt ds dds (normalizedTime σ expiry T)) (hdds : 0 ≤ dds)
+    (hspeed : ds (normalizedTime σ expiry T) ≠ 0) :
+    0 < deriv (deriv (stockBoundary E σ expiry s)) T := by
+  rw [deriv2_stockBoundary E σ expiry hσ hT hs hds]
+  have hsum : 0 < dds + ds (normalizedTime σ expiry T) ^ 2 :=
+    add_pos_of_nonneg_of_pos hdds (sq_pos_of_ne_zero hspeed)
+  positivity
+
 /-- Ordinary convexity is preserved by the coordinate change, including expiry
 if the candidate log-boundary is convex on the closed nonnegative half-line.
 This does not assume differentiability at expiry, where the paper has a singularity.

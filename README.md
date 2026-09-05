@@ -19,22 +19,18 @@ The active target is `b''(t)>=0` for `t>0`, where
 The proposed proof and its exact verification frontier are tracked in
 [`docs/comparison-proof.md`](docs/comparison-proof.md).
 
-**New checked progress:** explicit comparison profiles, their pricing equation
-and smooth fit, payoff domination on both sides of the comparison line,
-the initial single-interval shape and simple level roots, and the normalized
-difference PDE with no zero-order term. Its epsilon-shift preserves the PDE,
-with strict negative signs at the moving boundary and near the initial corner.
-The far-right difference tends uniformly to `-1` over all nonnegative times,
-and the normalized drift and its first space/time derivatives are bounded.
-The weak parabolic maximum principle is proved and applied to the actual
-comparison: nonpositive time slices stay nonpositive, and later positivity
-forces an earlier positive point as required in Step 5.
-An explicit terminal-time barrier now proves the positive right-derivative
-conclusion and the resulting smooth-fit contradiction on a suitable backward
-rectangle. Constructing that rectangle from a concave tangency remains open.
-The dividend solution contract specializes exactly to the old zero-dividend
-contract. These results do not yet prove the parabolic positive-interval
-invariant or boundary convexity in ANY of the parameter regimes.
+**New checked progress:** the complete implication from three explicit analytic
+inputs to weak logarithmic curvature and strict stock-boundary curvature is
+assembled. The inputs still to prove are negative boundary speed, the near-expiry
+ratio limit, and the positive-interval invariant. None was added to the pricing
+contract as a field, or asserted as a theorem.
+
+The checked chain includes the explicit comparison/PDE/smooth fit, payoff
+domination, initial shape, normalized PDE, tail/coefficient and boundary-sign
+bounds, moving-boundary maximum principle, terminal Hopf barrier, geometric
+rectangle construction, and negative-intercept reduction. The zero-dividend
+assembly uses the original CCJZ contract. **This conditional result does not
+yet prove boundary convexity in ANY parameter regime.**
 
 The published zero-dividend checkpoint is:
 
@@ -128,6 +124,10 @@ All files below are included in the project build.
 | [`Boundary/ParabolicHopf.lean`](AmericanConvexity/Boundary/ParabolicHopf.lean) | Terminal-time positive right derivative proved using an explicit exponential barrier and weak comparison |
 | [`Boundary/MovingLine.lean`](AmericanConvexity/Boundary/MovingLine.lean) | Exact spatial translations and time chain rule; moving-line coordinates subtract the line speed from the drift |
 | [`Boundary/ComparisonHopf.lean`](AmericanConvexity/Boundary/ComparisonHopf.lean) | Actual moving-coordinate PDE and one-sided contact fit; contradiction for a positive backward rectangle, including zero dividends |
+| [`Boundary/TangentGeometry.lean`](AmericanConvexity/Boundary/TangentGeometry.lean) | Negative curvature puts a smooth function strictly below its tangent nearby |
+| [`Boundary/TangentIntercept.lean`](AmericanConvexity/Boundary/TangentIntercept.lean) | Negative-intercept selection and global curvature reduction, conditional on the near-expiry ratio limit |
+| [`Boundary/Tangency.lean`](AmericanConvexity/Boundary/Tangency.lean) | Positive rectangle construction and exclusion of concave tangency, conditional on the interval invariant |
+| [`Boundary/ComparisonAssembly.lean`](AmericanConvexity/Boundary/ComparisonAssembly.lean) | Global log and strict stock curvature implications with all three unproved analytic inputs explicit; zero-dividend specialization |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |
