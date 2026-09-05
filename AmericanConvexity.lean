@@ -4,5 +4,8 @@ import AmericanConvexity.Basic
 import AmericanConvexity.Finance
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
+import AmericanConvexity.Boundary.Problem
+import AmericanConvexity.Boundary.Stefan
+import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.InitialProfileCheck
 import AmericanConvexity.AxiomAudit

@@ -87,6 +87,9 @@ All files below are included in the project build.
 | --- | --- |
 | [`Boundary/Coordinates.lean`](AmericanConvexity/Boundary/Coordinates.lean) | Normalized time, reconstruction of the stock-price boundary, expiry convention, first and second derivatives, and transfer of convexity/positive curvature |
 | [`Boundary/Limits.lean`](AmericanConvexity/Boundary/Limits.lean) | Pointwise limits of convex real functions on a fixed convex domain are convex |
+| [`Boundary/Problem.lean`](AmericanConvexity/Boundary/Problem.lean) | Classical normalized solution predicate; payoff/contact correspondence in stock units; uniqueness of the threshold for a fixed price; explicit open analytic goals |
+| [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
+| [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/InitialProfileCheck.lean`](AmericanConvexity/Boundary/InitialProfileCheck.lean) | A concrete initial-endpoint issue in the printed assumptions/conclusion of Lemma 2.1 |
 | [`Finance.lean`](AmericanConvexity/Finance.lean) | Applications of MathFin's American-put payoff bound, European-price bound, and Snell minimality; integration examples, not new finance results |
 | [`Basic.lean`](AmericanConvexity/Basic.lean) | Introductory interval-convexity, inequality, and tactic examples |
@@ -105,6 +108,19 @@ not identify an arbitrary input function with the financial exercise boundary.
 
 The limit lemma proves only **ordinary convexity**. Strict convexity or strictly
 positive second derivatives do not follow just by taking limits.
+
+The solution definitions now specify the PDE, payoff, continuation/exercise regions,
+regularity and one-sided smooth fit without assuming convexity. Lean verifies that
+their contact condition translates to the usual monetary put payoff and stock-price
+threshold. Existence and identification with the GBM stopping value remain open;
+the threshold geometry is part of the analytic solution predicate and still needs
+to be established for the financial value. [Statement review and current proof
+obligations](docs/solution-contract.md).
+
+The appendix profiles satisfy all of (2.3), including corner compatibility, and
+have positive initial slope. Their concentration limits, sign geometry and quotient
+estimate have not yet been proved; this is not a completed Lemma 3.4. The earlier
+flat-slope example also satisfies the new initial-data predicate.
 
 ### 4. Source-paper audit findings
 
@@ -180,12 +196,13 @@ assertion claiming the main theorem is complete.
 The detailed dependency map is in [`docs/ccjz-audit.md`](docs/ccjz-audit.md).
 Following the supplied paper requires:
 
-1. **Precise solution definitions and financial interpretation.** Specify the
-   normalized obstacle/Stefan problems, regularity, one-sided boundary traces,
-   initial and growth conditions. Separately identify the solution with the GBM
-   optimal-stopping value. Prove existence so the assumptions are not vacuous.
-2. **Approximation theory.** Construct the appendix's smooth initial profiles,
-   establish Stefan well-posedness, recover the obstacle prices, and prove
+1. **Existence and financial interpretation.** The normalized obstacle and
+   smooth-data Stefan predicates are implemented. Prove existence/uniqueness,
+   establish the additional corner regularity needed downstream, and identify the
+   solution with the GBM optimal-stopping value so the assumptions are not vacuous.
+2. **Approximation theory.** Complete the appendix profiles' concentration and
+   sign estimates beyond the checked (2.3) conditions, establish Stefan
+   well-posedness, recover the obstacle prices, and prove
    convergence of the exercise boundaries—not merely convergence of prices.
 3. **Curvature of approximating boundaries.** Develop the parabolic zero-number,
    maximum-principle and Hopf-lemma arguments supporting Lemmas 3.1–3.3, including
@@ -211,8 +228,9 @@ On this machine, open the project folder in Cursor:
 open -a Cursor .
 ```
 
-For the theorem work, start with `AmericanConvexity/Boundary/Coordinates.lean` and
-`docs/ccjz-audit.md`. `Finance.lean` demonstrates upstream usage; `Basic.lean`
+For the theorem work, start with `AmericanConvexity/Boundary/Problem.lean`,
+`AmericanConvexity/Boundary/Profiles.lean`, and `docs/solution-contract.md`.
+`docs/ccjz-audit.md` maps the paper's dependencies. `Finance.lean` demonstrates upstream usage; `Basic.lean`
 provides introductory tactic examples.
 
 From the project root:

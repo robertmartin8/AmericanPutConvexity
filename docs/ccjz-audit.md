@@ -181,12 +181,22 @@ curvature in the coordinate lemma remains to be proved for the PDE solution.
 There is no placeholder theorem asserting the main result, no `sorry`, and no
 new project axiom. `lake build` checks the code; selected results have axiom guards.
 
-## 6. Recommended next milestone
+## 6. Solution-definition milestone and next work
 
-Define the normalized obstacle/Stefan solution notions with explicit regularity
-and one-sided boundary traces, then agree a precise non-circular theorem statement.
-Keep the stochastic verification link and PDE existence/uniqueness visible as
-separate obligations. Prove the explicit appendix-profile lemmas while developing
-or locating the required parabolic theory. Never package convexity, derivative
-convergence, or the desired maximum-principle conclusion as an unexplained field
-and call the resulting projection a proof of Theorem 1.1.
+The normalized obstacle and smooth-data Stefan predicates are now implemented,
+with explicit regularity and one-sided boundary conditions. The contact/payoff
+correspondence in stock units is checked. The analytic curvature and existence
+goals are explicit proposition definitions, with no proof asserted. The appendix
+coefficient and profiles satisfy all of (2.3) and positive initial slope; the
+remaining parts of Lemma 3.4 are still open.
+
+See [solution definitions and statement review](solution-contract.md) for the exact
+scope, source checks and the proof-route decision. We may use a different valid
+proof of the known theorem; there is no requirement to reproduce CCJZ's argument.
+
+The next bounded construction task is to prove the profile concentration limits
+and sign/quotient estimates. Analytic existence/uniqueness, higher corner regularity
+and the stochastic verification link remain separate major obligations. Never
+package convexity, derivative convergence, or the desired maximum-principle
+conclusion as an unexplained field and call the resulting projection a proof of
+Theorem 1.1.

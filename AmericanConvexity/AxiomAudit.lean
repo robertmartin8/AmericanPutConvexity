@@ -2,6 +2,7 @@ import AmericanConvexity.Finance
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.InitialProfileCheck
+import AmericanConvexity.Boundary.Profiles
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -52,3 +53,33 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.initial_speed_eq_zero
+
+/-- info: 'AmericanConvexity.Boundary.NormalizedPutSolution.contact_in_stock_units' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.NormalizedPutSolution.contact_in_stock_units
+
+/-- info: 'AmericanConvexity.Boundary.NormalizedPutSolution.boundary_unique' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.NormalizedPutSolution.boundary_unique
+
+/-- info: 'AmericanConvexity.Boundary.NormalizedPutSolution.stock_curvature_of_log_curvature' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.NormalizedPutSolution.stock_curvature_of_log_curvature
+
+/-- info: 'AmericanConvexity.Boundary.appendixProfile_initialData' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.appendixProfile_initialData
+
+/-- info: 'AmericanConvexity.Boundary.appendixProfile_slope_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.appendixProfile_slope_pos
+
+/-- info: 'AmericanConvexity.Boundary.flatInitialProfile_initialData' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.flatInitialProfile_initialData

@@ -1,4 +1,4 @@
-import Mathlib
+import AmericanConvexity.Boundary.Stefan
 
 /-!
 # An endpoint check on CCJZ (2008), Lemma 2.1
@@ -75,5 +75,12 @@ theorem initial_speed_eq_zero {k speed : ℝ} (hk : 0 < k)
   have hd0 := (flatInitialProfile_conditions k).2.2.2.2.2.2
   rw [hd0] at hStefan
   nlinarith
+
+/-- The earlier endpoint example satisfies the new intrinsic initial-data
+predicate too. Thus that predicate has not silently acquired a positive-slope
+condition while being translated into Lean. -/
+theorem flatInitialProfile_initialData (k : ℝ) : StefanInitialData k flatInitialProfile := by
+  rcases flatInitialProfile_conditions k with ⟨hs, hi, hp, hz, hc, hd, _⟩
+  exact StefanInitialData.of_contDiff hs hi hp hz hd hc
 
 end AmericanConvexity.Boundary
