@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE checked; named initial-shape theorem uses the old CCJZ contract |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE, tail and coefficient bounds checked; named initial-shape and tail theorems use the old CCJZ contract |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE results apply |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, and corner/boundary signs checked |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE/tail/coefficient results apply |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, corner/boundary signs, tail and coefficient bounds checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -136,22 +136,45 @@ The actual moving-boundary value is strictly negative for `epsilon>0`,
 `c>=0`, `d<=0`. Continuity holds up to expiry; the shifted difference is
 strictly negative in a relative neighborhood of `(0,0)` in `t>=0`.
 
-Uniform far-field control, derivative convergence near the initial roots,
-and positive-time zero-count initialization/propagation remain open. An
-initial shape theorem does NOT assert that the evolution preserves the shape.
+### Step 4: right truncation and coefficient bounds
+
+`ComparisonTail.lean` proves an explicit estimate, using only `0<=p<=1`
+from the pricing solution and the exponential profiles:
+
+```text
+|v(x,t)+1| <= C [exp(-lambda*x) + exp(-delta*x)],
+C>0, lambda>0, delta>0, x>=0, t>=0, c>0, d<=0.
+```
+
+Consequently `v(x,t)->-1` uniformly over ALL nonnegative times, not just a
+fixed finite horizon. A single positive right endpoint makes `v<0` for every
+nonnegative time. No uniform price-decay assumption is introduced. At `h=0`,
+the second profile's growth exponent is zero because that profile is constant;
+the proof does not substitute an unrelated positive characteristic root.
+`zeroDividend_uniform_tail` states the result with the original CCJZ contract.
+
+`ComparisonCoefficients.lean` bounds `f'/f` between the two characteristic
+roots and bounds its derivative using the proved Riccati identity. It follows
+that the normalized drift `alpha+2f'/f`, its spatial derivative, and its time
+derivative have a common bound on the entire space-time plane. No derivative
+of the exercise boundary is used, and the estimates include zero dividends.
+
+Derivative convergence near the initial roots and positive-time zero-count
+initialization/propagation remain open. An initial shape theorem does NOT
+assert that the evolution preserves the shape.
 
 ## Analytic dependencies still to prove
 
 1. **Step 1.** Near-expiry `b(t)/t -> -infinity`, tangent-intercept selection,
    and the geometric consequences of a strictly negative second derivative.
 2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
-   simplicity at noncritical levels, and the relative corner sign are checked.
-   Prove uniform tail control, derivative convergence near the simple initial
-   zeros, and stability of the count at small positive times.
+   simplicity at noncritical levels, the relative corner sign, and uniform
+   tail control are checked. Prove derivative convergence near the simple
+   initial zeros and stability of the count at small positive times.
 3. **Step 4, propagation.** Prove the necessary parabolic maximum/zero-number
-   results, check the remaining coefficient/truncation hypotheses, and pass from
-   positive levels to the positivity set. Do not assume the desired invariant
-   as a field of the pricing-solution contract.
+   results and connect their exact hypotheses to the checked coefficient and
+   truncation bounds. Pass from positive levels to the positivity set. Do not
+   assume the desired invariant as a field of the pricing-solution contract.
 4. **Step 5.** Formalize the existence of a positive point at tangency and the
    backward-strip comparison barrier giving the smooth-fit contradiction.
 5. **Financial applicability.** Establish the properties needed for the

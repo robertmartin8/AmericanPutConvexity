@@ -8,6 +8,8 @@ import AmericanConvexity.Boundary.ProfileOperator
 import AmericanConvexity.Boundary.DividendProblem
 import AmericanConvexity.Boundary.Comparison
 import AmericanConvexity.Boundary.GaugeTransform
+import AmericanConvexity.Boundary.ComparisonTail
+import AmericanConvexity.Boundary.ComparisonCoefficients
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -193,3 +195,28 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.normalizedDifference_boundary_neg
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_tail_estimate' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_tail_estimate
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_uniform_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_uniform_tail
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.straightDifference_right_negative' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.straightDifference_right_negative
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_uniform_tail' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_uniform_tail
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.normalizedDrift_bounded' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.normalizedDrift_bounded
