@@ -22,7 +22,11 @@ derivative of the premium gradient at contact. The mixed derivative/flux at
 contact is not yet established. `ActualTheta.lean` and `ActualThetaPositivity.lean`
 now prove that `p_t` is a smooth, strictly positive pricing-equation solution
 in continuation, with continuous zero exercise data. Its contact spatial-flux
-limit remains open. `ActualBoundaryOneSided.lean` isolates the remaining first-order
+limit remains open. `ActualThetaContactGrowth.lean` now bounds the contact
+quotient `theta(x,t)/(x-b(t))` above and strictly away from zero on a right
+neighborhood. It does not prove convergence. It also proves that theta has
+no two-sided spatial derivative across contact, so the flux must be formulated
+as a right-sided trace. `ActualBoundaryOneSided.lean` isolates the remaining first-order
 boundary issue as equality of its finite, negative one-sided speeds.
 Full positive-time boundary smoothness and the independent published strict-log
 proof remain open. The early statement review below records the original CCJZ

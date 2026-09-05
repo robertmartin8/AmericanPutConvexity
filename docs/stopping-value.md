@@ -2025,3 +2025,33 @@ The theta PDE and positivity have zero-dividend and Liu-range checkpoints.
 Twenty-two guarded transitive axiom checks cover this addition. The existence
 and continuity of the contact limit of `theta_x` are still **unproved**; neither
 interior smoothness nor the zero Dirichlet trace alone supplies that limit.
+
+## Quantitative contact growth of theta
+
+`Boundary/QuantitativeHopf.lean` proves a terminal linear lower bound without
+assuming a boundary derivative exists. It retains the explicit exponential
+barrier and weak comparison from the Hopf argument but stops before passing
+to a derivative. Qualitative positivity on the compact bottom and right
+edges supplies a positive barrier scale.
+
+`ActualThetaContactGrowth.lean` uses a local Lipschitz constant `L` for the
+actual log boundary and the line through contact with speed `L+1`. At earlier
+nearby times the line is strictly above the boundary. Transforming the
+normalized theta into line coordinates produces a nonnegative solution on a
+fixed backward rectangle; its bottom and right edges are strictly positive.
+The shifted drift remains bounded. Quantitative comparison therefore gives
+`m*y<=theta(b(t)+y,t)` on `0<=y<=1` for a suitable `m>0`.
+
+The previously proved upper bound then yields a shorter right neighborhood
+with `0<m<=theta(x,t)/(x-b(t))<=M`. The constants are at a fixed reference
+maturity; no uniform lower bound over nearby maturities is asserted here.
+Zero-dividend and Liu-range checkpoints and seven guarded transitive audits
+cover this stage.
+
+The quotient's convergence and the existence/continuity of the normal flux
+are still **unproved**. A separate checked conclusion excludes two-sided
+spatial differentiability of theta at contact: exercise-side constancy would
+force derivative zero, contradicting the right slope lower bound. Thus any
+subsequent Stefan flux must use a right-sided derivative or continuation-side
+limit, not Lean's ordinary totalized derivative at the contact point. The
+price itself remains jointly C1, as previously proved.

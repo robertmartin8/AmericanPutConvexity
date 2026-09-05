@@ -271,6 +271,30 @@ Existence and continuity of `theta_x` at contact remain open. Thus this is the
 positive Dirichlet input for the boundary-flux argument, not a proof of that
 flux or of boundary smoothness.
 
+### Quantitative theta growth without a flux-existence assumption
+
+`QuantitativeHopf.lean` extracts the linear lower bound from the existing
+exponential barrier argument before the step that uses a terminal derivative.
+Positive compact bottom/right data supplies a barrier scale; comparison gives
+`m*x<=U(x,T)` for some `m>0`, with no derivative at `(0,T)` assumed.
+
+`ActualThetaContactGrowth.lean` chooses a decreasing line through `(b(t),t)`
+with speed larger than the proved local Lipschitz constant of `b`. Before
+terminal contact this line lies strictly in continuation. In moving-line
+coordinates the normalized theta is a nonnegative PDE solution, positive on
+the bottom and right edges, with bounded drift. The quantitative Hopf estimate
+gives linear lower growth at the terminal slice. The positive normalizing
+profile is at least one, so the bound transfers back to actual theta.
+
+Combining this with the earlier linear upper estimate proves
+`0<m<=theta(x,t)/(x-b(t))<=M` on a right neighborhood of contact. There are
+explicit zero-dividend and Liu-range versions and seven new transitive axiom
+checks. The quotient's convergence is **not** proved. In fact theta's
+two-sided spatial derivative at contact is proved not to exist: theta is zero
+on the exercise side but has strictly positive right slope lower bounds.
+This does not contradict C1 price regularity, and confirms that the missing
+flux must be specified as a continuation-side derivative/limit.
+
 ### Exercise-boundary calculus and obstacle comparison
 
 `ExerciseGeometry.lean` proves ordinary spatial differentiability at contact

@@ -84,6 +84,8 @@ import AmericanConvexity.Stopping.ActualCurvatureExtension
 import AmericanConvexity.Stopping.PlanePricingDerivative
 import AmericanConvexity.Stopping.ActualTheta
 import AmericanConvexity.Stopping.ActualThetaPositivity
+import AmericanConvexity.Boundary.QuantitativeHopf
+import AmericanConvexity.Stopping.ActualThetaContactGrowth
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -2939,3 +2941,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.liuRange_canonicalTheta_pos
+
+/-- info: 'AmericanConvexity.Boundary.terminal_linear_lower_of_barrier' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.terminal_linear_lower_of_barrier
+
+/-- info: 'AmericanConvexity.Boundary.terminal_linear_lower' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.terminal_linear_lower
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_linear_lower_at_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_linear_lower_at_boundary
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_contact_slope_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_contact_slope_bounds
+
+/-- info: 'AmericanConvexity.Stopping.canonicalTheta_not_differentiableAt_contact' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.canonicalTheta_not_differentiableAt_contact
+
+/-- info: 'AmericanConvexity.Stopping.zeroDividend_canonicalTheta_contact_slope_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.zeroDividend_canonicalTheta_contact_slope_bounds
+
+/-- info: 'AmericanConvexity.Stopping.liuRange_canonicalTheta_contact_slope_bounds' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.liuRange_canonicalTheta_contact_slope_bounds

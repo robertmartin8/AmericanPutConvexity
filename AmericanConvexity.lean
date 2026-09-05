@@ -110,6 +110,8 @@ import AmericanConvexity.Stopping.ActualCurvatureExtension
 import AmericanConvexity.Stopping.PlanePricingDerivative
 import AmericanConvexity.Stopping.ActualTheta
 import AmericanConvexity.Stopping.ActualThetaPositivity
+import AmericanConvexity.Boundary.QuantitativeHopf
+import AmericanConvexity.Stopping.ActualThetaContactGrowth
 import AmericanConvexity.Boundary.Coordinates
 import AmericanConvexity.Boundary.Limits
 import AmericanConvexity.Boundary.Problem

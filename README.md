@@ -77,6 +77,10 @@ proof modules currently use Mathlib and local results, not MathFin pricing resul
 > continuation by a mean-value source and explicit parabolic propagation.
 > This supplies the positive Dirichlet solution for the remaining contact-flux
 > argument; the existence/continuity of `theta_x` at contact is not yet proved.
+> A derivative-free quantitative Hopf barrier now gives two-sided positive
+> bounds for `theta(x,t)/(x-b(t))` just to the right of exercise. Convergence
+> of that ratio is not yet proved. Theta has no two-sided spatial derivative
+> across contact; the remaining flux target is explicitly continuation-sided.
 
 The new actual-value proof uses the same straight-line comparator, interval
 invariant, and terminal Hopf argument. It replaces the second-derivative tangent
