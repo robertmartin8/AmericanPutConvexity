@@ -64,6 +64,32 @@ structure DividendPutSolution (k h : ℝ) (p : ℝ → ℝ → ℝ) (b : ℝ →
       (nhdsWithin (b t) (Set.Ioi (b t))) (nhds (-Real.exp (b t)))
   decay : ∀ t, 0 ≤ t → Tendsto (fun x => p x t) atTop (nhds 0)
 
+namespace DividendPutSolution
+
+variable {k h : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
+
+theorem boundary_nonpos (hp : DividendPutSolution k h p b) {t : ℝ} (ht : 0 < t) :
+    b t ≤ 0 := by
+  have hv := (putPayoff_nonneg (b t)).trans (hp.dominates (b t) t ht.le)
+  rw [hp.exercise (b t) t ht le_rfl] at hv
+  exact Real.exp_le_one_iff.mp (by linarith)
+
+/-- Interior smoothness at a space-time point follows from the moving-domain
+contract and continuity of the boundary; no smoothness across it is assumed. -/
+theorem price_contDiffAt (hp : DividendPutSolution k h p b)
+    {x t : ℝ} (ht : 0 < t) (hx : b t < x) :
+    ContDiffAt ℝ ∞ (fun z : ℝ × ℝ => p z.1 z.2) (x, t) := by
+  have hb : ContinuousAt b t := hp.boundary_continuous.continuousAt (Ici_mem_nhds ht)
+  have hbt : ContinuousAt (fun z : ℝ × ℝ => b z.2) (x, t) := hb.comp continuousAt_snd
+  have ht' : ∀ᶠ z : ℝ × ℝ in nhds (x, t), 0 < z.2 :=
+    continuousAt_const.eventually_lt continuousAt_snd ht
+  have hx' : ∀ᶠ z : ℝ × ℝ in nhds (x, t), b z.2 < z.1 :=
+    hbt.eventually_lt continuousAt_fst hx
+  apply hp.price_smooth.contDiffAt
+  exact ht'.and hx'
+
+end DividendPutSolution
+
 /-- No changed model is hidden in the zero-dividend specialization. -/
 theorem dividendPutSolution_zero_iff {k : ℝ} {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ} :
     DividendPutSolution k 0 p b ↔ NormalizedPutSolution k p b := by

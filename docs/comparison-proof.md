@@ -24,10 +24,10 @@ will not be described as an independent verification of a published proof.
 
 | Milestone | Required conclusion | Current status |
 | --- | --- | --- |
-| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; explicit comparison construction and its payoff bound checked |
+| New proof at zero dividends | `b'' >= 0`, with `h=0` | Open; comparison, initial shape, normalized PDE checked; named initial-shape theorem uses the old CCJZ contract |
 | Published CCJZ theorem | `b'' > 0` at `h=0`, hence stock-boundary positive curvature | Open; previous initial-data construction retained and checked |
-| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; comparison payoff bound specialized and physical condition checked |
-| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; exact comparison construction and payoff domination checked |
+| Liu parameter range | New proof's `b'' >= 0` when `h+1 <= k` | Open; payoff bound specialized, physical condition checked; general initial-shape/PDE results apply |
+| Full proposed extension | `b'' >= 0` for `0 <= h <= k`, `k>0` | Open; comparison, payoff domination, initial shape, normalized PDE, and corner/boundary signs checked |
 
 CCJZ Theorem 1.1 explicitly proves positive logarithmic curvature at zero
 dividends. The proposed weak logarithmic conclusion is not new at `q=0`.
@@ -98,7 +98,7 @@ derivative monotonicity and has no integral-representation or PDE assumptions.
 `d<=0`, `c>=0`, `0<=h<=k`. Named zero-dividend and Liu-range specializations
 are also checked. These are comparison lemmas, not curvature theorems.
 
-### Step 4: elementary identities (not propagation)
+### Step 4: initial shape and normalized PDE (not propagation)
 
 The Riccati derivative of `F'/F`, the derivative of `R=exp(-z)f/g`, and
 `J(0)=-1` are checked. `slope_gap_crosses_up` proves the actual derivative
@@ -106,18 +106,50 @@ identity `J'(z)=c` whenever `J(z)=0`. `positive_root_gap` proves
 `lambda>mu+1` from the two characteristic equations when `c>0`; it also
 allows `mu=0` for the constant zero-dividend profile.
 
-The single-hump conclusion, far-field convergence, normalized difference PDE,
-and its positive-time zero-count initialization are NOT yet formalized.
+`SingleCrossing.lean` proves that a differentiable function with a positive
+derivative at each zero stays nonnegative once nonnegative, and has at most
+one zero. This uses Mathlib's scalar fencing theorem, not a parabolic principle.
+With `R'=R*J` and `R>0`, `R(y)<=max(R(x),R(z))` whenever `x<=y<=z`.
+Thus every strict sublevel set of `R` is an interval or empty. A stationary
+point is a global minimum; Rolle's theorem excludes three points at one level.
+
+`ComparisonShape.lean` applies these results to the explicit initial profile.
+It checks equation (15), proves that each level set is covered by two points
+(so infinite zero sets are excluded), and proves that levels below a higher
+initial value have nonzero derivatives at all their roots. This supplies the
+simple-root condition at noncritical levels without assuming a unique peak.
+
+`normalizedDifference_initial_superlevel` identifies the shape theorem with
+the actual pricing-solution difference, restricted to `x>0`, where the initial
+payoff is zero. No zero-payoff assertion is made for negative log prices.
+The explicit-profile shape theorem needs `k>0`, `h>=0`, `c>0`; `h<=k` and
+negative line intercept are needed elsewhere, not for this algebraic shape.
+
+`GaugeTransform.lean` proves equation (12) by differentiating the actual
+quotient, with only LOCAL smoothness assumptions. The application derives
+those assumptions from `DividendPutSolution`: continuity of the boundary
+makes a continuation point interior, and the price's local regularity suffices.
+There is no extra assumption that the normalized difference solves a PDE.
+
+The epsilon-shift is checked to satisfy the same no-zero-order equation.
+The actual moving-boundary value is strictly negative for `epsilon>0`,
+`c>=0`, `d<=0`. Continuity holds up to expiry; the shifted difference is
+strictly negative in a relative neighborhood of `(0,0)` in `t>=0`.
+
+Uniform far-field control, derivative convergence near the initial roots,
+and positive-time zero-count initialization/propagation remain open. An
+initial shape theorem does NOT assert that the evolution preserves the shape.
 
 ## Analytic dependencies still to prove
 
 1. **Step 1.** Near-expiry `b(t)/t -> -infinity`, tangent-intercept selection,
    and the geometric consequences of a strictly negative second derivative.
-2. **Step 4, initialization.** Derive the initial single-positive-interval shape,
-   handle noncritical positive levels, prove uniform corner/tail signs and
-   derivative convergence near the simple initial zeros.
+2. **Step 4, initialization.** Initial shape, the at-most-two-root bound,
+   simplicity at noncritical levels, and the relative corner sign are checked.
+   Prove uniform tail control, derivative convergence near the simple initial
+   zeros, and stability of the count at small positive times.
 3. **Step 4, propagation.** Prove the necessary parabolic maximum/zero-number
-   results, check their hypotheses for the normalized difference, and pass from
+   results, check the remaining coefficient/truncation hypotheses, and pass from
    positive levels to the positivity set. Do not assume the desired invariant
    as a field of the pricing-solution contract.
 4. **Step 5.** Formalize the existence of a positive point at tangency and the

@@ -21,7 +21,9 @@ The proposed proof and its exact verification frontier are tracked in
 
 **New checked progress:** explicit comparison profiles, their pricing equation
 and smooth fit, payoff domination on both sides of the comparison line,
-the identity `J'=c` at zeros, and the characteristic-root growth separation.
+the initial single-interval shape and simple level roots, and the normalized
+difference PDE with no zero-order term. Its epsilon-shift preserves the PDE,
+with strict negative signs at the moving boundary and near the initial corner.
 The dividend solution contract specializes exactly to the old zero-dividend
 contract. These results do not yet prove the parabolic positive-interval
 invariant or boundary convexity in ANY of the parameter regimes.
@@ -108,6 +110,9 @@ All files below are included in the project build.
 | [`Boundary/DividendProblem.lean`](AmericanConvexity/Boundary/DividendProblem.lean) | Dividend solution contract; exact zero-dividend equivalence; physical parameter normalization; explicit open curvature milestones |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
+| [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |
+| [`Boundary/ComparisonShape.lean`](AmericanConvexity/Boundary/ComparisonShape.lean) | Initial single-interval geometry, two-point level covers, simple noncritical roots, and identification with the initial pricing difference |
+| [`Boundary/GaugeTransform.lean`](AmericanConvexity/Boundary/GaugeTransform.lean) | Local normalized-difference PDE, epsilon-shift invariance, and negative moving-boundary/initial-corner data |
 | [`Boundary/Stefan.lean`](AmericanConvexity/Boundary/Stefan.lean) | Smooth-data Stefan interface and intrinsic one-sided initial derivatives; no existence theorem yet |
 | [`Boundary/Profiles.lean`](AmericanConvexity/Boundary/Profiles.lean) | Explicit appendix coefficient and smooth profiles satisfying (2.3), with positive initial slope |
 | [`Boundary/ProfileConcentration.lean`](AmericanConvexity/Boundary/ProfileConcentration.lean) | Exact tail integrals and both concentration limits (2.6) |

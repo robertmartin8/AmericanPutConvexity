@@ -7,6 +7,7 @@ import AmericanConvexity.Boundary.ProfileConcentration
 import AmericanConvexity.Boundary.ProfileOperator
 import AmericanConvexity.Boundary.DividendProblem
 import AmericanConvexity.Boundary.Comparison
+import AmericanConvexity.Boundary.GaugeTransform
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -142,3 +143,53 @@ American-put boundary-convexity theorem.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Boundary.Comparison.positive_root_gap
+
+/-- info: 'AmericanConvexity.Boundary.upward_zero_unique' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.upward_zero_unique
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.initialDifference_level_subset_pair' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.initialDifference_level_subset_pair
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.initialDifference_simple_level' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.initialDifference_simple_level
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.normalizedDifference_initial_superlevel' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.normalizedDifference_initial_superlevel
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.zeroDividend_initial_superlevel' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.zeroDividend_initial_superlevel
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.gauge_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.gauge_equation
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.normalizedDifference_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.normalizedDifference_equation
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.normalizedDifference_shifted_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.normalizedDifference_shifted_equation
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.normalizedDifference_negative_near_corner' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.normalizedDifference_negative_near_corner
+
+/-- info: 'AmericanConvexity.Boundary.Comparison.normalizedDifference_boundary_neg' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Boundary.Comparison.normalizedDifference_boundary_neg

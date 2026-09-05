@@ -8,6 +8,9 @@ import AmericanConvexity.Boundary.Problem
 import AmericanConvexity.Boundary.DividendProblem
 import AmericanConvexity.Boundary.ODEComparison
 import AmericanConvexity.Boundary.Comparison
+import AmericanConvexity.Boundary.SingleCrossing
+import AmericanConvexity.Boundary.ComparisonShape
+import AmericanConvexity.Boundary.GaugeTransform
 import AmericanConvexity.Boundary.Stefan
 import AmericanConvexity.Boundary.Profiles
 import AmericanConvexity.Boundary.ProfileConcentration
