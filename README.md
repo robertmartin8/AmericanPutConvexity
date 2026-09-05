@@ -120,8 +120,18 @@ two-way conversion to capped physical-time grid rules. `GridBellman.lean` proves
 grid-value identification and attainment, and constructs optimal grid rules whose
 expected payoffs converge to the actual American price, including the normalized
 usual-filtration price. Convergence of the stopping times themselves and
-continuous-time first-contact optimality are not asserted. Markov dynamic
-programming and PDE regularity remain unproved.
+continuous-time first-contact optimality are not asserted.
+
+`BrownianBellman.lean` identifies these conditional Bellman values with an
+explicit deterministic Gaussian recursion in log spot, including the capped last
+grid interval. `BrownianUsualTransition.lean` proves the same transition law on
+the completed usual filtration by lifting a bounded continuous terminal-value
+martingale. `UsualGridMarkov.lean` identifies both filtrations' grid values with
+this one recursion, whose prices converge to `canonicalPrice`. Consequently,
+raw and usual American values agree at positive spot for `K>=0` and `r>=0`,
+without a classical-solution premise or any restriction on dividend or volatility.
+Continuous-time dynamic programming, first-contact optimality and PDE regularity
+remain unproved.
 
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
@@ -297,6 +307,9 @@ All files below are included in the project build.
 | [`Stopping/DiscreteStoppingValue.lean`](AmericanConvexity/Stopping/DiscreteStoppingValue.lean) | Bellman identification with the full bounded discrete stopping supremum and an explicit attaining rule |
 | [`Stopping/GridReindexing.lean`](AmericanConvexity/Stopping/GridReindexing.lean) | Two-way payoff-preserving conversion between physical-time grid rules and bounded discrete rules in the capped sampled filtration |
 | [`Stopping/GridBellman.lean`](AmericanConvexity/Stopping/GridBellman.lean) | Actual grid-value Bellman identification and attainment; optimal-grid expected payoffs converge to the American value |
+| [`Stopping/BrownianBellman.lean`](AmericanConvexity/Stopping/BrownianBellman.lean) | Continuous bounded Gaussian Markov recursion, raw-grid price identification, and convergence to the raw American value |
+| [`Stopping/BrownianUsualTransition.lean`](AmericanConvexity/Stopping/BrownianUsualTransition.lean) | Bounded continuous terminal-value martingale and exact Gaussian log-state transition on the completed usual filtration |
+| [`Stopping/UsualGridMarkov.lean`](AmericanConvexity/Stopping/UsualGridMarkov.lean) | Usual-grid Gaussian price identification, convergence to canonical price, and raw/usual value equality without a classical solution |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

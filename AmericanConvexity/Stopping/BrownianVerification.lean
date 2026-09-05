@@ -14,10 +14,6 @@ namespace AmericanConvexity.Stopping
 open MeasureTheory ProbabilityTheory Boundary
 open scoped NNReal
 
-theorem brownian_adapted : Adapted brownianFiltration brownian :=
-  (Filtration.stronglyAdapted_natural
-    (fun t => (measurable_brownian t).stronglyMeasurable)).adapted
-
 noncomputable def brownianClassicalContactRule {K r q σ S : ℝ}
     {p : ℝ → ℝ → ℝ} {b : ℝ → ℝ}
     (hp : DividendPutSolution (normalizedRate r σ) (normalizedRate q σ) p b)

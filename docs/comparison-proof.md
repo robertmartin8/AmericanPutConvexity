@@ -532,8 +532,11 @@ and strict stock curvature together. It does not assert strict log curvature.
    obligations. General finite discrete-time Bellman identification and optimal
    first contact are now proved. Physical-time grid reindexing, Bellman
    identification and attainment are also proved, with optimal-grid expected
-   payoffs converging to the American price. Markov dynamic programming and
-   continuous-time first-contact optimality remain open.
+   payoffs converging to the American price. Both filtrations' conditional
+   grid Bellman values are now identified with the same deterministic Gaussian
+   log-spot recursion; its convergence proves raw/usual value equality without
+   a classical solution. Continuous-time dynamic programming and first-contact
+   optimality remain open.
 2. **Independent published proof and strictness.** Retain the separate CCJZ
    route and its stronger strict log-curvature target. The three checked weak
    claims do not prove that strict result or independently verify its proof.

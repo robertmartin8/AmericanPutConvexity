@@ -204,3 +204,15 @@ American value, including on the completed usual Brownian model. The final
 identification, attainment and convergence proofs have guarded audits allowing
 only the three standard axioms; they do not assume a PDE solution or continuous
 optimal-stopping theorem.
+
+`BrownianBellman.lean` identifies conditional Bellman values with deterministic
+Gaussian integration using the previously checked raw increment transition.
+`BrownianUsualTransition.lean` lifts the explicit bounded continuous terminal-value
+martingale through completion, null augmentation and right continuation, applying
+the supermartingale extension to both signs. This proves the corresponding
+usual-filtration Gaussian transition. `UsualGridMarkov.lean` identifies the raw
+and usual grid prices with the same recursion, proves convergence to the
+canonical price, and removes the classical-solution premise from positive-spot
+raw/usual American-value equality. All final new chains have guarded audits
+allowing only the three standard axioms. No continuous-time dynamic-programming
+or PDE-existence theorem is imported or assumed by this development.

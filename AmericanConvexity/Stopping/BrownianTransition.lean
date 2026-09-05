@@ -8,6 +8,9 @@ namespace AmericanConvexity.Stopping
 open Set Filter MeasureTheory ProbabilityTheory
 open scoped NNReal Topology
 
+noncomputable def brownianLogState (β σ x : ℝ) (t : ℝ≥0) (ω : ℝ≥0 → ℝ) : ℝ :=
+  x+β*(t : ℝ)+σ*brownian t ω
+
 theorem brownian_scaled_increment_heatFlow {f : ℝ → ℝ} (hf : Continuous f)
     {i j : ℝ≥0} (hij : i ≤ j) (σ x : ℝ) :
     (∫ ω, f (x+σ*(brownian j ω-brownian i ω)) ∂gaussianLimit) =
@@ -42,5 +45,23 @@ theorem brownian_condExp_transition {f : ℝ → ℝ} (hf : Continuous f) {C : �
   have hmap := integral_map (μ := gaussianLimit) hY.aemeasurable
     (hf.comp (show Continuous (fun y : ℝ => X ω+σ*y) by fun_prop)).aestronglyMeasurable
   exact hmap.trans (brownian_scaled_increment_heatFlow hf hij σ (X ω))
+
+theorem brownianLogState_condExp_transition {f : ℝ → ℝ} (hf : Continuous f) {C : ℝ}
+    (hb : ∀ x, ‖f x‖ ≤ C) {i j : ℝ≥0} (hij : i ≤ j) (β σ x : ℝ) :
+    gaussianLimit[fun ω => f (brownianLogState β σ x j ω) | brownianFiltration i] =ᵐ[gaussianLimit]
+      fun ω => brownianHeatFlow f (σ^2*((j : ℝ)-(i : ℝ))).toNNReal
+        (brownianLogState β σ x i ω+β*((j : ℝ)-(i : ℝ))) := by
+  let X : (ℝ≥0 → ℝ) → ℝ := fun ω => brownianLogState β σ x i ω+β*((j : ℝ)-(i : ℝ))
+  have hX : Measurable[brownianFiltration i] X :=
+    (measurable_const.add (measurable_const.mul (brownian_adapted i))).add measurable_const
+  have he := brownian_condExp_transition hf hb hij hX σ
+  have heq : (fun ω => f (X ω+σ*(brownian j ω-brownian i ω))) =
+      fun ω => f (brownianLogState β σ x j ω) := by
+    funext ω
+    congr 1
+    dsimp [X,brownianLogState]
+    ring
+  rw [heq] at he
+  exact he
 
 end AmericanConvexity.Stopping

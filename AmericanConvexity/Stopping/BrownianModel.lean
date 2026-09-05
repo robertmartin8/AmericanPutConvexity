@@ -22,6 +22,10 @@ noncomputable def brownianFiltration : Filtration ℝ≥0 (inferInstance : Measu
 theorem brownian_filtered : IsFilteredPreBrownian brownian brownianFiltration gaussianLimit :=
   isBrownianReal_brownian.toIsPreBrownianReal.isFilteredPreBrownian measurable_brownian
 
+theorem brownian_adapted : Adapted brownianFiltration brownian :=
+  (Filtration.stronglyAdapted_natural
+    (fun t => (measurable_brownian t).stronglyMeasurable)).adapted
+
 noncomputable def brownianAmericanPut (K r q σ S : ℝ) (T : ℝ≥0) : ℝ :=
   americanPutValue gaussianLimit brownianFiltration brownian K r q σ S T
 

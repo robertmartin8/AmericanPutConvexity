@@ -49,10 +49,11 @@ and `brownian_filtered` proves adaptation and independence of future increments
 from that filtration. No bare Brownian-existence premise is left in the
 definitions `brownianAmericanPut` and `brownianExerciseBoundary`.
 
-This is the raw natural filtration. `UsualBrownianValue.lean` now proves equality
+This is the raw natural filtration. `UsualBrownianValue.lean` proves equality
 with the completed/right-continuous usual augmentation from the classical
-contract. No representation invariance across arbitrary Brownian probability
-spaces is claimed.
+contract. The later `UsualGridMarkov.lean` removes that premise at positive spot:
+both values are limits of the same Gaussian grid-price recursion. No representation
+invariance across arbitrary Brownian probability spaces is claimed.
 
 The financial modules reuse MathFin's GBM value **definition** and, in the local
 stochastic bridge, its general Ito/local-martingale theorem. They do not import
@@ -411,6 +412,10 @@ contract. The usual contact threshold is identified with the classical boundary,
 and `brownianUsual_boundary_conclusions` proves weak log curvature and strict
 stock curvature for it. No extra filtration or stochastic premise remains.
 
+The Gaussian grid argument below now also proves raw/usual value equality
+without that classical contract. Boundary curvature still requires the contract;
+value equality alone does not supply boundary smoothness or a PDE solution.
+
 ## Price identification suffices for boundary identification
 
 `DividendContact.lean` proves, for a classical dividend solution,
@@ -593,8 +598,8 @@ rules into a supremum and proves both `discreteStoppingValue_eq_bellman` and
 
 This general finite discrete-time stopping-supremum theorem is not a binomial
 specialization. Its physical-grid application is now proved by the explicit
-reindexing below. The Brownian Markov recursion and passage to continuous-time
-first-contact optimality remain open.
+reindexing below. The finite-grid Brownian Markov recursion is also proved below;
+passage to continuous-time first-contact optimality remains open.
 
 ## Attained Bellman optimality on physical exercise grids
 
@@ -619,6 +624,45 @@ instantiate the construction on the completed usual Brownian space and give
 convergence to the actual `canonicalPrice`, without a classical-solution premise.
 This is convergence of expected payoffs, not convergence of stopping times,
 and does not prove that the continuous-time first-contact rule is optimal.
-Identification of the conditional Bellman recursion with a Brownian Markov
-pricing recursion, continuous-time dynamic programming, and PDE regularity
-remain the next obligations.
+Identification with a Brownian Markov pricing recursion is now proved below.
+Continuous-time dynamic programming and PDE regularity remain open.
+
+## Gaussian Markov grid prices and unconditional filtration comparison
+
+`BrownianBellman.lean` defines deterministic functions by backward Gaussian
+integration. Writing `s_i=min(i*delta,T)` and `beta=r-q-sigma^2/2`, the recurrence
+is
+
+```text
+M_0(i,x) = exp(-r*s_i) * max(K-exp(x),0)
+M_(n+1)(i,x) = max(M_0(i,x),
+  E[M_n(i+1, x + beta*(s_(i+1)-s_i) + sigma*W_(s_(i+1)-s_i))])
+```
+
+Discounting is included in the absolute-time reward `M_0`; it must not be
+applied a second time to the expectation. The actual definition implements
+the Gaussian expectation by `brownianHeatFlow` at variance
+`sigma^2*(s_(i+1)-s_i)`. `brownianGridMarkovAux_bound` and
+`brownianGridMarkovAux_continuous` prove boundedness and continuity inductively.
+`bellmanAux_eq_brownianGridMarkovAux` proves the full conditional-value
+identification at each index. At index zero, Brownian motion starts at zero
+almost surely, so `brownianGridPrice_eq_gridValue` identifies the deterministic
+initial recursion with the complete raw-grid stopping supremum.
+
+`BrownianUsualTransition.lean` constructs the conditional value of a bounded
+continuous terminal log-state payoff as an explicit continuous martingale,
+frozen after maturity. Completion, null augmentation, and right continuation
+preserve this martingale by the previously checked bounded supermartingale
+extension, applied to both signs. This proves the exact usual-filtration
+Gaussian transition without a classical solution or a new independence premise.
+
+`UsualGridMarkov.lean` uses that transition to prove that the same deterministic
+recursion equals the usual-grid value. It converges to `canonicalPrice` in the
+normalized model. Uniqueness of the limit gives
+`brownianUsualAmericanPut_eq_raw_of_pos` for `K>=0`, `r>=0`, and `S>0`, with
+arbitrary real `q` and `sigma`, including maturity zero. This removes the
+classical-solution premise from positive-spot raw/usual value equality.
+
+These are exact finite-grid dynamic-programming results and value convergence.
+They do not yet prove the continuous-time dynamic-programming principle,
+optimality of the actual first-contact rule, or classical PDE/boundary regularity.

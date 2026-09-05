@@ -36,6 +36,7 @@ import AmericanConvexity.Stopping.ActualContact
 import AmericanConvexity.Stopping.BermudanConvergence
 import AmericanConvexity.Stopping.DiscreteStoppingValue
 import AmericanConvexity.Stopping.GridBellman
+import AmericanConvexity.Stopping.UsualGridMarkov
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1136,3 +1137,38 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.canonicalOptimalGridRule_payoffs_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.bellmanAux_eq_brownianGridMarkovAux' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.bellmanAux_eq_brownianGridMarkovAux
+
+/-- info: 'AmericanConvexity.Stopping.brownianGridPrice_eq_gridValue' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianGridPrice_eq_gridValue
+
+/-- info: 'AmericanConvexity.Stopping.brownianTerminalValue_usual_martingale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianTerminalValue_usual_martingale
+
+/-- info: 'AmericanConvexity.Stopping.brownianLogState_usual_condExp_transition' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianLogState_usual_condExp_transition
+
+/-- info: 'AmericanConvexity.Stopping.brownianGridPrice_eq_usualGridValue' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianGridPrice_eq_usualGridValue
+
+/-- info: 'AmericanConvexity.Stopping.brownianUsualAmericanPut_eq_raw_of_pos' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianUsualAmericanPut_eq_raw_of_pos
+
+/-- info: 'AmericanConvexity.Stopping.brownianGridPrice_tendsto_canonical' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.brownianGridPrice_tendsto_canonical
