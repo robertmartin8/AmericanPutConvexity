@@ -178,6 +178,15 @@ any finite spatial interval. The missing lateral-boundary correction still
 prevents using it as the full local Dirichlet solution. Full continuous-time
 dynamic programming and classical PDE/boundary regularity remain unproved.
 
+The lateral-data construction now has a checked half-line boundary kernel:
+`H(t,x)=x*K(t,x)/t` satisfies the diffusivity-`1/2` heat equation, is positive
+for `t,x>0`, and has unit integral over positive elapsed time. Its integral
+extension of bounded continuous boundary data is jointly continuous, has the
+exact boundary trace, preserves the uniform bound, and is zero before the data
+starts. The integral's interior smoothness/PDE and the finite-interval lateral
+correction remain open; these kernel results do not yet establish actual-price
+regularity.
+
 **New checked progress:** the classical contract now also implies globally
 strictly negative boundary speed. Weak log curvature reduces zero speed to a
 flat tail. Explicit positive-patch barriers propagate positivity of actual
@@ -377,6 +386,8 @@ All files below are included in the project build.
 | [`Stopping/ActualSmoothComparison.lean`](AmericanConvexity/Stopping/ActualSmoothComparison.lean) | Actual-price upper/lower local comparison and identification with a supplied smooth Dirichlet solution; existence remains separate |
 | [`Stopping/ContinuousHeatSmoothing.lean`](AmericanConvexity/Stopping/ContinuousHeatSmoothing.lean) | All-order joint heat smoothing for continuous compact data; no derivatives of the datum |
 | [`Stopping/ContinuousPriceEvolution.lean`](AmericanConvexity/Stopping/ContinuousPriceEvolution.lean) | Constructed continuous initial-data pricing evolution, exact initial trace, positive-time smoothness and PDE; actual-price interval traces included |
+| [`Stopping/HeatBoundaryKernel.lean`](AmericanConvexity/Stopping/HeatBoundaryKernel.lean) | Positive-time half-line heat boundary kernel, exact derivatives/PDE, temporal unit mass, integrability and parabolic scaling |
+| [`Stopping/HeatBoundaryExtension.lean`](AmericanConvexity/Stopping/HeatBoundaryExtension.lean) | Bounded continuous boundary-data integral: joint continuity, exact trace, causality, uniform bound and elapsed-time representation; integral PDE not yet proved |
 | [`Boundary/Comparison.lean`](AmericanConvexity/Boundary/Comparison.lean) | Explicit straight-line comparison, PDE and smooth fit, payoff domination, Riccati crossing identity, characteristic growth gap |
 | [`Boundary/ODEComparison.lean`](AmericanConvexity/Boundary/ODEComparison.lean) | Two-sided nonnegative-forcing ODE comparison proved by integrating factors |
 | [`Boundary/SingleCrossing.lean`](AmericanConvexity/Boundary/SingleCrossing.lean) | Upward-crossing uniqueness, single-valley geometry, and at-most-two roots per level |

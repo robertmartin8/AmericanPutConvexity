@@ -45,6 +45,7 @@ import AmericanConvexity.Stopping.ActualTestFunctions
 import AmericanConvexity.Stopping.PricingTests
 import AmericanConvexity.Stopping.ActualSmoothComparison
 import AmericanConvexity.Stopping.ContinuousPriceEvolution
+import AmericanConvexity.Stopping.HeatBoundaryExtension
 
 /-!
 # Axiom checks for selected upstream and local results
@@ -1425,3 +1426,53 @@ of the classical pricing contract with the American optimal-stopping value.
 [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms AmericanConvexity.Stopping.exists_canonicalPrice_initial_solution
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_equation' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_equation
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_integral' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_integral
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_integrable' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_integrable
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryKernel_scale' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryKernel_scale
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_continuous' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_continuous
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_boundary' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_boundary
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_tendsto' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_tendsto
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_causal' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_causal
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_bound' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_bound
+
+/-- info: 'AmericanConvexity.Stopping.heatBoundaryExtension_eq_integral' depends on axioms:
+[propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms AmericanConvexity.Stopping.heatBoundaryExtension_eq_integral

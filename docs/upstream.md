@@ -300,3 +300,13 @@ cover the smoothing theorem, generalized PDE, smooth evolution and both construc
 existence results in `ContinuousPriceEvolution.lean`; only the three standard
 axioms occur. No lateral-boundary solution or full Dirichlet existence theorem
 has been imported or assumed by this construction.
+
+`HeatBoundaryKernel.lean` derives its kernel derivatives from MathFin's public
+total derivative of `heatKernel`. Mathlib's real-power change of variables and
+half-Gaussian integral prove the temporal unit mass; the parabolic scaling
+identity is checked algebraically. `HeatBoundaryExtension.lean` uses this fixed
+integrable density and Mathlib's dominated-convergence continuity theorem for
+bounded continuous data. Guarded audits cover the kernel PDE, normalization,
+integrability, scaling, extension continuity, joint trace, causality, bound and
+elapsed-time representation. Only the three standard axioms occur. No theorem
+asserting interior regularity of the extension or the actual price is assumed.

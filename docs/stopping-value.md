@@ -938,3 +938,40 @@ Constructing a correction with zero initial data and the required lateral traces
 remains open. Consequently this construction alone does not satisfy the earlier
 local-identification theorem's full hypotheses or prove interior regularity of
 the actual price. Smooth fit and free-boundary regularity also remain open.
+
+## Half-line boundary kernel and continuous boundary trace
+
+`HeatBoundaryKernel.lean` defines, for the diffusivity-`1/2` Gaussian kernel,
+`H(t,x)=x*K(t,x)/t`. For positive elapsed time it proves joint smoothness and
+the exact derivative identities
+
+```
+H_x  = (t-x^2)/t^2 * K(t,x)
+H_xx = x*(x^2-3*t)/t^3 * K(t,x)
+H_t  = x*(x^2-3*t)/(2*t^3) * K(t,x) = H_xx/2.
+```
+
+For `x>0`, `H` is positive on positive elapsed times and its time integral is
+exactly one. The proof uses the inverse-square substitution `t=y^(-2)` and
+the half-Gaussian integral; integrability is proved, not assumed. The scaling
+identity `x^2*H(x^2*s,x)=H(s,1)` then gives a fixed integrable density.
+
+`HeatBoundaryExtension.lean` defines
+
+```
+V_g(x,t) = integral over s>0 of H(s,1)*g(t-x^2*s).
+```
+
+For bounded continuous `g`, dominated convergence proves joint continuity,
+including `x=0`, where `V_g(0,t)=g(t)`. Consequently the boundary trace holds
+under joint space/time approach. It preserves the bound `|V_g|<=C` whenever
+`|g|<=C`, and if `g` vanishes for `t<=a`, so does `V_g`. For `x>0` the scaling
+substitution identifies this formula with the usual boundary integral
+`integral over s>0 of H(s,x)*g(t-s)`.
+
+These are boundary-extension facts, **not yet a heat-solution theorem for the
+integral**. Passing derivatives under that integral for merely continuous data,
+including control as elapsed time tends to zero away from the spatial boundary,
+remains to be proved. Constructing a correction matching both ends of a finite
+interval also remains open. Neither interior regularity of the actual price nor
+the full classical pricing contract follows from this checkpoint alone.
