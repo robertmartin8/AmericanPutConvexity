@@ -109,7 +109,7 @@ square-root barrier to the actual price. `ActualNearExpiry.lean` proves
    chords from boundary monotonicity.
 
 `canonicalLogBoundary_convexOn` in `ActualLogConvexity.lean` (namespace
-`AmericanConvexity.Stopping`) assembles these results. Its only hypotheses are
+`AmericanPutConvexity.Stopping`) assembles these results. Its only hypotheses are
 `k>0`, `h>=0`, and `h<=k`. Named zero-dividend and Liu-range versions use the
 same actual stopping-value definition. The statement is convexity of the
 normalized log boundary as a function, not an assertion that classical second

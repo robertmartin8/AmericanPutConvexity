@@ -37,8 +37,8 @@ expiry bound by a square-root subsolution and derives the required $C^2$
 regularity from the stopping construction. Lean also supplies explicit
 barrier proofs for positivity propagation.
 
-- [Geometric theorem](../AmericanConvexity/Stopping/PhysicalBoundaryConvexity.lean)
-- [Classical curvature](../AmericanConvexity/Stopping/PhysicalBoundaryCurvature.lean)
+- [Geometric theorem](../AmericanPutConvexity/Stopping/PhysicalBoundaryConvexity.lean)
+- [Classical curvature](../AmericanPutConvexity/Stopping/PhysicalBoundaryCurvature.lean)
 - [Proof correspondence audit](../docs/straight-line-audit.md)
 - [Dependency and kernel-replay audit](../docs/dependency-audit.md)
 

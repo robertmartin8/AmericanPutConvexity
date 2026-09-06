@@ -18,7 +18,7 @@ smoothness may stand in place of a proof for the actual stopping problem.
 
 ## Requirement-by-requirement evidence
 
-All source paths below are relative to `AmericanConvexity/`.
+All source paths below are relative to `AmericanPutConvexity/`.
 
 | Requirement | Authoritative evidence | Result |
 | --- | --- | --- |

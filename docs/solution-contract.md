@@ -13,7 +13,7 @@ statement review and the independent published CCJZ proof remain unfinished.
 The following is a local author-side check, not independent validation:
 
 - `brownianUsualBoundary_classical_curvature` in `PhysicalBoundaryCurvature.lean`
-  (namespace `AmericanConvexity.Stopping`) quantifies over arbitrary real
+  (namespace `AmericanPutConvexity.Stopping`) quantifies over arbitrary real
   `K,r,q,sigma` with exactly the five admissibility inequalities stated above.
   Both conclusions range over every strictly positive real maturity.
 - Its boundary is `brownianUsualExerciseBoundary`, defined in

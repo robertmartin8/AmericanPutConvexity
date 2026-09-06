@@ -4,6 +4,9 @@ Lean 4 formalization of a straight-line comparison proof that the logarithmic
 exercise boundary is convex when the dividend yield does not exceed the
 positive risk-free interest rate.
 
+A draft of the accompanying paper is in [`paper/`](paper/). It has not yet
+been submitted or peer reviewed.
+
 **[Read the paper (draft)](paper/log-convexity.pdf)** ·
 [LaTeX source](paper/log-convexity.tex) ·
 [Proof audit](docs/straight-line-audit.md) ·
@@ -192,21 +195,21 @@ for the correspondence and differences.
 
 ## Where to start in Lean
 
-All theorem names below are in `AmericanConvexity.Stopping`.
+All theorem names below are in `AmericanPutConvexity.Stopping`.
 
 | Purpose | Source / declaration |
 | --- | --- |
-| Geometric result in physical units | [PhysicalBoundaryConvexity.lean](AmericanConvexity/Stopping/PhysicalBoundaryConvexity.lean): `brownianUsualLogBoundary_convexOn`, `brownianUsualStockBoundary_strictConvexOn` |
-| Core normalized convexity theorem | [ActualLogConvexity.lean](AmericanConvexity/Stopping/ActualLogConvexity.lean): `canonicalLogBoundary_convexOn` |
-| Identification under normalization | [ActualBoundaryNormalization.lean](AmericanConvexity/Stopping/ActualBoundaryNormalization.lean) |
-| Classical regularity and curvature | [PhysicalBoundaryCurvature.lean](AmericanConvexity/Stopping/PhysicalBoundaryCurvature.lean): `brownianUsualBoundary_classical_curvature` |
-| Almost-sure horizon convention | [AEHorizonValue.lean](AmericanConvexity/Stopping/AEHorizonValue.lean), [AEHorizonCurvature.lean](AmericanConvexity/Stopping/AEHorizonCurvature.lean) |
+| Geometric result in physical units | [PhysicalBoundaryConvexity.lean](AmericanPutConvexity/Stopping/PhysicalBoundaryConvexity.lean): `brownianUsualLogBoundary_convexOn`, `brownianUsualStockBoundary_strictConvexOn` |
+| Core normalized convexity theorem | [ActualLogConvexity.lean](AmericanPutConvexity/Stopping/ActualLogConvexity.lean): `canonicalLogBoundary_convexOn` |
+| Identification under normalization | [ActualBoundaryNormalization.lean](AmericanPutConvexity/Stopping/ActualBoundaryNormalization.lean) |
+| Classical regularity and curvature | [PhysicalBoundaryCurvature.lean](AmericanPutConvexity/Stopping/PhysicalBoundaryCurvature.lean): `brownianUsualBoundary_classical_curvature` |
+| Almost-sure horizon convention | [AEHorizonValue.lean](AmericanPutConvexity/Stopping/AEHorizonValue.lean), [AEHorizonCurvature.lean](AmericanPutConvexity/Stopping/AEHorizonCurvature.lean) |
 
 For the comparison mechanism, start with
-[Comparison.lean](AmericanConvexity/Boundary/Comparison.lean),
-[ParabolicValley.lean](AmericanConvexity/Boundary/ParabolicValley.lean),
-[ParabolicHopf.lean](AmericanConvexity/Boundary/ParabolicHopf.lean), and
-[LineIntervalConvexity.lean](AmericanConvexity/Boundary/LineIntervalConvexity.lean).
+[Comparison.lean](AmericanPutConvexity/Boundary/Comparison.lean),
+[ParabolicValley.lean](AmericanPutConvexity/Boundary/ParabolicValley.lean),
+[ParabolicHopf.lean](AmericanPutConvexity/Boundary/ParabolicHopf.lean), and
+[LineIntervalConvexity.lean](AmericanPutConvexity/Boundary/LineIntervalConvexity.lean).
 
 ## Build and reproduce the audit
 
@@ -243,7 +246,7 @@ Independently of the project script, the Lean toolchain ships
 declaration of a module through the kernel from its compiled `.olean`:
 
 ```sh
-lake env leanchecker AmericanConvexity.Stopping.PhysicalBoundaryCurvature
+lake env leanchecker AmericanPutConvexity.Stopping.PhysicalBoundaryCurvature
 ```
 
 Running it over all 339 project modules at the recorded snapshot returned

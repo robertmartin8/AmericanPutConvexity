@@ -14,7 +14,7 @@ kernel implementation or a review of every theorem in either repository.
 
 ## Use a downstream Lake package
 
-Our project depends on MathFin via Git; our source stays in `AmericanConvexity/`.
+Our project depends on MathFin via Git; our source stays in `AmericanPutConvexity/`.
 Lake fetches upstream sources into `.lake/packages/MathFin/` and builds the imported
 modules. We reuse upstream definitions directly, so our theorems are about the
 same mathematical objects rather than look-alike definitions in a copied library.
@@ -22,19 +22,19 @@ same mathematical objects rather than look-alike definitions in a copied library
 ```lean
 import MathFin.Binomial.American
 
-namespace AmericanConvexity
+namespace AmericanPutConvexity
 
 example {u d r : ℝ} (h : MathFin.BinomialNoArb u d r)
     (g : ℝ → ℝ) (n : ℕ) (S : ℝ) :
     MathFin.binomialPrice u d r g n S ≤ MathFin.americanPrice u d r g n S := by
   exact MathFin.binomialPrice_le_americanPrice h g n S
 
-end AmericanConvexity
+end AmericanPutConvexity
 ```
 
-`AmericanConvexity/Finance.lean` contains build-checked applications, not claims of
+`AmericanPutConvexity/Finance.lean` contains build-checked applications, not claims of
 new mathematical contributions. Add new theorems in our namespace, importing them
-from `AmericanConvexity.lean` so `lake build` checks them.
+from `AmericanPutConvexity.lean` so `lake build` checks them.
 
 No Docker, Python pipeline, Git submodule, or upstream contributor tooling is
 required for this downstream workflow. If we later need to change upstream code,
@@ -87,7 +87,7 @@ Important distinctions before choosing our first theorem:
    Adding dividends requires checking/modifying the model, not just renaming a parameter.
 
 The exact theorem statements and assumptions are authoritative, not README labels.
-`AmericanConvexity/AxiomAudit.lean` guards the three upstream facts used by our
+`AmericanPutConvexity/AxiomAudit.lean` guards the three upstream facts used by our
 examples against extra axioms or `sorryAx`; their allowed axioms are `propext`,
 `Classical.choice`, and `Quot.sound`. This checks proof dependencies, not whether a
 statement faithfully represents the finance question we intend to ask.

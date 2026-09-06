@@ -31,9 +31,9 @@ request to use a cleaner formalization path if available.
 | Near-expiry input | `Stopping/ActualNearExpiry.lean` | A proved square-root barrier gives `b(t)/t -> -infinity`, without assuming the quoted European asymptotic |
 | Literal second derivatives | `Stopping/ActualBoundaryC2.lean`, `ActualBoundaryCurvature.lean`, `PhysicalBoundaryCurvature.lean` | C2 is established after convexity; the conclusion is not a totalized derivative at a nonsmooth point |
 
-Here module paths are relative to `AmericanConvexity/`. The comparison lemmas
-are in `AmericanConvexity.Boundary.Comparison`; the actual-value theorems are
-in `AmericanConvexity.Stopping`.
+Here module paths are relative to `AmericanPutConvexity/`. The comparison lemmas
+are in `AmericanPutConvexity.Boundary.Comparison`; the actual-value theorems are
+in `AmericanPutConvexity.Stopping`.
 
 ## The central propagation argument, without a zero-count theorem
 

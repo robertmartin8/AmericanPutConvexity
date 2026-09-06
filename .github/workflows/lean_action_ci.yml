@@ -17,6 +17,6 @@ jobs:
           build: true
       - name: Kernel replay of headline modules
         run: |
-          lake env leanchecker AmericanConvexity.Stopping.PhysicalBoundaryCurvature
-          lake env leanchecker AmericanConvexity.Stopping.AEHorizonCurvature
-          lake env leanchecker AmericanConvexity.Stopping.PhysicalBoundaryConvexity
+          lake env leanchecker AmericanPutConvexity.Stopping.PhysicalBoundaryCurvature
+          lake env leanchecker AmericanPutConvexity.Stopping.AEHorizonCurvature
+          lake env leanchecker AmericanPutConvexity.Stopping.PhysicalBoundaryConvexity

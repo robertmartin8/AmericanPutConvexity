@@ -11,7 +11,7 @@ proof/definition bodies**, starting at:
 - `brownianAEBoundary_classical_curvature`;
 - `canonicalStraightDifference_superlevel_interval`.
 
-All three names are in `AmericanConvexity.Stopping`. Mutual declaration blocks
+All three names are in `AmericanPutConvexity.Stopping`. Mutual declaration blocks
 and inductive constructors are included, so the result is a sufficient closed
 dependency set, not a claim of a minimal proof term. Missing declarations,
 unsafe/partial declarations, and axioms other than `propext`, `Classical.choice`,

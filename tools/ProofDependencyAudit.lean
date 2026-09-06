@@ -15,9 +15,9 @@ This is not an independent kernel implementation or semantic review.
 open Lean
 
 def auditRoots : Array Name := #[
-  `AmericanConvexity.Stopping.brownianUsualBoundary_classical_curvature,
-  `AmericanConvexity.Stopping.brownianAEBoundary_classical_curvature,
-  `AmericanConvexity.Stopping.canonicalStraightDifference_superlevel_interval]
+  `AmericanPutConvexity.Stopping.brownianUsualBoundary_classical_curvature,
+  `AmericanPutConvexity.Stopping.brownianAEBoundary_classical_curvature,
+  `AmericanPutConvexity.Stopping.canonicalStraightDifference_superlevel_interval]
 
 def allowedAxioms : Array Name := #[`propext, `Classical.choice, `Quot.sound]
 
@@ -99,7 +99,7 @@ unsafe def main (args : List String) : IO UInt32 := do
   unless flags.all (· == "--replay") do
     throw (IO.userError "Unknown audit option")
   initSearchPath (← findSysroot)
-  withImportModules #[{ module := `AmericanConvexity.Stopping.AEHorizonCurvature }] {} fun env => do
+  withImportModules #[{ module := `AmericanPutConvexity.Stopping.AEHorizonCurvature }] {} fun env => do
     selfTest env
     let closure ← collectClosure env
     let names := closure.toArray.map Prod.fst |>.qsort Name.lt
@@ -116,7 +116,7 @@ unsafe def main (args : List String) : IO UInt32 := do
         upstream := upstream.push (Json.mkObj [
           ("name", toJson n.toString), ("module", toJson owner.toString),
           ("kind", toJson (constantKind closure[n]!))])
-      if (`AmericanConvexity).isPrefixOf owner then
+      if (`AmericanPutConvexity).isPrefixOf owner then
         for dep in closure[n]!.getUsedConstantsAsSet.toArray.qsort Name.lt do
           let depOwner := ownerName env dep
           if (`MathFin).isPrefixOf depOwner || (`BrownianMotion).isPrefixOf depOwner then

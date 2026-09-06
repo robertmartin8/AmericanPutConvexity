@@ -151,6 +151,6 @@
    "inputRev": null,
    "inherited": true,
    "configFile": "lakefile.toml"}],
- "name": "AmericanConvexity",
+ "name": "AmericanPutConvexity",
  "lakeDir": ".lake",
  "fixedToolchain": false}
