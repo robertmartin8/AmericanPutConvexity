@@ -1,0 +1,164 @@
+{
+  "description": "Initial comparison profiles evaluated from closed-form exponentials; no price PDE solved.",
+  "threshold": 1e-09,
+  "precision_digits": [
+    50,
+    100
+  ],
+  "case_parameters": [
+    {
+      "label": "h=0",
+      "k": 1.0,
+      "h": 0.0,
+      "c": 1.0,
+      "d": -0.05
+    },
+    {
+      "label": "h=1/2",
+      "k": 1.0,
+      "h": 0.5,
+      "c": 1.0,
+      "d": -0.05
+    },
+    {
+      "label": "h=1",
+      "k": 1.0,
+      "h": 1.0,
+      "c": 1.0,
+      "d": -0.05
+    },
+    {
+      "label": "h=6/5",
+      "k": 1.0,
+      "h": 1.2,
+      "c": 10.0,
+      "d": -0.20232155679395458
+    }
+  ],
+  "control_exact_parameters": {
+    "k": "1",
+    "h": "6/5",
+    "c": "10",
+    "d": "log(5/6)-1/50"
+  },
+  "sampled_checks": [
+    {
+      "case": "h=0",
+      "grid_points": 5001,
+      "runs": [
+        {
+          "first_positive_sample": 0.0016,
+          "last_positive_sample": 1.8960000000000001,
+          "sampled_maximum": 0.46288259300422346
+        }
+      ]
+    },
+    {
+      "case": "h=0",
+      "grid_points": 10001,
+      "runs": [
+        {
+          "first_positive_sample": 0.0016,
+          "last_positive_sample": 1.8960000000000001,
+          "sampled_maximum": 0.4628826995575641
+        }
+      ]
+    },
+    {
+      "case": "h=1/2",
+      "grid_points": 5001,
+      "runs": [
+        {
+          "first_positive_sample": 0.0008,
+          "last_positive_sample": 2.2640000000000002,
+          "sampled_maximum": 0.610198816071198
+        }
+      ]
+    },
+    {
+      "case": "h=1/2",
+      "grid_points": 10001,
+      "runs": [
+        {
+          "first_positive_sample": 0.0008,
+          "last_positive_sample": 2.2640000000000002,
+          "sampled_maximum": 0.610198816071198
+        }
+      ]
+    },
+    {
+      "case": "h=1",
+      "grid_points": 5001,
+      "runs": [
+        {
+          "first_positive_sample": 0.0008,
+          "last_positive_sample": 2.7968,
+          "sampled_maximum": 0.816790525514201
+        }
+      ]
+    },
+    {
+      "case": "h=1",
+      "grid_points": 10001,
+      "runs": [
+        {
+          "first_positive_sample": 0.0004,
+          "last_positive_sample": 2.7972,
+          "sampled_maximum": 0.816790525514201
+        }
+      ]
+    },
+    {
+      "case": "h=6/5",
+      "grid_points": 5001,
+      "runs": [
+        {
+          "first_positive_sample": -0.11594139824237455,
+          "last_positive_sample": -0.019842018378485815,
+          "sampled_maximum": 5.750819479744269e-05
+        },
+        {
+          "first_positive_sample": 0.000223879222890494,
+          "last_positive_sample": 0.30739480899098637,
+          "sampled_maximum": 0.10372329058069718
+        }
+      ]
+    },
+    {
+      "case": "h=6/5",
+      "grid_points": 10001,
+      "runs": [
+        {
+          "first_positive_sample": -0.11599563039805395,
+          "last_positive_sample": -0.019842018378485815,
+          "sampled_maximum": 5.7508206492302585e-05
+        },
+        {
+          "first_positive_sample": 0.00016964706721112055,
+          "last_positive_sample": 0.3074490411466657,
+          "sampled_maximum": 0.10372329237200287
+        }
+      ]
+    }
+  ],
+  "control_sign_checks": [
+    {
+      "x": "-0.07",
+      "v_50_digits": "0.0000458815602423272952751519107356445291199485477",
+      "v_100_digits": "0.000045881560242327295275151910735644529119948547730570886196561818021757737261342823854042120434814"
+    },
+    {
+      "x": "-0.005",
+      "v_50_digits": "-0.0000974186565912689570859518069317585681676502386",
+      "v_100_digits": "-0.000097418656591268957085951806931758568167650238609792007910775412252265830196811223823260333912331"
+    },
+    {
+      "x": "0.1",
+      "v_50_digits": "0.0819371628268143966331768189982984906373666294",
+      "v_100_digits": "0.081937162826814396633176818998298490637366629424956995871953084244440458040328662197756701027791"
+    }
+  ],
+  "numpy_version": "2.3.3",
+  "matplotlib_version": "3.10.6",
+  "mpmath_version": "1.3.0"
+}

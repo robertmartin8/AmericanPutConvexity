@@ -1,0 +1,682 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\phat}{\widehat p}
+
+\title{Log-convexity of the exercise boundary of an American put option}
+\author{Robert Martin\thanks{The proof was developed by GPT-6 Pro
+  (Astra) and checked by Fable 5.1 (high). The result was formally verified in
+  Lean, primarily by gpt-6-astra-high in Codex. The writeup was drafted
+  with Codex and Claude Code (Fable 5.1). See \S\ref{sec:verification}
+  and \ref{app:ai} for the verification scope and the use of AI.}\\
+  Dianoa Labs}
+\date{September 2026 --- \textbf{Draft}, not yet submitted or peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the logarithm of the exercise boundary of an American put
+option is convex in time-to-expiry when the constant dividend yield is
+nonnegative and does not exceed the positive risk-free interest rate. The proof
+constructs an exact pricing-equation solution that matches the payoff
+and smooth fit along a decreasing straight line. A maximum-principle
+argument preserves the interval shape of the positive set of the option
+price minus this comparison. An explicit backward-rectangle barrier then rules out
+the contact configuration that would violate convexity. The geometric
+argument does not require differentiability of the exercise boundary.
+Established positive-time regularity gives nonnegative second derivatives
+of the logarithmic boundary and strictly positive second derivatives
+of the stock-price boundary as a separate corollary.
+\end{abstract}
+
+\section*{Introduction}
+
+The exercise boundary of an American put option is the stock-price
+threshold below which immediate exercise is optimal. We study how this
+threshold varies with time-to-expiry. Although no general closed-form
+expression for the boundary is known, its geometric properties depend
+strongly on the dividend yield $q$ and the risk-free interest rate $r$.
+
+For $q=0$, Ekstr\"om \cite{Ekstrom2004} and Chen, Chadam, Jiang,
+and Zheng \cite{CCJZ2008} proved that the exercise boundary is a convex
+function of time-to-expiry; the latter also
+established strictly positive logarithmic curvature. For $q>r$,
+Chen, Cheng, and Chadam \cite[Theorem~2]{CCC2013} showed that both
+the boundary and its logarithm can fail to be convex, proving this
+when $\log(q/r)$ is positive and sufficiently small. For positive
+dividends below the risk-free interest rate, Liu's preprint \cite{Liu2017} presents
+a proof of convexity of the stock-price boundary under
+$r\ge q+\sigma^2/2$, where $\sigma$ is volatility, leaving
+$0<q<r<q+\sigma^2/2$ unresolved.
+
+We prove log-convexity throughout $0\le q\le r$, with $r>0$, covering
+that remaining region and the endpoint $q=r$. The proof constructs an
+exact pricing-equation solution fitted to a decreasing straight line
+and uses maximum-principle arguments to exclude a contact configuration
+incompatible with convexity. The geometric argument does not differentiate
+the boundary; classical second-derivative conclusions follow separately
+from established regularity.
+
+\section{Main theorem and notation}
+
+Under the risk-neutral measure, let the stock-price process satisfy
+\[
+  dS=(r-q)S\,du+\sigma S\,dW,\qquad S_0=S,
+\]
+where $u$ is elapsed time, $W$ is standard Brownian motion, and process
+time subscripts are suppressed in the stochastic differential equation.
+For strike $K>0$ and time-to-expiry $\tau>0$, the American put
+option value is
+\[
+  P(S,\tau)=\sup_{0\le\theta\le\tau}
+    \E_S\!\left[e^{-r\theta}(K-S_\theta)^+\right],
+\]
+where the supremum is over stopping times of the completed usual
+Brownian filtration, with the horizon bound understood almost surely.
+Write $B(\tau)$ for its exercise boundary, so that exercise is optimal
+for $0<S\le B(\tau)$.
+
+\begin{theorem}\label{thm:main}
+Suppose $K>0$, $r>0$, $\sigma>0$, and $0\le q\le r$. Then
+$\tau\mapsto\log(B(\tau)/K)$ is convex on $(0,\infty)$.
+Moreover, $B$ is strictly convex on $(0,\infty)$.
+\end{theorem}
+
+Introduce normalized time-to-expiry $t$ and log-price $x$ by
+\[
+  a=\frac{\sigma^2}{2},\qquad t=a\tau,\qquad
+  x=\log(S/K),\qquad k=\frac r a,\qquad h=\frac q a,\qquad
+  \alpha=k-h-1.
+\]
+Define the normalized price $p(x,t)=P(Ke^x,t/a)/K$ and the
+logarithmic exercise boundary $b(t)=\log(B(t/a)/K)$.
+Thus $k>0$ and $0\le h\le k$. In the continuation region,
+\begin{equation}\label{eq:pricing}
+  p_t=p_{xx}+\alpha p_x-kp,\qquad x>b(t),\quad t>0,
+\end{equation}
+with value matching and continuation-side smooth fit
+\begin{equation}\label{eq:fit}
+  p(b(t),t)=1-e^{b(t)},\qquad p_x(b(t)+,t)=-e^{b(t)}.
+\end{equation}
+Here $p_x(b(t)+,t)$ denotes the right derivative of $x\mapsto p(x,t)$
+at $b(t)$, not a derivative of the boundary.
+
+We use standard properties independent of boundary convexity.
+The price $p$ is continuous on $\R\times[0,\infty)$, is $C^{2,1}$
+in continuation, and satisfies \eqref{eq:pricing} there, with
+$p(x,0)=(1-e^x)^+$. The boundary $b$ is continuous on
+$[0,\infty)$, with $b(0)=0$ and $b(t)<0$ for $t>0$.
+At positive times, the price equals the payoff exactly when
+$x\le b(t)$ and strictly exceeds it otherwise; value matching
+and right spatial smooth fit hold as in \eqref{eq:fit}.
+For $q=0$, see Chen--Chadam
+\cite[\S2, especially Theorem~2.3 and Remark~2.2]{CC2007}; for
+$q>0$, see Chen--Cheng--Chadam \cite[Theorem~1 and \S3]{CCC2013}.
+
+The bounds $(1-e^x)^+\le p(x,t)\le1$ and domination of the
+European put value follow from discounted payoffs and the
+admissibility of immediate exercise and exercise at expiry.
+Increasing time-to-expiry enlarges the stopping-time class, so the
+price is nondecreasing in $t$ and exercise sets shrink, making $b$
+nonincreasing.
+The formal development also derives these properties from its stopping
+definitions; see \S\ref{sec:verification}.
+Strict decrease is proved after convexity. No derivative of $b$ is
+used until \S\ref{sec:classical}.
+
+One elementary expiry estimate will be useful:
+\begin{equation}\label{eq:expiry}
+  \frac{b(t)}t\longrightarrow-\infty\qquad(t\downarrow0).
+\end{equation}
+Indeed, for every fixed $M>0$, the European put formula gives
+$p_E(-Mt,t)=\sqrt{t/\pi}+O(t)$, whereas
+$1-e^{-Mt}=O(t)$. Since the American value dominates the European
+value, $-Mt$ lies in continuation for all sufficiently small $t$.
+Hence $b(t)<-Mt$, which proves \eqref{eq:expiry}.
+
+\section{An exact straight-line comparison}\label{sec:comparison}
+
+Fix $c>0$ and $d<0$, and let $\ell(t)=d-ct$. Define $f$ and $g$ by
+\begin{equation}\label{eq:profiles}
+  \begin{aligned}
+    f''+(\alpha-c)f'-kf&=0,& f(0)&=1,& f'(0)&=0,\\
+    g''+(\alpha+2-c)g'-hg&=0,& g(0)&=1,& g'(0)&=0.
+  \end{aligned}
+\end{equation}
+For $\rho>0$, the solution of
+$F''+\gamma F'-\rho F=0$, $F(0)=1$, $F'(0)=0$ is
+\[
+  F(z)=\frac{\lambda_+e^{\lambda_-z}-\lambda_-e^{\lambda_+z}}
+              {\lambda_+-\lambda_-},\qquad
+  \lambda_\pm=\frac{-\gamma\pm\sqrt{\gamma^2+4\rho}}2.
+\]
+Both coefficients are positive, so $F$ is convex and has its minimum
+at zero. For $\rho=0$, the required solution is $F\equiv1$.
+Consequently $f,g\ge1$ on $\R$.
+
+With $z=x-\ell(t)$, define
+\begin{equation}\label{eq:comparison}
+  \phat(x,t)=f(z)-e^xg(z).
+\end{equation}
+Substitution into \eqref{eq:profiles} shows that $\phat$ solves
+\eqref{eq:pricing} everywhere and satisfies
+\[
+  \phat(\ell(t),t)=1-e^{\ell(t)},\qquad
+  \phat_x(\ell(t),t)=-e^{\ell(t)}.
+\]
+The comparison function need not be an option price. Its role is to
+satisfy the pricing equation exactly while fitting a prescribed line.
+
+\begin{lemma}\label{lem:domination}
+For $t\ge0$ and $x\le0$, the comparison satisfies
+$\phat(x,t)\ge1-e^x$.
+\end{lemma}
+
+\begin{proof}
+Fix $t$, abbreviate $\ell=\ell(t)$, and let
+\[
+  H(z)=f(z)-1-e^{\ell+z}(g(z)-1).
+\]
+The initial values are $H(0)=H'(0)=0$, and direct calculation gives
+\begin{equation}\label{eq:excess}
+  H''+(\alpha-c)H'-kH
+    =k-he^{\ell+z}+ce^{\ell+z}(g(z)-1).
+\end{equation}
+The right-hand side, denoted by $\Psi(z)$, is nonnegative whenever
+$\ell+z\le0$, since $k\ge h\ge0$ and $g\ge1$.
+Let $\lambda_-<0<\lambda_+$ be the roots for $f$. The Cauchy formula is
+\[
+  H(z)=\int_0^z E(z-y)\Psi(y)\,dy,\qquad
+  E(s)=\frac{e^{\lambda_+s}-e^{\lambda_-s}}{\lambda_+-\lambda_-}.
+\]
+The kernel $E(s)$ has the sign of $s$. For $z\ge0$ the integral is
+nonnegative. For $z<0$, the negative kernel and reversed integration
+direction cancel. In both cases the integration interval stays below
+the strike when $\ell+z\le0$, because $\ell<0$.
+\end{proof}
+
+Normalize the difference by the positive solution $f(z)$:
+\[
+  v(x,t)=\frac{p(x,t)-\phat(x,t)}{f(x-\ell(t))}.
+\]
+The quotient equation has no zero-order term:
+\begin{equation}\label{eq:quotient}
+  v_t=v_{xx}+\left(\alpha+2\frac{f'(z)}{f(z)}\right)v_x,
+  \qquad v(b(t),t)\le0.
+\end{equation}
+The drift is bounded: $f'/f$ is a weighted average of the two
+characteristic roots of $f$.
+
+The far-field behavior is
+\begin{equation}\label{eq:tail}
+  v(x,t)\longrightarrow-1\qquad(x\to\infty),
+\end{equation}
+uniformly on bounded time intervals. To see this when $h>0$, let
+$\lambda$ and $\mu$ be the positive roots for $f$ and $g$.
+The polynomial $Q_f(s)=s^2+(\alpha-c)s-k$ satisfies
+$Q_f(\mu+1)=-c<0$, so $\lambda>\mu+1$.
+Thus $e^xg(z)/f(z)\to0$; also $p/f\to0$ since $p\le1$.
+When $h=0$, use $g\equiv1$ and $Q_f(1)=-c$ instead.
+The exponential estimates are uniform on each bounded time interval,
+since $z=x-d+ct$ differs from $x$ by a uniformly bounded shift.
+
+\section{Preservation of a positive interval}
+
+We use a three-point maximum argument that preserves the interval
+shape of every positive superlevel set. It requires only continuity
+of the moving boundary and of the initial data.
+
+\begin{lemma}[Parabolic three-point inequality]\label{lem:threepoint}
+Let $T>0$ and let $\beta:[0,T]\to\R$ be continuous, with $\beta(t)<X$. Let
+$u$ be continuous on the compact moving strip
+\[
+  Q=\{(x,t):0\le t\le T,\ \beta(t)\le x\le X\}.
+\]
+Suppose $u$ is $C^{2,1}$ at spatial interior points for $0<t\le T$
+and solves $u_t=u_{xx}+A(x,t)u_x$ for some real-valued function $A$;
+time derivatives at $T$ may be taken from the left. Assume
+$u(\beta(t),t)\le0$ and $u(X,t)\le0$. If
+\[
+  \min\{u(x_1,0),u(x_3,0)\}\le\max\{u(x_2,0),0\}
+  \qquad(\beta(0)\le x_1\le x_2\le x_3\le X),
+\]
+then, for every $0\le t\le T$,
+\begin{equation}\label{eq:threepoint}
+  \min\{u(x_1,t),u(x_3,t)\}\le\max\{u(x_2,t),0\}
+  \qquad(\beta(t)\le x_1\le x_2\le x_3\le X).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For $\delta>0$, define
+\[
+  P_\delta(s)=\frac{s+\sqrt{s^2+\delta^2}}2,\qquad
+  M_\delta(s_1,s_2)=s_1-P_\delta(s_1-s_2).
+\]
+Their approximation bounds are
+\[
+  s^+\le P_\delta(s)\le s^++\delta/2,
+  \qquad
+  \min\{s_1,s_2\}-\delta/2\le M_\delta(s_1,s_2)\le\min\{s_1,s_2\}.
+\]
+Moreover, $0<P_\delta'<1$, so both partial derivatives of
+$M_\delta$ are strictly positive.
+
+For $\eta>0$, maximize the continuous function
+\[
+  G(x_1,x_2,x_3,t)
+    =M_\delta(u(x_1,t),u(x_3,t))-P_\delta(u(x_2,t))-\eta t
+\]
+over the compact set $0\le t\le T$,
+$\beta(t)\le x_1\le x_2\le x_3\le X$.
+The bounds above give
+\[
+  G\le\min\{u(x_1,t),u(x_3,t)\}-\max\{u(x_2,t),0\}-\eta t.
+\]
+Thus $G\le0$ at $t=0$. At a collision $x_1=x_2$ or $x_2=x_3$,
+the minimum is at most $u(x_2,t)$, so again $G\le0$.
+If $x_1=\beta(t)$ or $x_3=X$, the minimum is nonpositive by the
+lateral data. All other lateral contacts force a collision.
+A positive maximum must therefore have
+$t>0$ and $\beta(t)<x_1<x_2<x_3<X$.
+
+Varying the spatial coordinates separately and using strict
+monotonicity shows that $u(\cdot,t)$ has local maxima at $x_1,x_3$
+and a local minimum at $x_2$. The first spatial derivatives vanish
+there, so the drift terms disappear regardless of $A$, and the PDE gives
+\[
+  u_t(x_1,t)\le0,\qquad u_t(x_3,t)\le0,\qquad u_t(x_2,t)\ge0.
+\]
+Put $\rho=P_\delta'(u(x_1,t)-u(x_3,t))$ and
+$\kappa=P_\delta'(u(x_2,t))$, both in $(0,1)$. Then
+\[
+  G_t=(1-\rho)u_t(x_1,t)+\rho u_t(x_3,t)-\kappa u_t(x_2,t)-\eta
+      \le-\eta<0.
+\]
+Continuity of $\beta$ keeps this fixed spatial triple admissible at
+all sufficiently close earlier times. Maximality therefore gives
+$G_t\ge0$, including when $t=T$, a contradiction.
+Thus $G\le0$; letting $\delta,\eta\downarrow0$ proves \eqref{eq:threepoint}.
+\end{proof}
+
+\begin{proposition}\label{prop:interval}
+For every $t>0$ and $\varepsilon\ge0$, the set
+$\{x>b(t):v(x,t)>\varepsilon\}$ is an interval or empty.
+In particular, this holds for the positive set of $v$.
+\end{proposition}
+
+\begin{proof}
+First check the initial shape. For $x>0$, we have $p(x,0)=0$.
+Writing $z=x-d>0$ and
+\[
+  R(z)=e^{-z}\frac{f(z)}{g(z)},\qquad
+  m=\frac{f'}f,\qquad n=\frac{g'}g,\qquad J=m-n-1,
+\]
+gives $v(x,0)=-1+e^d/R(z)$ and $R'=RJ$.
+The profile equations give
+\[
+  m'=k-(\alpha-c)m-m^2,\qquad
+  n'=h-(\alpha+2-c)n-n^2.
+\]
+At a zero of $J$, substitute $m=n+1$ and subtract. This gives
+\begin{equation}\label{eq:crossing}
+  J'=k-h-\alpha+c-1=c>0\qquad\text{at every zero of }J.
+\end{equation}
+Since $J(0)=-1$, every zero of $J$ is an upward crossing and there
+is at most one: two upward crossings would require a transition
+from positive to nonpositive values between them, contradicting
+\eqref{eq:crossing}.
+Thus $R$ is decreasing, or decreases and then increases, on $z>0$.
+Its strict sublevel sets are intervals,
+and hence every strict upper level set of $v(\cdot,0)$ is an interval.
+
+This implies the initial three-point inequality: any violation
+would place two endpoints strictly above a nonnegative level that
+the middle value does not exceed. At $x=0$, it follows instead from
+$v(0,0)\le0$, by payoff domination and the expiry payoff.
+
+Fix $T>0$. By \eqref{eq:tail}, choose $X>0$ so large that
+$v(X,t)<0$ for $0\le t\le T$. The other lateral value is nonpositive
+by \eqref{eq:quotient}. Apply Lemma~\ref{lem:threepoint} directly to
+$v$ on $b(t)\le x\le X$. Given any three ordered continuation
+points, $X$ can also be chosen beyond the rightmost one. We obtain
+\eqref{eq:threepoint} for $v$ at every positive time.
+
+If the two endpoint values exceed $\varepsilon\ge0$, that inequality
+forces the middle value to exceed $\varepsilon$ as well. This proves
+the proposition, including exclusion of a zero between two positive
+values. The argument uses no derivative of $b$ and no convergence
+of spatial derivatives at expiry.
+\end{proof}
+
+The full zero-number theorem is unnecessary here. In particular,
+Lou's moving-boundary theorem \cite[Theorem~1.2, condition (N)]{Lou2018}
+allows continuous boundary curves when the solution is nonzero there;
+unbounded boundary speed is not itself an obstruction in that case.
+The direct proof above avoids both zero counting and its initialization
+at expiry.
+
+\paragraph{Why the argument does not extend to larger dividends.}
+For $q>r$, the limiting boundary at expiry is
+$b(0+)=\log(r/q)<0$, and $b(t)<\log(r/q)$ for $t>0$
+\cite[\S3.1 and Theorem~3]{CCC2013}. The comparison construction and
+the identities \eqref{eq:quotient} and \eqref{eq:crossing} remain valid.
+For lines with $d\le\log(r/q)$, the proof of
+Lemma~\ref{lem:domination} still gives $\phat\ge1-e^x$ for
+$x\le\log(r/q)$, since $k-he^x\ge0$ there. Thus the nonpositive
+exercise-boundary data and the propagation argument survive.
+
+The obstruction is the initial profile on the limiting continuation
+domain $x>\log(r/q)$. On the additional segment $\log(r/q)<x\le0$,
+$p(x,0)=1-e^x$, not zero, so
+\[
+  v(x,0)=\frac{1-e^x-\phat(x,0)}{f(x-d)}.
+\]
+Payoff domination is not established on this segment, and the
+$R$-calculation controls only $x>0$. It therefore no longer proves
+that the entire initial positive set is an interval. The propagation
+lemma cannot rule out components already present initially. This
+identifies the missing premise beyond $q=r$, consistently with the
+Chen--Cheng--Chadam counterexamples; it is not an independent proof
+of those counterexamples.
+
+\section{Contact exclusion and geometric convexity}
+
+We use the weak maximum and comparison principles and the strong
+maximum principle in their classical parabolic forms; see
+Lieberman \cite[Chapter~II]{Lieberman1996}. The boundary-point argument
+needed here has the following direct proof.
+
+\begin{lemma}[Backward-rectangle barrier]\label{lem:rectangle}
+Let $L>0$ and $t_-<T$. Suppose $w$ is continuous on
+$[0,L]\times[t_-,T]$, is $C^{2,1}$ on $(0,L)\times(t_-,T]$
+(with left time derivatives at $T$), and satisfies
+$w_t=w_{yy}+D(y,t)w_y$ there, with $D$ bounded.
+Assume $w>0$ on the entire bottom and right edges, $w\ge0$ on the left
+edge, and $w(0,T)=0$. Then
+\[
+  \liminf_{y\downarrow0}\frac{w(y,T)}y>0.
+\]
+\end{lemma}
+
+\begin{proof}
+Choose $A>\sup|D|$ and set
+\[
+  \phi(y)=\frac{e^{Ay}-1}{e^{AL}-1},\qquad
+  \phi''+D\phi'=\frac{Ae^{Ay}}{e^{AL}-1}(A+D)>0.
+\]
+Since $\phi(0)=0$, $\phi(L)=1$, and the bottom and right edges
+have positive minima, some $\eta>0$ satisfies $w\ge\eta\phi$
+on the parabolic boundary. The difference $w-\eta\phi$ is a strict
+supersolution, so weak comparison gives $w(y,T)\ge\eta\phi(y)$.
+Consequently the displayed lower limit is at least
+$\eta A/(e^{AL}-1)>0$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:timeinterval}
+For every $c>0$ and $d<0$, the set
+$\{t>0:b(t)<d-ct\}$ is an interval or empty.
+\end{lemma}
+
+\begin{proof}
+Suppose the assertion fails. There are times $t_1<t_m<t_2$ with the
+boundary strictly below $\ell$ at $t_1$ and $t_2$, but not at $t_m$.
+Continuity gives a first contact $t_0\in(t_1,t_m]$ such that
+\[
+  b(t)<\ell(t)\quad(t_1\le t<t_0),\qquad b(t_0)=\ell(t_0).
+\]
+There must be a point $x_*>b(t_0)$ with $v(x_*,t_0)>0$.
+Otherwise $v(\cdot,t_0)\le0$ in continuation, and the weak maximum
+principle would give $v\le0$ up to time $t_2$. Explicitly, choose
+$X>\ell(t_2)$ large enough that $v(X,t)<0$ on $[t_0,t_2]$, using
+\eqref{eq:tail}, and apply the principle on the bounded moving
+strip $b(t)<x<X$ with its nonpositive initial and lateral data.
+This contradicts $v(\ell(t_2),t_2)>0$,
+since the line lies in continuation at $t_2$ and $\phat$ equals
+the payoff there. The later return below the line is essential to
+obtain this positive point on the contact slice. The argument does
+not assert that the boundary must remain below a line once it enters
+that region.
+
+Move with the line and set
+\[
+  w(y,t)=v(\ell(t)+y,t),\qquad L=x_*-\ell(t_0)>0.
+\]
+In a backward rectangle to the right of the line,
+\begin{equation}\label{eq:moving}
+  w_t=w_{yy}+D(y)w_y,\qquad
+  D(y)=\alpha-c+2\frac{f'(y)}{f(y)}.
+\end{equation}
+Continuity gives $w(L,t)>0$ for $t$ sufficiently close to $t_0$.
+For $t<t_0$ near $t_0$, we also have $w(0,t)>0$, since
+$\ell(t)$ lies in continuation. Proposition~\ref{prop:interval}
+then gives $w(y,t)>0$ for $0\le y\le L$.
+Choose such a time $t_-<t_0$. On
+$[0,L]\times[t_-,t_0]$, the bottom and right edges have strictly
+positive data, and the left edge has nonnegative data. At contact,
+value matching and smooth fit give
+\begin{equation}\label{eq:contactfit}
+  w(0,t_0)=0,\qquad w_y(0+,t_0)=0.
+\end{equation}
+Indeed, both $p-\phat$ and its right spatial derivative vanish at
+contact, so the right derivative of their quotient by $f$ vanishes.
+
+Lemma~\ref{lem:rectangle} now contradicts \eqref{eq:contactfit}.
+\end{proof}
+
+\begin{lemma}[No flat tail]\label{lem:noflattail}
+The boundary cannot be constant on $[t_a,\infty)$ for any $t_a>0$.
+\end{lemma}
+
+\begin{proof}
+Fix $\delta>0$. Let $f_0$ be the profile $f$ from
+\eqref{eq:profiles} with $c=0$, so
+$f_0''+\alpha f_0'-kf_0=0$, $f_0(0)=1$, $f_0'(0)=0$.
+The profile formula in \S\ref{sec:comparison} gives $f_0\ge1$ and
+bounded $f_0'/f_0$. Monotonicity of the price gives the nonnegative time increment
+\[
+  U(x,t)=\frac{p(x,t+\delta)-p(x,t)}{f_0(x)}\ge0.
+\]
+Nonincrease of $b$ ensures that both prices solve the pricing equation
+when $x>b(t)$, so
+\[
+  U_t=U_{xx}+\left(\alpha+2\frac{f_0'}{f_0}\right)U_x.
+\]
+For $x>0$, $U(x,0)>0$: the expiry payoff is zero, whereas at time
+$\delta$ the price strictly exceeds it. The strong maximum principle,
+applied on finite cylinders in $x>0$, gives $U(x,t)>0$ for $x>0$,
+$t>0$.
+
+Suppose now that $b(t)=\bar b$ for $t\ge t_a>0$. Positivity at any
+point above the strike at time $t_a$, followed by the same strong
+maximum principle in $x>\bar b$, gives
+$U(x,t)>0$ for $x>\bar b$ and $t>t_a$.
+Value matching and smooth fit \eqref{eq:fit} at the common boundary give
+$U(\bar b,t)=U_x(\bar b+,t)=0$ for $t\ge t_a$.
+
+Choose $t_a<t_-<T$ and $L>0$, and set
+\[
+  w(y,t)=U(\bar b+T-t+y,t),\qquad
+  0\le y\le L,\quad t_-\le t\le T.
+\]
+Its bottom and right edges are strictly positive, and its left edge
+is nonnegative. It satisfies $w_t=w_{yy}+D(y,t)w_y$, where
+\[
+  D(y,t)=\alpha-1+
+    2\frac{f_0'(\bar b+T-t+y)}{f_0(\bar b+T-t+y)}
+\]
+is bounded. Since $w(0,T)=w_y(0+,T)=0$,
+Lemma~\ref{lem:rectangle} gives a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+We first show that $b(t)/t$ is nondecreasing. If, for some $0<t_1<t_2$,
+$b(t_2)/t_2<b(t_1)/t_1$, let $c=-b(t_1)/t_1>0$.
+By \eqref{eq:expiry}, choose $t_*\in(0,t_1)$ with
+$b(t_*)+ct_*<0$. Also $b(t_2)+ct_2<0$.
+Choose
+\[
+  \max\{b(t_*)+ct_*,\ b(t_2)+ct_2\}<d<0.
+\]
+The boundary lies below $d-ct$ at $t_*$ and $t_2$, but above it at
+$t_1$, where $b(t_1)+ct_1=0$. This contradicts
+Lemma~\ref{lem:timeinterval}.
+
+Now take any $0<t_1<t_2$ and write the chord through $(t_1,b(t_1))$ and
+$(t_2,b(t_2))$ as $d-ct$. Nonincrease gives $c\ge0$.
+If $c=0$, monotonicity makes $b$ constant on $[t_1,t_2]$, so the
+chord inequality holds with equality. For $c>0$, the ratio
+inequality just proved gives
+\[
+  d=\frac{t_2 b(t_1)-t_1 b(t_2)}{t_2-t_1}\le0.
+\]
+If $d<0$, raise the chord by any sufficiently small
+$\varepsilon>0$ with $d+\varepsilon<0$.
+Lemma~\ref{lem:timeinterval} puts the entire boundary segment
+strictly below this raised chord. Letting $\varepsilon\downarrow0$
+gives the chord inequality. If $d=0$, the same inequality follows
+directly from $b(t)/t\le b(t_2)/t_2=-c$ for $t_1<t<t_2$.
+Thus $b$ is convex, and positive rescaling of time proves the
+logarithmic assertion.
+
+We now deduce strict decrease. If $b(t_1)=b(t_2)$ for some $0<t_1<t_2$,
+convexity gives, for every $t>t_2$,
+\[
+  0=\frac{b(t_2)-b(t_1)}{t_2-t_1}\le\frac{b(t)-b(t_2)}{t-t_2}\le0,
+\]
+where the last inequality is monotonicity. Thus $b$ has a flat
+tail, contrary to Lemma~\ref{lem:noflattail}.
+Consequently $b(t_1)\ne b(t_2)$ whenever $t_1\ne t_2$.
+For $0<\theta<1$, convexity of $b$ and strict convexity of the
+exponential give
+\[
+  e^{b((1-\theta)t_1+\theta t_2)}
+    \le e^{(1-\theta)b(t_1)+\theta b(t_2)}
+    <(1-\theta)e^{b(t_1)}+\theta e^{b(t_2)}.
+\]
+Since $B(\tau)=Ke^{b(a\tau)}$, this proves strict convexity of $B$.
+\end{proof}
+
+\section{Classical second derivatives}\label{sec:classical}
+
+The geometric theorem is separate from differentiability. The
+positive-time regularity results of Chen--Chadam
+\cite[Remark~2.2 and subsequent regularity analysis]{CC2007} for zero
+dividends, and Chen--Cheng--Chadam \cite[Theorem~1 and \S3]{CCC2013}
+for positive dividends, give $b\in C^2((0,\infty))$, in fact
+$C^\infty$. They do not require boundary convexity.
+
+\begin{corollary}
+Under the hypotheses of Theorem~\ref{thm:main}, for every $\tau>0$,
+\[
+  \frac{d^2}{d\tau^2}\log\frac{B(\tau)}K\ge0,
+  \qquad B''(\tau)>0.
+\]
+\end{corollary}
+
+\begin{proof}
+The symmetric second differences of a convex $C^2$ function are
+nonnegative, so $b''\ge0$. Convexity and strict decrease also give
+\[
+  b'(t)\le\frac{b(t+s)-b(t)}s<0\qquad(s>0).
+\]
+Twice differentiating $B(\tau)=Ke^{b(a\tau)}$ yields
+\[
+  B''(\tau)=Ka^2e^{b(a\tau)}
+       \bigl(b''(a\tau)+b'(a\tau)^2\bigr)>0.
+\]
+The logarithmic second derivative is $a^2b''(a\tau)\ge0$.
+\end{proof}
+
+\section{Formal verification}\label{sec:verification}
+
+The accompanying Lean development \cite{Formalization} proves the
+geometric theorem and, separately, $C^2$ regularity and the classical
+curvature corollary. Its price is defined by optimal stopping over
+all bounded stopping times of the completed usual Brownian filtration;
+a proved equivalence permits almost-sure horizon bounds. The normalized
+price uses strike one and volatility $\sqrt2$, with the boundary defined
+by payoff contact. The pricing equation, smooth fit, and identification
+with the physical boundary are proved from these definitions, including
+$0<B(\tau)<K$ for $\tau>0$.
+
+The paper follows Lean's comparison, three-point maximum, rectangle
+barrier, and geometric arguments. Both use nonincrease to prove
+convexity, then exclude a flat tail to obtain strict decrease.
+Two analytic steps are presented differently: the paper derives
+\eqref{eq:expiry} from the European put asymptotic, while Lean uses
+a local square-root subsolution; the positivity propagation in
+Lemma~\ref{lem:noflattail} is proved in Lean by explicit local barriers.
+
+The development builds on Mathlib \cite{Mathlib2020}, Degenne's BrownianMotion library,
+and Coelho's MathFin library \cite{Coelho2026}. MathFin supplies
+geometric Brownian motion, It\^o and local-martingale results,
+heat-kernel tools, and filtration machinery. The boundary-convexity
+argument is proved in this project, not imported from these libraries.
+
+The recorded dependency audit rechecks the full proof closure in a
+fresh Lean kernel. It reports only the standard axioms
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound},
+with no unproved project axioms or \texttt{sorry} dependencies.
+Kernel checking certifies the formal statements and proofs; their
+correspondence with the intended financial model and this manuscript
+remains a separate mathematical check.
+
+\appendix
+\renewcommand{\thesection}{Appendix~\Roman{section}}
+\section{Use of AI}\label{app:ai}
+
+The proof development, formalization, and manuscript preparation were
+carried out largely by AI agents, with the author selecting the problem,
+directing the investigation, and making editorial decisions. The
+following is an account of that workflow, rather than an additional
+argument for the theorem's correctness.
+
+While researching American options, the author encountered the
+unresolved dividend-paying boundary-convexity question and considered
+it a promising subject for AI-assisted mathematical discovery.
+The first task given to ChatGPT-6 Pro (astra) was to seek a
+counterexample. After an extended search, Astra had not found one
+and instead proposed structural reasons to expect convexity.
+The author then asked it to prove the full conjecture in the
+nonnegative-dividend regime $q\le r$.
+
+After Astra produced a candidate proof, the author asked Anthropic's
+Fable 5.1 to examine it for errors. That review reported no errors.
+The project then moved to the Codex command-line environment for
+formal verification in Lean, performed primarily by gpt-6-astra high,
+with Fable 5.1 providing additional review during the development.
+Repeated reviews by the same model are not independent checks.
+The manuscript was drafted and revised with Codex and Claude Code
+(Fable 5.1).
+
+An unsuccessful counterexample search and agreement between models
+do not establish a mathematical result. The evidence presented here
+is the written argument and the kernel-checked formal development,
+with the differences between them stated in
+\S\ref{sec:verification}. The author is responsible for the claims
+and presentation; the model reviews are not described as independent
+human peer review.
+
+\bibliographystyle{plain}
+\begingroup
+\raggedright
+\bibliography{references}
+\endgroup
+
+\end{document}

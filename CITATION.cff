@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Log-convexity of the exercise boundary of an American put option: Lean 4 formalization"
+authors:
+  - family-names: Martin
+    given-names: Robert
+    affiliation: Dianoa Labs LLC
+date-released: 2026-09-05
+license: Apache-2.0
+repository-code: https://github.com/robertmartin8/AmericanPutConvexity
+keywords:
+  - American put option
+  - exercise boundary
+  - convexity
+  - free boundary problem
+  - Lean 4
+  - formal verification
+preferred-citation:
+  type: unpublished
+  title: "Log-convexity of the exercise boundary of an American put option"
+  authors:
+    - family-names: Martin
+      given-names: Robert
+      affiliation: Dianoa Labs LLC
+  year: 2026
+  notes: "Manuscript with accompanying Lean 4 formalization."

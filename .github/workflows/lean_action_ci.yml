@@ -15,3 +15,8 @@ jobs:
         with:
           use-mathlib-cache: true
           build: true
+      - name: Kernel replay of headline modules
+        run: |
+          lake env leanchecker AmericanConvexity.Stopping.PhysicalBoundaryCurvature
+          lake env leanchecker AmericanConvexity.Stopping.AEHorizonCurvature
+          lake env leanchecker AmericanConvexity.Stopping.PhysicalBoundaryConvexity
