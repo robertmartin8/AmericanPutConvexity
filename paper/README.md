@@ -41,8 +41,6 @@ barrier proofs for positivity propagation.
 - [Classical curvature](../AmericanConvexity/Stopping/PhysicalBoundaryCurvature.lean)
 - [Proof correspondence audit](../docs/straight-line-audit.md)
 - [Dependency and kernel-replay audit](../docs/dependency-audit.md)
-- [Semantic dependency spine](review/semantic-spine.md)
-- [Elaborated value and boundary audit](review/value-elaborated-audit.md)
 
 The manuscript cites mathematical source snapshot `61e3cf5`. Audit packets
 record the scope and provenance of their checks; a local build is not evidence

@@ -252,11 +252,9 @@ oleans are trusted as compiled; `leanchecker --fresh` would replay those
 too, at a cost of hours over all of Mathlib.
 
 Kernel replay checks the formal proof dependencies. It does not by itself
-establish that the definitions capture the intended financial model, audit
-unused upstream results, or replace independent mathematical review. The
-[semantic review packet](paper/review/value-elaborated-audit.md) exposes
-elaborated value, boundary, measure, and filtration definitions and records
-its remaining review qualifications.
+establish that the definitions capture the intended financial model; the
+definitions that carry the statement's meaning are listed under
+"What has to be trusted" below.
 
 ## Dependencies and attribution
 

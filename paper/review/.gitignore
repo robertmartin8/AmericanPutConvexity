@@ -1,3 +1,0 @@
-# Locally compiled review helpers; the Lean sources and Markdown output are retained.
-*.olean
-*.ilean
