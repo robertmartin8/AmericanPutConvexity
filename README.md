@@ -17,7 +17,8 @@ been submitted or peer reviewed.
 *The logarithm of the exercise boundary against remaining maturity for
 $r=5\%$, $\sigma=20\%$, computed from Kim's integral equation. The curves
 for $q\le r$ are convex; the dashed curve has $q=1.2\,r$, where convexity
-is known to fail.*
+is known to fail. The failure is small, so the inset plots the height of
+that curve above its own chord near expiry: it bulges above.*
 
 ## Result
 
