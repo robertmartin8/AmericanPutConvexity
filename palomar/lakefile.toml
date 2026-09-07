@@ -1,0 +1,17 @@
+name = "AmericanPutPalomar"
+version = "0.1.0"
+defaultTargets = ["Challenge", "Solution"]
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "AmericanPutConvexity"
+path = ".."
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
+

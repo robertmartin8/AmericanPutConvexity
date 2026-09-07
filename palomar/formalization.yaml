@@ -1,0 +1,94 @@
+version: v0.4
+project:
+  name: Log-convexity of the exercise boundary of an American put option
+  description: >-
+    In the constant-parameter Black–Scholes model, the logarithm of the American
+    put option exercise boundary is convex in positive time-to-expiry when
+    the strike, risk-free interest rate and volatility are positive and the
+    dividend yield satisfies 0 ≤ q ≤ r. The stock-price exercise boundary is
+    strictly convex. The boundary is defined from a supremum over all stopping
+    times bounded by the horizon almost surely, on a constructed Brownian
+    probability space with its completed usual natural filtration. Model
+    certificates, value bounds, boundary positivity and the payoff-contact
+    characterization are included. This registration target is geometric;
+    it does not assert classical second derivatives or strict log-convexity.
+  authors: [Robert Martin]
+  responsible_maintainers: [Robert Martin]
+  license: Apache-2.0
+classification:
+  arxiv: [q-fin.PR, math.AP]
+  msc2020: [91G20, 35R35]
+sources:
+  - title: Log-convexity of the exercise boundary of an American put option
+    authors: [Robert Martin]
+    type: paper
+    relationship: formalizes
+    url: https://github.com/robertmartin8/AmericanPutConvexity/blob/9b2b208520341a63b64eef43c1ecb3c5708a8e63/paper/log-convexity.pdf
+    author_endorsement: participated
+    note: >-
+      The accompanying preprint and formal development present a candidate
+      extension of the established zero-dividend result to 0 ≤ q ≤ r. Novelty
+      and priority have not been independently established. This package
+      reuses the substantive proof in the parent directory, not a new proof.
+  - title: Convexity of the exercise boundary of the American put option on a zero dividend asset
+    authors: [Xinfu Chen, John Chadam, Lishang Jiang, Weian Zheng]
+    type: paper
+    relationship: background
+    doi: 10.1111/j.1467-9965.2007.00328.x
+    year: 2008
+  - title: Nonconvexity of the optimal exercise boundary for an American put option on a dividend-paying asset
+    authors: [Xinfu Chen, Huibin Cheng, John Chadam]
+    type: paper
+    relationship: background
+    doi: 10.1111/j.1467-9965.2011.00500.x
+    year: 2013
+    note: Counterexamples concern dividend yields above the risk-free interest rate; no q > r claim is made here.
+  - title: Convexity of the exercise boundary of the American put option
+    authors: [Hsuan-Ku Liu]
+    type: paper
+    relationship: background
+    url: https://arxiv.org/abs/1304.5337v7
+    note: Identifies the intermediate positive-dividend convexity problem; cited as historical context, not a formal assumption.
+related_formalizations:
+  - id: https://github.com/formal-applied-math/formal-mathfin
+    relationship: builds-on
+    revision: 784a8311f75a1519a23717856df9982bd6a9a370
+    note: Financial and stochastic infrastructure used by the substantive Solution, not imported by the Challenge.
+  - id: https://github.com/RemyDegenne/brownian-motion
+    relationship: builds-on
+    revision: 4d52fa776130a29d4ad7d6eda2035a919c0b4696
+    note: Supplies the constructed Gaussian probability measure and continuous Brownian process, whose properties are separately compared.
+  - id: https://github.com/leanprover-community/mathlib4
+    relationship: builds-on
+    revision: 81a5d257c8e410db227a6665ed08f64fea08e997
+    note: The only Challenge import; supplies standard measure, probability and convexity definitions.
+automation:
+  methods:
+    - method: agent
+      tool_setup: ChatGPT, Codex and Claude Code
+      models: [ChatGPT-6 Pro (astra), Fable 5.1, gpt-6-astra high]
+      notes: >-
+        Historical model attribution is reported by the author: candidate proof
+        development with Astra, checking with Fable 5.1, and formalization
+        primarily with gpt-6-astra high in Codex. Repeated model reviews are not
+        independent human peer review. The Palomar adapter was also prepared
+        with Codex; no additional model identity is inferred for that session.
+review:
+  status: agent-reviewed
+  notes: >-
+    The source development has automated builds and axiom audits and has
+    received agent-assisted mathematical and semantic review. The Palomar
+    adapter is under preparation; see README.md for actual checks completed.
+    Neither independent expert peer review nor a Palomar acceptance is claimed.
+fidelity:
+  notes: >-
+    The only supplied definitions are the raw Brownian probability measure and
+    process, constrained by included probability, continuity, measurability,
+    Gaussian-increment and independence certificates. The completed usual
+    filtration and the entire optimal-stopping definition are explicit in the
+    Challenge. The Solution proves equality with the existing stopping value
+    and boundary. The result has the concrete-model scope of the parent proof;
+    it does not quantify over all Brownian probability-space representations.
+    No PDE solution, boundary smoothness, interval property or convexity is
+    assumed. Classical-curvature results elsewhere in the repository are not
+    among the claims of this Comparator configuration.

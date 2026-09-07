@@ -1,0 +1,24 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "definition_names": ["PalomarPut.law", "PalomarPut.W"],
+  "theorem_names": [
+    "PalomarPut.law_probability",
+    "PalomarPut.W_measurable",
+    "PalomarPut.W_continuous",
+    "PalomarPut.W_zero",
+    "PalomarPut.W_increment_law",
+    "PalomarPut.W_independent_past",
+    "PalomarPut.probability_isProbability",
+    "PalomarPut.probability_isComplete",
+    "PalomarPut.filtration_rightContinuous",
+    "PalomarPut.filtration_complete",
+    "PalomarPut.value_bounds",
+    "PalomarPut.boundary_bounds",
+    "PalomarPut.exercise_iff",
+    "PalomarPut.log_boundary_convex",
+    "PalomarPut.boundary_strictConvex"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}

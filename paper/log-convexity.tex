@@ -17,11 +17,9 @@
 \newcommand{\phat}{\widehat p}
 
 \title{Log-convexity of the exercise boundary of an American put option with positive dividends}
-\author{Robert Martin\thanks{The proof was developed by GPT-6 Pro
-  (Astra) and checked by Fable 5.1 (high). The result was formally verified in
-  Lean, primarily by gpt-6-astra-high in Codex. The writeup was drafted
-  with Codex and Claude Code (Fable 5.1). See \S\ref{sec:verification}
-  and \ref{app:ai} for the verification scope and the use of AI.}\\
+\author{Robert Martin\thanks{The proof, formalisation, and manuscript were developed largely using
+frontier AI systems (OpenAI GPT-6 Pro and Anthropic Fable 5.1). See \S\ref{sec:verification}
+  and \hyperref[app:ai]{the appendix} for the verification scope and the use of AI.}\\
   Dianoa Labs}
 \date{September 2026 --- \textbf{Draft}, not yet submitted or peer reviewed}
 
@@ -29,9 +27,10 @@
 \maketitle
 
 \begin{abstract}
-We prove that the logarithm of the exercise boundary of an American put
-option is convex in time-to-expiry when the constant dividend yield is
-nonnegative and does not exceed the positive risk-free interest rate. The proof
+In the Black--Scholes model with constant risk-free interest rate $r>0$,
+constant dividend yield $q$, and constant volatility $\sigma>0$, we prove
+that the logarithm of the exercise boundary of an American put option is
+convex in time-to-expiry whenever $0\le q\le r$. The proof
 constructs an exact pricing-equation solution that matches the payoff
 and smooth fit along a decreasing straight line. A maximum-principle
 argument preserves the interval shape of the positive set of the option
@@ -47,7 +46,7 @@ of the stock-price boundary as a separate corollary.
 
 The exercise boundary of an American put option is the stock-price
 threshold below which immediate exercise is optimal. We study how this
-threshold varies with time-to-expiry. Although no general closed-form
+threshold varies with time-to-expiry in the Black--Scholes model. Although no general closed-form
 expression for the boundary is known, its geometric properties depend
 strongly on the dividend yield $q$ and the risk-free interest rate $r$.
 
@@ -73,7 +72,8 @@ from established regularity.
 
 \section{Main theorem and notation}
 
-Under the risk-neutral measure, let the stock-price process satisfy
+We work in the Black--Scholes model with constant parameters $r$, $q$,
+and $\sigma$. Under the risk-neutral measure, the stock-price process satisfies
 \[
   dS=(r-q)S\,du+\sigma S\,dW,\qquad S_0=S,
 \]
@@ -148,9 +148,24 @@ $1-e^{-Mt}=O(t)$. Since the American value dominates the European
 value, $-Mt$ lies in continuation for all sufficiently small $t$.
 Hence $b(t)<-Mt$, which proves \eqref{eq:expiry}.
 
+Since $b$ is continuous at $0$ with $b(0)=0$, convexity extends to
+$[0,\infty)$, and by \eqref{eq:expiry} the right derivative at $0$ is
+$-\infty$. This singularity never enters the argument:
+Lemma~\ref{lem:threepoint} needs only continuity of the boundary, and
+\eqref{eq:expiry} is used once, in the chord argument.
+
 \section{An exact straight-line comparison}\label{sec:comparison}
 
-Fix $c>0$ and $d<0$, and let $\ell(t)=d-ct$. Define $f$ and $g$ by
+Fix $c>0$ and $d<0$, and let $\ell(t)=d-ct$.
+The construction treats the constant and exponential components of the
+payoff separately. Both are eigenfunctions of the pricing operator
+$\mathcal L=\partial_{xx}+\alpha\partial_x-k$, with
+$\mathcal L1=-k$ and $\mathcal Le^x=-he^x$.
+We therefore seek a comparison of the form
+$f(x-\ell(t))-e^xg(x-\ell(t))$. Requiring it to solve the pricing
+equation gives two constant-coefficient ordinary differential equations;
+the initial conditions impose value matching and smooth fit along the
+prescribed line. Define $f$ and $g$ by
 \begin{equation}\label{eq:profiles}
   \begin{aligned}
     f''+(\alpha-c)f'-kf&=0,& f(0)&=1,& f'(0)&=0,\\
@@ -239,6 +254,12 @@ since $z=x-d+ct$ differs from $x$ by a uniformly bounded shift.
 We use a three-point maximum argument that preserves the interval
 shape of every positive superlevel set. It requires only continuity
 of the moving boundary and of the initial data.
+Removing the zero-order term is key to this argument: at a maximizing
+violating triple, the outer points are spatial maxima and the middle
+point is a spatial minimum. The drift terms vanish, so the equation
+makes the outer time derivatives nonpositive and the middle one
+nonnegative. A small strict time penalty then makes these signs
+incompatible with maximality.
 
 \begin{lemma}[Parabolic three-point inequality]\label{lem:threepoint}
 Let $T>0$ and let $\beta:[0,T]\to\R$ be continuous, with $\beta(t)<X$. Let
@@ -577,8 +598,9 @@ Since $B(\tau)=Ke^{b(a\tau)}$, this proves strict convexity of $B$.
 The geometric theorem is separate from differentiability. The
 positive-time regularity results of Chen--Chadam
 \cite[Remark~2.2 and subsequent regularity analysis]{CC2007} for zero
-dividends, and Chen--Cheng--Chadam \cite[Theorem~1 and \S3]{CCC2013}
-for positive dividends, give $b\in C^2((0,\infty))$, in fact
+dividends, and Chen--Cheng \cite{ChenCheng2012} for dividend-paying assets
+(see also Chen--Cheng--Chadam \cite[Theorem~1 and \S3]{CCC2013}),
+give $b\in C^2((0,\infty))$, in fact
 $C^\infty$. They do not require boundary convexity.
 
 \begin{corollary}
@@ -623,7 +645,8 @@ Two analytic steps are presented differently: the paper derives
 a local square-root subsolution; the positivity propagation in
 Lemma~\ref{lem:noflattail} is proved in Lean by explicit local barriers.
 
-The development builds on Mathlib \cite{Mathlib2020}, Degenne's BrownianMotion library,
+The development builds on Mathlib \cite{Mathlib2020}, the BrownianMotion library
+of Degenne, Ledvinka, Marion, and Pfaffelhuber \cite{Degenne2025},
 and Coelho's MathFin library \cite{Coelho2026}. MathFin supplies
 geometric Brownian motion, It\^o and local-martingale results,
 heat-kernel tools, and filtration machinery. The boundary-convexity
@@ -638,35 +661,46 @@ correspondence with the intended financial model and this manuscript
 remains a separate mathematical check.
 
 \appendix
-\renewcommand{\thesection}{Appendix~\Roman{section}}
-\section{Use of AI}\label{app:ai}
+\section*{Appendix: AI usage}\label{app:ai}
 
 The proof development, formalization, and manuscript preparation were
-carried out largely by AI agents, with the author selecting the problem,
-directing the investigation, and making editorial decisions. The
+carried out largely by frontier AI models, with the author selecting the problem, directing the investigation, and making editorial decisions. The
 following is an account of that workflow, rather than an additional
 argument for the theorem's correctness.
 
 While researching American options, the author encountered the
-unresolved dividend-paying boundary-convexity question and considered
-it a promising subject for AI-assisted mathematical discovery.
-The first task given to ChatGPT-6 Pro (astra) was to seek a
-counterexample. After an extended search, Astra had not found one
+unresolved boundary-convexity question for the case of nonzero dividends and considered
+it a promising subject for AI-assisted mathematical discovery, because the problemw as relatively simple to state
+and a counterexample would be easily verifiable.
+
+The first task given to ChatGPT-6 Pro (Astra) was to find such a
+counterexample, and to provide motivation to the model, the author suggested to the model that he had already found one.\footnote{For a related discussion of motivational prompting, see Anthropic,
+\href{https://www.anthropic.com/research/riemann-zeta}{``Learning more about Claude's mathematical capabilities''},
+August 10, 2026, especially ``Claude's methodology.''}
+
+After an extended search, Astra had not found one
 and instead proposed structural reasons to expect convexity.
-The author then asked it to prove the full conjecture in the
+The author then suggested that his proof of a counterexample may have been erroneous, and asked it to instead prove the full conjecture in the
 nonnegative-dividend regime $q\le r$.
 
-After Astra produced a candidate proof, the author asked Anthropic's
-Fable 5.1 to examine it for errors. That review reported no errors.
+To the Author's surpirse, Astra produced a candidate proof in 31 minutes. The author asked Anthropic's
+Fable 5.1 to examine it for errors, and Fable reported none.
 The project then moved to the Codex command-line environment for
-formal verification in Lean, performed primarily by gpt-6-astra high,
-with Fable 5.1 providing additional review during the development.
-Repeated reviews by the same model are not independent checks.
-The manuscript was drafted and revised with Codex and Claude Code
-(Fable 5.1).
+formal verification in Lean, performed primarily by GPT-6 Astra (Pro),
+with Fable 5.1 (High) in Claude Code providing additional review during the development.
+
+Extensive prompting was used to build confidence that the proof and its formalization were correct, including prompts
+to deeply analyze the extant literature to understand why this approach had not been discovered before,
+and explicit prompting to consider and avoid the various ways a Lean formalization could be falsely constructed.
+
+The manuscript was drafted by Codex (prompted to follow good technical writing practices\footnote{Stephen Boyd, Ernest K. Ryu, and Neal Parikh,
+\href{https://web.stanford.edu/class/ee364b/latex_templates/template_notes.pdf}{``\LaTeX{} Style Guide for EE 364B''},
+May 12, 2014.}), reviewed by Fable 5.1, then revised and edited manually by the author.
+
 
 \bibliographystyle{plain}
 \begingroup
+\small
 \raggedright
 \bibliography{references}
 \endgroup
