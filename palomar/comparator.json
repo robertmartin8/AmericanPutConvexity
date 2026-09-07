@@ -13,9 +13,11 @@
     "PalomarPut.probability_isComplete",
     "PalomarPut.filtration_rightContinuous",
     "PalomarPut.filtration_complete",
+    "PalomarPut.W_adapted",
     "PalomarPut.value_bounds",
     "PalomarPut.boundary_bounds",
     "PalomarPut.exercise_iff",
+    "PalomarPut.boundary_eq_sup_exercise",
     "PalomarPut.log_boundary_convex",
     "PalomarPut.boundary_strictConvex"
   ],

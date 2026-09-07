@@ -23,7 +23,7 @@ sources:
     authors: [Robert Martin]
     type: paper
     relationship: formalizes
-    url: https://github.com/robertmartin8/AmericanPutConvexity/blob/9b2b208520341a63b64eef43c1ecb3c5708a8e63/paper/log-convexity.pdf
+    url: https://github.com/robertmartin8/AmericanPutConvexity/blob/39e84b318a9efba3fc870582163f2e35f58302a2/paper/log-convexity.pdf
     author_endorsement: participated
     note: >-
       The accompanying preprint and formal development present a candidate
@@ -78,7 +78,8 @@ review:
   notes: >-
     The source development has automated builds and axiom audits and has
     received agent-assisted mathematical and semantic review. The Palomar
-    adapter is under preparation; see README.md for actual checks completed.
+    adapter passed local Comparator correspondence, NanoDa and fresh Lean-kernel
+    replay checks; see VERIFICATION.md for the exact scope and platform limits.
     Neither independent expert peer review nor a Palomar acceptance is claimed.
 fidelity:
   notes: >-

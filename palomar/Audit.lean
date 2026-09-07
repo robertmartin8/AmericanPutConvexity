@@ -12,8 +12,10 @@ import Solution
 #print axioms PalomarPut.probability_isComplete
 #print axioms PalomarPut.filtration_rightContinuous
 #print axioms PalomarPut.filtration_complete
+#print axioms PalomarPut.W_adapted
 #print axioms PalomarPut.value_bounds
 #print axioms PalomarPut.boundary_bounds
 #print axioms PalomarPut.exercise_iff
+#print axioms PalomarPut.boundary_eq_sup_exercise
 #print axioms PalomarPut.log_boundary_convex
 #print axioms PalomarPut.boundary_strictConvex

@@ -73,6 +73,9 @@ theorem filtration_rightContinuous : filtration.IsRightContinuous := by sorry
 theorem filtration_complete (s : Set Path) (hs : probability s = 0) (t : ℝ≥0) :
     MeasurableSet[filtration t] s := by sorry
 
+/-- The Brownian observations are measurable in the same filtration used for stopping. -/
+theorem W_adapted (t : ℝ≥0) : Measurable[filtration t] (W t) := by sorry
+
 /-- All extended nonnegative stopping times of this filtration whose horizon
 bound holds almost surely. Infinity is allowed only on a null set. -/
 structure Rule (T : ℝ≥0) where
@@ -97,7 +100,7 @@ noncomputable def boundary (K r q σ : ℝ) (T : ℝ≥0) : ℝ :=
   sSup {S | 0 ≤ S ∧ S ≤ K ∧ value K r q σ S T = K-S}
 
 theorem value_bounds {K r q σ S : ℝ} (hK : 0 < K) (hr : 0 < r)
-    (hq : 0 ≤ q) (hqr : q ≤ r) (hσ : 0 < σ) (hS : 0 < S) (T : ℝ≥0) :
+    (_hq : 0 ≤ q) (_hqr : q ≤ r) (_hσ : 0 < σ) (hS : 0 < S) (T : ℝ≥0) :
     max (K-S) 0 ≤ value K r q σ S T ∧ value K r q σ S T ≤ K := by sorry
 
 theorem boundary_bounds {K r q σ : ℝ} (hK : 0 < K) (hr : 0 < r)
@@ -109,6 +112,13 @@ theorem exercise_iff {K r q σ S : ℝ} (hK : 0 < K) (hr : 0 < r)
     {τ : ℝ} (hτ : 0 < τ) :
     value K r q σ S τ.toNNReal = max (K-S) 0 ↔
       S ≤ boundary K r q σ τ.toNNReal := by sorry
+
+/-- At positive time-to-expiry the boundary is also the supremum of the entire
+positive-spot exercise set, with no restriction to in-the-money prices. -/
+theorem boundary_eq_sup_exercise {K r q σ : ℝ} (hK : 0 < K) (hr : 0 < r)
+    (hq : 0 ≤ q) (hqr : q ≤ r) (hσ : 0 < σ) {τ : ℝ} (hτ : 0 < τ) :
+    boundary K r q σ τ.toNNReal =
+      sSup {S | 0 < S ∧ value K r q σ S τ.toNNReal = max (K-S) 0} := by sorry
 
 /-- The logarithmic exercise boundary is convex in positive time-to-expiry. -/
 theorem log_boundary_convex {K r q σ : ℝ} (hK : 0 < K) (hr : 0 < r)

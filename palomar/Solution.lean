@@ -89,6 +89,10 @@ theorem filtration_complete (s : Set Path) (hs : probability s = 0) (t : ℝ≥0
   change MeasurableSet[brownianUsualFiltration t] s
   exact Filtration.IsComplete.measurableSet_of_null (μ := concreteMeasure) hs t
 
+/-- The Brownian observations are measurable in the same filtration used for stopping. -/
+theorem W_adapted (t : ℝ≥0) : Measurable[filtration t] (W t) := by
+  exact (brownian_adapted t).mono (brownian_completedRaw_le_usual t) le_rfl
+
 /-- All extended nonnegative stopping times of this filtration whose horizon
 bound holds almost surely. Infinity is allowed only on a null set. -/
 structure Rule (T : ℝ≥0) where
@@ -131,7 +135,7 @@ private theorem boundary_eq (K r q σ : ℝ) (T : ℝ≥0) :
   simp only [value_eq, brownianUsualAmericanPut]
 
 theorem value_bounds {K r q σ S : ℝ} (hK : 0 < K) (hr : 0 < r)
-    (hq : 0 ≤ q) (hqr : q ≤ r) (hσ : 0 < σ) (hS : 0 < S) (T : ℝ≥0) :
+    (_hq : 0 ≤ q) (_hqr : q ≤ r) (_hσ : 0 < σ) (hS : 0 < S) (T : ℝ≥0) :
     max (K-S) 0 ≤ value K r q σ S T ∧ value K r q σ S T ≤ K := by
   rw [value_eq]
   exact ⟨payoff_le_value brownian_completed_measurable
@@ -160,6 +164,22 @@ theorem exercise_iff {K r q σ S : ℝ} (hK : 0 < K) (hr : 0 < r)
     mul_right_inj' hK.ne', canonicalPrice_contact_iff_logBoundary hk hh hhk (by positivity)]
   rw [← Real.exp_le_exp, Real.exp_log (div_pos hS hK), div_le_iff₀ hK]
   rw [mul_comm K]
+
+/-- At positive time-to-expiry the boundary is also the supremum of the entire
+positive-spot exercise set, with no restriction to in-the-money prices. -/
+theorem boundary_eq_sup_exercise {K r q σ : ℝ} (hK : 0 < K) (hr : 0 < r)
+    (hq : 0 ≤ q) (hqr : q ≤ r) (hσ : 0 < σ) {τ : ℝ} (hτ : 0 < τ) :
+    boundary K r q σ τ.toNNReal =
+      sSup {S | 0 < S ∧ value K r q σ S τ.toNNReal = max (K-S) 0} := by
+  have hp := (boundary_bounds hK hr hq hqr hσ hτ).1
+  have hm : boundary K r q σ τ.toNNReal ∈
+      {S | 0 < S ∧ value K r q σ S τ.toNNReal = max (K-S) 0} :=
+    ⟨hp, (exercise_iff hK hr hq hqr hσ hp hτ).mpr le_rfl⟩
+  have hu : ∀ S ∈ {S | 0 < S ∧ value K r q σ S τ.toNNReal = max (K-S) 0},
+      S ≤ boundary K r q σ τ.toNNReal := by
+    intro S hS
+    exact (exercise_iff hK hr hq hqr hσ hS.1 hτ).mp hS.2
+  exact le_antisymm (le_csSup ⟨_, hu⟩ hm) (csSup_le ⟨_, hm⟩ hu)
 
 /-- The logarithmic exercise boundary is convex in positive time-to-expiry. -/
 theorem log_boundary_convex {K r q σ : ℝ} (hK : 0 < K) (hr : 0 < r)

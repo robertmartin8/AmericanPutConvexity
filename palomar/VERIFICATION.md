@@ -27,7 +27,7 @@ All tools were built natively; no Docker was used.
 - The official Palomar metadata and Comparator-configuration parsers accepted
   the package. The official manifest parser and contained-path checks accepted
   the pinned dependency graph and the parent-directory path dependency.
-- The Challenge is 125 lines and imports only `Mathlib`.
+- The final Challenge is 135 lines and imports only `Mathlib`.
 - The Solution proves equality of the explicit all-stopping-times value and
   exercise boundary with the existing objects before reusing the existing
   geometric theorems. No mathematical proof in the parent project was changed.
@@ -35,8 +35,25 @@ All tools were built natively; no Docker was used.
   despite identical financial expressions. Declaring the two supplied Brownian
   objects as transparent `abbrev`s removed that incidental difference. No
   financial definition was added to `definition_names` or exempted from checking.
-- The subsequent run passed declaration comparison and started NanoDa.
-  **Kernel replay completion is not yet recorded here.**
+- The subsequent run passed declaration comparison, the three-axiom checks,
+  NanoDa's independent kernel check and Comparator's fresh Lean-kernel replay.
+  Its terminal output was:
+
+  ```text
+  nanoda kernel accepts the solution
+  Running Lean default kernel on solution.
+  Lean default kernel accepts the solution
+  Your solution is okay!
+  ```
+
+  The final run covered all 17 selected theorems and both supplied definitions,
+  including adaptedness and the supremum over the entire positive exercise set,
+  and exited successfully. `Audit.lean` also reported only `propext`,
+  `Classical.choice` and `Quot.sound` for each of these 19 declarations.
+  This checks the selected declarations' proof dependencies, not every theorem
+  in every imported library. Build warnings about `sorry` in unrelated imported
+  BrownianMotion declarations do not appear in this selected proof closure.
+  The final local logs are `build/comparator.log` and `build/axioms.log`.
 
 ## Reproduction
 
