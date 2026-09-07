@@ -127,16 +127,14 @@ For $q=0$, see Chen--Chadam
 \cite[\S2, especially Theorem~2.3 and Remark~2.2]{CC2007}; for
 $q>0$, see Chen--Cheng--Chadam \cite[Theorem~1 and \S3]{CCC2013}.
 
-The bounds $(1-e^x)^+\le p(x,t)\le1$ and domination of the
-European put value follow from discounted payoffs and the
-admissibility of immediate exercise and exercise at expiry.
-Increasing time-to-expiry enlarges the stopping-time class, so the
-price is nondecreasing in $t$ and exercise sets shrink, making $b$
-nonincreasing.
-The formal development also derives these properties from its stopping
-definitions; see \S\ref{sec:verification}.
-Strict decrease is proved after convexity. No derivative of $b$ is
-used until \S\ref{sec:classical}.
+Immediate exercise and exercise at expiry give
+\[
+  (1-e^x)^+\le p(x,t)\le1,\qquad p_E(x,t)\le p(x,t),
+\]
+where $p_E$ is the normalized European put value. A longer
+time-to-expiry permits every stopping strategy available at a shorter
+horizon, so $p$ is nondecreasing in $t$. Consequently, the exercise
+region shrinks and $b$ is nonincreasing.
 
 One elementary expiry estimate will be useful:
 \begin{equation}\label{eq:expiry}
@@ -147,12 +145,6 @@ $p_E(-Mt,t)=\sqrt{t/\pi}+O(t)$, whereas
 $1-e^{-Mt}=O(t)$. Since the American value dominates the European
 value, $-Mt$ lies in continuation for all sufficiently small $t$.
 Hence $b(t)<-Mt$, which proves \eqref{eq:expiry}.
-
-Since $b$ is continuous at $0$ with $b(0)=0$, convexity extends to
-$[0,\infty)$, and by \eqref{eq:expiry} the right derivative at $0$ is
-$-\infty$. This singularity never enters the argument:
-Lemma~\ref{lem:threepoint} needs only continuity of the boundary, and
-\eqref{eq:expiry} is used once, in the chord argument.
 
 \section{An exact straight-line comparison}\label{sec:comparison}
 
@@ -193,8 +185,7 @@ Substitution into \eqref{eq:profiles} shows that $\phat$ solves
   \phat(\ell(t),t)=1-e^{\ell(t)},\qquad
   \phat_x(\ell(t),t)=-e^{\ell(t)}.
 \]
-The comparison function need not be an option price. Its role is to
-satisfy the pricing equation exactly while fitting a prescribed line.
+The comparison function need not be an option price.
 
 \begin{lemma}\label{lem:domination}
 For $t\ge0$ and $x\le0$, the comparison satisfies
@@ -251,9 +242,8 @@ since $z=x-d+ct$ differs from $x$ by a uniformly bounded shift.
 
 \section{Preservation of a positive interval}
 
-We use a three-point maximum argument that preserves the interval
-shape of every positive superlevel set. It requires only continuity
-of the moving boundary and of the initial data.
+The following three-point inequality preserves the interval shape of
+superlevel sets at nonnegative levels.
 Removing the zero-order term is key to this argument: at a maximizing
 violating triple, the outer points are spatial maxima and the middle
 point is a spatial minimum. The drift terms vanish, so the equation
@@ -378,18 +368,8 @@ points, $X$ can also be chosen beyond the rightmost one. We obtain
 \eqref{eq:threepoint} for $v$ at every positive time.
 
 If the two endpoint values exceed $\varepsilon\ge0$, that inequality
-forces the middle value to exceed $\varepsilon$ as well. This proves
-the proposition, including exclusion of a zero between two positive
-values. The argument uses no derivative of $b$ and no convergence
-of spatial derivatives at expiry.
+forces the middle value to exceed $\varepsilon$ as well.
 \end{proof}
-
-The full zero-number theorem is unnecessary here. In particular,
-Lou's moving-boundary theorem \cite[Theorem~1.2, condition (N)]{Lou2018}
-allows continuous boundary curves when the solution is nonzero there;
-unbounded boundary speed is not itself an obstruction in that case.
-The direct proof above avoids both zero counting and its initialization
-at expiry.
 
 \paragraph{Why the argument does not extend to larger dividends.}
 For $q>r$, the limiting boundary at expiry is
@@ -419,8 +399,7 @@ of those counterexamples.
 
 We use the weak maximum and comparison principles and the strong
 maximum principle in their classical parabolic forms; see
-Lieberman \cite[Chapter~II]{Lieberman1996}. The boundary-point argument
-needed here has the following direct proof.
+Lieberman \cite[Chapter~II]{Lieberman1996}.
 
 \begin{lemma}[Backward-rectangle barrier]\label{lem:rectangle}
 Let $L>0$ and $t_-<T$. Suppose $w$ is continuous on
@@ -470,9 +449,7 @@ strip $b(t)<x<X$ with its nonpositive initial and lateral data.
 This contradicts $v(\ell(t_2),t_2)>0$,
 since the line lies in continuation at $t_2$ and $\phat$ equals
 the payoff there. The later return below the line is essential to
-obtain this positive point on the contact slice. The argument does
-not assert that the boundary must remain below a line once it enters
-that region.
+obtain this positive point on the contact slice.
 
 Move with the line and set
 \[
@@ -593,10 +570,13 @@ exponential give
 Since $B(\tau)=Ke^{b(a\tau)}$, this proves strict convexity of $B$.
 \end{proof}
 
+Since $b$ is continuous at $0$ with $b(0)=0$, its convexity extends
+to $[0,\infty)$. By \eqref{eq:expiry}, its right derivative at $0$
+is $-\infty$.
+
 \section{Classical second derivatives}\label{sec:classical}
 
-The geometric theorem is separate from differentiability. The
-positive-time regularity results of Chen--Chadam
+The positive-time regularity results of Chen--Chadam
 \cite[Remark~2.2 and subsequent regularity analysis]{CC2007} for zero
 dividends, and Chen--Cheng \cite{ChenCheng2012} for dividend-paying assets
 (see also Chen--Cheng--Chadam \cite[Theorem~1 and \S3]{CCC2013}),
@@ -664,9 +644,7 @@ remains a separate mathematical check.
 \section*{Appendix: AI usage}\label{app:ai}
 
 The proof development, formalization, and manuscript preparation were
-carried out largely by frontier AI models, with the author selecting the problem, directing the investigation, and making editorial decisions. The
-following is an account of that workflow, rather than an additional
-argument for the theorem's correctness.
+carried out largely by frontier AI models, with the author selecting the problem, directing the investigation, and making editorial decisions.
 
 While researching American options, the author encountered the
 unresolved boundary-convexity question for the case of nonzero dividends and considered
